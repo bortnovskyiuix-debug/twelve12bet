@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="64" viewBox="0 0 280 64" role="img" aria-label="Twelve Bet">
-  <!-- Placeholder logo. Replace this file (public/brand/logo.svg) with your own logo; any size works. -->
-  <rect x="0" y="2" width="60" height="60" rx="16" fill="#5ff08c"/>
-  <text x="30" y="43" text-anchor="middle" font-family="Unbounded, Manrope, Arial, sans-serif" font-weight="800" font-size="26" fill="#03140b">12</text>
-  <text x="76" y="44" font-family="Unbounded, Manrope, Arial, sans-serif" font-weight="800" font-size="30" fill="#eaf5ef">Twelve <tspan fill="#5ff08c">Bet</tspan></text>
-</svg>
