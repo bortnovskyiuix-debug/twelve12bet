@@ -1,0 +1,237 @@
+/* PokerDom — table redesign (navy room, thin-rail oval, clean seats).
+   Override layer loaded after the build CSS; everything scoped to the PokerDom brand. */
+
+html[data-brand=pokerdom][data-brand] {
+  --pd-bg: #0B1129;
+  --pd-bg-2: #111A3B;
+  --pd-surface: #151E40;
+  --pd-surface-2: #1B2650;
+  --pd-line: rgba(160, 180, 255, .10);
+  --pd-rail: #26356A;
+  --pd-text: #FFFFFF;
+  --pd-mute: #8A95BC;
+  --pd-green: #3EE07A;
+  --pd-green-2: #1FB85A;
+  --pd-ink: #111A3D;
+  --pd-red: #E5484D;
+  --back: linear-gradient(150deg, #4A6CF0 0%, #2F4FD0 100%);
+  --back-ink: transparent;
+}
+
+/* ── Room ─────────────────────────────────────────── */
+html[data-brand=pokerdom][data-brand] body {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% 45%, #18245296 0%, transparent 70%),
+    radial-gradient(ellipse 60% 120% at -10% 50%, rgba(46, 70, 210, .30), transparent 60%),
+    radial-gradient(ellipse 60% 120% at 110% 50%, rgba(46, 70, 210, .30), transparent 60%),
+    linear-gradient(180deg, #0D1430 0%, #0A1027 100%);
+}
+
+/* ── Table: no felt, thin rail ───────────────────── */
+html[data-brand=pokerdom][data-brand] .table,
+html[data-brand=pokerdom][data-brand] [data-felt] .table {
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 50%, rgba(40, 60, 140, .22), transparent 75%),
+    rgba(14, 22, 52, .55);
+  box-shadow:
+    0 0 0 5px var(--pd-rail),
+    0 0 0 6px rgba(255, 255, 255, .06),
+    0 0 40px rgba(50, 80, 220, .18),
+    inset 0 0 0 1px rgba(255, 255, 255, .04),
+    inset 0 0 60px rgba(4, 8, 24, .55);
+}
+html[data-brand=pokerdom][data-brand] .table::before { border: 0; }
+html[data-brand=pokerdom][data-brand] .felt-brand { opacity: .10; }
+html[data-brand=pokerdom][data-brand] .beam {
+  background: linear-gradient(90deg, rgba(62, 224, 122, .18), rgba(62, 224, 122, .06) 60%, transparent);
+}
+
+/* ── Board ───────────────────────────────────────── */
+html[data-brand=pokerdom][data-brand] .board-slot {
+  border: 0;
+  border-radius: 7px;
+  background: #0A1024;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .04);
+}
+
+/* ── Pot: "TOTAL POT" over the amount ─────────────── */
+html[data-brand=pokerdom][data-brand] .pot-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  color: var(--pd-text);
+  font-size: 17px;
+  font-weight: 600;
+  letter-spacing: -.01em;
+}
+html[data-brand=pokerdom][data-brand] .pot-label span {
+  margin: 0;
+  font-size: 0;
+  line-height: 1;
+}
+html[data-brand=pokerdom][data-brand] .pot-label span::after {
+  content: "TOTAL POT";
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  color: #5D6890;
+}
+
+/* ── Seats: avatar, name, stack pill ─────────────── */
+html[data-brand=pokerdom][data-brand] .plate {
+  padding: 0;
+  margin-top: 12px;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+html[data-brand=pokerdom][data-brand] .plate .nm {
+  border: 0;
+  padding: 0;
+  margin: 0 0 4px;
+  color: var(--pd-text);
+  font-size: 13px;
+  font-weight: 600;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .5);
+}
+html[data-brand=pokerdom][data-brand] .plate .st {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 99px;
+  background: rgba(20, 28, 62, .9);
+  box-shadow: inset 0 0 0 1px var(--pd-line);
+  color: #C9D2EE;
+  font-size: 12px;
+  font-weight: 600;
+}
+html[data-brand=pokerdom][data-brand] .seat.turn .plate {
+  border: 0;
+  box-shadow: none;
+}
+html[data-brand=pokerdom][data-brand] .lvl,
+html[data-brand=pokerdom][data-brand] .flag-wrap { display: none; }
+
+html[data-brand=pokerdom][data-brand] .ava {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, .08), 0 6px 16px rgba(0, 0, 0, .45);
+}
+html[data-brand=pokerdom][data-brand] .seat.turn .ava {
+  box-shadow: 0 0 0 2px var(--pd-green), 0 0 0 5px rgba(62, 224, 122, .18), 0 6px 16px rgba(0, 0, 0, .45);
+}
+
+/* Status tags (SB/BB/Call/Fold…) */
+html[data-brand=pokerdom][data-brand] .tag {
+  border-radius: 99px;
+  border: 0;
+  background: rgba(20, 28, 62, .92);
+  box-shadow: inset 0 0 0 1px var(--pd-line);
+  color: #C9D2EE;
+}
+html[data-brand=pokerdom][data-brand] .seat.turn .tag {
+  background: var(--pd-green);
+  color: #0B2414;
+  box-shadow: none;
+}
+
+/* Dealer button */
+html[data-brand=pokerdom][data-brand] .dbtn {
+  color: var(--pd-ink);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, .5);
+}
+
+/* Chips amount */
+html[data-brand=pokerdom][data-brand] .chip-amt {
+  background: rgba(20, 28, 62, .9);
+  border-color: var(--pd-line);
+}
+
+/* ── Cards: white face, suit top-left, rank bottom-right ── */
+html[data-brand=pokerdom][data-brand] .card:not(.back) {
+  background: #fff;
+  border-radius: 8px;
+  color: var(--pd-ink);
+}
+html[data-brand=pokerdom][data-brand] .card.red:not(.back) { color: #E04848; }
+html[data-brand=pokerdom][data-brand] .card:not(.back) .cs-s { display: none; }
+html[data-brand=pokerdom][data-brand] .card:not(.back) .cs {
+  position: absolute;
+  left: 9%;
+  top: 6%;
+  right: auto;
+  bottom: auto;
+  font-size: calc(var(--cw) * .34);
+  line-height: 1;
+}
+html[data-brand=pokerdom][data-brand] .card:not(.back) .cr {
+  position: absolute;
+  right: 10%;
+  bottom: 6%;
+  font-size: calc(var(--cw) * .44);
+  line-height: 1;
+  font-weight: 700;
+}
+html[data-brand=pokerdom][data-brand] .card.dealt-up::after,
+html[data-brand=pokerdom][data-brand] .card.turn-up:not(.back)::after {
+  border: 0;
+  box-shadow: 0 6px 14px rgba(0, 0, 0, .35);
+}
+/* hero hand: first card bright, others slightly dimmed like the reference */
+html[data-brand=pokerdom][data-brand] .seat.hero .hole .card:not(.back) {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .45);
+}
+
+/* Card backs: plain brand blue */
+html[data-brand=pokerdom][data-brand] .card.back {
+  background: linear-gradient(150deg, #4A6CF0 0%, #2F4FD0 100%);
+  border: 1px solid rgba(255, 255, 255, .22);
+  border-radius: 5px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, .4);
+}
+html[data-brand=pokerdom][data-brand] .card.back::after { content: none; }
+
+/* ── Top bar ─────────────────────────────────────── */
+html[data-brand=pokerdom][data-brand] .tool-group,
+html[data-brand=pokerdom][data-brand] .tabs,
+html[data-brand=pokerdom][data-brand] .bar-icon,
+html[data-brand=pokerdom][data-brand] .bar-menu {
+  border-radius: 14px;
+  background: rgba(21, 30, 64, .85);
+  border-color: var(--pd-line);
+}
+html[data-brand=pokerdom][data-brand] .ttab { border-radius: 10px; }
+html[data-brand=pokerdom][data-brand] .ttab.on {
+  border-color: var(--pd-green);
+  box-shadow: none;
+}
+
+/* ── Dock / actions ──────────────────────────────── */
+html[data-brand=pokerdom][data-brand] .ma::after {
+  background:
+    radial-gradient(120% 90% at 50% 125%, color-mix(in srgb, var(--c) 26%, transparent), transparent 62%),
+    rgba(17, 25, 56, .88);
+}
+html[data-brand=pokerdom][data-brand] .ma-call { --c: var(--pd-green); }
+html[data-brand=pokerdom][data-brand] .size,
+html[data-brand=pokerdom][data-brand] .size-icon,
+html[data-brand=pokerdom][data-brand] .pre {
+  background: rgba(21, 30, 64, .85);
+  border-color: var(--pd-line);
+}
+html[data-brand=pokerdom][data-brand] .size.on {
+  background: rgba(62, 224, 122, .14);
+  border-color: var(--pd-green);
+  box-shadow: none;
+}
+html[data-brand=pokerdom][data-brand] .chat-fab {
+  background: rgba(21, 30, 64, .9);
+  border-color: var(--pd-line);
+}
