@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+  <g fill="none" stroke="#204538" stroke-width="4.2" opacity=".53" stroke-linejoin="round">
+    <!-- rounded diagonal rhombi, endlessly repeating across the tile -->
+    <rect x="33" y="33" width="86" height="86" rx="18" transform="rotate(45 76 76)" />
+    <rect x="62" y="62" width="28" height="28" rx="7" transform="rotate(45 76 76)" opacity=".73" />
+    <rect x="144" y="144" width="86" height="86" rx="18" transform="rotate(45 187 187)" />
+    <rect x="173" y="173" width="28" height="28" rx="7" transform="rotate(45 187 187)" opacity=".73" />
+    <rect x="144" y="-76" width="86" height="86" rx="18" transform="rotate(45 187 -33)" />
+    <rect x="173" y="-47" width="28" height="28" rx="7" transform="rotate(45 187 -33)" opacity=".73" />
+    <rect x="-76" y="144" width="86" height="86" rx="18" transform="rotate(45 -33 187)" />
+    <rect x="-47" y="173" width="28" height="28" rx="7" transform="rotate(45 -33 187)" opacity=".73" />
+    <rect x="-76" y="-76" width="86" height="86" rx="18" transform="rotate(45 -33 -33)" />
+    <!-- faint larger diamonds connecting the weave -->
+    <rect x="88" y="88" width="108" height="108" rx="20" transform="rotate(45 142 142)" opacity=".43" />
+    <rect x="-22" y="-22" width="108" height="108" rx="20" transform="rotate(45 32 32)" opacity=".28" />
+  </g>
+</svg>
