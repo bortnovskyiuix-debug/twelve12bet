@@ -355,6 +355,26 @@ svg.i{width:22px;height:22px;flex:none}
 .hdr .srch:focus-within{box-shadow:none;color:var(--text)}
 .hdr .srch input::placeholder{color:var(--mute)}
 
+/* ── Skeletons ── */
+.sk{position:relative;overflow:hidden;background:var(--panel);border-radius:var(--r)}
+.sk::after{content:"";position:absolute;inset:0;transform:translateX(-100%);background:linear-gradient(90deg,transparent,rgba(120,160,230,.07) 45%,rgba(120,160,230,.11) 50%,rgba(120,160,230,.07) 55%,transparent);animation:skx 1.4s var(--ease-io) infinite}
+@keyframes skx{to{transform:translateX(100%)}}
+.sk.ln{height:14px;border-radius:999px}
+.sk.pill{border-radius:999px}
+.sk-row{display:flex;align-items:center;gap:12px}
+.sk-grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.sk-grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.sk-mt{aspect-ratio:1.4/1;display:grid;place-items:center}
+.sk-mt i{display:block;width:72%;height:58%;border-radius:999px;background:var(--panel-3);margin-top:8%}
+.sk-tc{display:grid;grid-template-rows:auto auto}
+.sk-tc .im{aspect-ratio:1.85/1;border-radius:0;background:var(--panel-2)}
+.sk-tc .bd{padding:14px;display:grid;gap:10px}
+.view.skel{animation:none}
+.view.fadein{animation:vfade .35s var(--ease) both}
+@keyframes vfade{from{opacity:0}}
+@media (max-width:1280px){.sk-grid4{grid-template-columns:repeat(3,1fr)}.sk-grid4>:nth-child(n+4){display:none}.sk-grid3{grid-template-columns:repeat(2,1fr)}.sk-grid3>:nth-child(n+3){display:none}}
+@media (max-width:860px){.sk-grid3,.sk-grid4{grid-template-columns:1fr}.sk-grid3>:nth-child(n+2),.sk-grid4>:nth-child(n+2){display:none}}
+
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
 .toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));translate:-50% 20px;opacity:0;pointer-events:none;padding:11px 16px;border-radius:var(--rs);background:var(--panel-4);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:opacity .25s,translate .25s;z-index:80}
@@ -783,17 +803,49 @@ svg.i{width:22px;height:22px;flex:none}
     });
   }
 
+
+  /* ── Skeleton screens ── */
+  function skH(w){ return '<div class="sk-row" style="justify-content:space-between"><div class="sk-row"><div class="sk" style="width:24px;height:24px;border-radius:7px"></div><div class="sk ln" style="width:' + (w||150) + 'px;height:18px"></div></div><div class="sk pill" style="width:104px;height:40px"></div></div>'; }
+  function skMT(n){ var h=''; for (var i=0;i<n;i++) h += '<div class="sk sk-mt"><i></i></div>'; return '<div class="sk-grid3">' + h + '</div>'; }
+  function skTC(n){ var h=''; for (var i=0;i<n;i++) h += '<div class="sk sk-tc" style="background:var(--panel)"><div class="sk im"></div><div class="bd"><div class="sk ln" style="width:70%;height:16px;background:var(--panel-2)"></div><div class="sk ln" style="width:100%;background:var(--panel-2)"></div><div class="sk ln" style="width:85%;background:var(--panel-2)"></div></div></div>'; return '<div class="sk-grid4">' + h + '</div>'; }
+  function skBanners(){ return '<div class="sk-grid3"><div class="sk" style="aspect-ratio:16/9"></div><div class="sk" style="aspect-ratio:16/9"></div><div class="sk" style="aspect-ratio:16/9"></div></div>'; }
+  function skSpin(n){ var h=''; for (var i=0;i<n;i++) h += '<div class="sk" style="aspect-ratio:1.7/1"></div>'; return '<div class="sk-grid3">' + h + '</div>'; }
+  var SKEL = {
+    home: function(){ return skBanners() + '<div style="height:8px"></div>' + skH(170) + skMT(3) + '<div style="height:8px"></div>' + skH(150) + skTC(4); },
+    holdem: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="height:112px"></div>' +
+      '<div class="sk-row"><div class="sk pill" style="width:300px;height:48px"></div><div style="flex:1"></div><div class="sk pill" style="width:150px;height:44px"></div><div class="sk pill" style="width:160px;height:44px"></div></div>' +
+      '<div class="sk-row" style="justify-content:space-between"><div class="sk ln" style="width:320px;height:18px"></div><div class="sk-row"><div class="sk pill" style="width:104px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:72px;height:40px"></div></div></div>' + skMT(3); },
+    spin: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="padding:18px;display:grid;gap:16px;background:var(--panel)"><div class="sk ln" style="width:140px;height:20px;background:var(--panel-2)"></div><div class="sk pill" style="width:220px;height:42px;background:var(--panel-2)"></div>' + skSpin(6).replace(/class="sk"/g,'class="sk" style="background:var(--panel-2)"').replace('style="background:var(--panel-2)" style="','style="background:var(--panel-2);') + '</div>'; },
+    tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); }
+  };
+  var firstLoad = true, skTimer;
+
   /* ── Router ──────────────────────── */
-  function route(){
-    var v = (location.hash || '#home').slice(1).split('/')[0];
-    if (!VIEWS[v]) v = 'home';
+  function curView(){ var v = (location.hash || '#home').slice(1).split('/')[0]; return VIEWS[v] ? v : 'home'; }
+  function render(v, fade){
     main.innerHTML = VIEWS[v]();
+    if (fade) { var vw = main.firstElementChild; if (vw) vw.classList.add('fadein'); }
+    setupCarousel(); startNotice(); reveal(main); pills(main);
+  }
+  function route(){
+    var v = curView();
+    clearTimeout(skTimer);
+    render(v, false);
+    document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v); });
+  }
+  function navigate(){
+    var v = curView();
+    clearTimeout(skTimer);
     document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v); });
     document.body.classList.remove('drawer');
     window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
-    setupCarousel(); startNotice(); reveal(main); pills(main);
+    clearInterval(carTimer); clearInterval(noticeTimer);
+    main.innerHTML = '<div class="view skel" aria-busy="true" aria-label="Loading">' + SKEL[v]() + '</div>';
+    var delay = firstLoad ? 900 : 380 + Math.round(Math.random()*220);
+    firstLoad = false;
+    skTimer = setTimeout(function(){ render(v, true); }, delay);
   }
-  window.addEventListener('hashchange', route);
+  window.addEventListener('hashchange', navigate);
 
   /* Carousel */
   var carTimer;
@@ -867,7 +919,7 @@ svg.i{width:22px;height:22px;flex:none}
   });
   document.addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('mt')) { e.preventDefault(); location.href = 'play.html'; } });
 
-  route();
+  navigate();
 })();
 </script>
 </body>
