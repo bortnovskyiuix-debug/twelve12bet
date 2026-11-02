@@ -512,10 +512,10 @@ svg.i{width:22px;height:22px;flex:none}
         BANNERS.map(function(b){ return '<a class="slide" href="' + b.href + '"><img src="' + b.img + '" alt="' + esc(b.alt) + '"/></a>'; }).join('') +
       '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div>' +
       '<div class="dots" id="dots"></div>' +
-      '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>Tournaments</h2><div class="sp"></div><a class="btn btn-dark" href="#tours">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
-      '<div class="tgrid">' + TOURS.slice(0,4).map(tourCard).join('') + '</div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cards-s"/></svg>Texas Hold\'em</h2><div class="sp"></div><a class="btn btn-dark" href="#holdem">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="tables">' + TABLES.low.concat(TABLES.micro).slice(0,6).map(miniTable).join('') + '</div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>Tournaments</h2><div class="sp"></div><a class="btn btn-dark" href="#tours">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
+      '<div class="tgrid">' + TOURS.slice(0,4).map(tourCard).join('') + '</div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-spin-s"/></svg>Spin &amp; Go</h2><div class="sp"></div><a class="btn btn-dark" href="#spin">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="sgrid">' + SPINS.slice(0,3).map(spinCard).join('') + '</div>' +
     '</div>';
