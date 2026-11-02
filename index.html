@@ -16,7 +16,7 @@
 @font-face{font-family:Montserrat;font-weight:700;font-display:swap;src:url(fonts/montserrat-latin-700-normal.woff2) format("woff2")}
 
 :root{
-  --bg:#03070D; --panel:#0C1829; --panel-2:#111F34; --panel-3:#172840; --panel-4:#1E3250;
+  --bg:#03070D; --panel:#0A121F; --panel-2:#0E1828; --panel-3:#142034; --panel-4:#1A2A42;
   --line:#16233A; --line-2:#263A58;
   --text:#F2F5F9; --text-2:#C3CEDC; --mute:#7E8FA6; --dim:#55667D;
   --blue:#0098FE; --blue-h:#1FA5FF; --blue-d:#0B6FD1; --blue-soft:rgba(0,152,254,.12);
@@ -83,7 +83,8 @@ svg.i{width:22px;height:22px;flex:none}
 .grp a.on .s,.tabbar a.on .s{display:block}
 .grp a .soon{font-size:11px;font-weight:500;color:var(--dim)}
 .main{min-width:0;padding:12px 28px 56px}
-.view{max-width:1480px;margin:0 auto;display:grid;gap:22px}
+.view{max-width:1480px;margin:0 auto;display:grid;gap:16px}
+.view>.sec-h:not(:first-child){margin-top:16px}
 
 /* ── Common ─────────────────────────────── */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;height:38px;padding:0 16px;border-radius:var(--rs);font-weight:600;font-size:13.5px;white-space:nowrap}
@@ -109,7 +110,7 @@ svg.i{width:22px;height:22px;flex:none}
 .slide img,.slide video{width:100%;height:100%;object-fit:cover;display:block}
 .car-arrow{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(12,24,41,.85);color:#fff;z-index:2}
 .car-arrow.l{left:10px}.car-arrow.r{right:10px}
-.dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
+.dots{display:flex;justify-content:center;gap:6px;margin-top:0}
 .dots i{width:6px;height:6px;border-radius:99px;background:var(--dim);transition:width .25s;cursor:pointer}
 .dots i.on{width:36px;background:var(--text-2)}
 
