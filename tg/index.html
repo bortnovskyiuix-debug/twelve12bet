@@ -566,6 +566,30 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 .ch-h .ch-room{min-width:0}
 .card-msg .d .tag{display:inline-flex;margin-top:6px}
 
+/* ── Mode tiles ── */
+.modes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.mode{position:relative;height:76px;border-radius:14px;overflow:hidden;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 3px 0 var(--c3);transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s var(--ease)}
+.mode::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 120% at 85% 50%,rgba(255,255,255,.14),transparent 60%)}
+.mode:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.mode:active{transform:translateY(1px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 1px 0 var(--c3)}
+.mode .ml{position:relative;z-index:1;max-width:58%;line-height:1.15}
+.mode .ma{position:absolute;right:8px;top:4px;width:66px;height:66px;transition:transform .3s var(--spring)}
+.mode .ma svg{width:100%;height:100%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.mode:hover .ma{transform:translateY(-3px) rotate(-4deg) scale(1.06)}
+.m-blue{--c1:#2A47C8;--c2:#141F63;--c3:#0C1440}
+.m-green{--c1:#1E9A62;--c2:#0E4A33;--c3:#0A3324}
+.m-violet{--c1:#6A3BD6;--c2:#2A1660;--c3:#1C0F44}
+.m-purple{--c1:#9A2BA8;--c2:#3E0F52;--c3:#2A0A38}
+.m-teal{--c1:#1E7FA8;--c2:#0B3650;--c3:#082637}
+.m-orange{--c1:#D8541E;--c2:#5A1E0A;--c3:#3E1407}
+@media (max-width:1280px){.modes{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:860px){
+  .modes{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -12px 10px;padding:0 12px}
+  .modes::-webkit-scrollbar{display:none}
+  .mode{flex:none;width:148px;height:62px;padding:0 12px;font-size:12.5px;border-radius:12px}
+  .mode .ma{width:52px;height:52px;right:6px;top:5px}
+}
+
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
 .toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));translate:-50% 20px;opacity:0;pointer-events:none;padding:11px 16px;border-radius:var(--rs);background:var(--panel-4);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:opacity .25s,translate .25s;z-index:80}
@@ -922,7 +946,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   }
 
   function vHome(){
-    return '<div class="view">' +
+    return '<div class="view">' + modeTiles() +
       '<div class="car"><button class="car-arrow l" type="button" aria-label="Previous"><svg class="i"><use href="#i-l"/></svg></button><div class="car-track">' +
         BANNERS.map(slide).join('') +
       '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div>' +
@@ -1030,7 +1054,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     var tab = function(k, ic, label){ return '<a href="#' + k + '"' + (v === k ? ' class="on"' : '') + '><svg class="o"><use href="#i-' + ic + '"/></svg><svg class="s"><use href="#i-' + ic + '-s"/></svg>' + label + '</a>'; };
     return '<nav class="mtabs">' + tab('holdem','cards','Hold\'em') + tab('tours','cup','Tournaments') + tab('spin','spin','Spin &amp; Go') + '</nav>';
   }
-  function mBanner(){ return '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>'; }
+  function mBanner(){ return modeTiles() + '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>'; }
   function mTableRow(tb, idx){
     var filled = tb.seats.filter(Boolean).length;
     var felt = ['f-blue','f-green','f-red'][idx % 3];
@@ -1084,6 +1108,31 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   }
   var MVIEWS = { home:mHoldem, holdem:mHoldem, tours:mTours, spin:mSpin };
 
+
+  /* ── Mode tiles ── */
+  var MODES = [
+    {k:'tours',  l:'MTT',        c:'m-blue',   art:'cup'},
+    {k:'holdem', l:'NLHE',       c:'m-green',  art:'cards'},
+    {k:'spin',   l:'Spin & Go',  c:'m-violet', art:'flash'},
+    {k:'',       l:'Flash',      c:'m-purple', art:'rush',  soon:'Flash poker'},
+    {k:'',       l:'PLO',        c:'m-teal',   art:'plo',   soon:'Pot-limit Omaha'},
+    {k:'',       l:'Short Deck', c:'m-orange', art:'six',   soon:'Short Deck'}
+  ];
+  var MODE_ART = {
+    cup:   '<svg viewBox="0 0 64 64"><defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1CF"/><stop offset=".6" stop-color="#E9C987"/><stop offset="1" stop-color="#A9813F"/></linearGradient></defs><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><path d="M20 8h24v14a12 12 0 0 1-24 0z" fill="url(#mg)"/><path d="M20 12h-7v3a7 7 0 0 0 7 7M44 12h7v3a7 7 0 0 1-7 7" fill="none" stroke="url(#mg)" stroke-width="3"/><rect x="29" y="33" width="6" height="8" fill="url(#mg)"/><rect x="22" y="41" width="20" height="5" rx="1.5" fill="url(#mg)"/><rect x="19" y="46" width="26" height="6" rx="2" fill="#2A2414"/></svg>',
+    cards: '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><g transform="translate(18 10) rotate(-12)"><rect width="24" height="34" rx="3" fill="#fff"/><text x="4" y="12" font-family="Montserrat,Arial" font-weight="700" font-size="10" fill="#0C1F30">Q</text><text x="11" y="29" font-family="Arial" font-size="13" fill="#0C1F30">♠</text></g><g transform="translate(32 8) rotate(8)"><rect width="24" height="34" rx="3" fill="#fff"/><text x="4" y="12" font-family="Montserrat,Arial" font-weight="700" font-size="10" fill="#0C1F30">A</text><text x="11" y="29" font-family="Arial" font-size="13" fill="#0C1F30">♠</text></g></svg>',
+    flash: '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><path d="M36 6 16 36h14l-4 22 22-32H34z" fill="#CDB4FF"/><path d="M36 6 24 26h10l-6 18 16-24H32z" fill="#fff" opacity=".55"/></svg>',
+    rush:  '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><path d="M30 8 12 34h14l-6 22 22-30H30z" fill="#F3C7FF"/><path d="M44 14 36 26h8l-4 12 12-16h-8z" fill="#fff" opacity=".7"/></svg>',
+    plo:   '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><g transform="translate(8 14) rotate(-16)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#0C1F30">K</text></g><g transform="translate(20 10) rotate(-6)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#D7263D">A</text></g><g transform="translate(32 9) rotate(6)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#0C1F30">Q</text></g><g transform="translate(44 12) rotate(16)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#D7263D">K</text></g></svg>',
+    six:   '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><text x="32" y="46" text-anchor="middle" font-family="Montserrat,Arial" font-weight="800" font-size="44" fill="#FFD8A8">6</text><text x="32" y="12" text-anchor="middle" font-family="Montserrat,Arial" font-weight="700" font-size="7" letter-spacing="1.5" fill="#FFD8A8">HOLD\'EM</text></svg>'
+  };
+  function modeTiles(){
+    return '<div class="modes">' + MODES.map(function(m){
+      var attrs = m.k ? 'href="#' + m.k + '"' : 'href="#" data-soon="' + m.soon + '"';
+      return '<a class="mode ' + m.c + '" ' + attrs + '><span class="ml">' + m.l + '</span><span class="ma">' + MODE_ART[m.art] + '</span></a>';
+    }).join('') + '</div>';
+  }
+
   /* ── Skeleton screens ── */
   function skH(w){ return '<div class="sk-row" style="justify-content:space-between"><div class="sk-row"><div class="sk" style="width:24px;height:24px;border-radius:7px"></div><div class="sk ln" style="width:' + (w||150) + 'px;height:18px"></div></div><div class="sk pill" style="width:104px;height:40px"></div></div>'; }
   function skMT(n){ var h=''; for (var i=0;i<n;i++) h += '<div class="sk sk-mt"><i></i></div>'; return '<div class="sk-grid3">' + h + '</div>'; }
@@ -1091,7 +1140,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   function skBanners(){ return '<div class="sk-grid3"><div class="sk" style="aspect-ratio:16/9"></div><div class="sk" style="aspect-ratio:16/9"></div><div class="sk" style="aspect-ratio:16/9"></div></div>'; }
   function skSpin(n){ var h=''; for (var i=0;i<n;i++) h += '<div class="sk" style="aspect-ratio:1.7/1"></div>'; return '<div class="sk-grid3">' + h + '</div>'; }
   var SKEL = {
-    home: function(){ return skBanners() + '<div style="height:8px"></div>' + skH(170) + skMT(3) + '<div style="height:8px"></div>' + skH(150) + skTC(4); },
+    home: function(){ return '<div class="sk-row" style="gap:10px">' + Array(6).fill('<div class="sk" style="flex:1;height:72px;border-radius:14px"></div>').join('') + '</div>' + skBanners() + '<div style="height:8px"></div>' + skH(170) + skMT(3) + '<div style="height:8px"></div>' + skH(150) + skTC(4); },
     holdem: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="height:112px"></div>' +
       '<div class="sk-row"><div class="sk pill" style="width:300px;height:48px"></div><div style="flex:1"></div><div class="sk pill" style="width:150px;height:44px"></div><div class="sk pill" style="width:160px;height:44px"></div></div>' +
       '<div class="sk-row" style="justify-content:space-between"><div class="sk ln" style="width:320px;height:18px"></div><div class="sk-row"><div class="sk pill" style="width:104px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:72px;height:40px"></div></div></div>' + skMT(3); },
