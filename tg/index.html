@@ -28,7 +28,8 @@
   --tg-t:0px;
 }
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
+html,body{margin:0;min-height:100%}
+html{scroll-behavior:smooth;overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
 body{
   font-family:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;
   color:var(--text); font-size:14px; -webkit-font-smoothing:antialiased;
@@ -36,7 +37,6 @@ body{
     radial-gradient(ellipse 70% 45% at 60% -5%,rgba(28,110,190,.20),transparent 70%),
     linear-gradient(180deg,var(--room-1),var(--room-0) 70%);
   background-attachment:fixed;
-  overflow:hidden;
 }
 button{font:inherit;color:inherit;cursor:pointer}
 a{color:inherit;text-decoration:none}
@@ -44,8 +44,9 @@ a{color:inherit;text-decoration:none}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 
 /* ── Shell ─────────────────────────────── */
-.shell{display:grid;grid-template-columns:var(--side) 1fr;height:100%}
+.shell{display:grid;grid-template-columns:var(--side) 1fr;min-height:100vh;min-height:100dvh}
 .side{
+  position:sticky;top:0;height:100vh;height:100dvh;align-self:start;
   display:flex;flex-direction:column;gap:6px;padding:22px 16px 18px;
   border-right:1px solid var(--line);
   background:linear-gradient(180deg,rgba(7,18,32,.92),rgba(4,10,19,.92));
@@ -76,8 +77,10 @@ a{color:inherit;text-decoration:none}
 .bar i{display:block;height:100%;width:var(--w,30%);border-radius:inherit;background:linear-gradient(90deg,var(--blue-2),var(--blue))}
 .pass-card p{margin:10px 0 0;font-size:12px;color:var(--mute);line-height:1.45}
 
-.main{display:flex;flex-direction:column;min-width:0;height:100%}
+.main{display:flex;flex-direction:column;min-width:0}
 .top{
+  position:sticky;top:0;z-index:20;
+  background:rgba(5,12,23,.82);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
   display:flex;align-items:center;gap:16px;height:76px;padding:0 32px;flex:none;
   border-bottom:1px solid var(--line);
 }
@@ -112,7 +115,7 @@ a{color:inherit;text-decoration:none}
 .me b{font-size:13px;font-weight:600}
 .me small{font-size:11.5px;color:var(--mute)}
 
-.scroll{flex:1;overflow-y:auto;padding:28px 32px 48px;scroll-behavior:smooth}
+.scroll{flex:1;padding:28px 32px 48px}
 .wrap{max-width:1180px;margin:0 auto;display:grid;gap:28px}
 
 /* ── Hero ──────────────────────────────── */
@@ -133,7 +136,7 @@ a{color:inherit;text-decoration:none}
   -webkit-background-clip:text;background-clip:text;color:transparent;
 }
 .jp{padding-right:270px}
-section{scroll-margin-top:16px}
+section{scroll-margin-top:96px}
 .jp p{margin:2px 0 14px;color:var(--text-2);max-width:400px;line-height:1.5}
 .jp .row{display:flex;gap:10px;align-items:center}
 .jp .last{color:var(--mute);font-size:12.5px;margin-left:8px}
@@ -147,6 +150,19 @@ section{scroll-margin-top:16px}
 .mini .go{display:flex;align-items:center;justify-content:space-between}
 .mini .go span{color:var(--text-2);font-size:12.5px}
 .mini.spin{background:radial-gradient(ellipse 60% 120% at 100% 0%,rgba(28,155,255,.16),transparent 65%),var(--panel)}
+
+
+.banner{display:block;padding:0;background:#071425;transition:border-color .2s,transform .2s}
+.banner img{display:block;width:100%;height:100%;object-fit:cover}
+.banner:hover{border-color:var(--line-2)}
+.banner:active{transform:scale(.995)}
+.banner-jp{aspect-ratio:1600/654}
+.banner-jp img{object-position:center}
+.banner-spin{aspect-ratio:3/1}
+.hero{align-items:start}
+.side-hero{align-self:stretch}
+.side-hero{grid-template-rows:1fr 1fr}
+.side-hero .banner{aspect-ratio:auto;min-height:0}
 
 /* ── Sections ─────────────────────────── */
 .sec-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-bottom:14px}
@@ -180,7 +196,7 @@ section{scroll-margin-top:16px}
 .t-name div{min-width:0;display:grid;line-height:1.3}
 .t-name b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .t-name small{color:var(--mute);font-size:12px}
-.blinds{font-weight:700;font-size:15px}
+.blinds{font-weight:700;font-size:15px;white-space:nowrap}
 .buyin{color:var(--text-2)}
 .seats{display:flex;align-items:center;gap:10px}
 .dots{display:flex;gap:4px}
@@ -247,10 +263,9 @@ section{scroll-margin-top:16px}
 
 /* ── Phones / Telegram ─────────────────── */
 @media (max-width: 860px){
-  body{overflow:auto}
   .shell{display:block;height:auto}
   .side{display:none}
-  .main{height:auto;min-height:100%}
+  .main{min-height:100vh}
   .top{
     position:sticky;top:0;z-index:20;height:auto;padding:calc(10px + var(--safe-t) + var(--tg-t)) 16px 10px;
     background:rgba(5,12,23,.86);-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
@@ -264,7 +279,7 @@ section{scroll-margin-top:16px}
   .wallet b{font-size:14px;margin-right:6px}
   .wallet .btn{height:32px;padding:0 12px}
   .me img{width:36px;height:36px}
-  .scroll{overflow:visible;padding:16px 16px calc(96px + var(--safe-b))}
+  .scroll{padding:16px 16px calc(96px + var(--safe-b))}
   .wrap{gap:24px}
   .hero{grid-template-columns:1fr}
   .jp{min-height:0;padding:22px 20px}
@@ -273,7 +288,9 @@ section{scroll-margin-top:16px}
   .jp{padding-right:20px}
   .jp-art{display:none}
   .jp .last{display:none}
-  .side-hero{grid-template-columns:1fr 1fr;gap:12px}
+  .side-hero{grid-template-columns:1fr;gap:12px}
+  .banner-jp{aspect-ratio:1600/654}
+  .side-hero .banner{aspect-ratio:3/1}
   .mini{padding:16px;min-height:0}
   .mini h3{font-size:15px}
   .mini p{font-size:12px}
@@ -384,40 +401,12 @@ section{scroll-margin-top:16px}
       <div class="wrap">
 
         <div class="hero">
-          <div class="card jp">
-            <div class="lbl"><i></i>Bad Beat Jackpot</div>
-            <div class="amt num" id="jp">$248,960.45</div>
-            <p>Lose with four of a kind or better and take the biggest share of the jackpot. Every player at the table gets paid.</p>
-            <div class="row">
-              <a class="btn btn-blue btn-lg" href="play.html">Play now</a>
-              <span class="last">Last hit 3 days ago · <span class="num">$61,402</span></span>
-            </div>
-            <svg class="jp-art" viewBox="0 0 250 180" aria-hidden="true">
-              <defs>
-                <radialGradient id="felt" cx="50%" cy="45%" r="60%"><stop offset="0" stop-color="#16507A"/><stop offset="1" stop-color="#0A2640"/></radialGradient>
-                <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF3D6"/><stop offset=".6" stop-color="#E9C987"/><stop offset="1" stop-color="#B98F4C"/></linearGradient>
-              </defs>
-              <ellipse cx="125" cy="98" rx="118" ry="64" fill="#060E18"/>
-              <ellipse cx="125" cy="98" rx="112" ry="58" fill="none" stroke="rgba(170,205,255,.22)" stroke-width="1.2"/>
-              <ellipse cx="125" cy="98" rx="104" ry="51" fill="url(#felt)"/>
-              <g transform="translate(78 64) rotate(-9)"><rect width="38" height="52" rx="5" fill="#fff"/><text x="7" y="17" font-family="Montserrat,Arial" font-weight="700" font-size="15" fill="#0C1F30">A</text><text x="19" y="44" font-family="Arial" font-size="20" fill="#0C1F30">♠</text></g>
-              <g transform="translate(106 58) rotate(-2)"><rect width="38" height="52" rx="5" fill="#fff"/><text x="7" y="17" font-family="Montserrat,Arial" font-weight="700" font-size="15" fill="#0C1F30">A</text><text x="19" y="44" font-family="Arial" font-size="20" fill="#0C1F30">♣</text></g>
-              <g transform="translate(134 60) rotate(6)"><rect width="38" height="52" rx="5" fill="#fff"/><text x="7" y="17" font-family="Montserrat,Arial" font-weight="700" font-size="15" fill="#D7263D">A</text><text x="19" y="44" font-family="Arial" font-size="20" fill="#D7263D">♥</text></g>
-              <g transform="translate(160 66) rotate(13)"><rect width="38" height="52" rx="5" fill="#fff"/><text x="7" y="17" font-family="Montserrat,Arial" font-weight="700" font-size="15" fill="#D7263D">A</text><text x="19" y="44" font-family="Arial" font-size="20" fill="#D7263D">♦</text></g>
-              <g transform="translate(36 112)"><circle r="16" fill="url(#gold)"/><circle r="10.5" fill="none" stroke="rgba(80,55,15,.45)" stroke-width="1.5"/></g>
-              <g transform="translate(58 126)"><circle r="13" fill="url(#gold)"/><circle r="8.5" fill="none" stroke="rgba(80,55,15,.45)" stroke-width="1.5"/></g>
-              <use href="#chip" x="196" y="110" width="34" height="34"/>
-            </svg>
-          </div>
+          <a class="card banner banner-jp" href="play.html" data-join aria-label="Bad Beat Jackpot. Every player gets paid. Play now">
+            <img src="brand/12bet/banner-jackpot.webp" alt="Bad Beat Jackpot 48,965.30. Every player gets paid." width="1600" height="654"/>
+          </a>
           <div class="side-hero">
-            <a class="card mini spin" href="#spin" data-go="spin">
-              <div><h3>Spin &amp; Go</h3><p>3 players, one hand of luck. Win up to <span class="x">1,000×</span> your buy-in.</p></div>
-              <div class="go"><span class="num">412 playing now</span><span class="btn btn-ghost">Spin</span></div>
-            </a>
-            <a class="card mini" href="#tours" data-go="tours">
-              <div><h3>Sunday Main</h3><p><span class="x num">$50,000</span> guaranteed. Late reg open for 2 hours.</p></div>
-              <div class="go"><span class="num" id="main-cd">Starts in 2d 4h</span><span class="btn btn-ghost">Details</span></div>
-            </a>
+            <a class="card banner banner-spin" href="#spin" data-go="spin" aria-label="Spin and Go, up to 1,000x"><img src="brand/12bet/banner-spin.webp" alt="Spin &amp; Go up to 1,000x" width="1600" height="533"/></a>
+            <a class="card banner banner-spin" href="#tours" data-go="tours" aria-label="Sunday Main, 50,000 dollars guaranteed"><img src="brand/12bet/banner-sunday.webp" alt="Sunday Main $50,000 GTD" width="1600" height="533"/></a>
           </div>
         </div>
 
@@ -488,7 +477,7 @@ section{scroll-margin-top:16px}
 (function(){
   var TG = window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData !== undefined ? window.Telegram.WebApp : null;
   if (TG) {
-    try { TG.ready(); TG.expand(); if (TG.requestFullscreen && /android|iphone|ipad/i.test(navigator.userAgent)) TG.requestFullscreen(); } catch(e){}
+    try { TG.ready(); TG.expand(); TG.disableVerticalSwipes && TG.disableVerticalSwipes(); if (TG.requestFullscreen && /android|iphone|ipad/i.test(navigator.userAgent)) TG.requestFullscreen(); } catch(e){}
     try { TG.setHeaderColor && TG.setHeaderColor('#050C17'); TG.setBackgroundColor && TG.setBackgroundColor('#050C17'); } catch(e){}
     var setTop = function(){
       var a = (TG.safeAreaInset && TG.safeAreaInset.top) || 0, b = (TG.contentSafeAreaInset && TG.contentSafeAreaInset.top) || 0;
@@ -628,8 +617,7 @@ section{scroll-margin-top:16px}
   document.getElementById('ticker').innerHTML = items + items;
 
   /* Live numbers */
-  var jp = 248960.45, jpEl = document.getElementById('jp');
-  setInterval(function(){ jp += 0.25 + Math.random() * 3.5; jpEl.textContent = '$' + fmt(jp, 2); }, 1400);
+  
   var on = 2148, onEl = document.getElementById('online');
   setInterval(function(){ on += Math.round((Math.random() - .45) * 9); onEl.textContent = fmt(on); }, 3200);
 
