@@ -23,7 +23,7 @@
   --gold:#E9C987; --green:#2FCB7A; --red:#E8475B;
   --felt-0:#16527C; --felt-1:#0F3A5C; --felt-2:#0B2A44;
   --r:12px; --rs:8px;
-  --side:248px; --head:68px;
+  --side:272px; --head:68px;
   --safe-t:env(safe-area-inset-top,0px); --safe-b:env(safe-area-inset-bottom,0px); --tg-t:0px;
 }
 *{box-sizing:border-box}
@@ -59,21 +59,46 @@ svg.i{width:22px;height:22px;flex:none}
 
 /* ── Shell ──────────────────────────────── */
 .shell{display:grid;grid-template-columns:var(--side) 1fr;min-height:calc(100vh - var(--head))}
-.side{position:sticky;top:var(--head);height:calc(100vh - var(--head));overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--bg);border-right:1px solid var(--line)}
-.grp{display:grid;gap:2px;padding:0}
-.grp+.grp{margin-top:6px;padding-top:8px;border-top:1px solid var(--line)}
-.grp a{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:var(--rs);color:var(--text-2);font-weight:500;font-size:13.5px}
-.grp a:hover{background:var(--panel-3);color:var(--text)}
-.grp a svg{color:var(--mute)}
-.grp a.on{background:var(--blue-soft);color:var(--blue)}
-.grp a.on svg{color:var(--blue)}
+.side{position:sticky;top:var(--head);height:calc(100vh - var(--head));overflow-y:auto;padding:14px 12px 16px;display:flex;flex-direction:column;gap:10px;background:var(--bg);border-right:1px solid var(--line);scrollbar-width:none}
+.side::-webkit-scrollbar{display:none}
+.seg2{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.seg2 a{position:relative;overflow:hidden;height:46px;border-radius:12px;display:grid;place-items:center;font-weight:700;font-size:14.5px;color:var(--text-2);background:linear-gradient(180deg,#1A2C45,#122036);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 2px 0 rgba(0,0,0,.35)}
+.seg2 a span{position:relative;z-index:1}
+.seg2 a::before{content:"";position:absolute;width:40px;height:40px;right:-8px;top:50%;margin-top:-20px;rotate:-14deg;background:currentColor;opacity:.07;-webkit-mask:var(--suit) center/contain no-repeat;mask:var(--suit) center/contain no-repeat}
+.seg2 a[data-seg=cash]{--suit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C9 6 4 8.5 4 13a4 4 0 0 0 6.5 3.1L9.5 21h5l-1-4.9A4 4 0 0 0 20 13c0-4.5-5-7-8-11z'/%3E%3C/svg%3E")}
+.seg2 a[data-seg=tours]{--suit:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 3h12v8a6 6 0 0 1-12 0zM10 17h4v3h3v2H7v-2h3z'/%3E%3C/svg%3E")}
+.seg2 a.on{color:#fff;background:linear-gradient(180deg,#1FA5FF,#0B6FD1);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 2px 0 #074A8C,0 6px 16px rgba(0,152,254,.25)}
+.seg2 a.on::before{opacity:.16;color:#fff}
+.srch{display:flex;align-items:center;gap:10px;height:46px;padding:0 14px;border-radius:12px;background:var(--panel);color:var(--mute);cursor:text}
+.srch:focus-within{box-shadow:inset 0 0 0 1px var(--blue)}
+.srch input{all:unset;flex:1;min-width:0;font-size:14px;font-weight:500;color:var(--text)}
+.srch input::placeholder{color:var(--mute)}
+.promo{position:relative;overflow:hidden;display:flex;align-items:center;gap:12px;height:68px;padding:0 14px;border-radius:12px;
+  background:linear-gradient(90deg,#0B3A6E 10%,#0C2A4F 60%,#0A1E38);box-shadow:inset 0 0 0 1px rgba(0,152,254,.25)}
+.promo::after{content:"";position:absolute;right:0;top:0;bottom:0;width:58%;background:repeating-conic-gradient(rgba(255,255,255,.06) 0 25%,transparent 0 50%) 0 0/14px 14px;-webkit-mask:linear-gradient(90deg,transparent,#000 70%);mask:linear-gradient(90deg,transparent,#000 70%)}
+.promo>*{position:relative;z-index:1}
+.promo .pc{width:34px;height:34px;color:var(--gold);flex:none;filter:drop-shadow(0 2px 6px rgba(233,201,135,.35))}
+.promo .pt{display:grid;line-height:1.15;flex:1}
+.promo .pt b{font-size:16px;font-weight:700;color:var(--gold)}
+.promo .pt small{font-size:14px;font-weight:700;color:#fff}
+.promo .pd{padding:3px 8px;border-radius:7px;font-size:12px;font-weight:700;color:var(--gold);background:rgba(233,201,135,.16);box-shadow:inset 0 0 0 1px rgba(233,201,135,.35)}
+.grp{display:grid;gap:2px;padding:6px;border-radius:14px;background:var(--panel)}
+.grp a{display:flex;align-items:center;gap:14px;height:46px;padding:0 12px;border-radius:10px;color:var(--text);font-weight:600;font-size:14.5px}
+.grp a .lb{flex:1}
+.grp a:hover{background:var(--panel-3)}
+.grp a svg{color:var(--mute);width:22px;height:22px}
+.grp a .ch{width:18px;height:18px;color:var(--dim)}
+.grp a.on{background:var(--panel-3)}
+.grp a.on svg:not(.ch){color:var(--blue)}
 .grp a .s,.tabbar a .s{display:none}
 .grp a.on .o,.tabbar a.on .o{display:none}
 .grp a.on .s,.tabbar a.on .s{display:block}
-.grp a .soon{margin-left:auto;font-size:10.5px;color:var(--dim)}
-.app-card{margin-top:auto;padding:14px;border-radius:var(--r);background:var(--panel-2)}
-.app-card b{display:block;font-size:13px;margin-bottom:4px}
-.app-card small{color:var(--mute);font-size:12px;line-height:1.45;display:block;margin-bottom:10px}
+.grp a .soon{font-size:11px;font-weight:500;color:var(--dim)}
+.free{display:flex;align-items:center;gap:14px;height:56px;padding:0 14px;border-radius:14px;font-weight:700;font-size:14.5px;color:#fff;
+  background:linear-gradient(90deg,#0B4F92,#0B3366 70%,#0C2748);box-shadow:inset 0 0 0 1px rgba(0,152,254,.3)}
+.free .lb{flex:1}
+.free svg{width:24px;height:24px;color:var(--gold)}
+.cnt2{min-width:26px;height:26px;padding:0 6px;border-radius:8px;display:grid;place-items:center;font-size:13px;font-weight:700;color:#BFE3FF;background:rgba(0,152,254,.25)}
 .main{min-width:0;padding:12px 28px 56px}
 .view{max-width:1480px;margin:0 auto;display:grid;gap:22px}
 
@@ -333,6 +358,7 @@ svg.i{width:22px;height:22px;flex:none}
   <symbol id="i-book-s" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M11.25 5.37808C9.13095 3.92228 6.18953 3.25933 3.99433 3.01127C2.89642 2.88721 2 3.80402 2 4.93518V16.2C2 17.3311 2.89642 18.2483 3.99433 18.3723C6.18953 18.6204 9.13095 19.2833 11.25 20.7391V5.37808ZM12.75 20.7391C14.869 19.2833 17.8105 18.6204 20.0057 18.3723C21.1036 18.2483 22 17.3311 22 16.2V4.93518C22 3.80402 21.1036 2.88721 20.0057 3.01127C17.8105 3.25933 14.869 3.92228 12.75 5.37808V20.7391ZM4.25884 8.13986C4.32223 7.73052 4.70545 7.45008 5.11478 7.51347C6.41756 7.71523 7.88471 8.05247 9.27051 8.58836C9.65684 8.73775 9.84892 9.17205 9.69952 9.55838C9.55012 9.94471 9.11583 10.1368 8.7295 9.98739C7.47085 9.50067 6.11399 9.1861 4.88522 8.9958C4.47588 8.93241 4.19544 8.54919 4.25884 8.13986ZM5.11478 11.5135C4.70545 11.4501 4.32223 11.7305 4.25884 12.1399C4.19544 12.5492 4.47588 12.9324 4.88522 12.9958C5.50446 13.0917 6.15813 13.2195 6.81653 13.3856C7.21815 13.4869 7.62588 13.2435 7.72721 12.8418C7.82854 12.4402 7.5851 12.0325 7.18347 11.9311C6.47447 11.7523 5.77452 11.6156 5.11478 11.5135Z" fill="currentColor"/></symbol>
   <symbol id="i-gift-s" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M18.5625 5H20C21.1046 5 22 5.89543 22 7V8C22 9.10457 21.1046 10 20 10H4C2.89543 10 2 9.10457 2 8V7C2 5.89543 2.89543 5 4 5H5.43747C5.31643 4.69007 5.25 4.35279 5.25 4C5.25 2.48122 6.48122 1.25 8 1.25C9.67947 1.25 11.1554 2.12162 12 3.43718C12.8446 2.12162 14.3205 1.25 16 1.25C17.5188 1.25 18.75 2.48122 18.75 4C18.75 4.35279 18.6836 4.69007 18.5625 5ZM7.24988 5H11.0933C10.6715 3.69437 9.44602 2.75 8 2.75C7.30964 2.75 6.75 3.30964 6.75 4C6.75 4.4089 6.94634 4.77194 7.24988 5ZM16.7501 5C17.0537 4.77194 17.25 4.4089 17.25 4C17.25 3.30964 16.6904 2.75 16 2.75C14.554 2.75 13.3285 3.69437 12.9067 5H16.7501ZM20 11.5H4V20C4 21.1046 4.89543 22 6 22H18C19.1046 22 20 21.1046 20 20V11.5Z" fill="currentColor"/></symbol>
   <symbol id="i-board-s" viewBox="0 0 24 24" fill="none"><path fill-rule="evenodd" clip-rule="evenodd" d="M12.4755 1.96366C12.3259 1.503 11.6741 1.503 11.5245 1.96366L11.3676 2.44643C11.3007 2.65245 11.1087 2.79193 10.8921 2.79193H10.3845C9.90009 2.79193 9.69871 3.41173 10.0906 3.69643L10.5012 3.99481C10.6765 4.12213 10.7498 4.34781 10.6829 4.55383L10.526 5.0366C10.3763 5.49726 10.9036 5.88032 11.2954 5.59562L11.7061 5.29725C11.8814 5.16993 12.1186 5.16993 12.2939 5.29725L12.7046 5.59562C13.0964 5.88032 13.6237 5.49726 13.474 5.0366L13.3171 4.55383C13.2502 4.34781 13.3235 4.12213 13.4988 3.99481L13.9094 3.69643C14.3013 3.41173 14.0999 2.79193 13.6155 2.79193H13.1079C12.8913 2.79193 12.6993 2.65245 12.6324 2.44643L12.4755 1.96366ZM11 8.00013C9.89543 8.00013 9 8.89556 9 10.0001V20.0001C9 21.1047 9.89543 22.0001 11 22.0001H13C14.1046 22.0001 15 21.1047 15 20.0001V10.0001C15 8.89556 14.1046 8.00013 13 8.00013H11ZM18 14.0001C16.8954 14.0001 16 14.8956 16 16.0001V20.0001C16 21.1047 16.8954 22.0001 18 22.0001H20C21.1046 22.0001 22 21.1047 22 20.0001V16.0001C22 14.8956 21.1046 14.0001 20 14.0001H18ZM2 14.0001C2 12.8956 2.89543 12.0001 4 12.0001H6C7.10457 12.0001 8 12.8956 8 14.0001V20.0001C8 21.1047 7.10457 22.0001 6 22.0001H4C2.89543 22.0001 2 21.1047 2 20.0001V14.0001Z" fill="currentColor"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7.5" stroke="currentColor" stroke-width="1.7"/><path d="M20.5 20.5L16.5 16.5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="mark12x" viewBox="0 0 276 100"><path d="M1.28 99.34C1.40 98.98 4.44 88.53 8.05 76.13C11.65 63.72 15.20 51.54 15.93 49.06C16.66 46.58 18.09 41.72 19.11 38.27C20.13 34.81 20.89 31.91 20.79 31.82C20.70 31.73 16.62 34.22 11.72 37.36C6.83 40.50 2.19 43.45 1.43 43.92L0.04 44.77L0.27 43.34C0.40 42.56 1.37 37.50 2.42 32.09L4.34 22.27L10.35 17.65C13.65 15.10 18.30 11.50 20.68 9.64C23.05 7.77 26.81 4.85 29.02 3.13L33.03 0.00L49.60 0.00L66.17 0.00L66.17 0.55C66.17 1.40 58.66 28.76 50.07 59.21C48.43 65.00 45.18 76.55 42.83 84.87L38.57 100.00L19.82 100.00L1.08 100.00L1.28 99.34ZM44.85 99.51C44.95 99.23 45.99 95.56 47.17 91.34C50.46 79.49 52.75 74.79 57.83 69.46C63.30 63.72 62.71 64.09 99.62 43.25C107.79 38.64 115.39 34.26 116.51 33.51C121.69 30.04 122.86 24.25 118.80 22.12L117.49 21.43L109.45 21.43C99.88 21.43 99.04 21.61 96.42 24.24C94.94 25.72 94.33 26.73 93.56 28.95L92.58 31.77L78.06 31.87C66.57 31.94 63.53 31.86 63.53 31.49C63.54 29.89 65.76 23.25 67.47 19.74C71.93 10.56 78.41 4.62 87.51 1.36L90.79 0.19L113.35 0.19L135.90 0.19L138.94 1.22C149.25 4.71 154.16 13.11 152.10 23.75C150.03 34.41 145.28 42.40 137.59 48.11C135.08 49.97 134.39 50.37 114.29 61.56C107.77 65.18 100.33 69.35 97.74 70.82L93.05 73.50L114.98 73.59C132.36 73.67 136.88 73.79 136.74 74.16C136.64 74.42 136.16 76.04 135.67 77.76L134.77 80.90L128.38 86.80C124.87 90.04 120.19 94.34 117.99 96.35L113.98 100.00L79.32 100.00L44.66 100.00L44.85 99.51ZM120.30 99.86C120.30 99.74 134.07 86.95 150.94 71.40C154.87 67.78 163.50 60.01 170.11 54.13C176.73 48.25 185.59 40.35 189.80 36.56C199.59 27.75 212.99 15.98 223.42 7.03L231.61 0.00L253.77 0.00C265.96 0.00 275.93 0.13 275.91 0.28C275.89 0.55 264.55 10.52 245.71 26.82C240.73 31.13 234.32 36.68 231.47 39.16L226.28 43.65L227.02 44.85C227.42 45.51 229.49 49.01 231.61 52.63C233.73 56.25 236.26 60.56 237.23 62.22C238.20 63.87 242.76 71.65 247.37 79.51C251.97 87.37 256.56 95.20 257.57 96.92L259.41 100.05L240.33 99.91L221.24 99.77L218.42 98.92C216.87 98.45 214.59 97.53 213.35 96.88C209.47 94.83 207.82 92.78 201.87 82.62C198.88 77.50 196.17 72.99 195.86 72.60L195.30 71.88L184.59 81.10C178.69 86.17 171.30 92.50 168.17 95.16L162.46 100.00L141.38 100.00C129.79 100.00 120.30 99.94 120.30 99.86ZM176.20 39.97C172.77 34.52 152.26 0.42 152.26 0.16C152.26 0.07 161.47 0.00 172.74 0.00L193.23 0.00L195.10 0.71C198.21 1.90 199.73 3.43 203.36 9.08C205.23 12.00 206.66 14.53 206.55 14.71C206.35 15.03 185.50 33.98 179.79 39.03L177.11 41.40L176.20 39.97Z" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -347,20 +373,32 @@ svg.i{width:22px;height:22px;flex:none}
 
 <div class="shell">
   <aside class="side" id="side">
+    <div class="seg2" id="seg2">
+      <a href="#holdem" data-seg="cash" class="on"><span>Cash</span></a>
+      <a href="#tours" data-seg="tours"><span>Tournaments</span></a>
+    </div>
+    <label class="srch"><svg class="i"><use href="#i-search"/></svg><input id="q" type="search" placeholder="Search" autocomplete="off"/></label>
+    <a class="promo" href="#tours">
+      <svg class="pc"><use href="#i-cup-s"/></svg>
+      <span class="pt"><b class="num">$50,000</b><small>Sunday Main</small></span>
+      <span class="pd num">2d</span>
+    </a>
     <nav class="grp">
-      <a href="#home" data-v="home"><svg class="i o"><use href="#i-home"/></svg><svg class="i s"><use href="#i-home-s"/></svg>Home</a>
-      <a href="#tours" data-v="tours"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg>Tournaments</a>
-      <a href="#holdem" data-v="holdem"><svg class="i o"><use href="#i-cards"/></svg><svg class="i s"><use href="#i-cards-s"/></svg>Texas Hold'em</a>
-      <a href="#spin" data-v="spin"><svg class="i o"><use href="#i-spin"/></svg><svg class="i s"><use href="#i-spin-s"/></svg>Spin &amp; Go</a>
-      <a href="#" data-soon="Club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg>Club<span class="soon">Soon</span></a>
-      <a href="#" data-soon="Career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg>Career<span class="soon">Soon</span></a>
-      <a href="#" data-soon="Guide"><svg class="i o"><use href="#i-book"/></svg><svg class="i s"><use href="#i-book-s"/></svg>Guide<span class="soon">Soon</span></a>
+      <a href="#home" data-v="home"><svg class="i o"><use href="#i-home"/></svg><svg class="i s"><use href="#i-home-s"/></svg><span class="lb">Home</span></a>
+      <a href="#holdem" data-v="holdem"><svg class="i o"><use href="#i-cards"/></svg><svg class="i s"><use href="#i-cards-s"/></svg><span class="lb">Texas Hold'em</span></a>
+      <a href="#spin" data-v="spin"><svg class="i o"><use href="#i-spin"/></svg><svg class="i s"><use href="#i-spin-s"/></svg><span class="lb">Spin &amp; Go</span></a>
+      <a href="#tours" data-v="tours"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg><span class="lb">Tournaments</span><svg class="i ch"><use href="#i-r"/></svg></a>
     </nav>
     <nav class="grp">
-      <a href="#" data-soon="Bonuses"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg>Bonuses<span class="soon">Soon</span></a>
-      <a href="#" data-soon="Leaderboard"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg>Leaderboard<span class="soon">Soon</span></a>
+      <a href="#" data-soon="Bonus Hub"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">Bonus Hub</span><span class="soon">Soon</span></a>
     </nav>
-    <div class="app-card"><b>12xBet Pass</b><small>Level 3 · 62 / 100 XP. Finish daily quests at the tables to level up.</small><div style="height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden"><i style="display:block;height:100%;width:62%;background:linear-gradient(90deg,var(--blue-2),var(--blue))"></i></div></div>
+    <nav class="grp">
+      <a href="#" data-soon="Club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg><span class="lb">Club</span><span class="soon">Soon</span></a>
+      <a href="#" data-soon="Leaderboard"><svg class="i o"><use href="#i-board"/></svg><svg class="i s"><use href="#i-board-s"/></svg><span class="lb">Leaderboard</span><span class="soon">Soon</span></a>
+      <a href="#" data-soon="Career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg><span class="lb">Career</span><span class="soon">Soon</span></a>
+      <a href="#" data-soon="Guide"><svg class="i o"><use href="#i-book"/></svg><svg class="i s"><use href="#i-book-s"/></svg><span class="lb">Guide</span><span class="soon">Soon</span></a>
+    </nav>
+    <a class="free" href="#" data-soon="Free chips"><svg class="i"><use href="#i-coin"/></svg><span class="lb">Free chips</span><span class="cnt2 num">3</span></a>
   </aside>
 
   <main class="main" id="main"></main>
@@ -499,7 +537,7 @@ svg.i{width:22px;height:22px;flex:none}
   }
   /* ── Views ───────────────────────── */
   var main = $('#main');
-  var state = { level:'micro', hideFull:false, hideEmpty:false, mode:'carousel', spinTab:'list' };
+  var state = { q:'', level:'micro', hideFull:false, hideEmpty:false, mode:'carousel', spinTab:'list' };
   var BANNERS = [
     {img:'brand/12bet/banner-jackpot.webp', href:'#holdem', alt:'Bad Beat Jackpot. Every player gets paid.'},
     {img:'brand/12bet/banner-spin.webp', href:'#spin', alt:'Spin & Go up to 1,000x'},
@@ -521,7 +559,8 @@ svg.i{width:22px;height:22px;flex:none}
     '</div>';
   }
   function levelBlock(L){
-    var list = TABLES[L.k].filter(function(t){ var f=t.seats.filter(Boolean).length; return !(state.hideFull && f>=6) && !(state.hideEmpty && f===0); });
+    var q = state.q.trim().toLowerCase();
+    var list = TABLES[L.k].filter(function(t){ var f=t.seats.filter(Boolean).length; if (q && String(t.id).indexOf(q) < 0 && !t.seats.some(function(s){ return s && s.nm.toLowerCase().indexOf(q) >= 0; })) return false; return !(state.hideFull && f>=6) && !(state.hideEmpty && f===0); });
     var players = TABLES[L.k].reduce(function(a,t){ return a + t.seats.filter(Boolean).length; },0);
     var lo = L.stakes[0], hi = L.stakes[L.stakes.length-1];
     var body = state.mode === 'list' ? '<div class="tlist">' + list.map(listRow).join('') + '</div>'
@@ -578,6 +617,7 @@ svg.i{width:22px;height:22px;flex:none}
     if (!VIEWS[v]) v = 'home';
     main.innerHTML = VIEWS[v]();
     document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v); });
+    document.querySelectorAll('[data-seg]').forEach(function(a){ a.classList.toggle('on', (a.dataset.seg === 'tours') === (v === 'tours')); });
     document.body.classList.remove('drawer');
     window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
     setupCarousel(); startNotice();
@@ -641,6 +681,8 @@ svg.i{width:22px;height:22px;flex:none}
     if ((t = e.target.closest('[data-st]'))) { state.spinTab = t.dataset.st; haptic(); route(); return; }
     if ((t = e.target.closest('[data-tour]'))) { e.preventDefault(); haptic(); var x = TOURS[+t.dataset.tour]; toast('Registered for ' + x.name); return; }
   });
+  var qEl = document.getElementById('q'), qT;
+  qEl.addEventListener('input', function(){ clearTimeout(qT); qT = setTimeout(function(){ state.q = qEl.value; if ((location.hash||'#home') !== '#holdem') location.hash = '#holdem'; else route(); qEl.focus(); }, 180); });
   document.addEventListener('change', function(e){
     if (e.target.id === 'hf') { state.hideFull = e.target.checked; route(); }
     if (e.target.id === 'he') { state.hideEmpty = e.target.checked; route(); }
