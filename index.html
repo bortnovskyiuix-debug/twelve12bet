@@ -37,7 +37,7 @@ svg.i{width:20px;height:20px;flex:none}
 .hide{display:none!important}
 
 /* ── Header ─────────────────────────────── */
-.hdr{position:sticky;top:0;z-index:40;height:var(--head);display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--panel);border-bottom:1px solid var(--line)}
+.hdr{position:sticky;top:0;z-index:40;height:var(--head);display:flex;align-items:center;gap:10px;padding:0 16px;background:var(--bg)}
 .sq{width:40px;height:40px;border-radius:var(--rs);display:grid;place-items:center;background:var(--panel-2);color:var(--text-2);position:relative}
 .sq:hover{background:var(--panel-3);color:var(--text)}
 .sq.lang{width:auto;padding:0 12px;gap:8px;display:flex;font-weight:600;font-size:13px}
@@ -59,7 +59,7 @@ svg.i{width:20px;height:20px;flex:none}
 
 /* ── Shell ──────────────────────────────── */
 .shell{display:grid;grid-template-columns:var(--side) 1fr;min-height:calc(100vh - var(--head))}
-.side{position:sticky;top:var(--head);height:calc(100vh - var(--head));overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;border-right:1px solid var(--line);background:var(--panel)}
+.side{position:sticky;top:var(--head);height:calc(100vh - var(--head));overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:8px;background:var(--bg)}
 .grp{display:grid;gap:1px;padding:4px;border-radius:var(--r);background:var(--panel-2)}
 .grp a{display:flex;align-items:center;gap:12px;height:44px;padding:0 12px;border-radius:var(--rs);color:var(--text-2);font-weight:500;font-size:13.5px}
 .grp a:hover{background:var(--panel-3);color:var(--text)}
@@ -70,7 +70,7 @@ svg.i{width:20px;height:20px;flex:none}
 .app-card{margin-top:auto;padding:14px;border-radius:var(--r);background:var(--panel-2);border:1px solid var(--line)}
 .app-card b{display:block;font-size:13px;margin-bottom:4px}
 .app-card small{color:var(--mute);font-size:12px;line-height:1.45;display:block;margin-bottom:10px}
-.main{min-width:0;padding:22px 28px 56px}
+.main{min-width:0;padding:12px 28px 56px}
 .view{max-width:1480px;margin:0 auto;display:grid;gap:22px}
 
 /* ── Common ─────────────────────────────── */
@@ -498,7 +498,6 @@ svg.i{width:20px;height:20px;flex:none}
 
   function vHome(){
     return '<div class="view">' +
-      '<div class="sec-h welcome"><div><h1>Lobby</h1><p>No Limit Hold\'em · 6-max · play money demo</p></div><div class="sp"></div><a class="ev" href="#tours"><svg class="i"><use href="#i-cup"/></svg>Event center</a></div>' +
       '<div class="car"><button class="car-arrow l" type="button" aria-label="Previous"><svg class="i"><use href="#i-l"/></svg></button><div class="car-track">' +
         BANNERS.map(function(b){ return '<a class="slide" href="' + b.href + '"><img src="' + b.img + '" alt="' + esc(b.alt) + '"/></a>'; }).join('') +
       '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div>' +
