@@ -590,6 +590,20 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .mode .ma{width:52px;height:52px;right:6px;top:5px}
 }
 
+@media (max-width:860px){
+  .mhome{gap:10px}
+  .mhome .car{margin-bottom:0}
+  .mhome .dots{margin:0}
+  .mytour{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 14px;border-radius:12px;background:var(--panel);font-weight:600;font-size:14.5px;color:var(--text)}
+  .mytour svg{width:18px;height:18px;color:var(--mute)}
+  .modes.big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;overflow:visible}
+  .modes.big .mode{width:auto;height:auto;aspect-ratio:1.6/1;align-items:flex-start;padding:14px 14px;font-size:15px;border-radius:16px}
+  .modes.big .mode .ml{max-width:60%;line-height:1.2}
+  .modes.big .mode .ma{width:54%;height:auto;aspect-ratio:1;right:6%;top:auto;bottom:6%}
+  .modes.big .mode::before{background:radial-gradient(ellipse 70% 90% at 70% 70%,rgba(255,255,255,.16),transparent 60%),repeating-linear-gradient(60deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px)}
+  .skel .sk-grid3>:nth-child(n+3){display:block}
+}
+
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
 .toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));translate:-50% 20px;opacity:0;pointer-events:none;padding:11px 16px;border-radius:var(--rs);background:var(--panel-4);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:opacity .25s,translate .25s;z-index:80}
@@ -790,10 +804,10 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 </div>
 
 <nav class="tabbar">
-  <a href="#tours" data-v="tours"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg>MTT</a>
+  <a href="#home" data-v="home"><svg class="i o"><use href="#i-home"/></svg><svg class="i s"><use href="#i-home-s"/></svg>Home</a>
   <a href="#holdem" data-v="holdem"><svg class="i o"><use href="#i-cards"/></svg><svg class="i s"><use href="#i-cards-s"/></svg>NLHE</a>
   <a class="qs" href="play.html" data-join><i><svg><use href="#i-spin-s"/></svg></i>Quick Start</a>
-  <a href="#spin" data-v="spin"><svg class="i o"><use href="#i-spin"/></svg><svg class="i s"><use href="#i-spin-s"/></svg>Spin</a>
+  <a href="#tours" data-v="tours"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg>MTT</a>
   <a href="#" id="mmenu"><svg class="i"><use href="#i-menu"/></svg>Menu</a>
 </nav>
 <div class="toast" id="toast" role="status"></div>
@@ -1054,7 +1068,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     var tab = function(k, ic, label){ return '<a href="#' + k + '"' + (v === k ? ' class="on"' : '') + '><svg class="o"><use href="#i-' + ic + '"/></svg><svg class="s"><use href="#i-' + ic + '-s"/></svg>' + label + '</a>'; };
     return '<nav class="mtabs">' + tab('holdem','cards','Hold\'em') + tab('tours','cup','Tournaments') + tab('spin','spin','Spin &amp; Go') + '</nav>';
   }
-  function mBanner(){ return modeTiles() + '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>'; }
+  function mBanner(){ return '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>'; }
   function mTableRow(tb, idx){
     var filled = tb.seats.filter(Boolean).length;
     var felt = ['f-blue','f-green','f-red'][idx % 3];
@@ -1106,7 +1120,16 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     return '<div class="view mob">' + mBanner() + mTabs('spin') + '<div class="mfil"><div class="chips"><button type="button" class="chip on">All buy-ins</button><button type="button" class="chip" data-soon="My games">My games</button></div></div>' +
       '<div class="sgrid">' + SPINS.map(spinCard).join('') + '</div></div>';
   }
-  var MVIEWS = { home:mHoldem, holdem:mHoldem, tours:mTours, spin:mSpin };
+
+  function mHome(){
+    var reg = {}; try { reg = JSON.parse(localStorage.getItem('12bet-reg') || '{}'); } catch(e){}
+    var n = Object.keys(reg).filter(function(k){ return reg[k]; }).length;
+    return '<div class="view mob mhome">' +
+      '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>' +
+      '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' +
+      modeTiles().replace('class="modes"', 'class="modes big"') + '</div>';
+  }
+  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin };
 
 
   /* ── Mode tiles ── */
@@ -1148,6 +1171,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); }
   };
   function skM(){ var r=''; for (var i=0;i<6;i++) r += '<div class="sk" style="height:72px;border-radius:14px"></div>'; return '<div class="sk" style="aspect-ratio:21/9;border-radius:12px"></div><div class="sk-row" style="gap:22px;height:46px"><div class="sk ln" style="width:70px"></div><div class="sk ln" style="width:96px"></div><div class="sk ln" style="width:80px"></div></div><div class="sk-row" style="gap:6px"><div class="sk pill" style="width:44px;height:32px"></div><div class="sk pill" style="width:60px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div></div>' + r; }
+  function skMH(){ var g=''; for (var i=0;i<6;i++) g += '<div class="sk" style="aspect-ratio:1.55/1;border-radius:16px"></div>'; return '<div class="sk" style="aspect-ratio:21/9;border-radius:12px"></div><div class="sk" style="height:52px;border-radius:12px"></div><div class="sk-grid3" style="grid-template-columns:1fr 1fr">' + g + '</div>'; }
   var firstLoad = true, skTimer;
 
   /* ── Router ──────────────────────── */
@@ -1170,7 +1194,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     document.body.classList.remove('drawer');
     window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
     clearInterval(carTimer); clearInterval(noticeTimer);
-    main.innerHTML = '<div class="view skel" aria-busy="true" aria-label="Loading">' + (isM() ? skM() : SKEL[v]()) + '</div>';
+    main.innerHTML = '<div class="view skel" aria-busy="true" aria-label="Loading">' + (isM() ? (v === 'home' ? skMH() : skM()) : SKEL[v]()) + '</div>';
     var delay = firstLoad ? 900 : 380 + Math.round(Math.random()*220);
     firstLoad = false;
     skTimer = setTimeout(function(){ render(v, true); }, delay);
