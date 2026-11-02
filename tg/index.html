@@ -234,6 +234,56 @@ svg.i{width:22px;height:22px;flex:none}
 .scard .win b{font-size:28px;font-weight:700;color:var(--gold)}
 .scard .ft{left:14px;bottom:12px;font-size:12.5px;color:var(--text-2);display:flex;gap:8px;align-items:center}
 
+/* ── Motion (Cloudbet-style: ease-out, 150/300/500ms) ── */
+:root{--ease:cubic-bezier(0,0,.2,1);--ease-io:cubic-bezier(.4,0,.2,1);--spring:cubic-bezier(.175,.885,.32,1.275)}
+.btn,.ibtn,.sq,.tabs button,.vt button,.subtabs button,.chk,.car-arrow,.dots i,.grp a,.tabbar a{transition:background-color .15s var(--ease),color .15s var(--ease),transform .15s var(--ease),box-shadow .3s var(--ease),filter .15s var(--ease),width .3s var(--ease-io)}
+.btn:active,.ibtn:active,.sq:active,.tabs button:active,.car-arrow:active{transform:scale(.96)}
+.btn-blue{position:relative;overflow:hidden;isolation:isolate}
+.btn-blue:hover{box-shadow:0 6px 20px rgba(0,152,254,.35)}
+.btn.play::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(105deg,transparent 30%,rgba(255,255,255,.35) 50%,transparent 70%);transform:translateX(-100%);animation:sheen 3.2s ease-in-out infinite}
+@keyframes sheen{0%{transform:translateX(-100%)}25%,100%{transform:translateX(100%)}}
+.grp a svg{transition:color .2s var(--ease),transform .3s var(--spring)}
+.grp a:hover svg:not(.ch){transform:scale(1.12)}
+.grp a .ch{transition:transform .3s var(--ease)}
+.grp a:hover .ch{transform:translateX(3px)}
+
+/* cards: lift + image zoom */
+.tcard,.mt,.scard,.slide{transition:transform .3s var(--ease),background-color .3s var(--ease),box-shadow .3s var(--ease)}
+.tcard:hover,.mt:hover,.scard:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(0,0,0,.45)}
+.slide:hover{transform:translateY(-3px)}
+.tart img,.scard img,.slide video{transition:transform .5s var(--ease)}
+.tcard:hover .tart img,.scard:hover img,.slide:hover video{transform:scale(1.05)}
+.mt .oval{transition:transform .5s var(--ease),filter .3s var(--ease)}
+.mt:hover .oval{transform:scale(1.03);filter:brightness(1.12)}
+.seat .av{transition:transform .3s var(--spring)}
+.mt:hover .seat:not(.empty) .av{transform:scale(1.06)}
+.seat.empty .av{transition:border-color .2s var(--ease),color .2s var(--ease),background-color .2s var(--ease)}
+.mt:hover .seat.empty .av{border-color:rgba(0,152,254,.6);color:var(--blue);background:rgba(0,152,254,.08)}
+
+/* reveal on scroll / view change */
+.rv{opacity:0;transform:translateY(10px)}
+.rv.in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:var(--d,0ms)}
+.tcard.rv.in,.mt.rv.in,.scard.rv.in,.slide.rv.in{transition:opacity .5s var(--ease) var(--d,0ms),transform .5s var(--ease) var(--d,0ms),background-color .3s var(--ease),box-shadow .3s var(--ease)}
+
+/* sliding pill under tabs */
+.tabs,.subtabs{position:relative}
+.tabs .pill,.subtabs .pill{position:absolute;top:3px;bottom:3px;left:0;border-radius:6px;background:var(--panel-4);transition:transform .3s var(--ease-io),width .3s var(--ease-io);z-index:0;pointer-events:none}
+.tabs button,.subtabs button{position:relative;z-index:1}
+.tabs.has-pill button.on,.subtabs.has-pill button.on{background:transparent}
+
+/* toast pops with spring */
+.toast{transition:opacity .3s var(--ease),translate .3s var(--spring),scale .3s var(--spring);scale:.92}
+.toast.on{scale:1}
+
+/* numbers tick */
+#jpv{transition:color .3s var(--ease)}
+#jpv.tick{color:#FFE7A8}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+}
+
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
 .toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));translate:-50% 20px;opacity:0;pointer-events:none;padding:11px 16px;border-radius:var(--rs);background:var(--panel-4);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:opacity .25s,translate .25s;z-index:80}
@@ -599,6 +649,34 @@ svg.i{width:22px;height:22px;flex:none}
   }
   var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours };
 
+
+  /* ── Motion helpers ── */
+  var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
+    es.forEach(function(e){ if (e.isIntersecting){ var el = e.target; el.classList.add('in'); io.unobserve(el);
+      setTimeout(function(){ el.classList.remove('rv','in'); el.style.removeProperty('--d'); }, 560 + (parseInt(el.style.getPropertyValue('--d')) || 0)); } });
+  }, {rootMargin:'0px 0px -6% 0px', threshold:.08}) : null;
+  function reveal(root){
+    var groups = root.querySelectorAll('.sec-h, .stake-h, .notice, .jstrip, .frow, .car, .tgrid, .tables, .sgrid, .tlist, .sbox');
+    groups.forEach(function(g){
+      var kids = g.matches('.tgrid, .tables, .sgrid, .tlist') ? g.children : [g];
+      Array.prototype.forEach.call(kids, function(el, i){
+        el.classList.add('rv'); el.style.setProperty('--d', Math.min(i, 6) * 60 + 'ms');
+        if (io) io.observe(el); else el.classList.add('in');
+      });
+    });
+  }
+  function pills(root){
+    root.querySelectorAll('.tabs, .subtabs').forEach(function(bar){
+      var on = bar.querySelector('button.on'); if (!on) return;
+      var pill = bar.querySelector('.pill'); if (!pill){ pill = document.createElement('i'); pill.className = 'pill'; bar.prepend(pill); }
+      bar.classList.add('has-pill');
+      var place = function(b, anim){ if (!anim) pill.style.transition = 'none'; pill.style.width = b.offsetWidth + 'px'; pill.style.transform = 'translateX(' + b.offsetLeft + 'px)'; if (!anim) { pill.offsetWidth; pill.style.transition = ''; } };
+      place(on, false);
+      bar.addEventListener('mouseover', function(e){ var b = e.target.closest('button'); if (b) place(b, true); });
+      bar.addEventListener('mouseleave', function(){ var b = bar.querySelector('button.on'); if (b) place(b, true); });
+    });
+  }
+
   /* ── Router ──────────────────────── */
   function route(){
     var v = (location.hash || '#home').slice(1).split('/')[0];
@@ -607,7 +685,7 @@ svg.i{width:22px;height:22px;flex:none}
     document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v); });
     document.body.classList.remove('drawer');
     window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
-    setupCarousel(); startNotice();
+    setupCarousel(); startNotice(); reveal(main); pills(main);
   }
   window.addEventListener('hashchange', route);
 
@@ -644,7 +722,7 @@ svg.i{width:22px;height:22px;flex:none}
   /* jackpot + countdowns */
   var jp = 248965.3;
   setInterval(function(){
-    jp += .2 + rnd()*2.8; var j = $('#jpv'); if (j) j.textContent = '$' + fmt(Math.floor(jp));
+    jp += .2 + rnd()*2.8; var j = $('#jpv'); if (j) { var nv = '$' + fmt(Math.floor(jp)); if (j.textContent !== nv) { j.textContent = nv; j.classList.add('tick'); setTimeout(function(){ j.classList.remove('tick'); }, 300); } }
     document.querySelectorAll('[data-cd]').forEach(function(b){ b.textContent = cdText(+b.dataset.cd); });
   }, 1000);
 
@@ -656,13 +734,14 @@ svg.i{width:22px;height:22px;flex:none}
     if (e.target.closest('#drawerbg')) { document.body.classList.remove('drawer'); return; }
     if ((t = e.target.closest('.mt[data-join]'))) { haptic('medium'); location.href = 'play.html'; return; }
     if (e.target.closest('[data-join]')) { haptic('medium'); return; }
-    if ((t = e.target.closest('[data-lvtab]'))) { state.level = t.dataset.lvtab; haptic(); route(); return; }
+    if ((t = e.target.closest('[data-lvtab]'))) { state.level = t.dataset.lvtab; haptic(); var bar=t.parentNode, pl=bar.querySelector('.pill'); bar.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===t); }); if (pl){ pl.style.width=t.offsetWidth+'px'; pl.style.transform='translateX('+t.offsetLeft+'px)'; } setTimeout(route, 220); return; }
     if ((t = e.target.closest('[data-mode]'))) { state.mode = t.dataset.mode === 'list' ? 'list' : 'carousel'; haptic(); route(); return; }
     if ((t = e.target.closest('[data-viewall]'))) { e.preventDefault(); state.mode = state.mode === 'grid' ? 'carousel' : 'grid'; haptic(); route(); return; }
     if ((t = e.target.closest('[data-scroll]'))) { var tr = $('.tables[data-lv="' + t.dataset.lv + '"]', main); if (tr) tr.scrollBy({left: +t.dataset.scroll * (tr.clientWidth * .66), behavior:'smooth'}); return; }
     if ((t = e.target.closest('[data-refresh]'))) {
       var k = t.dataset.refresh; TABLES[k].forEach(function(x){ x.seats = makeSeats(x.bb); });
       var sec = $('#lv-' + k, main); if (sec) sec.outerHTML = levelBlock(LEVELS.find(function(L){ return L.k === k; }));
+      var ns = $('#lv-' + k, main); if (ns) reveal(ns.parentNode);
       haptic(); toast('Tables updated'); return;
     }
     if ((t = e.target.closest('[data-st]'))) { state.spinTab = t.dataset.st; haptic(); route(); return; }
