@@ -30,7 +30,7 @@
 html{scroll-behavior:smooth;overscroll-behavior-y:none;-webkit-text-size-adjust:100%}
 html,body{margin:0;min-height:100%}
 body{font-family:Montserrat,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--text);font-size:14px;line-height:1.4;-webkit-font-smoothing:antialiased;background:var(--bg)}
-body::before{content:"";position:absolute;left:0;right:0;top:var(--head);height:1000px;z-index:-1;pointer-events:none;
+body::before{content:"";position:absolute;left:0;right:0;top:var(--head);height:1000px;z-index:-1;pointer-events:none;opacity:.2;
   background:
     radial-gradient(ellipse 50% 380px at 64% 40px, rgba(40,60,190,.22), transparent 70%),
     radial-gradient(ellipse 36% 340px at 24% 0px, rgba(60,50,180,.14), transparent 70%),
@@ -283,6 +283,17 @@ svg.i{width:22px;height:22px;flex:none}
   *,*::before,*::after{animation:none!important;transition:none!important}
   .rv{opacity:1;transform:none}
 }
+
+/* ── Pill buttons (Cloudbet) ── */
+.btn{border-radius:999px;padding:0 20px}
+.hdr .btn{height:44px;padding:0 24px;font-size:14.5px}
+.ibtn,.sq,.car-arrow{border-radius:50%}
+.srch{border-radius:999px;padding-left:18px}
+.srch .clr{border-radius:50%}
+.tabs,.vt,.subtabs{border-radius:999px;padding:4px}
+.tabs button,.vt button,.subtabs button,.tabs .pill,.subtabs .pill{border-radius:999px}
+.tabs .pill,.subtabs .pill{top:4px;bottom:4px}
+.chk{border-radius:999px}
 
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
