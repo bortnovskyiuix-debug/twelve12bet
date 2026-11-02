@@ -221,3 +221,10 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .chat-fab {
   background: rgba(10, 24, 42, .72);
   border-color: var(--px-line);
 }
+
+/* ── In-game menu: exit block with icons (BC style) ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-exit{display:grid;gap:2px;margin:6px 0 4px;padding:6px;border-radius:14px;background:rgba(8,20,36,.55)}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x{display:flex;align-items:center;gap:12px;justify-content:flex-start;height:46px;padding:0 10px;border-radius:10px;background:transparent;border:0;font-weight:600;font-size:14px;color:#F3F7FC}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x:hover{background:rgba(255,255,255,.06)}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x .mx-ico{width:34px;height:34px;padding:7px;border-radius:9px;background:rgba(0,152,254,.14);color:#4FB8FF;flex:none}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.x-leave .mx-ico,html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.x-leave-all .mx-ico{background:rgba(240,71,91,.14);color:#FF8A97}
