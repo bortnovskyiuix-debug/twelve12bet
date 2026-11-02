@@ -960,11 +960,12 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   }
 
   function vHome(){
-    return '<div class="view">' + modeTiles() +
+    return '<div class="view">' +
       '<div class="car"><button class="car-arrow l" type="button" aria-label="Previous"><svg class="i"><use href="#i-l"/></svg></button><div class="car-track">' +
         BANNERS.map(slide).join('') +
       '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div>' +
       '<div class="dots" id="dots"></div>' +
+      modeTiles() +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cards-s"/></svg>Texas Hold\'em</h2><div class="sp"></div>' +
         '<div class="vt"><button type="button" data-hmode="row"' + (state.hmode !== 'col' ? ' class="on"' : '') + ' aria-label="Row"><svg class="i"><use href="#i-grid"/></svg></button><button type="button" data-hmode="col"' + (state.hmode === 'col' ? ' class="on"' : '') + ' aria-label="Column"><svg class="i"><use href="#i-list"/></svg></button></div>' +
         '<a class="btn btn-dark" href="#holdem">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
