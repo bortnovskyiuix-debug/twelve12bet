@@ -210,12 +210,23 @@ svg.i{width:22px;height:22px;flex:none}
 .seat.empty .nm{visibility:hidden}
 .s0{left:32%;top:33%}.s1{left:68%;top:33%}.s2{left:11%;top:59%}.s3{left:89%;top:59%}.s4{left:32%;top:86%}.s5{left:68%;top:86%}
 /* list mode */
-.tlist{display:grid;gap:6px}
-.lr{display:grid;grid-template-columns:100px 1fr 1fr 1fr 1fr 110px;align-items:center;gap:12px;height:58px;padding:0 16px;border-radius:var(--rs);background:var(--panel)}
-.lr .cnt{position:static}
-.lr b{font-weight:600}
-.lr .jp{color:var(--gold);font-weight:600}
+.tlist{display:grid;gap:8px}
+.lr{display:grid;grid-template-columns:56px 1.2fr 1fr 1.3fr 1fr .8fr 120px;align-items:center;gap:14px;height:68px;padding:0 14px 0 12px;border-radius:var(--r);background:var(--panel);cursor:pointer;transition:background-color .2s var(--ease),transform .3s var(--ease)}
+.lr:hover{background:var(--panel-2);transform:translateX(4px)}
+.lr .btn{margin-bottom:3px}
+.lr-felt{width:52px;height:34px;border-radius:999px;background:radial-gradient(ellipse 70% 60% at 50% 45%,var(--felt-0),var(--felt-1) 55%,var(--felt-2));box-shadow:0 0 0 3px var(--rail),0 0 0 4px #0A1526}
+.lr-nm{display:grid;line-height:1.25}.lr-nm b{font-weight:600;font-size:14.5px}.lr-nm small{color:var(--mute);font-size:12px}
+.lr-bl{font-weight:700;font-size:15px}
+.lr-pl{display:flex;align-items:center;gap:10px}
+.lr-pl .cnt{position:static;height:26px;min-width:44px;font-size:12.5px}
+.avs{display:flex}
+.avs i{width:28px;height:28px;border-radius:50%;margin-left:-8px;display:grid;place-items:center;overflow:hidden;font-style:normal;font-size:11px;font-weight:700;color:#fff;background:#1B3550;box-shadow:0 0 0 2px var(--panel)}
+.avs i:first-child{margin-left:0}.avs img{width:100%;height:100%}
 .lr .m{color:var(--mute)}
+.lr .jp{display:flex;align-items:center;gap:6px;color:var(--gold);font-weight:600}.lr .jp svg{width:16px;height:16px}
+.lr.f-blue{--felt-0:#1C5E8F;--felt-1:#124169;--felt-2:#0B2A47;--rail:#132C47}
+.lr.f-green{--felt-0:#1F7A55;--felt-1:#145538;--felt-2:#0C3524;--rail:#12301F}
+.lr.f-red{--felt-0:#8E2A34;--felt-1:#631C25;--felt-2:#3F1118;--rail:#33141A}
 
 /* Spin & Go */
 .sbox{padding:18px;border-radius:var(--r);background:var(--panel);display:grid;gap:16px}
@@ -645,14 +656,23 @@ svg.i{width:22px;height:22px;flex:none}
       '<div class="ctr"><b class="num">NLH ' + t.id + '</b><small>Blinds</small><strong class="num">' + usd(t.sb) + ' / ' + usd(t.bb) + '</strong></div>' +
       seats + '</div>';
   }
-  function listRow(t){
+  function listRow(t, idx){
     var filled = t.seats.filter(Boolean).length;
     var cls = filled >= 6 ? 'full' : filled ? 'part' : '';
-    return '<div class="lr"><span class="cnt ' + cls + ' num">' + filled + '/6</span><b class="num">NLH ' + t.id + '</b><b class="num">' + usd(t.sb) + ' / ' + usd(t.bb) + '</b><span class="m num h1">Buy-in ' + usd(t.bb*40) + ' – ' + usd(t.bb*100) + '</span><span class="jp num h2">JP ' + fmt(t.jp) + '</span><a class="btn ' + (filled >= 6 ? 'btn-dark' : 'btn-blue') + '" href="play.html" data-join>' + (filled >= 6 ? 'Waitlist' : 'Join') + '</a></div>';
+    var felt = ['f-blue','f-green','f-red'][(typeof idx === 'number' ? idx : t.id) % 3];
+    var avs = t.seats.filter(Boolean).slice(0,4).map(function(s){ return s.img ? '<i><img src="' + s.img + '" alt=""/></i>' : '<i style="background:' + s.col + '">' + esc(s.nm.slice(0,1).toUpperCase()) + '</i>'; }).join('');
+    return '<div class="lr ' + felt + '" data-join role="link" tabindex="0">' +
+      '<span class="lr-felt"></span>' +
+      '<span class="lr-nm"><b class="num">NLH ' + t.id + '</b><small>6-max · No Limit</small></span>' +
+      '<span class="lr-bl num">' + usd(t.sb) + ' / ' + usd(t.bb) + '</span>' +
+      '<span class="lr-pl"><span class="avs">' + avs + '</span><span class="cnt ' + cls + ' num">' + filled + '/6</span></span>' +
+      '<span class="m num h1">' + usd(t.bb*40) + ' – ' + usd(t.bb*100) + '</span>' +
+      '<span class="jp num h2"><svg><use href="#i-cup"/></svg>' + fmt(t.jp) + '</span>' +
+      '<a class="btn ' + (filled >= 6 ? 'btn-dark' : 'btn-blue') + '" href="play.html" data-join>' + (filled >= 6 ? 'Waitlist' : 'Join') + '</a></div>';
   }
   /* ── Views ───────────────────────── */
   var main = $('#main');
-  var state = { q:'', level:'micro', hideFull:false, hideEmpty:false, mode:'carousel', spinTab:'list' };
+  var state = { hmode:(function(){ try { return localStorage.getItem('12bet-hmode') || 'row'; } catch(e){ return 'row'; } })(), q:'', level:'micro', hideFull:false, hideEmpty:false, mode:'carousel', spinTab:'list' };
   var BANNERS = [
     {v:'01-go-all-in', href:'#holdem', alt:'Go all in'},
     {v:'02-born-to-win', href:'#tours', alt:'Born to win'},
@@ -670,8 +690,12 @@ svg.i{width:22px;height:22px;flex:none}
         BANNERS.map(slide).join('') +
       '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div>' +
       '<div class="dots" id="dots"></div>' +
-      '<div class="sec-h"><h2><svg class="hi"><use href="#i-cards-s"/></svg>Texas Hold\'em</h2><div class="sp"></div><a class="btn btn-dark" href="#holdem">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
-      '<div class="tables">' + TABLES.low.concat(TABLES.micro).slice(0,6).map(miniTable).join('') + '</div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-cards-s"/></svg>Texas Hold\'em</h2><div class="sp"></div>' +
+        '<div class="vt"><button type="button" data-hmode="row"' + (state.hmode !== 'col' ? ' class="on"' : '') + ' aria-label="Row"><svg class="i"><use href="#i-grid"/></svg></button><button type="button" data-hmode="col"' + (state.hmode === 'col' ? ' class="on"' : '') + ' aria-label="Column"><svg class="i"><use href="#i-list"/></svg></button></div>' +
+        '<a class="btn btn-dark" href="#holdem">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
+      (state.hmode === 'col'
+        ? '<div class="tlist">' + TABLES.low.concat(TABLES.micro).slice(0,6).map(listRow).join('') + '</div>'
+        : '<div class="tables">' + TABLES.low.concat(TABLES.micro).slice(0,6).map(miniTable).join('') + '</div>') +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>Tournaments</h2><div class="sp"></div><a class="btn btn-dark" href="#tours">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="tgrid">' + TOURS.slice(0,4).map(tourCard).join('') + '</div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-spin-s"/></svg>Spin &amp; Go</h2><div class="sp"></div><a class="btn btn-dark" href="#spin">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
@@ -817,6 +841,8 @@ svg.i{width:22px;height:22px;flex:none}
     if ((t = e.target.closest('.mt[data-join]'))) { haptic('medium'); location.href = 'play.html'; return; }
     if (e.target.closest('[data-join]')) { haptic('medium'); return; }
     if ((t = e.target.closest('[data-lvtab]'))) { state.level = t.dataset.lvtab; haptic(); var bar=t.parentNode, pl=bar.querySelector('.pill'); bar.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===t); }); if (pl){ pl.style.width=t.offsetWidth+'px'; pl.style.transform='translateX('+t.offsetLeft+'px)'; } setTimeout(route, 220); return; }
+    if ((t = e.target.closest('[data-hmode]'))) { state.hmode = t.dataset.hmode; try { localStorage.setItem('12bet-hmode', state.hmode); } catch(_){} haptic(); var y = scrollY; route(); window.scrollTo(0, y); return; }
+    if ((t = e.target.closest('.lr[data-join]')) && !e.target.closest('a')) { haptic('medium'); location.href = 'play.html'; return; }
     if ((t = e.target.closest('[data-mode]'))) { state.mode = t.dataset.mode === 'list' ? 'list' : 'carousel'; haptic(); route(); return; }
     if ((t = e.target.closest('[data-viewall]'))) { e.preventDefault(); state.mode = state.mode === 'grid' ? 'carousel' : 'grid'; haptic(); route(); return; }
     if ((t = e.target.closest('[data-scroll]'))) { var tr = $('.tables[data-lv="' + t.dataset.lv + '"]', main); if (tr) tr.scrollBy({left: +t.dataset.scroll * (tr.clientWidth * .66), behavior:'smooth'}); return; }
