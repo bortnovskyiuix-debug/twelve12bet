@@ -385,7 +385,11 @@ html,body{overflow-x:clip}
   .view{gap:12px}
   .view.mob{gap:0}
   .mob .car{margin-bottom:12px}
-  .mob .slide{aspect-ratio:16/8;border-radius:14px}
+  .mob .slide{aspect-ratio:21/9;border-radius:12px}
+  .mob .slide video{object-position:60% 30%}
+  .mob .car{margin-bottom:8px}
+  .mob .dots{margin:-2px 0 6px}
+  .mob .dots i{width:5px;height:5px}.mob .dots i.on{width:26px}
   .mob .dots{margin:-4px 0 10px}
   /* underline mode tabs */
   .mtabs{position:sticky;top:var(--head);z-index:20;display:flex;gap:22px;margin:0 -12px;padding:0 14px;background:var(--bg);border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
@@ -463,6 +467,104 @@ html,body{overflow-x:clip}
   .tabbar .qs i svg{width:26px;height:26px}
   .tabbar .qs:active i{transform:translateY(3px);box-shadow:0 1px 0 #0A5FB0,0 0 0 5px var(--panel)}
 }
+
+@media (max-width:860px){
+  /* header */
+  .hdr{gap:8px}
+  .hdr .play,.hdr .reg{display:none}
+  .mbal{display:flex;align-items:center;gap:6px;height:36px;padding:0 10px 0 6px;border-radius:999px;background:var(--panel);font-weight:700;font-size:14px;margin-left:auto}
+  .mbal .coin{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#4A3610;display:grid;place-items:center;font-size:11px;font-style:normal;font-weight:700}
+  .mbal svg{width:14px;height:14px;color:var(--mute)}
+  .mava{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#1B3550;flex:none}
+  .mava img{width:100%;height:100%;display:block}
+  /* filter bar */
+  .mfil{padding:8px 12px}
+  .msel{position:relative}
+  .msel-b{height:36px;min-width:112px;padding:0 10px 0 14px;border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--panel);color:var(--text);font-weight:600;font-size:13.5px}
+  .msel-b svg{width:16px;height:16px;color:var(--mute);transition:transform .25s var(--ease)}
+  .msel.open .msel-b svg{transform:rotate(180deg)}
+  .msel-m{position:absolute;left:0;top:calc(100% + 6px);min-width:170px;padding:6px;border-radius:12px;background:var(--panel-2);box-shadow:0 14px 40px rgba(0,0,0,.5);display:grid;gap:2px;opacity:0;transform:translateY(-6px) scale(.98);pointer-events:none;transition:opacity .2s var(--ease),transform .25s var(--ease);z-index:30}
+  .msel.open .msel-m{opacity:1;transform:none;pointer-events:auto}
+  .msel-i{height:40px;padding:0 12px;border-radius:8px;display:flex;align-items:center;justify-content:space-between;font-weight:600;font-size:13.5px;color:var(--text-2)}
+  .msel-i small{color:var(--mute);font-size:12px}
+  .msel-i.on{background:var(--panel-4);color:var(--text)}
+  .chip.tg{height:36px;border-radius:10px;padding:0 12px}
+  .fbtn{height:36px;width:40px;border-radius:10px}
+  .fbtn.on{background:var(--blue);color:#fff}
+  /* rows */
+  .mrow{padding:10px 12px 10px 10px;gap:14px}
+  .mthumb{width:96px;height:56px;border-radius:999px;box-shadow:none;background:var(--rail);padding:5px}
+  .mth-in{position:relative;width:100%;height:100%;border-radius:999px;display:grid;place-items:center;background:radial-gradient(ellipse 70% 60% at 50% 45%,var(--felt-0),var(--felt-1) 55%,var(--felt-2));box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.18),inset 0 0 14px rgba(0,0,0,.35)}
+  .mthumb b{padding:3px 11px;border-radius:999px;background:rgba(3,7,13,.6);font-size:14px;font-weight:700;box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+  .mthumb .sd{width:6px;height:6px}
+  .mthumb .p0{left:30%;top:1px}.mthumb .p1{left:62%;top:1px}.mthumb .p2{left:2px;top:44%}.mthumb .p3{right:2px;top:44%}.mthumb .p4{left:30%;bottom:1px}.mthumb .p5{left:62%;bottom:1px}
+  .mt1 em{font-style:normal;color:var(--mute);font-size:12.5px}
+  .tag.o{background:rgba(233,201,135,.14);color:var(--gold)}
+  /* bottom bar */
+  .tabbar{grid-template-columns:1fr 1fr auto 1fr 1fr!important;padding:4px 4px calc(6px + var(--safe-b))}
+  .tabbar a{font-size:10px}
+  .tabbar .qs{margin-top:-24px;padding:0 8px}
+  .tabbar .qs i{width:54px;height:54px}
+}
+
+/* ══ Chat (desktop, pinned right) ══ */
+:root{--chatw:360px}
+.shell{grid-template-columns:var(--side) 1fr 0;transition:grid-template-columns .35s var(--ease-io)}
+body.chat-open .shell{grid-template-columns:var(--side) 1fr var(--chatw)}
+.chat{position:sticky;top:var(--head);height:calc(100vh - var(--head));display:flex;flex-direction:column;min-width:0;overflow:hidden;background:var(--bg);border-left:1px solid var(--line);opacity:0;pointer-events:none;transition:opacity .3s var(--ease)}
+body.chat-open .chat{opacity:1;pointer-events:auto}
+.chat>*{min-width:var(--chatw)}
+.chatbtn{margin-right:2px}
+.ch-h{display:flex;align-items:center;gap:4px;height:60px;padding:0 10px 0 14px;border-bottom:1px solid var(--line)}
+.ch-room{display:flex;align-items:center;gap:6px;height:36px;padding:0 10px 0 2px;font-weight:700;font-size:16px;color:var(--text)}
+.ch-room svg{width:18px;height:18px;color:var(--mute)}
+.ch-h .sq{width:36px;height:36px;background:var(--panel)}
+.ch-list{flex:1;overflow-y:auto;padding:14px 14px 10px;display:grid;gap:14px;align-content:start;scrollbar-width:thin;scrollbar-color:var(--panel-3) transparent}
+.msg{display:grid;grid-template-columns:40px 1fr;gap:10px;animation:msgin .3s var(--ease) both}
+@keyframes msgin{from{opacity:0;transform:translateY(8px)}}
+.msg .av{width:40px;height:40px;border-radius:50%;overflow:hidden;display:grid;place-items:center;font-weight:700;font-size:13px;color:#fff;background:#1B3550}
+.msg .av img{width:100%;height:100%;display:block}
+.msg .av.bot{background:var(--blue);color:#fff}
+.msg .av.bot svg{width:22px;height:auto}
+.msg .who{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700;margin-bottom:6px;white-space:nowrap;overflow:hidden}
+.msg .who small{font-weight:500;color:var(--mute);font-size:12px}
+.msg .who .lv{width:16px;height:16px;border-radius:5px;background:var(--gold);color:#4A3610;font-size:9.5px;display:grid;place-items:center;font-weight:800}
+.msg .who .bt{padding:1px 6px;border-radius:5px;background:var(--panel-3);color:var(--text-2);font-size:10.5px;font-weight:600}
+.msg .bubbles{display:grid;gap:4px;justify-items:start}
+.bub{padding:8px 12px;border-radius:12px;background:var(--panel-2);font-size:13.5px;line-height:1.4;max-width:100%;word-break:break-word}
+.msg.me .bub{background:rgba(0,152,254,.18)}
+.card-msg{width:100%;padding:12px;border-radius:14px;background:var(--panel-2);display:grid;gap:10px}
+.card-msg .t{font-size:13px;font-weight:700;color:var(--green)}
+.card-msg .d{font-size:12.5px;color:var(--text-2)}
+.card-msg .d b{color:var(--text)}
+.card-msg .row{display:flex;align-items:center;gap:8px}
+.card-msg .mini{width:64px;height:38px;border-radius:999px;margin-left:auto;background:radial-gradient(ellipse 70% 60% at 50% 45%,#1C5E8F,#124169 55%,#0B2A47);box-shadow:0 0 0 3px #132C47}
+.card-msg .big{font-size:22px;font-weight:700;color:var(--gold);text-align:center;padding:6px;border-radius:10px;background:rgba(233,201,135,.08)}
+.card-msg .cta{height:36px;border-radius:999px;background:var(--blue);color:#fff;font-weight:700;font-size:13px;display:grid;place-items:center;box-shadow:0 2px 0 #0A5FB0}
+.card-msg .cta.win{background:var(--green);color:#06120B;box-shadow:0 2px 0 #1E9A5A}
+.ch-in{display:flex;align-items:center;gap:6px;padding:10px 12px calc(10px + var(--safe-b));border-top:1px solid var(--line);background:var(--bg)}
+.ch-in .sq{width:38px;height:38px;background:var(--panel)}
+.ch-in .send{background:var(--blue);color:#fff}
+.ch-field{flex:1;min-width:0;display:flex;align-items:center;height:40px;padding:0 6px 0 14px;border-radius:12px;background:var(--panel)}
+.ch-field input{all:unset;flex:1;min-width:0;font-size:13.5px;color:var(--text)}
+.ch-field input::placeholder{color:var(--mute)}
+.ch-field .emo{font-size:17px;line-height:1;padding:4px}
+@media (max-width:1180px){ body.chat-open .shell{grid-template-columns:var(--side) 1fr 0} body.chat-open .chat{position:fixed;right:0;top:var(--head);width:var(--chatw);box-shadow:-20px 0 50px rgba(0,0,0,.5);z-index:45} }
+@media (max-width:860px){ .chat,.chatbtn{display:none!important} body.chat-open .shell{display:block} }
+
+/* chat open: tighter grids on mid screens */
+@media (min-width:861px) and (max-width:1700px){
+  body.chat-open .tables{grid-auto-columns:calc((100% - 14px) / 2)}
+  body.chat-open .tables.grid,body.chat-open .sgrid{grid-template-columns:repeat(2,1fr)}
+  body.chat-open .car-track{grid-auto-columns:calc(50% - 7px)}
+  body.chat-open .tgrid{grid-template-columns:repeat(3,1fr)}
+  body.chat-open .tgrid .tcard:nth-child(n+4){display:none}
+  body.chat-open .main{padding-left:22px;padding-right:22px}
+}
+.chatbtn .badge{display:none}
+.chatbtn.has .badge{display:grid}
+.ch-h .ch-room{min-width:0}
+.card-msg .d .tag{display:inline-flex;margin-top:6px}
 
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
@@ -589,6 +691,10 @@ html,body{overflow-x:clip}
   <symbol id="i-chat" viewBox="0 0 24 24" fill="none"><path d="M13 3H11C6.02944 3 2 7.02944 2 12V17C2 19.2091 3.79086 21 6 21H13C17.9706 21 22 16.9706 22 12C22 7.02944 17.9706 3 13 3Z" fill="currentColor"/></symbol>
   <symbol id="i-chevd" viewBox="0 0 24 24" fill="none"><path d="M7 10L12 14.5L17 10" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="i-filter" viewBox="0 0 24 24" fill="none"><path d="M4 5h16l-6 7.5V19l-4 1.5v-8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-chat-o" viewBox="0 0 24 24" fill="none"><path d="M13 3H11C6.03 3 2 7.03 2 12v5a4 4 0 0 0 4 4h7c4.97 0 9-4.03 9-9s-4.03-9-9-9z" stroke="currentColor" stroke-width="1.7"/><path d="M8 11h8M8 14.5h5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-img" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="8.5" cy="9.5" r="1.8" fill="currentColor"/><path d="M3.5 17l5-4.5 3.5 3 3.5-3.5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-send" viewBox="0 0 24 24" fill="none"><path d="M3.4 11.2l16.3-7c.7-.3 1.4.4 1.1 1.1l-7 16.3c-.3.8-1.5.7-1.7-.1l-1.7-6.3-6.3-1.7c-.8-.2-.9-1.4-.1-1.7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="mark12x" viewBox="0 0 276 100"><path d="M1.28 99.34C1.40 98.98 4.44 88.53 8.05 76.13C11.65 63.72 15.20 51.54 15.93 49.06C16.66 46.58 18.09 41.72 19.11 38.27C20.13 34.81 20.89 31.91 20.79 31.82C20.70 31.73 16.62 34.22 11.72 37.36C6.83 40.50 2.19 43.45 1.43 43.92L0.04 44.77L0.27 43.34C0.40 42.56 1.37 37.50 2.42 32.09L4.34 22.27L10.35 17.65C13.65 15.10 18.30 11.50 20.68 9.64C23.05 7.77 26.81 4.85 29.02 3.13L33.03 0.00L49.60 0.00L66.17 0.00L66.17 0.55C66.17 1.40 58.66 28.76 50.07 59.21C48.43 65.00 45.18 76.55 42.83 84.87L38.57 100.00L19.82 100.00L1.08 100.00L1.28 99.34ZM44.85 99.51C44.95 99.23 45.99 95.56 47.17 91.34C50.46 79.49 52.75 74.79 57.83 69.46C63.30 63.72 62.71 64.09 99.62 43.25C107.79 38.64 115.39 34.26 116.51 33.51C121.69 30.04 122.86 24.25 118.80 22.12L117.49 21.43L109.45 21.43C99.88 21.43 99.04 21.61 96.42 24.24C94.94 25.72 94.33 26.73 93.56 28.95L92.58 31.77L78.06 31.87C66.57 31.94 63.53 31.86 63.53 31.49C63.54 29.89 65.76 23.25 67.47 19.74C71.93 10.56 78.41 4.62 87.51 1.36L90.79 0.19L113.35 0.19L135.90 0.19L138.94 1.22C149.25 4.71 154.16 13.11 152.10 23.75C150.03 34.41 145.28 42.40 137.59 48.11C135.08 49.97 134.39 50.37 114.29 61.56C107.77 65.18 100.33 69.35 97.74 70.82L93.05 73.50L114.98 73.59C132.36 73.67 136.88 73.79 136.74 74.16C136.64 74.42 136.16 76.04 135.67 77.76L134.77 80.90L128.38 86.80C124.87 90.04 120.19 94.34 117.99 96.35L113.98 100.00L79.32 100.00L44.66 100.00L44.85 99.51ZM120.30 99.86C120.30 99.74 134.07 86.95 150.94 71.40C154.87 67.78 163.50 60.01 170.11 54.13C176.73 48.25 185.59 40.35 189.80 36.56C199.59 27.75 212.99 15.98 223.42 7.03L231.61 0.00L253.77 0.00C265.96 0.00 275.93 0.13 275.91 0.28C275.89 0.55 264.55 10.52 245.71 26.82C240.73 31.13 234.32 36.68 231.47 39.16L226.28 43.65L227.02 44.85C227.42 45.51 229.49 49.01 231.61 52.63C233.73 56.25 236.26 60.56 237.23 62.22C238.20 63.87 242.76 71.65 247.37 79.51C251.97 87.37 256.56 95.20 257.57 96.92L259.41 100.05L240.33 99.91L221.24 99.77L218.42 98.92C216.87 98.45 214.59 97.53 213.35 96.88C209.47 94.83 207.82 92.78 201.87 82.62C198.88 77.50 196.17 72.99 195.86 72.60L195.30 71.88L184.59 81.10C178.69 86.17 171.30 92.50 168.17 95.16L162.46 100.00L141.38 100.00C129.79 100.00 120.30 99.94 120.30 99.86ZM176.20 39.97C172.77 34.52 152.26 0.42 152.26 0.16C152.26 0.07 161.47 0.00 172.74 0.00L193.23 0.00L195.10 0.71C198.21 1.90 199.73 3.43 203.36 9.08C205.23 12.00 206.66 14.53 206.55 14.71C206.35 15.03 185.50 33.98 179.79 39.03L177.11 41.40L176.20 39.97Z" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -599,6 +705,9 @@ html,body{overflow-x:clip}
   <div class="sp"></div>
   <a class="btn btn-dark reg" href="#" data-soon="Registration">Register</a>
   <a class="btn btn-blue play" href="play.html" data-join>Play demo</a>
+  <button class="sq d-only chatbtn" id="chatbtn" type="button" aria-label="Chat"><svg class="i"><use href="#i-chat-o"/></svg><span class="badge" id="chatbadge">0</span></button>
+  <span class="mbal m-only" data-soon="Wallet"><i class="coin">$</i><b class="num">800</b><svg class="i"><use href="#i-chevd"/></svg></span>
+  <a class="mava m-only" href="#" data-soon="Profile" aria-label="Profile"><img src="ava/hero.svg" alt=""/></a>
 </header>
 <div class="drawer-bg" id="drawerbg"></div>
 
@@ -637,11 +746,30 @@ html,body{overflow-x:clip}
   </aside>
 
   <main class="main" id="main"></main>
+  <aside class="chat" id="chat" aria-label="Chat">
+    <div class="ch-h">
+      <button type="button" class="ch-room" data-soon="Chat rooms">World<svg class="i"><use href="#i-chevd"/></svg></button>
+      <div class="sp"></div>
+      <button type="button" class="sq" data-soon="Translate" aria-label="Translate"><svg class="i"><use href="#i-globe"/></svg></button>
+      <button type="button" class="sq" data-soon="Tips" aria-label="Tips"><svg class="i"><use href="#i-coin"/></svg></button>
+      <button type="button" class="sq" data-soon="Chat settings" aria-label="More"><svg class="i"><use href="#i-more"/></svg></button>
+      <button type="button" class="sq" id="chatclose" aria-label="Close chat"><svg class="i"><use href="#i-x"/></svg></button>
+    </div>
+    <div class="ch-list" id="chlist"></div>
+    <form class="ch-in" id="chform" autocomplete="off">
+      <button type="button" class="sq" data-soon="Voice messages" aria-label="Voice"><svg class="i"><use href="#i-mic"/></svg></button>
+      <label class="ch-field"><input id="chinput" type="text" placeholder="Your message…" maxlength="200"/><button type="button" class="emo" data-soon="Emoji" aria-label="Emoji">🙂</button></label>
+      <button type="button" class="sq" data-soon="Images" aria-label="Image"><svg class="i"><use href="#i-img"/></svg></button>
+      <button type="submit" class="sq send" aria-label="Send"><svg class="i"><use href="#i-send"/></svg></button>
+    </form>
+  </aside>
 </div>
 
 <nav class="tabbar">
-  <a href="#holdem" data-v="lobby"><svg class="i o"><use href="#i-home"/></svg><svg class="i s"><use href="#i-home-s"/></svg>Lobby</a>
-  <a class="qs" href="play.html" data-join><i><svg><use href="#i-spin-s"/></svg></i>Quick start</a>
+  <a href="#tours" data-v="tours"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg>MTT</a>
+  <a href="#holdem" data-v="holdem"><svg class="i o"><use href="#i-cards"/></svg><svg class="i s"><use href="#i-cards-s"/></svg>NLHE</a>
+  <a class="qs" href="play.html" data-join><i><svg><use href="#i-spin-s"/></svg></i>Quick Start</a>
+  <a href="#spin" data-v="spin"><svg class="i o"><use href="#i-spin"/></svg><svg class="i s"><use href="#i-spin-s"/></svg>Spin</a>
   <a href="#" id="mmenu"><svg class="i"><use href="#i-menu"/></svg>Menu</a>
 </nav>
 <div class="toast" id="toast" role="status"></div>
@@ -908,9 +1036,9 @@ html,body{overflow-x:clip}
     var felt = ['f-blue','f-green','f-red'][idx % 3];
     var dots = tb.seats.map(function(s,i){ return '<i class="sd p' + i + (s ? ' f' : '') + '"></i>'; }).join('');
     return '<div class="mrow ' + felt + '" data-join role="link" tabindex="0">' +
-      '<span class="mthumb">' + dots + '<b class="num">' + filled + '/6</b></span>' +
-      '<span class="minfo"><span class="mt1"><b class="num">' + usd(tb.sb) + '/' + usd(tb.bb) + '</b><span class="num">NLH ' + tb.id + '</span></span>' +
-      '<span class="mt2"><span class="tag b">NLH</span><span class="tag">6-max</span>' + (filled >= 6 ? '<span class="tag">Full</span>' : '') + '<span class="tag jp">JP</span></span></span></div>';
+      '<span class="mthumb"><span class="mth-in">' + dots + '<b class="num">' + filled + '/6</b></span></span>' +
+      '<span class="minfo"><span class="mt1"><b class="num">' + usd(tb.sb) + '/' + usd(tb.bb) + '</b><em class="num">(' + usd(tb.sb) + ')</em><span class="num">NLHE ' + tb.id + '</span></span>' +
+      '<span class="mt2"><span class="tag o">NLHE</span>' + (filled >= 6 ? '<span class="tag">Full</span>' : '') + '<span class="tag jp">JP</span></span></span></div>';
   }
   function mTourRow(tr, i){
     var live = tr.in < 15; var done = false;
@@ -924,19 +1052,23 @@ html,body{overflow-x:clip}
       '<span class="mt3"><span><svg><use href="#i-coin"/></svg><b class="num">' + (tr.bi ? usd(tr.bi) : 'Free') + '</b></span><span><svg><use href="#i-user"/></svg><b class="num">' + (tr.reg + (done?1:0)) + '</b></span>' +
       '<button type="button" class="rg' + (done ? ' done' : '') + '" data-mreg="' + i + '">' + (done ? 'Joined' : 'Register') + '</button></span></span></div>';
   }
+  var STAKE_LABEL = {all:'All', micro:'Micro', low:'Low', mid:'Mid', high:'High'};
+  function mSelect(){
+    return '<div class="msel" id="msel"><button type="button" class="msel-b" data-msel>' + STAKE_LABEL[mstate.stake] + '<svg class="i"><use href="#i-chevd"/></svg></button>' +
+      '<div class="msel-m">' + Object.keys(STAKE_LABEL).map(function(k){ return '<button type="button" class="msel-i' + (mstate.stake === k ? ' on' : '') + '" data-mstake="' + k + '">' + STAKE_LABEL[k] + (k !== 'all' ? '<small class="num">' + TABLES[k].length + '</small>' : '') + '</button>'; }).join('') + '</div></div>';
+  }
   function mHoldem(){
-    var chip = function(k, l){ return '<button type="button" class="chip' + (mstate.stake === k ? ' on' : '') + '" data-mstake="' + k + '">' + l + '</button>'; };
     var lvls = mstate.stake === 'all' ? LEVELS : LEVELS.filter(function(L){ return L.k === mstate.stake; });
     var q = state.q.trim().toLowerCase();
     var body = lvls.map(function(L){
       var list = TABLES[L.k].filter(function(tb){ var f = tb.seats.filter(Boolean).length; if (mstate.open && f >= 6) return false; if (mstate.mine && f === 0) return false; if (q && String(tb.id).indexOf(q) < 0 && !tb.seats.some(function(s){ return s && s.nm.toLowerCase().indexOf(q) >= 0; })) return false; return true; });
       if (!list.length) return '';
-      return '<div class="mhead"><span>' + L.name.toUpperCase() + '</span><b class="num">' + list.length + ' tables</b></div>' + list.map(mTableRow).join('');
+      return list.map(mTableRow).join('');
     }).join('');
     return '<div class="view mob">' + mBanner() + mTabs('holdem') +
-      '<div class="mfil"><div class="chips">' + chip('all','All') + chip('micro','Micro') + chip('low','Low') + chip('mid','Mid') + chip('high','High') + '</div>' +
+      '<div class="mfil">' + mSelect() + '<div class="sp"></div>' +
       '<button type="button" class="chip tg' + (mstate.open ? ' on' : '') + '" data-mtoggle="open"><span class="dot"></span>Open seat</button>' +
-      '<button type="button" class="fbtn" data-mtoggle="mine" aria-label="Hide empty"><svg><use href="#i-filter"/></svg></button></div>' +
+      '<button type="button" class="fbtn' + (mstate.mine ? ' on' : '') + '" data-mtoggle="mine" aria-label="Hide empty"><svg><use href="#i-filter"/></svg></button></div>' +
       '<div class="mlist">' + (body || '<div class="notice">No tables match these filters.</div>') + '</div></div>';
   }
   function mTours(){
@@ -966,7 +1098,7 @@ html,body{overflow-x:clip}
     spin: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="padding:18px;display:grid;gap:16px;background:var(--panel)"><div class="sk ln" style="width:140px;height:20px;background:var(--panel-2)"></div><div class="sk pill" style="width:220px;height:42px;background:var(--panel-2)"></div>' + skSpin(6).replace(/class="sk"/g,'class="sk" style="background:var(--panel-2)"').replace('style="background:var(--panel-2)" style="','style="background:var(--panel-2);') + '</div>'; },
     tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); }
   };
-  function skM(){ var r=''; for (var i=0;i<6;i++) r += '<div class="sk" style="height:72px;border-radius:14px"></div>'; return '<div class="sk" style="aspect-ratio:16/8;border-radius:14px"></div><div class="sk-row" style="gap:22px;height:46px"><div class="sk ln" style="width:70px"></div><div class="sk ln" style="width:96px"></div><div class="sk ln" style="width:80px"></div></div><div class="sk-row" style="gap:6px"><div class="sk pill" style="width:44px;height:32px"></div><div class="sk pill" style="width:60px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div></div>' + r; }
+  function skM(){ var r=''; for (var i=0;i<6;i++) r += '<div class="sk" style="height:72px;border-radius:14px"></div>'; return '<div class="sk" style="aspect-ratio:21/9;border-radius:12px"></div><div class="sk-row" style="gap:22px;height:46px"><div class="sk ln" style="width:70px"></div><div class="sk ln" style="width:96px"></div><div class="sk ln" style="width:80px"></div></div><div class="sk-row" style="gap:6px"><div class="sk pill" style="width:44px;height:32px"></div><div class="sk pill" style="width:60px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div></div>' + r; }
   var firstLoad = true, skTimer;
 
   /* ── Router ──────────────────────── */
@@ -980,12 +1112,12 @@ html,body{overflow-x:clip}
     var v = curView();
     clearTimeout(skTimer);
     render(v, false);
-    document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v || a.dataset.v === 'lobby'); });
+    document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v); });
   }
   function navigate(){
     var v = curView();
     clearTimeout(skTimer);
-    document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v || a.dataset.v === 'lobby'); });
+    document.querySelectorAll('[data-v]').forEach(function(a){ a.classList.toggle('on', a.dataset.v === v); });
     document.body.classList.remove('drawer');
     window.scrollTo({top:0, behavior:'instant' in window ? 'instant' : 'auto'});
     clearInterval(carTimer); clearInterval(noticeTimer);
@@ -1043,6 +1175,8 @@ html,body{overflow-x:clip}
     if ((t = e.target.closest('.mt[data-join]'))) { haptic('medium'); location.href = 'play.html'; return; }
     if (e.target.closest('[data-join]')) { haptic('medium'); return; }
     if ((t = e.target.closest('[data-lvtab]'))) { state.level = t.dataset.lvtab; haptic(); var bar=t.parentNode, pl=bar.querySelector('.pill'); bar.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', b===t); }); if (pl){ pl.style.width=t.offsetWidth+'px'; pl.style.transform='translateX('+t.offsetLeft+'px)'; } setTimeout(route, 220); return; }
+    if ((t = e.target.closest('[data-msel]'))) { t.parentNode.classList.toggle('open'); haptic(); return; }
+    if (!e.target.closest('.msel')) { var ms = document.getElementById('msel'); if (ms) ms.classList.remove('open'); }
     if ((t = e.target.closest('#mmenu'))) { e.preventDefault(); document.body.classList.add('drawer'); haptic(); return; }
     if ((t = e.target.closest('[data-mstake]'))) { mstate.stake = t.dataset.mstake; haptic(); route(); return; }
     if ((t = e.target.closest('[data-mtoggle]'))) { mstate[t.dataset.mtoggle] = !mstate[t.dataset.mtoggle]; haptic(); route(); if (t.dataset.mtoggle==='mine') toast(mstate.mine ? 'Empty tables hidden' : 'Showing all tables'); return; }
@@ -1074,6 +1208,66 @@ html,body{overflow-x:clip}
     if (e.target.id === 'he') { state.hideEmpty = e.target.checked; route(); }
   });
   document.addEventListener('keydown', function(e){ if ((e.key === 'Enter' || e.key === ' ') && e.target.classList && e.target.classList.contains('mt')) { e.preventDefault(); location.href = 'play.html'; } });
+
+  /* ══ Chat ══ */
+  var chatOpen = (function(){ try { return localStorage.getItem('12bet-chat') === 'on'; } catch(e){ return false; } })();
+  var chList = document.getElementById('chlist');
+  var CHAT_COLORS = ['#2F6FD6','#0B8F7A','#B4553A','#6A4FC9','#A3307A','#C08A2B','#2B8FB8'];
+  var CHAT_LINES = ['gg','nice hand','anyone on $0.25/$0.5?','that river tho','lol','flopped a set, finally','run it twice next time','who is up for a sit and go?','brb coffee','gl all','sick call','ty bot','sunday main anyone?','that was a bluff 100%','new table opened, join'];
+  function tnow(){ var d=new Date(); return 'Today ' + String(d.getHours()).padStart(2,'0') + ':' + String(d.getMinutes()).padStart(2,'0'); }
+  function avatarHtml(s){ return s.img ? '<span class="av"><img src="' + s.img + '" alt=""/></span>' : '<span class="av" style="background:' + s.col + '">' + esc(s.nm.slice(0,2).toUpperCase()) + '</span>'; }
+  function msgText(s, lines, me){
+    return '<div class="msg' + (me ? ' me' : '') + '">' + avatarHtml(s) + '<div><div class="who">' + esc(s.nm) + (s.lv ? '<span class="lv">' + s.lv + '</span>' : '') + '<small>' + tnow() + '</small></div><div class="bubbles">' + lines.map(function(l){ return '<span class="bub">' + esc(l) + '</span>'; }).join('') + '</div></div></div>';
+  }
+  function msgInvite(s, tb){
+    var f = tb.seats.filter(Boolean).length;
+    return '<div class="msg">' + avatarHtml(s) + '<div><div class="who">' + esc(s.nm) + '<span class="lv">' + (s.lv || 3) + '</span><small>' + tnow() + '</small></div>' +
+      '<div class="card-msg"><div class="t">Let\'s get rich</div><div class="row"><div class="d"><b class="num">' + usd(tb.sb) + '/' + usd(tb.bb) + '</b> NLHE ' + tb.id + '<br><span class="tag b" style="margin-top:6px">NLH</span> <span class="num">' + f + '/6</span></div><span class="mini"></span></div><a class="cta" href="play.html" data-join>Play now</a></div></div></div>';
+  }
+  function msgWin(nm, tb, amt){
+    return '<div class="msg"><span class="av bot"><svg viewBox="0 0 276 100"><use href="#mark12x"/></svg></span><div><div class="who">12xBet<span class="bt">Bot</span><small>' + tnow() + '</small></div>' +
+      '<div class="card-msg"><div class="t">Incredible!</div><div class="d"><b>' + esc(nm) + '</b> won a big pot at <span class="num">' + usd(tb.sb) + '/' + usd(tb.bb) + ' NLHE ' + tb.id + '</span></div><div class="big num">$' + fmt(amt, 2) + '</div><a class="cta win" href="#holdem">Show more</a></div></div></div>';
+  }
+  function randPlayer(){ var i = Math.floor(Math.random()*NICKS.length); return { nm: NICKS[i], img: Math.random() > .5 ? AVA[i % AVA.length] : null, col: CHAT_COLORS[i % CHAT_COLORS.length], lv: 1 + Math.floor(Math.random()*9) }; }
+  function randTable(){ var all = [].concat(TABLES.micro, TABLES.low, TABLES.mid, TABLES.high); return all[Math.floor(Math.random()*all.length)]; }
+  function pushMsg(html){
+    if (!chList) return;
+    var atBottom = chList.scrollHeight - chList.scrollTop - chList.clientHeight < 80;
+    chList.insertAdjacentHTML('beforeend', html);
+    while (chList.children.length > 60) chList.removeChild(chList.firstChild);
+    if (atBottom) chList.scrollTop = chList.scrollHeight;
+    if (!document.body.classList.contains('chat-open')) { var b = document.getElementById('chatbadge'); if (b) { b.textContent = Math.min(99, (+b.textContent || 0) + 1); b.parentNode.classList.add('has'); } }
+  }
+  function seedChat(){
+    if (!chList) return;
+    chList.innerHTML = '';
+    pushMsg(msgInvite(randPlayer(), randTable()));
+    pushMsg(msgWin(NICKS[Math.floor(Math.random()*NICKS.length)], randTable(), 60 + Math.random()*240));
+    pushMsg(msgText(randPlayer(), ['hi', 'anyone up for a game?']));
+    pushMsg(msgText(randPlayer(), [CHAT_LINES[Math.floor(Math.random()*CHAT_LINES.length)]]));
+    chList.scrollTop = chList.scrollHeight;
+  }
+  function setChat(open){
+    chatOpen = open; document.body.classList.toggle('chat-open', open);
+    try { localStorage.setItem('12bet-chat', open ? 'on' : 'off'); } catch(e){}
+    if (open) { var b = document.getElementById('chatbadge'); if (b) { b.textContent = '0'; b.parentNode.classList.remove('has'); } setTimeout(function(){ if (chList) chList.scrollTop = chList.scrollHeight; }, 380); }
+  }
+  if (chList) {
+    seedChat(); setChat(chatOpen && !isM());
+    document.getElementById('chatbtn').addEventListener('click', function(){ setChat(!chatOpen); haptic(); });
+    document.getElementById('chatclose').addEventListener('click', function(){ setChat(false); haptic(); });
+    document.getElementById('chform').addEventListener('submit', function(e){
+      e.preventDefault(); var inp = document.getElementById('chinput'); var v = inp.value.trim(); if (!v) return;
+      pushMsg(msgText({nm:'You', col:'#0B6FD1', lv:3}, [v], true)); inp.value = ''; chList.scrollTop = chList.scrollHeight; haptic('medium');
+    });
+    setInterval(function(){
+      if (document.hidden) return;
+      var r = Math.random();
+      if (r < .12) pushMsg(msgInvite(randPlayer(), randTable()));
+      else if (r < .2) pushMsg(msgWin(NICKS[Math.floor(Math.random()*NICKS.length)], randTable(), 40 + Math.random()*400));
+      else pushMsg(msgText(randPlayer(), [CHAT_LINES[Math.floor(Math.random()*CHAT_LINES.length)]]));
+    }, 9000 + Math.random()*4000);
+  }
 
   navigate();
 })();
