@@ -102,10 +102,10 @@ svg.i{width:22px;height:22px;flex:none}
 
 /* Carousel */
 .car{position:relative}
-.car-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc(50% - 7px);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--r)}
+.car-track{display:grid;grid-auto-flow:column;grid-auto-columns:calc((100% - 28px) / 3);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;border-radius:var(--r)}
 .car-track::-webkit-scrollbar{display:none}
-.slide{scroll-snap-align:start;aspect-ratio:2.85/1;border-radius:var(--r);overflow:hidden;background:var(--panel);display:block;position:relative}
-.slide img{width:100%;height:100%;object-fit:cover;display:block}
+.slide{scroll-snap-align:start;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--panel);display:block;position:relative}
+.slide img,.slide video{width:100%;height:100%;object-fit:cover;display:block}
 .car-arrow{position:absolute;top:50%;translate:0 -50%;width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:rgba(12,24,41,.85);color:#fff;z-index:2}
 .car-arrow.l{left:10px}.car-arrow.r{right:10px}
 .dots{display:flex;justify-content:center;gap:6px;margin-top:10px}
@@ -232,6 +232,7 @@ svg.i{width:22px;height:22px;flex:none}
 .toast.on{opacity:1;translate:-50% 0}
 
 @media (max-width:1280px){
+  .car-track{grid-auto-columns:calc(50% - 7px)}
   .tgrid{grid-template-columns:repeat(3,1fr)}
   .tgrid .tcard:nth-child(n+4){display:none}
   .tables{grid-auto-columns:calc((100% - 14px) / 2)}
@@ -511,15 +512,20 @@ svg.i{width:22px;height:22px;flex:none}
   var main = $('#main');
   var state = { q:'', level:'micro', hideFull:false, hideEmpty:false, mode:'carousel', spinTab:'list' };
   var BANNERS = [
-    {img:'brand/12bet/banner-jackpot.webp', href:'#holdem', alt:'Bad Beat Jackpot. Every player gets paid.'},
-    {img:'brand/12bet/banner-spin.webp', href:'#spin', alt:'Spin & Go up to 1,000x'},
-    {img:'brand/12bet/banner-sunday.webp', href:'#tours', alt:'Sunday Main $50,000 GTD'}
+    {v:'01-go-all-in', href:'#holdem', alt:'Go all in'},
+    {v:'02-born-to-win', href:'#tours', alt:'Born to win'},
+    {v:'03-play-like-a-king', href:'#spin', alt:'Play like a king'},
+    {v:'04-your-next-big-hand', href:'#holdem', alt:'Your next big hand'}
   ];
+  function slide(b){
+    var m = 'brand/12bet/motion/' + b.v;
+    return '<a class="slide" href="' + b.href + '" aria-label="' + esc(b.alt) + '"><video autoplay muted loop playsinline preload="metadata" poster="' + m + '.jpg"><source src="' + m + '.webm" type="video/webm"/><source src="' + m + '.mp4" type="video/mp4"/></video></a>';
+  }
 
   function vHome(){
     return '<div class="view">' +
       '<div class="car"><button class="car-arrow l" type="button" aria-label="Previous"><svg class="i"><use href="#i-l"/></svg></button><div class="car-track">' +
-        BANNERS.map(function(b){ return '<a class="slide" href="' + b.href + '"><img src="' + b.img + '" alt="' + esc(b.alt) + '"/></a>'; }).join('') +
+        BANNERS.map(slide).join('') +
       '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div>' +
       '<div class="dots" id="dots"></div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cards-s"/></svg>Texas Hold\'em</h2><div class="sp"></div><a class="btn btn-dark" href="#holdem">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
@@ -577,7 +583,7 @@ svg.i{width:22px;height:22px;flex:none}
   }
   function vTours(){
     return '<div class="view"><div class="notice"><svg class="i"><use href="#i-bell"/></svg><span id="ntext"></span></div>' +
-      '<div class="car"><div class="car-track"><a class="slide" href="#tours"><img src="brand/12bet/banner-sunday.webp" alt="Sunday Main $50,000 GTD"/></a><a class="slide" href="#holdem"><img src="brand/12bet/banner-jackpot.webp" alt="Bad Beat Jackpot"/></a></div></div>' +
+      '<div class="car"><button class="car-arrow l" type="button" aria-label="Previous"><svg class="i"><use href="#i-l"/></svg></button><div class="car-track">' + BANNERS.map(slide).join('') + '</div><button class="car-arrow r" type="button" aria-label="Next"><svg class="i"><use href="#i-r"/></svg></button></div><div class="dots" id="dots"></div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>All tournaments</h2></div>' +
       '<div class="tgrid all">' + TOURS.map(tourCard).join('') + '</div></div>';
   }
