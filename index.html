@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<meta name="theme-color" content="#050C17"/>
+<meta name="theme-color" content="#03070D"/>
 <title>12xBet Poker — Lobby</title>
 <link rel="icon" href="brand/12bet/favicon.svg" type="image/svg+xml"/>
 <link rel="apple-touch-icon" href="brand/12bet/apple-touch-icon.png"/>
@@ -16,8 +16,8 @@
 @font-face{font-family:Montserrat;font-weight:700;font-display:swap;src:url(fonts/montserrat-latin-700-normal.woff2) format("woff2")}
 
 :root{
-  --bg:#070F1C; --panel:#0C1829; --panel-2:#111F34; --panel-3:#172840; --panel-4:#1E3250;
-  --line:#1A2A41; --line-2:#263A58;
+  --bg:#03070D; --panel:#0C1829; --panel-2:#111F34; --panel-3:#172840; --panel-4:#1E3250;
+  --line:#16233A; --line-2:#263A58;
   --text:#F2F5F9; --text-2:#C3CEDC; --mute:#7E8FA6; --dim:#55667D;
   --blue:#0098FE; --blue-h:#1FA5FF; --blue-d:#0B6FD1; --blue-soft:rgba(0,152,254,.12);
   --gold:#E9C987; --green:#2FCB7A; --red:#E8475B;
@@ -42,6 +42,7 @@ svg.i{width:22px;height:22px;flex:none}
 .sq:hover{background:var(--panel-3);color:var(--text)}
 .sq.lang{width:auto;padding:0 12px;gap:8px;display:flex;font-weight:600;font-size:13px}
 .sq .badge{position:absolute;top:-4px;right:-4px;min-width:17px;height:17px;padding:0 5px;border-radius:99px;background:var(--red);color:#fff;font-size:10px;font-weight:700;display:grid;place-items:center;box-shadow:0 0 0 2px var(--panel)}
+.brandcell{display:flex;align-items:center;gap:6px;width:calc(var(--side) - 16px);flex:none}
 .logo{display:block;margin:0 10px 0 4px}
 .logo img{height:24px;display:block}
 .sp{flex:1}
@@ -61,7 +62,7 @@ svg.i{width:22px;height:22px;flex:none}
 .shell{display:grid;grid-template-columns:var(--side) 1fr;min-height:calc(100vh - var(--head))}
 .side{position:sticky;top:var(--head);height:calc(100vh - var(--head));overflow-y:auto;padding:14px 12px 16px;display:flex;flex-direction:column;gap:10px;background:var(--bg);border-right:1px solid var(--line);scrollbar-width:none}
 .side::-webkit-scrollbar{display:none}
-.srch{display:flex;align-items:center;gap:10px;height:48px;padding:0 10px 0 16px;border-radius:12px;background:var(--panel);color:var(--mute);margin-bottom:2px}
+.srch{display:flex;align-items:center;gap:10px;height:44px;width:min(420px,40vw);margin-left:18px;padding:0 8px 0 14px;border-radius:10px;background:var(--panel);color:var(--mute)}
 .srch:focus-within{box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--text-2)}
 .srch>svg{width:20px;height:20px;flex:none}
 .srch input{all:unset;flex:1;min-width:0;height:100%;font-size:14.5px;font-weight:500;color:var(--text)}
@@ -243,6 +244,8 @@ svg.i{width:22px;height:22px;flex:none}
   :root{--head:calc(56px + var(--safe-t) + var(--tg-t))}
   .hdr{height:var(--head);padding:calc(var(--safe-t) + var(--tg-t)) 10px 0;gap:6px}
   .hdr .btn{height:34px;padding:0 12px;font-size:12.5px}
+  .brandcell{width:auto}
+  .hdr .srch{display:none}
   .sq{width:36px;height:36px}
   .logo{margin:0 2px}
   .logo img{height:17px}
@@ -346,8 +349,9 @@ svg.i{width:22px;height:22px;flex:none}
 </defs></svg>
 
 <header class="hdr">
-  <button class="sq" id="burger" type="button" aria-label="Menu"><svg class="i"><use href="#i-menu"/></svg></button>
-  <a class="logo" href="#home" aria-label="12xBet Poker"><img src="brand/12bet/logo.svg" alt="12xBet"/></a>
+  <div class="brandcell"><button class="sq" id="burger" type="button" aria-label="Menu"><svg class="i"><use href="#i-menu"/></svg></button>
+  <a class="logo" href="#home" aria-label="12xBet Poker"><img src="brand/12bet/logo.svg" alt="12xBet"/></a></div>
+  <form class="srch" id="srchf" role="search" autocomplete="off"><svg class="i"><use href="#i-search"/></svg><input id="q" type="text" placeholder="Search tables or players" aria-label="Search"/><button type="button" class="clr" id="qclr" aria-label="Clear"><svg class="i"><use href="#i-x"/></svg></button></form>
   <div class="sp"></div>
   <a class="btn btn-dark reg" href="#" data-soon="Registration">Register</a>
   <a class="btn btn-blue play" href="play.html" data-join>Play demo</a>
@@ -356,7 +360,6 @@ svg.i{width:22px;height:22px;flex:none}
 
 <div class="shell">
   <aside class="side" id="side">
-    <form class="srch" id="srchf" role="search" autocomplete="off"><svg class="i"><use href="#i-search"/></svg><input id="q" type="text" placeholder="Search tables or players" aria-label="Search"/><button type="button" class="clr" id="qclr" aria-label="Clear"><svg class="i"><use href="#i-x"/></svg></button></form>
     <nav class="grp">
       <a href="#home" data-v="home"><svg class="i o"><use href="#i-home"/></svg><svg class="i s"><use href="#i-home-s"/></svg><span class="lb">Home</span></a>
       <a href="#holdem" data-v="holdem"><svg class="i o"><use href="#i-cards"/></svg><svg class="i s"><use href="#i-cards-s"/></svg><span class="lb">Texas Hold'em</span></a>
@@ -391,7 +394,7 @@ svg.i{width:22px;height:22px;flex:none}
   var TG = window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData !== undefined ? window.Telegram.WebApp : null;
   if (TG) {
     try { TG.ready(); TG.expand(); TG.disableVerticalSwipes && TG.disableVerticalSwipes(); if (TG.requestFullscreen && /android|iphone|ipad/i.test(navigator.userAgent)) TG.requestFullscreen(); } catch(e){}
-    try { TG.setHeaderColor && TG.setHeaderColor('#050C17'); TG.setBackgroundColor && TG.setBackgroundColor('#050C17'); } catch(e){}
+    try { TG.setHeaderColor && TG.setHeaderColor('#03070D'); TG.setBackgroundColor && TG.setBackgroundColor('#03070D'); } catch(e){}
     var setTop = function(){ var a=(TG.safeAreaInset&&TG.safeAreaInset.top)||0, b=(TG.contentSafeAreaInset&&TG.contentSafeAreaInset.top)||0; document.documentElement.style.setProperty('--tg-t',(a+b)+'px'); };
     setTop(); try { TG.onEvent('safeAreaChanged',setTop); TG.onEvent('contentSafeAreaChanged',setTop); } catch(e){}
   }
