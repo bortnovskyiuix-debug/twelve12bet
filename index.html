@@ -636,7 +636,14 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 }
 
 /* ── Podium ── */
-.podium{display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:end;gap:16px;padding:20px 4% 0}
+.podium{position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:end;gap:16px;padding:20px 4% 0}
+.podium::before{content:"";position:absolute;z-index:-1;left:50%;top:42%;width:1400px;height:1400px;margin:-700px 0 0 -700px;pointer-events:none;
+  background:repeating-conic-gradient(from 0deg,rgba(0,152,254,.16) 0deg 6deg,transparent 6deg 15deg);
+  -webkit-mask:radial-gradient(circle,#000 0,rgba(0,0,0,.6) 18%,transparent 42%);mask:radial-gradient(circle,#000 0,rgba(0,0,0,.6) 18%,transparent 42%);
+  animation:rays 60s linear infinite}
+.podium::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;background:radial-gradient(ellipse 40% 50% at 50% 40%,rgba(0,152,254,.14),transparent 70%)}
+@keyframes rays{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.podium::before{animation:none}}
 .pd{display:grid;justify-items:center;gap:0}
 .pdu{display:grid;justify-items:center;gap:12px;margin-bottom:22px;position:relative}
 .pdu::before{content:"";position:absolute;left:50%;top:40%;width:220px;height:220px;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(0,152,254,.22),transparent 65%);pointer-events:none}
@@ -671,6 +678,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .pdav,.pdav img,.pdav i{width:58px;height:58px;border-radius:14px;font-size:18px}
   .pd.p0 .pdav,.pd.p0 .pdav img,.pd.p0 .pdav i{width:70px;height:70px}
   .pdn{font-size:12px;max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pd.p0 .pdn{font-size:13.5px}
+  .podium::before{width:800px;height:800px;margin:-400px 0 0 -400px}
   .pdb{padding:16px 6px 14px;gap:3px;border-radius:0 0 12px 12px}.pd.p0 .pdb{padding-top:20px}
   .pdb::before{top:-9px;height:9px;clip-path:polygon(0 100%,100% 100%,calc(100% - 9px) 0,9px 0)}
   .pdt{width:32px;height:32px;border-radius:9px}.pdt svg{width:15px;height:15px}
