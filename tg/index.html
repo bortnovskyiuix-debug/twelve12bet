@@ -1089,7 +1089,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   <a class="btn btn-blue play" href="play.html" data-join>Play demo</a>
   <button class="sq d-only chatbtn" id="chatbtn" type="button" aria-label="Chat"><svg class="i"><use href="#i-chat-o"/></svg><span class="badge" id="chatbadge">0</span></button>
   <span class="mbal m-only" data-soon="Wallet"><i class="coin">$</i><b class="num">800</b><svg class="i"><use href="#i-chevd"/></svg></span>
-  <a class="mava m-only" href="#" data-soon="Profile" aria-label="Profile"><img src="ava/hero.svg" alt=""/></a>
+  <a class="mava m-only" href="#" data-soon="Profile" aria-label="Profile"><img src="ava/hero.svg?v=2" alt=""/></a>
 </header>
 <div class="drawer-bg" id="drawerbg"></div>
 
@@ -1180,7 +1180,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   var toastEl = $('#toast'), tt;
   function toast(m){ toastEl.textContent = m; toastEl.classList.add('on'); clearTimeout(tt); tt = setTimeout(function(){ toastEl.classList.remove('on'); }, 2200); }
 
-  var AVA = ['ava/maks.svg','ava/olena.svg','ava/ninja.svg','ava/dmytro.svg','ava/lucky.svg'];
+  var AVA = ['ava/maks.svg?v=2','ava/olena.svg?v=2','ava/ninja.svg?v=2','ava/dmytro.svg?v=2','ava/lucky.svg?v=2'];
   var NICKS = ['RiverRat','Maks777','Olena_K','NinjaTilt','LuckyAce','Dmytro.V','AceOfKyiv','Kateryna','BluffKing','ShortStack','Nutz','Vova_88','CheckRaise','PocketJ','TurboTom','Mila.S','Kirill_K','GTO_Bro','SuitedConn','DonkLead','Yarik','IceVeins','Sasha.P','Pavlo99'];
   var COLORS = ['#2F6FD6','#0B8F7A','#B4553A','#6A4FC9','#A3307A','#C08A2B','#2B8FB8'];
   var MARK = '<svg viewBox="0 0 276 100" style="width:64%;color:#fff"><use href="#mark12x"/></svg>';
@@ -1568,7 +1568,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       rows.slice(from, limit || rows.length).map(function(r, j){ var i = j + from;
         return '<div class="br"><span>' + medal(i) + '</span><span class="pl"><span class="pav">' + (r.img ? '<img src="' + r.img + '" alt=""/>' : '<i style="background:' + r.col + '">' + esc(r.nm.slice(0,2).toUpperCase()) + '</i>') + flag(r.fl) + '</span><b>' + esc(r.nm) + '</b></span><span class="num">' + r.pts + '</span><span class="r rw num">+$' + r.rw + '</span></div>';
       }).join('') +
-      '<div class="br me"><span class="rk">–</span><span class="pl"><span class="pav"><img src="ava/hero.svg" alt=""/>' + flag('ua') + '</span><b>You</b></span><span class="num g">0</span><span class="r num">0</span><small class="hint">· Only <b class="num">' + me.need + '</b> points to the rankings ·</small></div>' +
+      '<div class="br me"><span class="rk">–</span><span class="pl"><span class="pav"><img src="ava/hero.svg?v=2" alt=""/>' + flag('ua') + '</span><b>You</b></span><span class="num g">0</span><span class="r num">0</span><small class="hint">· Only <b class="num">' + me.need + '</b> points to the rankings ·</small></div>' +
     '</div>';
   }
   function vBoard(){
@@ -1607,7 +1607,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
     var s = careerStats(); var to = new Date(); var from = new Date(); from.setDate(from.getDate() - cstate.range);
     return '<div class="view">' +
       '<div class="cgrid">' +
-        '<div class="ctile cprof"><span class="cav"><img src="ava/hero.svg" alt=""/></span><b>Guest</b><small class="num">ID: 120344</small><span class="cpass"><span><b>12xBet Pass</b> · Level 3</span><i><u style="width:62%"></u></i></span></div>' +
+        '<div class="ctile cprof"><span class="cav"><img src="ava/hero.svg?v=2" alt=""/></span><b>Guest</b><small class="num">ID: 120344</small><span class="cpass"><span><b>12xBet Pass</b> · Level 3</span><i><u style="width:62%"></u></i></span></div>' +
         cTile('', 'Cash game', '$' + s.cash, 'Results', '#holdem', true) +
         cTile('', 'Club', '$' + s.club, 'Results') +
         cTile('', 'My hands', s.hands, 'Collected', 'play.html') +
