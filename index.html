@@ -635,6 +635,56 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .vip{grid-template-columns:1fr 1fr}
 }
 
+/* ── Podium ── */
+.podium{display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:end;gap:16px;padding:20px 4% 0}
+.pd{display:grid;justify-items:center;gap:0}
+.pdu{display:grid;justify-items:center;gap:12px;margin-bottom:22px;position:relative}
+.pdu::before{content:"";position:absolute;left:50%;top:40%;width:220px;height:220px;translate:-50% -50%;border-radius:50%;background:radial-gradient(circle,rgba(0,152,254,.22),transparent 65%);pointer-events:none}
+.pdav{position:relative;width:96px;height:96px}
+.pdav img,.pdav i{width:96px;height:96px;border-radius:22px;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:26px;color:#fff;background:#1B3550;box-shadow:0 0 0 1px rgba(255,255,255,.08),0 16px 36px rgba(0,0,0,.55)}
+.pd.p0 .pdav,.pd.p0 .pdav img,.pd.p0 .pdav i{width:112px;height:112px}
+.pdn{position:relative;font-size:20px;font-weight:700}
+.pd.p0 .pdn{font-size:24px}
+.pdb{position:relative;width:100%;display:grid;justify-items:center;gap:6px;padding:26px 16px 22px;border-radius:14px 14px 0 0;background:linear-gradient(180deg,#141F38,#0E1729);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
+.pdb::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;background:linear-gradient(180deg,#1E2D4D,#141F38);clip-path:polygon(6% 100%,94% 100%,100% 0,0 0);transform:scaleX(.96)}
+.pd.p0 .pdb{padding-top:30px;padding-bottom:28px;background:linear-gradient(180deg,#1A2A4B,#10193A)}
+.pdt{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff}
+.pdt svg{width:20px;height:20px}
+.pdt.tg{background:#D9A93F;color:#2A1B06}.pdt.ts{background:#B9C3CF;color:#1A222C}.pdt.tb{background:#C77B3B;color:#2A1606}
+.pdp{font-size:14px;color:var(--text-2);font-weight:600}
+.pdl{width:100%;height:1px;background:rgba(255,255,255,.08);margin:8px 0 10px}
+.pdz{display:inline-flex;align-items:center;gap:8px;font-size:26px;font-weight:700}
+.pd.p0 .pdz{font-size:30px}
+.pdz .coin{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#4A3610;font-size:12px;display:grid;place-items:center;font-style:normal;font-weight:700}
+.pdb small{color:var(--mute);font-size:13px}
+.pdc{display:grid;justify-items:center;gap:2px;margin-top:22px;padding-top:18px;width:100%;border-top:1px solid rgba(255,255,255,.08)}
+.pdc svg{width:28px;height:28px;color:var(--blue);margin-bottom:4px}
+.pdc small{color:var(--mute);font-size:12.5px}
+.pdc b{font-size:15px;font-weight:700}
+.youline{margin:0 auto 6px;padding:12px 20px;border-radius:999px;background:var(--panel);color:var(--mute);font-size:13.5px;text-align:center;width:max-content;max-width:100%}
+.youline b{color:var(--text)}
+@media (max-width:860px){
+  .podium{gap:6px;padding:14px 0 0;align-items:end;margin-bottom:10px}
+  .pd{align-self:end}
+  .pdu{gap:8px;margin-bottom:14px}.pdu::before{width:130px;height:130px}
+  .pdav,.pdav img,.pdav i{width:58px;height:58px;border-radius:14px;font-size:18px}
+  .pd.p0 .pdav,.pd.p0 .pdav img,.pd.p0 .pdav i{width:70px;height:70px}
+  .pdn{font-size:12px;max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pd.p0 .pdn{font-size:13.5px}
+  .pdb{padding:16px 6px 14px;gap:3px;border-radius:12px 12px 0 0}.pd.p0 .pdb{padding-top:20px}
+  .pdb::before{top:-10px;height:10px}
+  .pdt{width:32px;height:32px;border-radius:9px}.pdt svg{width:15px;height:15px}
+  .pdp{font-size:10.5px;white-space:nowrap}.pdl{margin:6px 0 8px}
+  .pdz{font-size:17px;gap:5px}.pd.p0 .pdz{font-size:21px}.pdz .coin{width:16px;height:16px;font-size:9px}
+  .pdb small{font-size:11px}
+  .pdc{margin-top:10px;padding-top:10px}.pdc svg{width:20px;height:20px;margin-bottom:2px}.pdc small{font-size:10.5px}.pdc b{font-size:11px;white-space:nowrap}
+  .youline{font-size:11.5px;padding:10px 12px;width:auto;margin:0 0 10px;border-radius:12px}
+  .mboard{gap:0}
+  .mboard .mfil{margin-bottom:4px}
+}
+.rk{display:inline-flex;align-items:center;gap:8px}.rk svg{width:16px;height:16px;color:var(--blue)}
+@media (max-width:860px){
+}
+
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
 .toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));translate:-50% 20px;opacity:0;pointer-events:none;padding:11px 16px;border-radius:var(--rs);background:var(--panel-4);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:opacity .25s,translate .25s;z-index:80}
@@ -1217,12 +1267,36 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     seed = seed0; return rows;
   }
   function dayLabel(d){ var x = new Date(); x.setDate(x.getDate() - d); return x.getFullYear() + '/' + String(x.getMonth()+1).padStart(2,'0') + '/' + String(x.getDate()).padStart(2,'0'); }
-  function medal(i){ return i < 3 ? '<span class="md m' + i + '">' + (i+1) + '</span>' : '<span class="rk num">' + (i+1) + '</span>'; }
-  function boardTable(rows, limit){
+  function medal(i){ return i < 3 ? '<span class="md m' + i + '">' + (i+1) + '</span>' : '<span class="rk num"><svg class="i"><use href="#i-cup"/></svg>' + (i+1) + '</span>'; }
+
+  function crownSvg(k){
+    var c = {g:['#FFE48A','#F2B52E','#B5791A','#F06A9B'], s:['#F3F6FA','#B9C3CF','#7E8A98','#3EDC8A'], b:['#F0B98B','#C77B3B','#7E4A1E','#F2D36B']}[k];
+    return '<svg class="crown" viewBox="0 0 120 90"><defs><linearGradient id="cg' + k + '" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + c[0] + '"/><stop offset=".55" stop-color="' + c[1] + '"/><stop offset="1" stop-color="' + c[2] + '"/></linearGradient></defs>' +
+      '<path d="M14 72 6 26l26 22L60 10l28 38 26-22-8 46z" fill="url(#cg' + k + ')"/><rect x="14" y="70" width="92" height="12" rx="3" fill="' + c[2] + '"/><rect x="14" y="70" width="92" height="5" fill="' + c[1] + '"/>' +
+      '<circle cx="6" cy="24" r="4" fill="' + c[0] + '"/><circle cx="60" cy="8" r="5" fill="' + c[0] + '"/><circle cx="114" cy="24" r="4" fill="' + c[0] + '"/>' +
+      '<path d="M60 36 72 50 60 66 48 50z" fill="' + c[3] + '"/><path d="M60 36 72 50H48z" fill="#fff" opacity=".35"/></svg>';
+  }
+  function endsIn(){
+    var d = new Date(); var e = new Date(d); e.setHours(24,0,0,0); var s = Math.max(0, Math.round((e - d)/1000));
+    var h = Math.floor(s/3600), m = Math.floor(s%3600/60), x = s%60; var p = function(v){ return String(v).padStart(2,'0'); };
+    return '00d ' + p(h) + 'h ' + p(m) + 'm ' + p(x) + 's';
+  }
+  function podium(rows){
+    var o = [[1,'s'],[0,'g'],[2,'b']];
+    return '<div class="podium">' + o.map(function(x){
+      var r = rows[x[0]]; var av = r.img ? '<img src="' + r.img + '" alt=""/>' : '<i style="background:' + r.col + '">' + esc(r.nm.slice(0,2).toUpperCase()) + '</i>';
+      return '<div class="pd p' + x[0] + '"><div class="pdu"><span class="pdav">' + av + '</span><b class="pdn">' + esc(r.nm) + '</b></div>' +
+        '<div class="pdb"><span class="pdt t' + x[2] + '"><svg><use href="#i-cup-s"/></svg></span><span class="pdp num">' + fmt(r.pts) + ' points</span><span class="pdl"></span><span class="pdz num"><i class="coin">$</i>' + r.rw + '</span><small>Prize</small>' +
+        (x[0] === 0 ? '<span class="pdc"><svg class="i"><use href="#i-clock"/></svg><small>Ends in</small><b class="num" data-ends>' + endsIn() + '</b></span>' : '') + '</div></div>';
+    }).join('') + '</div>' +
+    '<div class="youline">You earned <b class="num">0</b> points today and are ranked <b>–</b> out of <b class="num">13,868</b> players</div>';
+  }
+  function boardTable(rows, limit, from){
+    from = from || 0;
     var me = { pts: 0, need: Math.max(1, (rows[rows.length-1].pts) - 0 + 1) };
     return '<div class="board">' +
-      '<div class="br h"><span>Rank</span><span>Player</span><span>Points</span><span class="r">Reward</span></div>' +
-      rows.slice(0, limit || rows.length).map(function(r, i){
+      '<div class="br h"><span>Place</span><span>Player</span><span>Points</span><span class="r">Reward</span></div>' +
+      rows.slice(from, limit || rows.length).map(function(r, j){ var i = j + from;
         return '<div class="br"><span>' + medal(i) + '</span><span class="pl"><span class="pav">' + (r.img ? '<img src="' + r.img + '" alt=""/>' : '<i style="background:' + r.col + '">' + esc(r.nm.slice(0,2).toUpperCase()) + '</i>') + flag(r.fl) + '</span><b>' + esc(r.nm) + '</b></span><span class="num">' + r.pts + '</span><span class="r rw num">+$' + r.rw + '</span></div>';
       }).join('') +
       '<div class="br me"><span class="rk">–</span><span class="pl"><span class="pav"><img src="ava/hero.svg" alt=""/>' + flag('ua') + '</span><b>You</b></span><span class="num g">0</span><span class="r num">0</span><small class="hint">· Only <b class="num">' + me.need + '</b> points to the rankings ·</small></div>' +
@@ -1234,7 +1308,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-board-s"/></svg>Daily NLHE rankings</h2><div class="sp"></div>' +
       '<div class="tabs" id="bbtabs">' + BB_TABS.map(function(b){ return '<button type="button" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</button>'; }).join('') + '</div>' +
       '<button type="button" class="btn btn-dark" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg><span class="num">' + dayLabel(bstate.day) + '</span></button></div>' +
-      boardTable(rows) +
+      podium(rows) + boardTable(rows, 0, 3) +
       '<div class="sec-h" style="margin-top:8px"><h2><svg class="hi"><use href="#i-crown-s"/></svg>VIP rewards</h2><div class="sp"></div><a class="btn btn-dark" href="#" data-soon="VIP rewards">Show more<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="vip">' + [['Bronze','5%','#C77B3B'],['Silver','8%','#B8C2CC'],['Gold','12%','#E9C987'],['Platinum','18%','#9DD3FF']].map(function(v){ return '<div class="vipc" style="--vc:' + v[2] + '"><span class="vt">' + v[0] + '</span><b>' + v[1] + '</b><small>rakeback</small></div>'; }).join('') + '</div>' +
     '</div>';
@@ -1244,8 +1318,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   }
   function mBoard(){
     var rows = boardRows();
-    return '<div class="view mob"><div class="mtabs">' + BB_TABS.map(function(b){ return '<a href="#board" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</a>'; }).join('') + '</div>' +
-      '<div class="mfil"><button type="button" class="chip" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg>' + dayLabel(bstate.day) + '</button></div>' + boardTable(rows) + '</div>';
+    return '<div class="view mob mboard"><div class="mtabs">' + BB_TABS.map(function(b){ return '<a href="#board" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</a>'; }).join('') + '</div>' +
+      '<div class="mfil"><button type="button" class="chip" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg>' + dayLabel(bstate.day) + '</button></div>' + podium(rows) + boardTable(rows, 0, 3) + '</div>';
   }
 
   /* ── Skeleton screens ── */
@@ -1330,6 +1404,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   setInterval(function(){
     jp += .2 + rnd()*2.8; var j = $('#jpv'); if (j) { var nv = '$' + fmt(Math.floor(jp)); if (j.textContent !== nv) { j.textContent = nv; j.classList.add('tick'); setTimeout(function(){ j.classList.remove('tick'); }, 300); } }
     document.querySelectorAll('[data-cd]').forEach(function(b){ b.textContent = cdText(+b.dataset.cd); });
+    document.querySelectorAll('[data-ends]').forEach(function(b){ b.textContent = endsIn(); });
   }, 1000);
 
   /* ── Events ──────────────────────── */
