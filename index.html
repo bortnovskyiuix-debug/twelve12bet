@@ -604,6 +604,37 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .skel .sk-grid3>:nth-child(n+3){display:block}
 }
 
+/* ── Leaderboard ── */
+.board{display:grid;gap:6px}
+.br{display:grid;grid-template-columns:70px 1fr 120px 120px;align-items:center;gap:12px;height:56px;padding:0 18px;border-radius:12px;background:var(--panel)}
+.br.h{height:40px;background:transparent;color:var(--mute);font-size:12.5px;font-weight:600}
+.br .r{text-align:right}
+.br .pl{display:flex;align-items:center;gap:12px;min-width:0}
+.br .pl b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.pav{position:relative;width:36px;height:36px;flex:none}
+.pav img,.pav i{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:700;color:#fff;background:#1B3550;object-fit:cover}
+.pav .fl{position:absolute;right:-4px;bottom:-3px;width:16px;height:11px;box-shadow:0 0 0 2px var(--panel)}
+.md{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:12px;font-weight:800;color:#2A1B06}
+.md.m0{background:linear-gradient(160deg,#FFE9A8,#D9A93F)}.md.m1{background:linear-gradient(160deg,#E8EEF5,#9AA6B4)}.md.m2{background:linear-gradient(160deg,#E5A977,#A5602F)}
+.rk{color:var(--text-2);font-weight:600;padding-left:8px}
+.rw{color:var(--green);font-weight:700}
+.br.me{position:relative;background:transparent;box-shadow:inset 0 0 0 1.5px var(--green);margin-top:4px;height:72px;padding-bottom:16px}
+.br.me .g{color:var(--green);font-weight:700}
+.br.me .hint{position:absolute;left:0;right:0;bottom:6px;text-align:center;font-size:12px;color:var(--mute)}
+.br.me .hint b{color:var(--green)}
+.vip{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.vipc{padding:18px;border-radius:14px;background:var(--panel);display:grid;gap:2px;box-shadow:inset 0 3px 0 var(--vc)}
+.vipc .vt{font-size:12.5px;font-weight:700;color:var(--vc);text-transform:uppercase;letter-spacing:.04em}
+.vipc b{font-size:26px;font-weight:700}
+.vipc small{color:var(--mute);font-size:12px}
+@media (max-width:860px){
+  .br{grid-template-columns:44px 1fr 64px 70px;gap:8px;padding:0 12px;height:52px}
+  .br.h{display:none}
+  .pav{width:32px;height:32px}.pav img,.pav i{width:32px;height:32px}
+  .br.me{height:68px}
+  .vip{grid-template-columns:1fr 1fr}
+}
+
 /* Drawer + tabbar (phones) */
 .tabbar,.drawer-bg{display:none}
 .toast{position:fixed;left:50%;bottom:calc(28px + var(--safe-b));translate:-50% 20px;opacity:0;pointer-events:none;padding:11px 16px;border-radius:var(--rs);background:var(--panel-4);font-size:13px;font-weight:500;box-shadow:0 10px 30px rgba(0,0,0,.45);transition:opacity .25s,translate .25s;z-index:80}
@@ -733,6 +764,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   <symbol id="i-mic" viewBox="0 0 24 24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21M9 21h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="i-img" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="8.5" cy="9.5" r="1.8" fill="currentColor"/><path d="M3.5 17l5-4.5 3.5 3 3.5-3.5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24" fill="none"><path d="M3.4 11.2l16.3-7c.7-.3 1.4.4 1.1 1.1l-7 16.3c-.3.8-1.5.7-1.7-.1l-1.7-6.3-6.3-1.7c-.8-.2-.9-1.4-.1-1.7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
   <symbol id="mark12x" viewBox="0 0 276 100"><path d="M1.28 99.34C1.40 98.98 4.44 88.53 8.05 76.13C11.65 63.72 15.20 51.54 15.93 49.06C16.66 46.58 18.09 41.72 19.11 38.27C20.13 34.81 20.89 31.91 20.79 31.82C20.70 31.73 16.62 34.22 11.72 37.36C6.83 40.50 2.19 43.45 1.43 43.92L0.04 44.77L0.27 43.34C0.40 42.56 1.37 37.50 2.42 32.09L4.34 22.27L10.35 17.65C13.65 15.10 18.30 11.50 20.68 9.64C23.05 7.77 26.81 4.85 29.02 3.13L33.03 0.00L49.60 0.00L66.17 0.00L66.17 0.55C66.17 1.40 58.66 28.76 50.07 59.21C48.43 65.00 45.18 76.55 42.83 84.87L38.57 100.00L19.82 100.00L1.08 100.00L1.28 99.34ZM44.85 99.51C44.95 99.23 45.99 95.56 47.17 91.34C50.46 79.49 52.75 74.79 57.83 69.46C63.30 63.72 62.71 64.09 99.62 43.25C107.79 38.64 115.39 34.26 116.51 33.51C121.69 30.04 122.86 24.25 118.80 22.12L117.49 21.43L109.45 21.43C99.88 21.43 99.04 21.61 96.42 24.24C94.94 25.72 94.33 26.73 93.56 28.95L92.58 31.77L78.06 31.87C66.57 31.94 63.53 31.86 63.53 31.49C63.54 29.89 65.76 23.25 67.47 19.74C71.93 10.56 78.41 4.62 87.51 1.36L90.79 0.19L113.35 0.19L135.90 0.19L138.94 1.22C149.25 4.71 154.16 13.11 152.10 23.75C150.03 34.41 145.28 42.40 137.59 48.11C135.08 49.97 134.39 50.37 114.29 61.56C107.77 65.18 100.33 69.35 97.74 70.82L93.05 73.50L114.98 73.59C132.36 73.67 136.88 73.79 136.74 74.16C136.64 74.42 136.16 76.04 135.67 77.76L134.77 80.90L128.38 86.80C124.87 90.04 120.19 94.34 117.99 96.35L113.98 100.00L79.32 100.00L44.66 100.00L44.85 99.51ZM120.30 99.86C120.30 99.74 134.07 86.95 150.94 71.40C154.87 67.78 163.50 60.01 170.11 54.13C176.73 48.25 185.59 40.35 189.80 36.56C199.59 27.75 212.99 15.98 223.42 7.03L231.61 0.00L253.77 0.00C265.96 0.00 275.93 0.13 275.91 0.28C275.89 0.55 264.55 10.52 245.71 26.82C240.73 31.13 234.32 36.68 231.47 39.16L226.28 43.65L227.02 44.85C227.42 45.51 229.49 49.01 231.61 52.63C233.73 56.25 236.26 60.56 237.23 62.22C238.20 63.87 242.76 71.65 247.37 79.51C251.97 87.37 256.56 95.20 257.57 96.92L259.41 100.05L240.33 99.91L221.24 99.77L218.42 98.92C216.87 98.45 214.59 97.53 213.35 96.88C209.47 94.83 207.82 92.78 201.87 82.62C198.88 77.50 196.17 72.99 195.86 72.60L195.30 71.88L184.59 81.10C178.69 86.17 171.30 92.50 168.17 95.16L162.46 100.00L141.38 100.00C129.79 100.00 120.30 99.94 120.30 99.86ZM176.20 39.97C172.77 34.52 152.26 0.42 152.26 0.16C152.26 0.07 161.47 0.00 172.74 0.00L193.23 0.00L195.10 0.71C198.21 1.90 199.73 3.43 203.36 9.08C205.23 12.00 206.66 14.53 206.55 14.71C206.35 15.03 185.50 33.98 179.79 39.03L177.11 41.40L176.20 39.97Z" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -762,7 +794,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     </nav>
     <nav class="grp">
       <a href="#" data-soon="Club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg><span class="lb">Club</span><span class="soon">Soon</span></a>
-      <a href="#" data-soon="Leaderboard"><svg class="i o"><use href="#i-board"/></svg><svg class="i s"><use href="#i-board-s"/></svg><span class="lb">Leaderboard</span><span class="soon">Soon</span></a>
+      <a href="#board" data-v="board"><svg class="i o"><use href="#i-board"/></svg><svg class="i s"><use href="#i-board-s"/></svg><span class="lb">Leaderboard</span></a>
       <a href="#" data-soon="Career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg><span class="lb">Career</span><span class="soon">Soon</span></a>
       <a href="#" data-soon="Guide"><svg class="i o"><use href="#i-book"/></svg><svg class="i s"><use href="#i-book-s"/></svg><span class="lb">Guide</span><span class="soon">Soon</span></a>
     </nav>
@@ -976,6 +1008,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="tgrid">' + TOURS.slice(0,4).map(tourCard).join('') + '</div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-spin-s"/></svg>Spin &amp; Go</h2><div class="sp"></div><a class="btn btn-dark" href="#spin">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="sgrid">' + SPINS.slice(0,3).map(spinCard).join('') + '</div>' +
+      homeBoard() +
     '</div>';
   }
   function levelBlock(L){
@@ -1029,7 +1062,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>All tournaments</h2></div>' +
       '<div class="tgrid all">' + TOURS.map(tourCard).join('') + '</div></div>';
   }
-  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours };
+  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard };
 
 
   /* ── Motion helpers ── */
@@ -1130,7 +1163,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' +
       modeTiles().replace('class="modes"', 'class="modes big"') + '</div>';
   }
-  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin };
+  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard };
 
 
   /* ── Mode tiles ── */
@@ -1157,6 +1190,64 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     }).join('') + '</div>';
   }
 
+
+  /* ══ Leaderboard ══ */
+  var FLAGS = ['ua','pl','de','br','tr','in','pt','ca','ro','kz'];
+  var FLAG_SVG = {
+    ua:'<rect width="20" height="7" fill="#0057B7"/><rect y="7" width="20" height="7" fill="#FFD700"/>',
+    pl:'<rect width="20" height="7" fill="#fff"/><rect y="7" width="20" height="7" fill="#DC143C"/>',
+    de:'<rect width="20" height="14" fill="#000"/><rect y="4.7" width="20" height="4.6" fill="#D00"/><rect y="9.3" width="20" height="4.7" fill="#FFCE00"/>',
+    br:'<rect width="20" height="14" fill="#009C3B"/><path d="M10 2 18 7l-8 5-8-5z" fill="#FFDF00"/><circle cx="10" cy="7" r="2.6" fill="#002776"/>',
+    tr:'<rect width="20" height="14" fill="#E30A17"/><circle cx="8" cy="7" r="3.4" fill="#fff"/><circle cx="9" cy="7" r="2.7" fill="#E30A17"/><path d="M11.2 7l2.6-.9-1.6 2.2v-2.6l1.6 2.2z" fill="#fff"/>',
+    in:'<rect width="20" height="14" fill="#fff"/><rect width="20" height="4.7" fill="#F93"/><rect y="9.3" width="20" height="4.7" fill="#128807"/><circle cx="10" cy="7" r="1.6" fill="none" stroke="#008" stroke-width=".7"/>',
+    pt:'<rect width="20" height="14" fill="#F00"/><rect width="8" height="14" fill="#060"/><circle cx="8" cy="7" r="2.4" fill="#FFD700"/>',
+    ca:'<rect width="20" height="14" fill="#fff"/><rect width="5" height="14" fill="#F00"/><rect x="15" width="5" height="14" fill="#F00"/><path d="M10 3l1 2 1.5-.6-.5 2.5 1.6-.3-1.2 1.5.4 1.3-1.8-.4v1.6h-1V9l-1.8.4.4-1.3-1.2-1.5 1.6.3-.5-2.5L9 5z" fill="#F00"/>',
+    ro:'<rect width="7" height="14" fill="#002B7F"/><rect x="7" width="6" height="14" fill="#FCD116"/><rect x="13" width="7" height="14" fill="#CE1126"/>',
+    kz:'<rect width="20" height="14" fill="#00AFCA"/><circle cx="10" cy="7" r="2.6" fill="#FEC50C"/>'
+  };
+  function flag(c){ return '<svg class="fl" viewBox="0 0 20 14"><clipPath id="fc"><rect width="20" height="14" rx="2"/></clipPath><g clip-path="url(#fc)">' + FLAG_SVG[c] + '</g></svg>'; }
+  var bstate = { bb:'hi', day:0 };
+  var BB_TABS = [{k:'hi', l:'BB: 1–200'}, {k:'lo', l:'BB: 0.05–0.5'}];
+  var REWARDS = [120,80,60,50,40,35,30,25,20,15];
+  function boardRows(){
+    var seed0 = seed; seed = 4201 + bstate.day * 97 + (bstate.bb === 'hi' ? 0 : 1000);
+    var pool = NICKS.slice().sort(function(){ return rnd()-.5; }).slice(0,10);
+    var pts = 520 - bstate.day * 30;
+    var rows = pool.map(function(nm, i){ pts = Math.max(120, Math.round(pts - 20 - rnd()*45)); return {nm:nm, img: rnd() > .5 ? AVA[i % AVA.length] : null, col: CHAT_COLORS[i % CHAT_COLORS.length], pts: pts, fl: FLAGS[Math.floor(rnd()*FLAGS.length)], rw: REWARDS[i]}; });
+    seed = seed0; return rows;
+  }
+  function dayLabel(d){ var x = new Date(); x.setDate(x.getDate() - d); return x.getFullYear() + '/' + String(x.getMonth()+1).padStart(2,'0') + '/' + String(x.getDate()).padStart(2,'0'); }
+  function medal(i){ return i < 3 ? '<span class="md m' + i + '">' + (i+1) + '</span>' : '<span class="rk num">' + (i+1) + '</span>'; }
+  function boardTable(rows, limit){
+    var me = { pts: 0, need: Math.max(1, (rows[rows.length-1].pts) - 0 + 1) };
+    return '<div class="board">' +
+      '<div class="br h"><span>Rank</span><span>Player</span><span>Points</span><span class="r">Reward</span></div>' +
+      rows.slice(0, limit || rows.length).map(function(r, i){
+        return '<div class="br"><span>' + medal(i) + '</span><span class="pl"><span class="pav">' + (r.img ? '<img src="' + r.img + '" alt=""/>' : '<i style="background:' + r.col + '">' + esc(r.nm.slice(0,2).toUpperCase()) + '</i>') + flag(r.fl) + '</span><b>' + esc(r.nm) + '</b></span><span class="num">' + r.pts + '</span><span class="r rw num">+$' + r.rw + '</span></div>';
+      }).join('') +
+      '<div class="br me"><span class="rk">–</span><span class="pl"><span class="pav"><img src="ava/hero.svg" alt=""/>' + flag('ua') + '</span><b>You</b></span><span class="num g">0</span><span class="r num">0</span><small class="hint">· Only <b class="num">' + me.need + '</b> points to the rankings ·</small></div>' +
+    '</div>';
+  }
+  function vBoard(){
+    var rows = boardRows();
+    return '<div class="view">' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-board-s"/></svg>Daily NLHE rankings</h2><div class="sp"></div>' +
+      '<div class="tabs" id="bbtabs">' + BB_TABS.map(function(b){ return '<button type="button" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</button>'; }).join('') + '</div>' +
+      '<button type="button" class="btn btn-dark" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg><span class="num">' + dayLabel(bstate.day) + '</span></button></div>' +
+      boardTable(rows) +
+      '<div class="sec-h" style="margin-top:8px"><h2><svg class="hi"><use href="#i-crown-s"/></svg>VIP rewards</h2><div class="sp"></div><a class="btn btn-dark" href="#" data-soon="VIP rewards">Show more<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
+      '<div class="vip">' + [['Bronze','5%','#C77B3B'],['Silver','8%','#B8C2CC'],['Gold','12%','#E9C987'],['Platinum','18%','#9DD3FF']].map(function(v){ return '<div class="vipc" style="--vc:' + v[2] + '"><span class="vt">' + v[0] + '</span><b>' + v[1] + '</b><small>rakeback</small></div>'; }).join('') + '</div>' +
+    '</div>';
+  }
+  function homeBoard(){
+    return '<div class="sec-h"><h2><svg class="hi"><use href="#i-board-s"/></svg>Daily rankings</h2><div class="sp"></div><a class="btn btn-dark" href="#board">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' + boardTable(boardRows(), 5);
+  }
+  function mBoard(){
+    var rows = boardRows();
+    return '<div class="view mob"><div class="mtabs">' + BB_TABS.map(function(b){ return '<a href="#board" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</a>'; }).join('') + '</div>' +
+      '<div class="mfil"><button type="button" class="chip" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg>' + dayLabel(bstate.day) + '</button></div>' + boardTable(rows) + '</div>';
+  }
+
   /* ── Skeleton screens ── */
   function skH(w){ return '<div class="sk-row" style="justify-content:space-between"><div class="sk-row"><div class="sk" style="width:24px;height:24px;border-radius:7px"></div><div class="sk ln" style="width:' + (w||150) + 'px;height:18px"></div></div><div class="sk pill" style="width:104px;height:40px"></div></div>'; }
   function skMT(n){ var h=''; for (var i=0;i<n;i++) h += '<div class="sk sk-mt"><i></i></div>'; return '<div class="sk-grid3">' + h + '</div>'; }
@@ -1169,7 +1260,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="sk-row"><div class="sk pill" style="width:300px;height:48px"></div><div style="flex:1"></div><div class="sk pill" style="width:150px;height:44px"></div><div class="sk pill" style="width:160px;height:44px"></div></div>' +
       '<div class="sk-row" style="justify-content:space-between"><div class="sk ln" style="width:320px;height:18px"></div><div class="sk-row"><div class="sk pill" style="width:104px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:72px;height:40px"></div></div></div>' + skMT(3); },
     spin: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="padding:18px;display:grid;gap:16px;background:var(--panel)"><div class="sk ln" style="width:140px;height:20px;background:var(--panel-2)"></div><div class="sk pill" style="width:220px;height:42px;background:var(--panel-2)"></div>' + skSpin(6).replace(/class="sk"/g,'class="sk" style="background:var(--panel-2)"').replace('style="background:var(--panel-2)" style="','style="background:var(--panel-2);') + '</div>'; },
-    tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); }
+    tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); },
+    board: function(){ var r=''; for (var i=0;i<10;i++) r += '<div class="sk" style="height:56px;border-radius:10px"></div>'; return skH(220) + '<div style="display:grid;gap:6px">' + r + '</div>'; }
   };
   function skM(){ var r=''; for (var i=0;i<6;i++) r += '<div class="sk" style="height:72px;border-radius:14px"></div>'; return '<div class="sk" style="aspect-ratio:21/9;border-radius:12px"></div><div class="sk-row" style="gap:22px;height:46px"><div class="sk ln" style="width:70px"></div><div class="sk ln" style="width:96px"></div><div class="sk ln" style="width:80px"></div></div><div class="sk-row" style="gap:6px"><div class="sk pill" style="width:44px;height:32px"></div><div class="sk pill" style="width:60px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div></div>' + r; }
   function skMH(){ var g=''; for (var i=0;i<6;i++) g += '<div class="sk" style="aspect-ratio:1.55/1;border-radius:16px"></div>'; return '<div class="sk" style="aspect-ratio:21/9;border-radius:12px"></div><div class="sk" style="height:52px;border-radius:12px"></div><div class="sk-grid3" style="grid-template-columns:1fr 1fr">' + g + '</div>'; }
@@ -1257,6 +1349,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     if ((t = e.target.closest('[data-mtk]'))) { mstate.tkind = t.dataset.mtk; haptic(); route(); return; }
     if ((t = e.target.closest('[data-mreg]'))) { e.stopPropagation(); var tr = TOURS[+t.dataset.mreg], rg = {}; try { rg = JSON.parse(localStorage.getItem('12bet-reg') || '{}'); } catch(_){} rg[tr.name] = !rg[tr.name]; try { localStorage.setItem('12bet-reg', JSON.stringify(rg)); } catch(_){} haptic('medium'); route(); toast(rg[tr.name] ? 'Registered for ' + tr.name : 'Registration cancelled'); return; }
     if ((t = e.target.closest('.mrow[data-join]'))) { haptic('medium'); location.href = 'play.html'; return; }
+    if ((t = e.target.closest('[data-bb]'))) { e.preventDefault(); bstate.bb = t.dataset.bb; haptic(); route(); return; }
+    if ((t = e.target.closest('[data-bday]'))) { bstate.day = (bstate.day + 1) % 7; haptic(); route(); return; }
     if ((t = e.target.closest('[data-hmode]'))) { state.hmode = t.dataset.hmode; try { localStorage.setItem('12bet-hmode', state.hmode); } catch(_){} haptic(); var y = scrollY; route(); window.scrollTo(0, y); return; }
     if ((t = e.target.closest('.lr[data-join]')) && !e.target.closest('a')) { haptic('medium'); location.href = 'play.html'; return; }
     if ((t = e.target.closest('[data-mode]'))) { state.mode = t.dataset.mode === 'list' ? 'list' : 'carousel'; haptic(); route(); return; }
