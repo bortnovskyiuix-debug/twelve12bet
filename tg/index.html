@@ -646,7 +646,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 .pdn{position:relative;font-size:20px;font-weight:700}
 .pd.p0 .pdn{font-size:24px}
 .pdb{position:relative;width:100%;display:grid;justify-items:center;gap:6px;padding:26px 16px 22px;border-radius:14px 14px 0 0;background:linear-gradient(180deg,#141F38,#0E1729);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.pdb::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;background:linear-gradient(180deg,#1E2D4D,#141F38);clip-path:polygon(6% 100%,94% 100%,100% 0,0 0);transform:scaleX(.96)}
+.pdb::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;background:linear-gradient(180deg,#1E2D4D,#141F38);clip-path:polygon(0 100%,100% 100%,94% 0,6% 0)}
 .pd.p0 .pdb{padding-top:30px;padding-bottom:28px;background:linear-gradient(180deg,#1A2A4B,#10193A)}
 .pdt{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff}
 .pdt svg{width:20px;height:20px}
@@ -683,6 +683,115 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 }
 .rk{display:inline-flex;align-items:center;gap:8px}.rk svg{width:16px;height:16px;color:var(--blue)}
 @media (max-width:860px){
+}
+
+/* ── Career ── */
+.cgrid{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;grid-template-rows:auto auto;gap:14px}
+.cprof{grid-row:span 2;align-items:center;text-align:center;justify-items:center;gap:6px;padding-top:28px}
+.ctile{display:grid;align-content:start;gap:14px;padding:18px 20px;border-radius:14px;background:var(--panel);color:var(--text);transition:background-color .2s var(--ease),transform .2s var(--ease)}
+a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
+.ct-h{display:flex;align-items:center;justify-content:space-between;padding-bottom:12px;border-bottom:1px solid var(--line);font-weight:700;font-size:15px}
+.ct-h svg{width:16px;height:16px;color:var(--mute)}
+.ct-i{display:inline-grid;place-items:center;width:16px;height:16px;border-radius:50%;background:var(--panel-4);color:var(--text-2);font-size:10px;font-style:normal;font-weight:800;margin-left:4px;vertical-align:middle}
+.ctile>b{font-size:30px;font-weight:700;line-height:1;margin-top:6px}
+.ctile>small{color:var(--mute);font-size:14px;margin-top:-4px}
+.cav{width:96px;height:96px;border-radius:50%;overflow:hidden;background:#1B3550;box-shadow:0 0 0 3px var(--panel),0 0 0 5px var(--blue-soft)}
+.cav img{width:100%;height:100%;display:block}
+.cprof>b{font-size:17px;font-weight:700;margin-top:8px}
+.cprof>small{color:var(--mute);font-size:12.5px;margin-top:-4px}
+.cpass{width:100%;display:grid;gap:8px;margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:12.5px;color:var(--mute)}
+.cpass b{color:var(--text)}
+.cpass i{display:block;height:6px;border-radius:99px;background:var(--panel-3);overflow:hidden}
+.cpass u{display:block;height:100%;background:var(--blue)}
+.crow{gap:12px}
+.crange{display:flex;align-items:center;gap:16px;height:52px;padding:0 18px;border-radius:12px;background:var(--panel);font-weight:600;font-size:14px}
+.crange svg{width:18px;height:18px;color:var(--mute)}
+.crow .tabs button b{font-weight:800}
+.cempty{display:grid;justify-items:center;gap:8px;padding:70px 20px 60px;text-align:center}
+.cempty svg{width:48px;height:48px;color:var(--mute);margin-bottom:8px}
+.cempty b{font-size:16px}
+.cempty small{color:var(--mute);font-size:13.5px;max-width:320px}
+.cempty .btn{margin-top:10px}
+@media (max-width:1280px){.cgrid{grid-template-columns:1fr 1fr 1fr}.cprof{grid-row:span 1;grid-column:span 3;padding:22px}.cprof .cav{width:72px;height:72px}}
+@media (max-width:860px){
+  .cgrid{grid-template-columns:1fr 1fr;gap:8px}
+  .cprof{grid-column:span 2}
+  .ctile{padding:14px;gap:10px;border-radius:12px}
+  .ct-h{font-size:13.5px;padding-bottom:10px}
+  .ctile>b{font-size:24px}.ctile>small{font-size:12.5px}
+  .crow{gap:8px}
+  .crange{height:44px;padding:0 12px;font-size:12.5px;gap:8px;width:100%;justify-content:center}
+  .crow .tabs{width:100%}.crow .tabs button{flex:1;padding:0;font-size:12.5px}
+  .crow .ibtn{display:none}
+  .cempty{padding:40px 10px 30px}
+}
+
+/* ── Trust row ── */
+.trust{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.trc{display:flex;align-items:center;gap:14px;padding:24px 22px;border-radius:16px;background:var(--panel);min-height:150px}
+.trc h3{margin:0 0 10px;font-size:18px;font-weight:700;letter-spacing:-.01em}
+.trc p{margin:0;color:var(--text-2);font-size:13.5px;line-height:1.5}.trc p b{color:var(--text)}
+.tc-art{flex:none;width:96px;height:96px;filter:drop-shadow(0 10px 18px rgba(0,0,0,.45))}.tc-art svg{width:100%;height:100%}
+@media (max-width:1280px){.trust{grid-template-columns:1fr}}
+@media (max-width:860px){.trc{padding:16px;min-height:0;gap:10px}.trc h3{font-size:15px;margin-bottom:6px}.trc p{font-size:12.5px}.tc-art{width:72px;height:72px}}
+
+/* ── VIP ── */
+.vhow{display:flex;align-items:center;gap:8px;color:var(--text-2);font-size:13.5px;text-decoration:underline;text-underline-offset:3px;margin-left:4px}
+.vhow i{width:18px;height:18px;border-radius:50%;background:var(--panel-3);display:grid;place-items:center;font-style:normal;font-weight:800;font-size:11px;color:var(--text)}
+.vipgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.viphero{position:relative;display:flex;align-items:center;gap:28px;padding:30px 32px;border-radius:16px;overflow:hidden;background:var(--panel)}
+.viphero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 110% at 0% 50%,color-mix(in srgb,var(--vc) 22%,transparent),transparent 70%),linear-gradient(115deg,transparent 55%,rgba(255,255,255,.03) 55% 62%,transparent 62%)}
+.vgem{position:relative;flex:none;filter:drop-shadow(0 16px 24px rgba(0,0,0,.5))}
+.vinfo{position:relative;display:grid;gap:10px;flex:1}
+.vinfo>b{font-size:34px;font-weight:700;letter-spacing:-.01em}
+.vvp{font-size:15px;color:var(--text-2);font-weight:600}.vvp em{font-style:normal;color:var(--green)}
+.vbar{display:block;height:8px;border-radius:99px;background:var(--panel-3);overflow:hidden;position:relative}
+.vbar u{display:block;height:100%;background:var(--green);border-radius:99px;box-shadow:0 0 12px var(--green)}
+.vinfo small{color:var(--text-2);font-size:14px}.vinfo small b{color:var(--green)}
+.vipcycle{display:grid;align-content:space-between;gap:16px;padding:26px 28px;border-radius:16px;background:var(--panel)}
+.vch{display:flex;align-items:center;gap:12px;font-size:22px}.vch .ibtn{width:34px;height:34px}
+.vcs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.vci{display:flex;align-items:center;gap:14px;padding:6px 0}
+.vci+.vci{border-left:1px solid var(--line);padding-left:20px}
+.vico{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(47,203,122,.12);color:var(--green);flex:none}
+.vico svg{width:26px;height:26px}
+.vci small{display:block;color:var(--text-2);font-size:14px;font-weight:600;margin-bottom:4px}
+.vci b{font-size:28px;font-weight:700;color:var(--green)}
+.vst{color:var(--mute);font-size:13.5px}.vst b{color:var(--text)}
+.vipperks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.vipb{display:grid;grid-template-columns:120px 1fr;grid-template-rows:auto auto;gap:6px 18px;padding:24px;border-radius:16px;background:var(--panel)}
+.vipart{grid-row:span 1;width:120px;height:120px;border-radius:18px;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,rgba(233,201,135,.35),rgba(233,201,135,.06) 60%,transparent);color:var(--gold)}
+.vipart svg{width:54px;height:54px;filter:drop-shadow(0 8px 14px rgba(0,0,0,.45))}
+.vipt{display:grid;align-content:center;gap:4px}
+.vipt small{font-size:15px;font-weight:600;color:var(--text-2)}
+.vipt b{font-size:34px;font-weight:700;line-height:1.1}
+.vsub{font-size:13px;color:var(--text)}
+.vlock{justify-self:start;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line-2);color:var(--text-2);font-weight:700;font-size:13px;margin-top:6px}
+.vlock svg{width:16px;height:16px}
+.vipb p{grid-column:span 2;margin:10px 0 0;color:var(--text-2);font-size:14px}
+.viplv{display:grid;border-radius:16px;background:var(--panel);overflow:hidden}
+.vlh,.vlr{display:grid;grid-template-columns:200px repeat(6,1fr);align-items:center}
+.vlh>span,.vlr>span{padding:16px 18px;text-align:center;border-bottom:1px solid var(--line)}
+.vlh>span:first-child,.vlr>span:first-child{text-align:left;color:var(--mute);font-weight:600}
+.vlr:last-child>span{border-bottom:0}
+.vlh .vlc{display:grid;justify-items:center;gap:6px;font-weight:700;font-size:13px;color:var(--text-2)}
+.vlh .vlc.on{background:linear-gradient(180deg,color-mix(in srgb,var(--vc) 28%,transparent),transparent);color:var(--text)}
+.vlr .g{color:var(--green);font-weight:700}
+.vlr .ok{width:18px;height:18px;color:var(--green)}
+.tabs.per button{padding:0 18px}
+@media (max-width:1280px){.vipperks{grid-template-columns:1fr}.vipgrid{grid-template-columns:1fr}}
+@media (max-width:860px){
+  .vhow{font-size:12.5px}
+  .viphero{gap:16px;padding:18px}.vgem svg{width:92px;height:92px}
+  .vinfo>b{font-size:24px}.vvp{font-size:13px}.vinfo small{font-size:12.5px}
+  .vipcycle{padding:18px}.vch{font-size:17px}
+  .vcs{grid-template-columns:1fr;gap:10px}.vci+.vci{border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:12px}
+  .vico{width:44px;height:44px}.vico svg{width:20px;height:20px}.vci b{font-size:22px}
+  .vipb{grid-template-columns:84px 1fr;padding:16px;gap:4px 14px}.vipart{width:84px;height:84px}.vipart svg{width:40px;height:40px}
+  .vipt b{font-size:26px}.vipt small{font-size:13px}.vipb p{font-size:12.5px}
+  .viplv{overflow-x:auto}.vlh,.vlr{grid-template-columns:120px repeat(6,110px)}.vlh>span,.vlr>span{padding:12px 10px;font-size:12.5px}
+  .mvip .sec-h h2{font-size:17px}
+  .tabs.per{width:100%;margin-bottom:6px}.tabs.per button{flex:1;padding:0}
 }
 
 /* Drawer + tabbar (phones) */
@@ -815,6 +924,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   <symbol id="i-img" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="16" rx="3" stroke="currentColor" stroke-width="1.7"/><circle cx="8.5" cy="9.5" r="1.8" fill="currentColor"/><path d="M3.5 17l5-4.5 3.5 3 3.5-3.5 5 5" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-send" viewBox="0 0 24 24" fill="none"><path d="M3.4 11.2l16.3-7c.7-.3 1.4.4 1.1 1.1l-7 16.3c-.3.8-1.5.7-1.7-.1l-1.7-6.3-6.3-1.7c-.8-.2-.9-1.4-.1-1.7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.7"/><path d="M12 7.5V12l3 2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none"><rect x="5" y="10" width="14" height="11" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M8 10V7a4 4 0 0 1 8 0v3" stroke="currentColor" stroke-width="1.7"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   <symbol id="mark12x" viewBox="0 0 276 100"><path d="M1.28 99.34C1.40 98.98 4.44 88.53 8.05 76.13C11.65 63.72 15.20 51.54 15.93 49.06C16.66 46.58 18.09 41.72 19.11 38.27C20.13 34.81 20.89 31.91 20.79 31.82C20.70 31.73 16.62 34.22 11.72 37.36C6.83 40.50 2.19 43.45 1.43 43.92L0.04 44.77L0.27 43.34C0.40 42.56 1.37 37.50 2.42 32.09L4.34 22.27L10.35 17.65C13.65 15.10 18.30 11.50 20.68 9.64C23.05 7.77 26.81 4.85 29.02 3.13L33.03 0.00L49.60 0.00L66.17 0.00L66.17 0.55C66.17 1.40 58.66 28.76 50.07 59.21C48.43 65.00 45.18 76.55 42.83 84.87L38.57 100.00L19.82 100.00L1.08 100.00L1.28 99.34ZM44.85 99.51C44.95 99.23 45.99 95.56 47.17 91.34C50.46 79.49 52.75 74.79 57.83 69.46C63.30 63.72 62.71 64.09 99.62 43.25C107.79 38.64 115.39 34.26 116.51 33.51C121.69 30.04 122.86 24.25 118.80 22.12L117.49 21.43L109.45 21.43C99.88 21.43 99.04 21.61 96.42 24.24C94.94 25.72 94.33 26.73 93.56 28.95L92.58 31.77L78.06 31.87C66.57 31.94 63.53 31.86 63.53 31.49C63.54 29.89 65.76 23.25 67.47 19.74C71.93 10.56 78.41 4.62 87.51 1.36L90.79 0.19L113.35 0.19L135.90 0.19L138.94 1.22C149.25 4.71 154.16 13.11 152.10 23.75C150.03 34.41 145.28 42.40 137.59 48.11C135.08 49.97 134.39 50.37 114.29 61.56C107.77 65.18 100.33 69.35 97.74 70.82L93.05 73.50L114.98 73.59C132.36 73.67 136.88 73.79 136.74 74.16C136.64 74.42 136.16 76.04 135.67 77.76L134.77 80.90L128.38 86.80C124.87 90.04 120.19 94.34 117.99 96.35L113.98 100.00L79.32 100.00L44.66 100.00L44.85 99.51ZM120.30 99.86C120.30 99.74 134.07 86.95 150.94 71.40C154.87 67.78 163.50 60.01 170.11 54.13C176.73 48.25 185.59 40.35 189.80 36.56C199.59 27.75 212.99 15.98 223.42 7.03L231.61 0.00L253.77 0.00C265.96 0.00 275.93 0.13 275.91 0.28C275.89 0.55 264.55 10.52 245.71 26.82C240.73 31.13 234.32 36.68 231.47 39.16L226.28 43.65L227.02 44.85C227.42 45.51 229.49 49.01 231.61 52.63C233.73 56.25 236.26 60.56 237.23 62.22C238.20 63.87 242.76 71.65 247.37 79.51C251.97 87.37 256.56 95.20 257.57 96.92L259.41 100.05L240.33 99.91L221.24 99.77L218.42 98.92C216.87 98.45 214.59 97.53 213.35 96.88C209.47 94.83 207.82 92.78 201.87 82.62C198.88 77.50 196.17 72.99 195.86 72.60L195.30 71.88L184.59 81.10C178.69 86.17 171.30 92.50 168.17 95.16L162.46 100.00L141.38 100.00C129.79 100.00 120.30 99.94 120.30 99.86ZM176.20 39.97C172.77 34.52 152.26 0.42 152.26 0.16C152.26 0.07 161.47 0.00 172.74 0.00L193.23 0.00L195.10 0.71C198.21 1.90 199.73 3.43 203.36 9.08C205.23 12.00 206.66 14.53 206.55 14.71C206.35 15.03 185.50 33.98 179.79 39.03L177.11 41.40L176.20 39.97Z" fill="currentColor"/></symbol>
 </defs></svg>
 
@@ -844,8 +955,9 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     </nav>
     <nav class="grp">
       <a href="#" data-soon="Club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg><span class="lb">Club</span><span class="soon">Soon</span></a>
+      <a href="#vip" data-v="vip"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">VIP Center</span></a>
       <a href="#board" data-v="board"><svg class="i o"><use href="#i-board"/></svg><svg class="i s"><use href="#i-board-s"/></svg><span class="lb">Leaderboard</span></a>
-      <a href="#" data-soon="Career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg><span class="lb">Career</span><span class="soon">Soon</span></a>
+      <a href="#career" data-v="career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg><span class="lb">Career</span></a>
       <a href="#" data-soon="Guide"><svg class="i o"><use href="#i-book"/></svg><svg class="i s"><use href="#i-book-s"/></svg><span class="lb">Guide</span><span class="soon">Soon</span></a>
     </nav>
     <div class="sfoot">
@@ -1059,6 +1171,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-spin-s"/></svg>Spin &amp; Go</h2><div class="sp"></div><a class="btn btn-dark" href="#spin">View all<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="sgrid">' + SPINS.slice(0,3).map(spinCard).join('') + '</div>' +
       homeBoard() +
+      trustRow() +
     '</div>';
   }
   function levelBlock(L){
@@ -1112,7 +1225,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>All tournaments</h2></div>' +
       '<div class="tgrid all">' + TOURS.map(tourCard).join('') + '</div></div>';
   }
-  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard };
+  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard, career:vCareer, vip:vVip };
 
 
   /* ── Motion helpers ── */
@@ -1211,9 +1324,9 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     return '<div class="view mob mhome">' +
       '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>' +
       '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' +
-      modeTiles().replace('class="modes"', 'class="modes big"') + '</div>';
+      modeTiles().replace('class="modes"', 'class="modes big"') + trustRow() + '</div>';
   }
-  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard };
+  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard, career:mCareer, vip:mVip };
 
 
   /* ── Mode tiles ── */
@@ -1256,14 +1369,14 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     kz:'<rect width="20" height="14" fill="#00AFCA"/><circle cx="10" cy="7" r="2.6" fill="#FEC50C"/>'
   };
   function flag(c){ return '<svg class="fl" viewBox="0 0 20 14"><clipPath id="fc"><rect width="20" height="14" rx="2"/></clipPath><g clip-path="url(#fc)">' + FLAG_SVG[c] + '</g></svg>'; }
-  var bstate = { bb:'hi', day:0 };
+  var bstate = { bb:'hi', day:0, per:'daily' };
   var BB_TABS = [{k:'hi', l:'BB: 1–200'}, {k:'lo', l:'BB: 0.05–0.5'}];
   var REWARDS = [120,80,60,50,40,35,30,25,20,15];
   function boardRows(){
-    var seed0 = seed; seed = 4201 + bstate.day * 97 + (bstate.bb === 'hi' ? 0 : 1000);
+    var seed0 = seed; seed = 4201 + bstate.day * 97 + (bstate.bb === 'hi' ? 0 : 1000) + ({daily:0,weekly:5000,monthly:9000})[bstate.per];
     var pool = NICKS.slice().sort(function(){ return rnd()-.5; }).slice(0,10);
-    var pts = 520 - bstate.day * 30;
-    var rows = pool.map(function(nm, i){ pts = Math.max(120, Math.round(pts - 20 - rnd()*45)); return {nm:nm, img: rnd() > .5 ? AVA[i % AVA.length] : null, col: CHAT_COLORS[i % CHAT_COLORS.length], pts: pts, fl: FLAGS[Math.floor(rnd()*FLAGS.length)], rw: REWARDS[i]}; });
+    var mult = ({daily:1,weekly:6,monthly:22})[bstate.per]; var pts = (520 - bstate.day * 30) * mult;
+    var rows = pool.map(function(nm, i){ pts = Math.max(120 * mult, Math.round(pts - (20 + rnd()*45) * mult)); return {nm:nm, img: rnd() > .5 ? AVA[i % AVA.length] : null, col: CHAT_COLORS[i % CHAT_COLORS.length], pts: pts, fl: FLAGS[Math.floor(rnd()*FLAGS.length)], rw: REWARDS[i] * mult}; });
     seed = seed0; return rows;
   }
   function dayLabel(d){ var x = new Date(); x.setDate(x.getDate() - d); return x.getFullYear() + '/' + String(x.getMonth()+1).padStart(2,'0') + '/' + String(x.getDate()).padStart(2,'0'); }
@@ -1277,9 +1390,13 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<path d="M60 36 72 50 60 66 48 50z" fill="' + c[3] + '"/><path d="M60 36 72 50H48z" fill="#fff" opacity=".35"/></svg>';
   }
   function endsIn(){
-    var d = new Date(); var e = new Date(d); e.setHours(24,0,0,0); var s = Math.max(0, Math.round((e - d)/1000));
-    var h = Math.floor(s/3600), m = Math.floor(s%3600/60), x = s%60; var p = function(v){ return String(v).padStart(2,'0'); };
-    return '00d ' + p(h) + 'h ' + p(m) + 'm ' + p(x) + 's';
+    var d = new Date(); var e = new Date(d);
+    if (bstate.per === 'daily') e.setHours(24,0,0,0);
+    else if (bstate.per === 'weekly') { e.setDate(d.getDate() + ((8 - d.getDay()) % 7 || 7)); e.setHours(0,0,0,0); }
+    else { e = new Date(d.getFullYear(), d.getMonth() + 1, 1); }
+    var s = Math.max(0, Math.round((e - d)/1000));
+    var dd = Math.floor(s/86400), h = Math.floor(s%86400/3600), m = Math.floor(s%3600/60), x = s%60; var p = function(v){ return String(v).padStart(2,'0'); };
+    return p(dd) + 'd ' + p(h) + 'h ' + p(m) + 'm ' + p(x) + 's';
   }
   function podium(rows){
     var o = [[1,'s'],[0,'g'],[2,'b']];
@@ -1305,9 +1422,9 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   function vBoard(){
     var rows = boardRows();
     return '<div class="view">' +
-      '<div class="sec-h"><h2><svg class="hi"><use href="#i-board-s"/></svg>Daily NLHE rankings</h2><div class="sp"></div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-board-s"/></svg>' + ({daily:'Daily',weekly:'Weekly',monthly:'Monthly'})[bstate.per] + ' NLHE rankings</h2><div class="sp"></div>' + '<div class="tabs per" id="pertabs">' + [['daily','Daily'],['weekly','Weekly'],['monthly','Monthly']].map(function(x){ return '<button type="button" data-per="' + x[0] + '"' + (bstate.per === x[0] ? ' class="on"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div>' +
       '<div class="tabs" id="bbtabs">' + BB_TABS.map(function(b){ return '<button type="button" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</button>'; }).join('') + '</div>' +
-      '<button type="button" class="btn btn-dark" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg><span class="num">' + dayLabel(bstate.day) + '</span></button></div>' +
+      (bstate.per === 'daily' ? '<button type="button" class="btn btn-dark" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg><span class="num">' + dayLabel(bstate.day) + '</span></button>' : '') + '</div>' +
       podium(rows) + boardTable(rows, 0, 3) +
       '<div class="sec-h" style="margin-top:8px"><h2><svg class="hi"><use href="#i-crown-s"/></svg>VIP rewards</h2><div class="sp"></div><a class="btn btn-dark" href="#" data-soon="VIP rewards">Show more<svg class="i" style="width:16px;height:16px"><use href="#i-r"/></svg></a></div>' +
       '<div class="vip">' + [['Bronze','5%','#C77B3B'],['Silver','8%','#B8C2CC'],['Gold','12%','#E9C987'],['Platinum','18%','#9DD3FF']].map(function(v){ return '<div class="vipc" style="--vc:' + v[2] + '"><span class="vt">' + v[0] + '</span><b>' + v[1] + '</b><small>rakeback</small></div>'; }).join('') + '</div>' +
@@ -1318,9 +1435,99 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   }
   function mBoard(){
     var rows = boardRows();
-    return '<div class="view mob mboard"><div class="mtabs">' + BB_TABS.map(function(b){ return '<a href="#board" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</a>'; }).join('') + '</div>' +
-      '<div class="mfil"><button type="button" class="chip" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg>' + dayLabel(bstate.day) + '</button></div>' + podium(rows) + boardTable(rows, 0, 3) + '</div>';
+    return '<div class="view mob mboard">' + '<div class="tabs per" id="pertabs">' + [['daily','Daily'],['weekly','Weekly'],['monthly','Monthly']].map(function(x){ return '<button type="button" data-per="' + x[0] + '"' + (bstate.per === x[0] ? ' class="on"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div>' + '<div class="mtabs">' + BB_TABS.map(function(b){ return '<a href="#board" data-bb="' + b.k + '"' + (bstate.bb === b.k ? ' class="on"' : '') + '>' + b.l + '</a>'; }).join('') + '</div>' +
+      (bstate.per === 'daily' ? '<div class="mfil"><button type="button" class="chip" data-bday><svg class="i" style="width:16px;height:16px"><use href="#i-clock"/></svg>' + dayLabel(bstate.day) + '</button></div>' : '<div style="height:10px"></div>') + podium(rows) + boardTable(rows, 0, 3) + '</div>';
   }
+
+
+  /* ══ Career ══ */
+  var cstate = { range:30 };
+  function ymd(d){ return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0'); }
+  function careerStats(){
+    var reg = {}; try { reg = JSON.parse(localStorage.getItem('12bet-reg') || '{}'); } catch(e){}
+    var n = Object.keys(reg).filter(function(k){ return reg[k]; }).length;
+    return { cash:0, club:0, hands:0, sng:0, spin:0, mtt:0, regs:n };
+  }
+  function cTile(cls, title, val, sub, href, info){
+    return '<a class="ctile ' + cls + '" href="' + (href || '#') + '"' + (href ? '' : ' data-soon="' + title + '"') + '><span class="ct-h"><span>' + title + (info ? ' <i class="ct-i" title="Play money results">!</i>' : '') + '</span><svg class="i"><use href="#i-r"/></svg></span><b class="num">' + val + '</b><small>' + sub + '</small></a>';
+  }
+  function vCareer(){
+    var s = careerStats(); var to = new Date(); var from = new Date(); from.setDate(from.getDate() - cstate.range);
+    return '<div class="view">' +
+      '<div class="cgrid">' +
+        '<div class="ctile cprof"><span class="cav"><img src="ava/hero.svg" alt=""/></span><b>Guest</b><small class="num">ID: 120344</small><span class="cpass"><span><b>12xBet Pass</b> · Level 3</span><i><u style="width:62%"></u></i></span></div>' +
+        cTile('', 'Cash game', '$' + s.cash, 'Results', '#holdem', true) +
+        cTile('', 'Club', '$' + s.club, 'Results') +
+        cTile('', 'My hands', s.hands, 'Collected', 'play.html') +
+        cTile('', 'SNG', '$' + s.sng, 'Prize') +
+        cTile('', 'Spin & Go', '$' + s.spin, 'Prize', '#spin') +
+        cTile('', 'MTT', '$' + s.mtt, 'Prize', '#tours') +
+      '</div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-clock"/></svg>History</h2></div>' +
+      '<div class="frow crow">' +
+        '<div class="crange"><span class="num">' + ymd(from) + '</span><svg class="i"><use href="#i-arrow"/></svg><span class="num">' + ymd(to) + '</span></div>' +
+        '<div class="tabs" id="ctabs">' + [7,30,365].map(function(d){ return '<button type="button" data-crange="' + d + '"' + (cstate.range === d ? ' class="on"' : '') + '>Last <b>' + d + '</b> days</button>'; }).join('') + '</div>' +
+        '<div class="sp"></div><button type="button" class="ibtn" data-soon="Filters" aria-label="Filters"><svg class="i"><use href="#i-filter"/></svg></button>' +
+      '</div>' +
+      '<div class="cempty"><svg><use href="#i-cards"/></svg><b>No data yet</b><small>Play a few hands and your history will show up here.</small><a class="btn btn-blue" href="play.html" data-join>Play demo</a></div>' +
+    '</div>';
+  }
+  function mCareer(){ return vCareer().replace('class="view"', 'class="view mob mcareer"'); }
+
+
+
+  /* ══ Trust / fairness ══ */
+  var TRUST = [
+    {t:'Fraud protection', d:'<b>12X SHIELD</b> keeps the games clean with strict bans and advanced bot and multi-account detection.', a:'shield'},
+    {t:'Hand-level fairness check', d:'An AI-based fairness module verifies every deal for unbiased results.', a:'scale'},
+    {t:'Proof of reserves', d:'<b>100%</b> of player funds are fully backed and available for instant withdrawal.', a:'vault'}
+  ];
+  var TRUST_ART = {
+    shield:'<svg viewBox="0 0 96 96"><defs><linearGradient id="tsh" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#5BE39A"/><stop offset="1" stop-color="#139A55"/></linearGradient></defs><path d="M48 8l32 12v26c0 20-14 34-32 42C30 80 16 66 16 46V20z" fill="url(#tsh)"/><path d="M48 14l26 10v22c0 17-11 28-26 35C33 74 22 63 22 46V24z" fill="#fff" opacity=".12"/><path d="M34 48l10 10 20-22" stroke="#fff" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><circle cx="70" cy="70" r="13" fill="#C9D2DC"/><circle cx="70" cy="70" r="13" fill="url(#tsh)" opacity=".0"/><path d="M70 62v9M70 76v1.5" stroke="#1A222C" stroke-width="3.5" stroke-linecap="round"/></svg>',
+    scale:'<svg viewBox="0 0 96 96"><defs><linearGradient id="tsc" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F3D27A"/><stop offset="1" stop-color="#B8832A"/></linearGradient></defs><rect x="45" y="12" width="6" height="66" rx="3" fill="url(#tsc)"/><rect x="18" y="27" width="60" height="6" rx="3" fill="url(#tsc)"/><rect x="32" y="78" width="32" height="8" rx="4" fill="url(#tsc)"/><circle cx="48" cy="14" r="6" fill="#F3D27A"/><path d="M22 31l-11 23M22 31l11 23M74 31l-11 23M74 31l11 23" stroke="#E2B65A" stroke-width="1.8" fill="none"/><path d="M8 54a14 9 0 0 0 28 0zM60 54a14 9 0 0 0 28 0z" fill="url(#tsc)"/><ellipse cx="22" cy="54" rx="14" ry="2.5" fill="#F8E2A0"/><ellipse cx="74" cy="54" rx="14" ry="2.5" fill="#F8E2A0"/></svg>',
+    vault:'<svg viewBox="0 0 96 96"><defs><linearGradient id="tva" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4C8DFF"/><stop offset="1" stop-color="#1A4FC2"/></linearGradient></defs><rect x="22" y="12" width="52" height="66" rx="8" fill="url(#tva)"/><rect x="30" y="20" width="36" height="50" rx="5" fill="#0B1A40" opacity=".55"/><circle cx="48" cy="45" r="12" fill="none" stroke="#9DC3FF" stroke-width="4"/><circle cx="48" cy="45" r="4" fill="#9DC3FF"/><path d="M48 29v6M48 55v6M32 45h6M58 45h6" stroke="#9DC3FF" stroke-width="3" stroke-linecap="round"/><ellipse cx="26" cy="80" rx="12" ry="5" fill="#E9C987"/><ellipse cx="26" cy="76" rx="12" ry="5" fill="#F3D98F"/><ellipse cx="70" cy="84" rx="12" ry="5" fill="#E9C987"/><ellipse cx="70" cy="80" rx="12" ry="5" fill="#F3D98F"/></svg>'
+  };
+  function trustRow(){
+    return '<div class="sec-h"><h2><svg class="hi"><use href="#i-shield"/></svg>Provably fair system</h2></div>' +
+      '<div class="trust">' + TRUST.map(function(x){ return '<div class="trc"><div class="tc-t"><h3>' + x.t + '</h3><p>' + x.d + '</p></div><span class="tc-art">' + TRUST_ART[x.a] + '</span></div>'; }).join('') + '</div>';
+  }
+
+  /* ══ VIP ══ */
+  var VIP_TIERS = [
+    {k:'Bronze', c:'#C77B3B', c2:'#6B3A14', vp:800,   rb:10, lvl:'I–III'},
+    {k:'Silver', c:'#C9D2DC', c2:'#6F7C8A', vp:3000,  rb:15, lvl:'I–III'},
+    {k:'Gold',   c:'#E9C987', c2:'#8A6A2A', vp:10000, rb:20, lvl:'I–III'},
+    {k:'Platinum', c:'#9DD3FF', c2:'#2F6E9C', vp:30000, rb:25, lvl:'I–III'},
+    {k:'Diamond', c:'#B9A6FF', c2:'#4F3AA8', vp:80000, rb:30, lvl:'I–III'},
+    {k:'Royal',  c:'#FFD36B', c2:'#9A6A10', vp:200000, rb:35, lvl:'I–III'}
+  ];
+  function vipGem(c, c2, s){ s = s || 64; return '<svg viewBox="0 0 64 64" width="' + s + '" height="' + s + '"><path d="M32 4 56 18v28L32 60 8 46V18z" fill="' + c2 + '"/><path d="M32 10 50 21v22L32 54 14 43V21z" fill="' + c + '"/><path d="M32 10 50 21 32 32 14 21z" fill="#fff" opacity=".28"/><path d="M32 20l8 12-8 12-8-12z" fill="#fff" opacity=".85"/></svg>'; }
+  function vipCard(title, val, desc, extra, locked, art){
+    return '<div class="vipb"><span class="vipart">' + art + '</span><div class="vipt"><small>' + title + '</small><b class="num">' + val + '</b>' + (extra || '') + (locked ? '<span class="vlock"><svg class="i"><use href="#i-lock"/></svg>Locked</span>' : '') + '</div><p>' + desc + '</p></div>';
+  }
+  function vVip(){
+    var cur = VIP_TIERS[0], vp = 0;
+    return '<div class="view">' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-gift-s"/></svg>VIP Center</h2><a class="vhow" href="#" data-soon="How VIP works"><i>!</i>How VIP works</a></div>' +
+      '<div class="vipgrid">' +
+        '<div class="viphero" style="--vc:' + cur.c + ';--vc2:' + cur.c2 + '"><span class="vgem">' + vipGem(cur.c, cur.c2, 150) + '</span><div class="vinfo"><b>' + cur.k + ' I</b><span class="vvp num"><em>' + vp + '</em> / ' + fmt(cur.vp) + ' VP</span><i class="vbar"><u style="width:' + Math.max(2, vp / cur.vp * 100) + '%"></u></i><small>Only <b class="num">' + fmt(cur.vp - vp) + '</b> VP to reach ' + cur.k + ' II</small></div></div>' +
+        '<div class="vipcycle"><div class="vch"><b>This cycle</b><span class="ibtn" data-soon="Cycle details"><svg class="i"><use href="#i-list"/></svg></span></div><div class="vcs"><div class="vci"><span class="vico"><svg class="i"><use href="#i-coin"/></svg></span><div><small>Pending rakeback</small><b class="num">$0</b></div></div><div class="vci"><span class="vico"><svg class="i"><use href="#i-clock"/></svg></span><div><small>Cycle ends in</small><b class="num">∞</b></div></div></div><small class="vst">Cycle started <b>' + new Date().toLocaleDateString('en-GB', {day:'numeric', month:'short', year:'numeric'}) + '</b></small></div>' +
+      '</div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-gift-s"/></svg>VIP perks</h2></div>' +
+      '<div class="vipperks">' +
+        vipCard('Rakeback rate', cur.rb + '%', 'Exclusive perks for your VIP level.', '', false, '<svg class="i"><use href="#i-coin"/></svg>') +
+        vipCard('Level-up bonus', '$0.24', 'Unlock when you reach ' + cur.k + ' II.', '', true, '<svg class="i"><use href="#i-gift-s"/></svg>') +
+        vipCard('VIP MTT tickets', '$50', 'Exclusive for Diamond and Royal players.', '<small class="vsub">Monthly $50 Crown Pass · ×1</small>', true, '<svg class="i"><use href="#i-cup-s"/></svg>') +
+      '</div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-crown-s"/></svg>VIP levels</h2></div>' +
+      '<div class="viplv"><div class="vlh"><span>Level</span>' + VIP_TIERS.map(function(x, i){ return '<span class="vlc' + (i === 0 ? ' on' : '') + '" style="--vc:' + x.c + '">' + vipGem(x.c, x.c2, 26) + x.k + ' ' + x.lvl + '</span>'; }).join('') + '</div>' +
+        '<div class="vlr"><span>VP required</span>' + VIP_TIERS.map(function(x){ return '<span class="num">' + fmt(x.vp) + '</span>'; }).join('') + '</div>' +
+        '<div class="vlr"><span>Rakeback</span>' + VIP_TIERS.map(function(x){ return '<span class="num g">' + x.rb + '%</span>'; }).join('') + '</div>' +
+        '<div class="vlr"><span>Level-up bonus</span>' + VIP_TIERS.map(function(x, i){ return '<span class="num">$' + [0.24, 2, 10, 40, 120, 400][i] + '</span>'; }).join('') + '</div>' +
+        '<div class="vlr"><span>VIP tickets</span>' + VIP_TIERS.map(function(x, i){ return '<span>' + (i >= 4 ? '<svg class="i ok"><use href="#i-check"/></svg>' : '–') + '</span>'; }).join('') + '</div></div>' +
+    '</div>';
+  }
+  function mVip(){ return vVip().replace('class="view"', 'class="view mob mvip"'); }
 
   /* ── Skeleton screens ── */
   function skH(w){ return '<div class="sk-row" style="justify-content:space-between"><div class="sk-row"><div class="sk" style="width:24px;height:24px;border-radius:7px"></div><div class="sk ln" style="width:' + (w||150) + 'px;height:18px"></div></div><div class="sk pill" style="width:104px;height:40px"></div></div>'; }
@@ -1335,6 +1542,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
       '<div class="sk-row" style="justify-content:space-between"><div class="sk ln" style="width:320px;height:18px"></div><div class="sk-row"><div class="sk pill" style="width:104px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:72px;height:40px"></div></div></div>' + skMT(3); },
     spin: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="padding:18px;display:grid;gap:16px;background:var(--panel)"><div class="sk ln" style="width:140px;height:20px;background:var(--panel-2)"></div><div class="sk pill" style="width:220px;height:42px;background:var(--panel-2)"></div>' + skSpin(6).replace(/class="sk"/g,'class="sk" style="background:var(--panel-2)"').replace('style="background:var(--panel-2)" style="','style="background:var(--panel-2);') + '</div>'; },
     tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); },
+    vip: function(){ return skH(130) + '<div class="vipgrid"><div class="sk" style="height:240px"></div><div class="sk" style="height:240px"></div></div>' + skH(110) + '<div class="sk-grid3"><div class="sk" style="height:190px"></div><div class="sk" style="height:190px"></div><div class="sk" style="height:190px"></div></div>'; },
+    career: function(){ var g=''; for (var i=0;i<7;i++) g += '<div class="sk" style="height:' + (i===0?'212':'100') + 'px;border-radius:14px' + (i===0?';grid-row:span 2':'') + '"></div>'; return '<div class="cgrid">' + g + '</div>' + skH(120) + '<div class="sk" style="height:54px;border-radius:12px"></div>'; },
     board: function(){ var r=''; for (var i=0;i<10;i++) r += '<div class="sk" style="height:56px;border-radius:10px"></div>'; return skH(220) + '<div style="display:grid;gap:6px">' + r + '</div>'; }
   };
   function skM(){ var r=''; for (var i=0;i<6;i++) r += '<div class="sk" style="height:72px;border-radius:14px"></div>'; return '<div class="sk" style="aspect-ratio:21/9;border-radius:12px"></div><div class="sk-row" style="gap:22px;height:46px"><div class="sk ln" style="width:70px"></div><div class="sk ln" style="width:96px"></div><div class="sk ln" style="width:80px"></div></div><div class="sk-row" style="gap:6px"><div class="sk pill" style="width:44px;height:32px"></div><div class="sk pill" style="width:60px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div><div class="sk pill" style="width:50px;height:32px"></div></div>' + r; }
@@ -1426,6 +1635,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
     if ((t = e.target.closest('.mrow[data-join]'))) { haptic('medium'); location.href = 'play.html'; return; }
     if ((t = e.target.closest('[data-bb]'))) { e.preventDefault(); bstate.bb = t.dataset.bb; haptic(); route(); return; }
     if ((t = e.target.closest('[data-bday]'))) { bstate.day = (bstate.day + 1) % 7; haptic(); route(); return; }
+    if ((t = e.target.closest('[data-crange]'))) { cstate.range = +t.dataset.crange; haptic(); route(); return; }
+    if ((t = e.target.closest('[data-per]'))) { bstate.per = t.dataset.per; haptic(); route(); return; }
     if ((t = e.target.closest('[data-hmode]'))) { state.hmode = t.dataset.hmode; try { localStorage.setItem('12bet-hmode', state.hmode); } catch(_){} haptic(); var y = scrollY; route(); window.scrollTo(0, y); return; }
     if ((t = e.target.closest('.lr[data-join]')) && !e.target.closest('a')) { haptic('medium'); location.href = 'play.html'; return; }
     if ((t = e.target.closest('[data-mode]'))) { state.mode = t.dataset.mode === 'list' ? 'list' : 'carousel'; haptic(); route(); return; }
