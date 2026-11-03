@@ -645,9 +645,10 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 .pd.p0 .pdav,.pd.p0 .pdav img,.pd.p0 .pdav i{width:112px;height:112px}
 .pdn{position:relative;font-size:20px;font-weight:700}
 .pd.p0 .pdn{font-size:24px}
-.pdb{position:relative;width:100%;display:grid;justify-items:center;gap:6px;padding:26px 16px 22px;border-radius:14px 14px 0 0;background:linear-gradient(180deg,#141F38,#0E1729);box-shadow:inset 0 1px 0 rgba(255,255,255,.08)}
-.pdb::before{content:"";position:absolute;left:0;right:0;top:-14px;height:14px;background:linear-gradient(180deg,#1E2D4D,#141F38);clip-path:polygon(0 100%,100% 100%,94% 0,6% 0)}
-.pd.p0 .pdb{padding-top:30px;padding-bottom:28px;background:linear-gradient(180deg,#1A2A4B,#10193A)}
+.pdb{position:relative;width:100%;display:grid;justify-items:center;gap:6px;padding:26px 16px 22px;border-radius:0 0 16px 16px;background:linear-gradient(180deg,#182544 0%,#121C33 55%,#0E1628 100%);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05),inset 0 -8px 20px rgba(0,0,0,.35),0 24px 40px -18px rgba(0,0,0,.7)}
+.pdb::before{content:"";position:absolute;left:0;right:0;top:-12px;height:12px;background:linear-gradient(90deg,#2A3B63,#36497A 50%,#2A3B63);clip-path:polygon(0 100%,100% 100%,calc(100% - 12px) 0,12px 0);filter:none}
+.pdb::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent)}
+.pd.p0 .pdb{padding-top:30px;padding-bottom:28px;background:linear-gradient(180deg,#1F2F57 0%,#172448 55%,#111B38 100%)}.pd.p0 .pdb::before{background:linear-gradient(90deg,#334876,#45609C 50%,#334876)}
 .pdt{width:42px;height:42px;border-radius:10px;display:grid;place-items:center;background:rgba(255,255,255,.08);color:#fff}
 .pdt svg{width:20px;height:20px}
 .pdt.tg{background:#D9A93F;color:#2A1B06}.pdt.ts{background:#B9C3CF;color:#1A222C}.pdt.tb{background:#C77B3B;color:#2A1606}
@@ -670,8 +671,8 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .pdav,.pdav img,.pdav i{width:58px;height:58px;border-radius:14px;font-size:18px}
   .pd.p0 .pdav,.pd.p0 .pdav img,.pd.p0 .pdav i{width:70px;height:70px}
   .pdn{font-size:12px;max-width:96px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.pd.p0 .pdn{font-size:13.5px}
-  .pdb{padding:16px 6px 14px;gap:3px;border-radius:12px 12px 0 0}.pd.p0 .pdb{padding-top:20px}
-  .pdb::before{top:-10px;height:10px}
+  .pdb{padding:16px 6px 14px;gap:3px;border-radius:0 0 12px 12px}.pd.p0 .pdb{padding-top:20px}
+  .pdb::before{top:-9px;height:9px;clip-path:polygon(0 100%,100% 100%,calc(100% - 9px) 0,9px 0)}
   .pdt{width:32px;height:32px;border-radius:9px}.pdt svg{width:15px;height:15px}
   .pdp{font-size:10.5px;white-space:nowrap}.pdl{margin:6px 0 8px}
   .pdz{font-size:17px;gap:5px}.pd.p0 .pdz{font-size:21px}.pdz .coin{width:16px;height:16px;font-size:9px}
