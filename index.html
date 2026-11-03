@@ -721,6 +721,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
 .cempty b{font-size:16px}
 .cempty small{color:var(--mute);font-size:13.5px;max-width:320px}
 .cempty .btn{margin-top:10px}
+.cempty.sm{padding:34px 20px 30px;border-radius:16px;background:var(--panel)}
 @media (max-width:1280px){.cgrid{grid-template-columns:1fr 1fr 1fr}.cprof{grid-row:span 1;grid-column:span 3;padding:22px}.cprof .cav{width:72px;height:72px}}
 @media (max-width:860px){
   .cgrid{grid-template-columns:1fr 1fr;gap:8px}
@@ -733,6 +734,47 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   .crow .tabs{width:100%}.crow .tabs button{flex:1;padding:0;font-size:12.5px}
   .crow .ibtn{display:none}
   .cempty{padding:40px 10px 30px}
+}
+
+/* ── Club ── */
+.clubhero{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:36px 40px;border-radius:18px;background:var(--panel)}
+.clubhero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 120% at 100% 50%,rgba(0,152,254,.18),transparent 70%),linear-gradient(115deg,transparent 60%,rgba(255,255,255,.03) 60% 66%,transparent 66%)}
+.ch-t{position:relative;display:grid;gap:12px;max-width:560px}
+.ch-k{color:var(--blue);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase}
+.ch-t h1{margin:0;font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
+.ch-t p{margin:0;color:var(--text-2);font-size:15px;line-height:1.5}
+.ch-a{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:8px}
+.btn-lg{height:48px;padding:0 22px;font-size:15px}
+.ch-join{display:flex;align-items:center;gap:8px;height:48px;padding:0 6px 0 16px;border-radius:999px;border:1.5px solid var(--line-2);background:rgba(0,0,0,.2)}
+.ch-join>svg{width:18px;height:18px;color:var(--mute)}
+.ch-join input{background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:14px;width:180px;text-transform:uppercase}
+.ch-join input::placeholder{text-transform:none;color:var(--mute)}
+.ch-join .btn{height:36px}
+.ch-art{position:relative;display:flex;align-items:center;padding-right:20px}
+.ch-art>span{display:block;margin-left:-18px;transform:translateY(calc((var(--i) - 1) * 10px)) rotate(calc((var(--i) - 1) * 6deg));filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
+.ch-art>span:first-child{margin-left:0}
+.cb{display:inline-grid;place-items:center;border-radius:30%;font-weight:800;color:#fff;letter-spacing:-.02em;background:linear-gradient(145deg,color-mix(in srgb,var(--cc) 90%,#fff),color-mix(in srgb,var(--cc) 70%,#000));box-shadow:inset 0 1px 0 rgba(255,255,255,.35),inset 0 -2px 0 rgba(0,0,0,.25)}
+.clubs{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.club{display:grid;gap:16px;padding:20px;border-radius:16px;background:var(--panel);transition:transform .25s var(--ease),background .25s}
+.club:hover{background:var(--panel-2);transform:translateY(-2px)}
+.club-h{display:flex;align-items:center;gap:12px}
+.club-t{display:grid;gap:2px;min-width:0;flex:1}
+.club-t b{font-size:17px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.club-t small{color:var(--mute);font-size:12.5px}
+.tag-f{align-self:flex-start;padding:4px 10px;border-radius:999px;background:rgba(233,201,135,.14);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.club-s{display:grid;grid-template-columns:repeat(3,1fr);border-radius:12px;background:rgba(0,0,0,.22)}
+.club-s>div{padding:12px 14px;display:grid;gap:2px}
+.club-s>div+div{border-left:1px solid var(--line)}
+.club-s small{color:var(--mute);font-size:12px}.club-s b{font-size:18px}.club-s b.on{color:var(--green)}
+.club-m{display:flex;justify-content:space-between;gap:12px;color:var(--text-2);font-size:13px}.club-m b{color:var(--text);margin-left:4px}
+.club-a{display:grid;grid-template-columns:1fr auto;gap:8px}
+@media (max-width:1280px){.clubs{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:860px){
+  .clubhero{grid-template-columns:1fr;padding:22px 18px;gap:12px}.ch-art{display:none}
+  .ch-t h1{font-size:24px}.ch-t p{font-size:13.5px}
+  .ch-a{display:grid;grid-template-columns:1fr}.ch-join{width:100%}.ch-join input{width:auto;flex:1;min-width:0}
+  .clubs{grid-template-columns:1fr}.club{padding:16px}
+  .mclub .sec-h h2{font-size:17px}.mclub .sec-h .tabs{width:100%;margin-top:8px}
 }
 
 /* ── Trust row ── */
@@ -963,7 +1005,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       <a href="#" data-soon="Bonus Hub"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">Bonus Hub</span><span class="soon">Soon</span></a>
     </nav>
     <nav class="grp">
-      <a href="#" data-soon="Club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg><span class="lb">Club</span><span class="soon">Soon</span></a>
+      <a href="#club" data-v="club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg><span class="lb">Club</span></a>
       <a href="#vip" data-v="vip"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">VIP Center</span></a>
       <a href="#board" data-v="board"><svg class="i o"><use href="#i-board"/></svg><svg class="i s"><use href="#i-board-s"/></svg><span class="lb">Leaderboard</span></a>
       <a href="#career" data-v="career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg><span class="lb">Career</span></a>
@@ -1234,7 +1276,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>All tournaments</h2></div>' +
       '<div class="tgrid all">' + TOURS.map(tourCard).join('') + '</div></div>';
   }
-  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard, career:vCareer, vip:vVip };
+  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard, career:vCareer, vip:vVip, club:vClub };
 
 
   /* ── Motion helpers ── */
@@ -1335,7 +1377,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' +
       modeTiles().replace('class="modes"', 'class="modes big"') + trustRow() + '</div>';
   }
-  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard, career:mCareer, vip:mVip };
+  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard, career:mCareer, vip:mVip, club:mClub };
 
 
   /* ── Mode tiles ── */
@@ -1485,6 +1527,40 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
 
 
 
+
+  /* ══ Club ══ */
+  var CLUBS = [
+    {id:'KV-7731', nm:'Kyiv Sharks', col:'#0098FE', mem:1284, on:212, tbl:14, un:'East Union', stakes:'0.5/1 – 5/10', lang:'UA', feat:true},
+    {id:'LV-2048', nm:'Lviv Lions', col:'#E9C987', mem:642, on:96, tbl:7, un:'East Union', stakes:'0.1/0.2 – 2/4', lang:'UA', feat:true},
+    {id:'OD-9115', nm:'Odesa Reef', col:'#2FCB7A', mem:911, on:143, tbl:9, un:'Black Sea Union', stakes:'0.25/0.5 – 2/5', lang:'UA'},
+    {id:'DN-5502', nm:'Dnipro Grinders', col:'#E8475B', mem:377, on:48, tbl:4, un:'–', stakes:'0.05/0.1 – 1/2', lang:'UA'},
+    {id:'WR-0420', nm:'Warsaw Night', col:'#B9A6FF', mem:2310, on:401, tbl:22, un:'Central Union', stakes:'1/2 – 10/20', lang:'PL'},
+    {id:'BL-1177', nm:'Baltic High Rollers', col:'#9DD3FF', mem:188, on:31, tbl:3, un:'–', stakes:'5/10 – 50/100', lang:'EN'}
+  ];
+  var clstate = { tab:'all' };
+  function clubBadge(c, s){ s = s || 52; var ini = c.nm.split(' ').map(function(w){ return w[0]; }).slice(0,2).join(''); return '<span class="cb" style="--cc:' + c.col + ';width:' + s + 'px;height:' + s + 'px;font-size:' + Math.round(s*.36) + 'px">' + ini + '</span>'; }
+  function clubCard(c){
+    return '<div class="club"><div class="club-h">' + clubBadge(c) + '<div class="club-t"><b>' + c.nm + '</b><small>ID <span class="num">' + c.id + '</span> · ' + c.un + '</small></div>' + (c.feat ? '<span class="tag-f">Featured</span>' : '') + '</div>' +
+      '<div class="club-s"><div><small>Members</small><b class="num">' + fmt(c.mem) + '</b></div><div><small>Online</small><b class="num on">' + c.on + '</b></div><div><small>Tables</small><b class="num">' + c.tbl + '</b></div></div>' +
+      '<div class="club-m"><span>Stakes <b class="num">' + c.stakes + '</b></span><span>Lang <b>' + c.lang + '</b></span></div>' +
+      '<div class="club-a"><button type="button" class="btn btn-blue" data-soon="Join club">Join club</button><button type="button" class="btn btn-dark" data-soon="Club details">Details</button></div></div>';
+  }
+  function vClub(){
+    var list = clstate.tab === 'feat' ? CLUBS.filter(function(c){ return c.feat; }) : clstate.tab === 'union' ? CLUBS.filter(function(c){ return c.un !== '–'; }) : CLUBS;
+    return '<div class="view">' +
+      '<div class="clubhero"><div class="ch-t"><span class="ch-k">Private games</span><h1>Play with your people</h1><p>Create a private club, invite friends with a code and run your own cash tables and tournaments. Clubs can join unions to share player pools.</p>' +
+        '<div class="ch-a"><button type="button" class="btn btn-blue btn-lg" data-soon="Create club"><svg class="i"><use href="#i-crown-s"/></svg>Create club</button>' +
+        '<form class="ch-join" data-join><svg class="i"><use href="#i-search"/></svg><input type="text" placeholder="Club ID, e.g. KV-7731" maxlength="8" autocomplete="off"><button type="submit" class="btn btn-dark">Join</button></form></div></div>' +
+        '<div class="ch-art">' + CLUBS.slice(0,3).map(function(c, i){ return '<span style="--i:' + i + '">' + clubBadge(c, 76) + '</span>'; }).join('') + '</div></div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-crown-s"/></svg>My clubs</h2></div>' +
+      '<div class="cempty sm"><svg class="i"><use href="#i-crown"/></svg><b>You are not in a club yet</b><small>Join a club by ID or create your own.</small></div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-board-s"/></svg>Discover clubs</h2><div class="sp"></div><div class="tabs">' +
+        [['all','All'],['feat','Featured'],['union','In unions']].map(function(x){ return '<button type="button" data-ctab="' + x[0] + '"' + (clstate.tab === x[0] ? ' class="on"' : '') + '>' + x[1] + '</button>'; }).join('') + '</div></div>' +
+      '<div class="clubs">' + list.map(clubCard).join('') + '</div>' +
+    '</div>';
+  }
+  function mClub(){ return vClub().replace('class="view"', 'class="view mob mclub"'); }
+
   /* ══ Trust / fairness ══ */
   var TRUST = [
     {t:'Fraud protection', d:'<b>12X SHIELD</b> keeps the games clean with strict bans and advanced bot and multi-account detection.', a:'shield'},
@@ -1551,6 +1627,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       '<div class="sk-row" style="justify-content:space-between"><div class="sk ln" style="width:320px;height:18px"></div><div class="sk-row"><div class="sk pill" style="width:104px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:72px;height:40px"></div></div></div>' + skMT(3); },
     spin: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="padding:18px;display:grid;gap:16px;background:var(--panel)"><div class="sk ln" style="width:140px;height:20px;background:var(--panel-2)"></div><div class="sk pill" style="width:220px;height:42px;background:var(--panel-2)"></div>' + skSpin(6).replace(/class="sk"/g,'class="sk" style="background:var(--panel-2)"').replace('style="background:var(--panel-2)" style="','style="background:var(--panel-2);') + '</div>'; },
     tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); },
+    club: function(){ return '<div class="sk" style="height:220px;border-radius:18px"></div>' + skH(110) + '<div class="sk" style="height:120px"></div>' + skH(140) + '<div class="sk-grid3"><div class="sk" style="height:250px"></div><div class="sk" style="height:250px"></div><div class="sk" style="height:250px"></div></div>'; },
     vip: function(){ return skH(130) + '<div class="vipgrid"><div class="sk" style="height:240px"></div><div class="sk" style="height:240px"></div></div>' + skH(110) + '<div class="sk-grid3"><div class="sk" style="height:190px"></div><div class="sk" style="height:190px"></div><div class="sk" style="height:190px"></div></div>'; },
     career: function(){ var g=''; for (var i=0;i<7;i++) g += '<div class="sk" style="height:' + (i===0?'212':'100') + 'px;border-radius:14px' + (i===0?';grid-row:span 2':'') + '"></div>'; return '<div class="cgrid">' + g + '</div>' + skH(120) + '<div class="sk" style="height:54px;border-radius:12px"></div>'; },
     board: function(){ var r=''; for (var i=0;i<10;i++) r += '<div class="sk" style="height:56px;border-radius:10px"></div>'; return skH(220) + '<div style="display:grid;gap:6px">' + r + '</div>'; }
@@ -1626,6 +1703,9 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   }, 1000);
 
   /* ── Events ──────────────────────── */
+  document.addEventListener('submit', function(e){
+    if (e.target.matches('[data-join]')) { e.preventDefault(); var v = e.target.querySelector('input').value.trim().toUpperCase(); toast(v ? 'Club ' + v + ' — joining is coming soon' : 'Enter a club ID'); }
+  });
   document.addEventListener('click', function(e){
     var t;
     if ((t = e.target.closest('[data-soon]'))) { e.preventDefault(); haptic(); toast(t.dataset.soon + ' is coming soon'); return; }
@@ -1645,6 +1725,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
     if ((t = e.target.closest('[data-bb]'))) { e.preventDefault(); bstate.bb = t.dataset.bb; haptic(); route(); return; }
     if ((t = e.target.closest('[data-bday]'))) { bstate.day = (bstate.day + 1) % 7; haptic(); route(); return; }
     if ((t = e.target.closest('[data-crange]'))) { cstate.range = +t.dataset.crange; haptic(); route(); return; }
+    if ((t = e.target.closest('[data-ctab]'))) { clstate.tab = t.dataset.ctab; haptic(); route(); return; }
     if ((t = e.target.closest('[data-per]'))) { bstate.per = t.dataset.per; haptic(); route(); return; }
     if ((t = e.target.closest('[data-hmode]'))) { state.hmode = t.dataset.hmode; try { localStorage.setItem('12bet-hmode', state.hmode); } catch(_){} haptic(); var y = scrollY; route(); window.scrollTo(0, y); return; }
     if ((t = e.target.closest('.lr[data-join]')) && !e.target.closest('a')) { haptic('medium'); location.href = 'play.html'; return; }
