@@ -736,6 +736,106 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   .cempty{padding:40px 10px 30px}
 }
 
+/* ── Bonuses ── */
+.bontop{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.bprog{display:grid;gap:12px;padding:22px 26px;border-radius:16px;background:var(--panel)}
+.bp-h{display:flex;justify-content:space-between;align-items:center;padding-bottom:12px;border-bottom:1px solid var(--line)}.bp-h b{font-size:17px}.bp-h span{color:var(--text-2);font-size:13.5px}
+.bp-v{display:flex;justify-content:space-between;align-items:baseline}.bp-v b{font-size:18px;color:var(--text-2)}.bp-v b em{font-style:normal;color:var(--green);font-size:20px}.bp-v span{color:var(--text-2);font-weight:600}
+.bp-l{display:flex;justify-content:space-between;font-weight:700;font-size:14px}.bp-l span{display:inline-flex;align-items:center;gap:8px}
+.bp-all{justify-self:center;display:inline-flex;align-items:center;gap:6px;margin-top:4px;color:var(--text);font-weight:600;font-size:14px}.bp-all svg{width:14px;height:14px}
+.bside{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:12px;border-radius:16px;background:var(--panel)}
+.bst{position:relative;overflow:hidden;display:grid;align-content:start;gap:4px;padding:18px 18px 16px;min-height:150px;border-radius:12px;background:var(--panel-2)}
+.bst::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 100% at 100% 100%,color-mix(in srgb,var(--bc) 24%,transparent),transparent 70%)}
+.bst.g{--bc:#2FCB7A}.bst.b{--bc:#0098FE}
+.bst small{position:relative;color:var(--text-2);font-size:13px;font-weight:600}.bst b{position:relative;font-size:26px;font-weight:700}
+.bst .ibtn{position:relative;margin-top:auto;width:36px;height:36px;background:rgba(0,0,0,.35)}.bst .ibtn svg{width:14px;height:14px}
+.bst-art{position:absolute;right:10px;bottom:4px;width:86px;height:86px;color:var(--bc);filter:drop-shadow(0 10px 16px rgba(0,0,0,.45))}.bst-art svg{width:100%;height:100%}
+.promo{grid-column:span 2;display:flex;align-items:center;gap:10px;height:52px;padding:0 6px 0 16px;border-radius:12px;background:var(--panel-2)}
+.promo>svg{width:18px;height:18px;color:var(--mute)}.promo input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font:inherit;font-size:14px}.promo .btn{height:40px;border-radius:10px}
+.bonwrap{padding:22px 24px 24px;border-radius:18px;background:var(--panel)}
+.bonwrap .sec-h{margin-top:0}.bonwrap .sec-h h2{font-size:24px}
+.bons{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.bon{position:relative;display:grid;gap:10px;padding:26px 22px 22px;border-radius:16px;background:var(--panel-2);overflow:hidden;transition:transform .25s var(--ease)}
+.bon::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 80% 55% at 50% 0%,color-mix(in srgb,var(--bc) 18%,transparent),transparent 70%);pointer-events:none}
+.bon:hover{transform:translateY(-2px)}
+.bon-info{position:absolute;top:14px;right:14px;width:30px;height:30px;font-weight:800;font-size:13px;color:var(--text-2);font-style:italic}
+.bon-i{position:relative;justify-self:center;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 30%,color-mix(in srgb,var(--bc) 55%,#fff),color-mix(in srgb,var(--bc) 85%,#000) 70%);color:#fff;box-shadow:0 14px 26px -8px color-mix(in srgb,var(--bc) 60%,transparent),inset 0 2px 0 rgba(255,255,255,.35)}
+.bon-i svg{width:38px;height:38px;filter:drop-shadow(0 2px 2px rgba(0,0,0,.3))}
+.bon h3{position:relative;margin:4px 0 8px;text-align:center;font-size:22px;font-weight:700;letter-spacing:-.01em}.bon h3 em{font-style:normal;color:var(--gold)}
+.bon-boost{display:flex;align-items:center;justify-content:center;gap:8px;margin:-4px -22px 4px;padding:10px;background:rgba(0,0,0,.25);color:var(--text-2);font-weight:600;font-size:14px}.bon-boost svg{width:16px;height:16px;color:var(--gold)}
+.bon-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;color:var(--text-2)}.bon-row b{color:var(--text)}.bon-row b small{color:var(--text-2);font-weight:600}
+.bon .vbar{margin:-2px 0 2px}
+.bon-f{margin-top:auto;padding-top:8px}.bon-f .btn{width:100%}
+.bon-dis{display:flex;align-items:center;justify-content:center;gap:8px;height:44px;border-radius:999px;background:rgba(0,0,0,.28);color:var(--mute);font-weight:600;font-size:13.5px}.bon-dis svg{width:15px;height:15px}
+.cal{display:grid;grid-template-columns:2.2fr repeat(7,1fr);gap:10px}
+.cal-av{position:relative;overflow:hidden;display:flex;align-items:center;gap:14px;padding:18px 20px;border-radius:14px;background:var(--panel)}
+.cal-av::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 120% at 0% 50%,rgba(47,203,122,.2),transparent 70%)}
+.cal-art{position:relative;width:56px;height:56px;border-radius:50%;display:grid;place-items:center;background:rgba(47,203,122,.14);color:var(--green)}.cal-art svg{width:26px;height:26px}
+.cal-av div{position:relative;flex:1}.cal-av small{display:block;color:var(--text-2);font-size:13px;font-weight:600}.cal-av b{font-size:24px}
+.cal-av .btn{position:relative}
+.cal-d{display:grid;justify-items:center;align-content:center;gap:8px;padding:16px 6px;border-radius:14px;background:var(--panel);text-align:center;color:var(--text-2);position:relative}
+.cal-d::before,.cal-d::after{content:"";position:absolute;top:0;width:5px;height:8px;border-radius:0 0 3px 3px;background:var(--panel-4)}.cal-d::before{left:22%}.cal-d::after{right:22%}
+.cal-d small{font-size:12px;font-weight:600}.cal-d b{font-size:22px;color:var(--text)}.cal-d span{font-size:12px;font-weight:600}
+.cal-d.past{opacity:.4}.cal-d.now{background:rgba(0,152,254,.14);box-shadow:inset 0 0 0 1.5px var(--blue);color:var(--text)}.cal-d.now span{color:var(--blue)}
+.cal-d.done span{color:var(--green)}
+.refcta{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 26px;border-radius:16px;background:linear-gradient(90deg,rgba(233,201,135,.14),rgba(233,201,135,.04));box-shadow:inset 0 0 0 1px rgba(233,201,135,.25)}
+.refcta b{display:block;font-size:17px}.refcta small{color:var(--text-2);font-size:13.5px}
+@media (max-width:1280px){.bontop{grid-template-columns:1fr}.bons{grid-template-columns:repeat(2,1fr)}.cal{grid-template-columns:repeat(4,1fr)}.cal-av{grid-column:span 4}}
+@media (max-width:860px){
+  .bprog{padding:16px}.bside{grid-template-columns:1fr 1fr;padding:8px;gap:8px}.bst{min-height:120px;padding:14px}.bst b{font-size:20px}.bst-art{width:60px;height:60px}
+  .bonwrap{padding:14px}.bonwrap .sec-h h2{font-size:19px}
+  .bons{grid-template-columns:1fr}.bon{padding:20px 16px 16px}.bon-boost{margin:-4px -16px 4px}
+  .cal{grid-template-columns:repeat(4,1fr);gap:8px}.cal-av{grid-column:span 4;padding:14px}.cal-av b{font-size:20px}
+  .cal-d{padding:12px 4px;gap:5px}.cal-d small{font-size:10.5px}.cal-d b{font-size:18px}.cal-d span{font-size:10.5px}
+  .refcta{flex-direction:column;align-items:stretch;text-align:center;padding:18px}
+  .mbonus .sec-h h2{font-size:17px}
+}
+/* ── Referral ── */
+.refhero{position:relative;overflow:hidden;display:grid;align-items:center;min-height:250px;padding:40px 44px;border-radius:18px;background:var(--panel)}
+.rh-bg{position:absolute;inset:0;pointer-events:none;background:
+  radial-gradient(ellipse 30% 140% at 62% 50%,rgba(0,152,254,.32),transparent 70%),
+  radial-gradient(ellipse 22% 160% at 80% 40%,rgba(0,152,254,.22),transparent 70%),
+  radial-gradient(ellipse 18% 160% at 95% 60%,rgba(0,152,254,.16),transparent 70%)}
+.rh-bg::before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(100deg,transparent 0 120px,rgba(255,255,255,.025) 120px 180px);mask:linear-gradient(90deg,transparent 40%,#000);-webkit-mask:linear-gradient(90deg,transparent 40%,#000)}
+.rh-t{position:relative;display:grid;gap:14px;max-width:640px;z-index:1}
+.rh-k{color:var(--text-2);font-size:14px;font-weight:600}
+.rh-t h1{margin:0;font-size:36px;font-weight:800;letter-spacing:-.01em;line-height:1.1;text-transform:uppercase;color:var(--blue-h)}
+.rh-pill{justify-self:start;display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 10px;border-radius:999px;background:rgba(47,203,122,.12);box-shadow:inset 0 0 0 1px rgba(47,203,122,.3);color:var(--green);font-size:13px;font-weight:600}
+.rh-pill i{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green)}
+.rh-pill b{color:var(--green)}
+.refstats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.rst{display:grid;gap:6px;padding:20px 22px;border-radius:14px;background:var(--panel)}
+.rst-h{display:flex;justify-content:space-between;align-items:center}.rst-h svg{width:18px;height:18px;color:var(--text-2)}
+.rst small{color:var(--text-2);font-size:13.5px;font-weight:600}.rst b{font-size:30px;font-weight:800}.rst span{color:var(--text-2);font-size:13px;line-height:1.45}
+.refcols{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;align-items:start}
+.refbox{padding:22px 24px 24px;border-radius:16px;background:var(--panel)}
+.refbox h2{margin:0 0 16px;font-size:22px}
+.refghost{position:relative;display:grid;gap:12px;padding:10px 10px 30px;border-radius:12px;background:rgba(0,0,0,.18);min-height:320px}
+.rg-row{display:flex;align-items:center;gap:14px;padding:10px 12px;opacity:.22}
+.rg-row i{width:42px;height:42px;border-radius:50%;background:var(--panel-4)}
+.rg-row div{display:grid;gap:8px}.rg-row u{display:block;height:10px;border-radius:5px;background:var(--panel-4)}
+.rg-empty{position:absolute;inset:0;display:grid;place-content:center;justify-items:center;gap:8px;text-align:center}
+.rg-empty b{font-size:17px}.rg-empty small{color:var(--text-2);font-size:13.5px;max-width:300px}.rg-empty .btn{margin-top:10px}
+.refside{display:grid;gap:10px}
+.rs-l{color:var(--text-2);font-size:13.5px;font-weight:600}.rs-h{color:var(--text-2);font-size:13px}
+.reflink2{display:flex;align-items:center;gap:12px;padding:14px 14px 14px 16px;border-radius:14px;background:var(--panel);box-shadow:inset 0 0 0 1.5px rgba(0,152,254,.45)}
+.reflink2>svg{width:26px;height:26px;color:var(--blue);flex:none}
+.reflink2 div{display:grid;gap:2px;flex:1;min-width:0}.reflink2 b{font-size:15px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.reflink2 span{color:var(--text-2);font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.refhow{display:grid;gap:12px;padding:18px 18px 20px;border-radius:14px;background:var(--panel);margin-top:6px}
+.rh-row{display:flex;gap:12px;align-items:flex-start}
+.rh-row>span{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--panel-3);color:var(--text-2)}.rh-row svg{width:16px;height:16px}
+.rh-row b{display:block;font-size:14.5px}.rh-row small{color:var(--text-2);font-size:13px}
+.reftiers{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.rtier{display:grid;justify-items:center;gap:2px;padding:12px 6px;border-radius:12px;background:var(--panel-3);color:var(--text-2);text-align:center}
+.rtier small{font-size:12px;font-weight:700}.rtier b{font-size:15px;color:var(--text)}
+.rtier.next{background:rgba(233,201,135,.14);box-shadow:inset 0 0 0 1.5px rgba(233,201,135,.45)}.rtier.next b{color:var(--gold)}
+@media (max-width:1280px){.refcols{grid-template-columns:1fr}}
+@media (max-width:860px){
+  .refhero{min-height:0;padding:26px 20px}.rh-t h1{font-size:24px}
+  .refstats{grid-template-columns:1fr;gap:10px}.rst{padding:16px}.rst b{font-size:24px}
+  .refbox{padding:16px}.refghost{min-height:260px}.rg-empty .btn{font-size:14px;padding:0 16px}
+  .mref .sec-h h2{font-size:17px}
+}
 /* ── Club ── */
 .clubhero{position:relative;overflow:hidden;display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;padding:36px 40px;border-radius:18px;background:var(--panel)}
 .clubhero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 120% at 100% 50%,rgba(0,152,254,.18),transparent 70%),linear-gradient(115deg,transparent 60%,rgba(255,255,255,.03) 60% 66%,transparent 66%)}
@@ -1002,10 +1102,11 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       <a href="#tours" data-v="tours"><svg class="i o"><use href="#i-cup"/></svg><svg class="i s"><use href="#i-cup-s"/></svg><span class="lb">Tournaments</span><svg class="i ch"><use href="#i-r"/></svg></a>
     </nav>
     <nav class="grp">
-      <a href="#" data-soon="Bonus Hub"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">Bonus Hub</span><span class="soon">Soon</span></a>
+      <a href="#bonus" data-v="bonus"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">Bonuses</span></a>
     </nav>
     <nav class="grp">
       <a href="#club" data-v="club"><svg class="i o"><use href="#i-crown"/></svg><svg class="i s"><use href="#i-crown-s"/></svg><span class="lb">Club</span></a>
+      <a href="#ref" data-v="ref"><svg class="i o"><use href="#i-user"/></svg><svg class="i s"><use href="#i-user"/></svg><span class="lb">Refer a friend</span></a>
       <a href="#vip" data-v="vip"><svg class="i o"><use href="#i-gift"/></svg><svg class="i s"><use href="#i-gift-s"/></svg><span class="lb">VIP Center</span></a>
       <a href="#board" data-v="board"><svg class="i o"><use href="#i-board"/></svg><svg class="i s"><use href="#i-board-s"/></svg><span class="lb">Leaderboard</span></a>
       <a href="#career" data-v="career"><svg class="i o"><use href="#i-chart"/></svg><svg class="i s"><use href="#i-chart-s"/></svg><span class="lb">Career</span></a>
@@ -1276,7 +1377,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-cup-s"/></svg>All tournaments</h2></div>' +
       '<div class="tgrid all">' + TOURS.map(tourCard).join('') + '</div></div>';
   }
-  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard, career:vCareer, vip:vVip, club:vClub };
+  var VIEWS = { home:vHome, holdem:vHoldem, spin:vSpin, tours:vTours, board:vBoard, career:vCareer, vip:vVip, club:vClub, ref:vRef, bonus:vBonus };
 
 
   /* ── Motion helpers ── */
@@ -1377,7 +1478,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' +
       modeTiles().replace('class="modes"', 'class="modes big"') + trustRow() + '</div>';
   }
-  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard, career:mCareer, vip:mVip, club:mClub };
+  var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard, career:mCareer, vip:mVip, club:mClub, ref:mRef, bonus:mBonus };
 
 
   /* ── Mode tiles ── */
@@ -1528,6 +1629,76 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
 
 
 
+
+
+  /* ══ Bonuses ══ */
+  var BON_CLAIMED = {}; try { BON_CLAIMED = JSON.parse(localStorage.getItem('12bet-bclaim') || '{}'); } catch(e){}
+  var BONUSES = [
+    {k:'cashback', t:'Cashback', v:'3%', col:'#2FCB7A', ico:'i-refresh', rows:[['Accrual balance','$0.00'],['Available for claim','$0.00']], cta:'Play to earn cashback', lock:false},
+    {k:'rakeback', t:'Rakeback', v:'10%', col:'#9DD3FF', ico:'i-coin', boost:'50% Boost · Inactive', rows:[['Available for claim','$0.00']], cta:'Play to earn rakeback'},
+    {k:'weekly', t:'Weekly bonus', v:'', col:'#E9C987', ico:'i-clock', bar:[0,150], rows:[['Available for claim','$0.00']], cta:'Fulfill the rake requirement', lock:true},
+    {k:'welcome', t:'Welcome bonus', v:'100%', col:'#0098FE', ico:'i-gift-s', rows:[['Max bonus','$600.00'],['Released per $5 rake','$5.00']], cta:'Claim', soon:'Deposit', act:true},
+    {k:'reload', t:'Friday reload', v:'50%', col:'#B9A6FF', ico:'i-chart-s', rows:[['Max bonus','$200.00'],['Next window','Fri 00:00']], cta:'Available on Friday', lock:true},
+    {k:'tickets', t:'Free MTT tickets', v:'', col:'#E8475B', ico:'i-cup-s', bar:[0,100], barl:'Hands to unlock', rows:[['Available tickets','0']], cta:'Play 100 hands to unlock', lock:true}
+  ];
+  function bonusCard(b){
+    var cta = b.act ? '<button type="button" class="btn btn-blue" data-soon="' + b.soon + '">' + b.cta + '</button>' : '<span class="bon-dis">' + (b.lock ? '<svg class="i"><use href="#i-lock"/></svg>' : '') + b.cta + '</span>';
+    return '<div class="bon" style="--bc:' + b.col + '"><button type="button" class="bon-info ibtn" data-soon="' + b.t + ' terms">i</button>' +
+      '<span class="bon-i"><svg class="i"><use href="#' + b.ico + '"/></svg></span>' +
+      '<h3>' + b.t + (b.v ? ' <em class="num">' + b.v + '</em>' : '') + '</h3>' +
+      (b.boost ? '<div class="bon-boost"><svg class="i"><use href="#i-spin-s"/></svg>' + b.boost + '</div>' : '') +
+      (b.bar ? '<div class="bon-row"><span>' + (b.barl || 'Rake to unlock') + '</span><b class="num">' + (b.barl ? b.bar[0] : '$' + b.bar[0].toFixed(2)) + ' <small>/ ' + (b.barl ? b.bar[1] : '$' + b.bar[1].toFixed(2)) + '</small></b></div><i class="vbar"><u style="width:' + Math.max(1.5, b.bar[0] / b.bar[1] * 100) + '%"></u></i>' : '') +
+      b.rows.map(function(r){ return '<div class="bon-row"><span>' + r[0] + '</span><b class="num">' + r[1] + '</b></div>'; }).join('') +
+      '<div class="bon-f">' + cta + '</div></div>';
+  }
+  function calRow(){
+    var d = new Date(), out = '', k0 = ymd(d);
+    var av = BON_CLAIMED[k0] ? 0 : 0.5;
+    out += '<div class="cal-av"><span class="cal-art"><svg class="i"><use href="#i-gift-s"/></svg></span><div><small>Available bonus</small><b class="num">$' + av.toFixed(2) + '</b></div><button type="button" class="btn btn-blue" data-cal' + (av ? '' : ' disabled') + '>' + (av ? 'Claim' : 'Claimed') + '</button></div>';
+    for (var i = -2; i <= 4; i++) {
+      var x = new Date(d); x.setDate(d.getDate() + i); var k = ymd(x);
+      var lab = x.toLocaleDateString('en-GB', {month:'short'}) + ' · ' + x.toLocaleDateString('en-GB', {weekday:'short'});
+      var st = BON_CLAIMED[k] ? 'Claimed' : i === 0 ? '$0.50 daily' : i < 0 ? 'Missed' : i === 4 ? '$2.00 streak' : 'No bonus';
+      out += '<div class="cal-d' + (i === 0 ? ' now' : '') + (i < 0 ? ' past' : '') + (BON_CLAIMED[k] ? ' done' : '') + '"><small>' + lab + '</small><b class="num">' + x.getDate() + '</b><span>' + st + '</span></div>';
+    }
+    return '<div class="cal">' + out + '</div>';
+  }
+  function vBonus(){
+    var total = Object.keys(BON_CLAIMED).length * 0.5;
+    return '<div class="view">' +
+      '<div class="bontop"><div class="bprog"><div class="bp-h"><b>Your progress</b><span>Guest · <span class="num">ID 120344</span></span></div>' +
+          '<div class="bp-v"><b class="num"><em>0</em> / 800</b><span class="num">0%</span></div><i class="vbar"><u style="width:1.5%"></u></i>' +
+          '<div class="bp-l"><span>' + vipGem(VIP_TIERS[0].c, VIP_TIERS[0].c2, 22) + 'Bronze I</span><span>' + vipGem(VIP_TIERS[0].c, VIP_TIERS[0].c2, 22) + 'Bronze II</span></div>' +
+          '<a class="bp-all" href="#vip">All ranks <svg class="i"><use href="#i-r"/></svg></a></div>' +
+        '<div class="bside"><div class="bst g"><small>Total bonuses</small><b class="num">$' + total.toFixed(2) + '</b><a class="ibtn" href="#career"><svg class="i"><use href="#i-r"/></svg></a><span class="bst-art">' + vipGem('#2FCB7A', '#0F6B3A', 86) + '</span></div>' +
+          '<div class="bst b"><small>Rake statistics</small><b class="num">$0.00</b><a class="ibtn" href="#career"><svg class="i"><use href="#i-r"/></svg></a><span class="bst-art"><svg class="i"><use href="#i-chart-s"/></svg></span></div>' +
+          '<form class="promo" data-promo><svg class="i"><use href="#i-gift"/></svg><input type="text" placeholder="Promo code" autocomplete="off"><button type="submit" class="btn btn-dark">Apply</button></form></div></div>' +
+      '<div class="bonwrap"><div class="sec-h"><h2>Poker bonuses</h2><div class="sp"></div><button type="button" class="btn btn-blue" data-soon="Claim all">Claim all</button></div>' +
+        '<div class="bons">' + BONUSES.map(bonusCard).join('') + '</div></div>' +
+      '<div class="sec-h"><h2><svg class="hi"><use href="#i-clock"/></svg>Calendar</h2><div class="sp"></div><a class="btn btn-dark" href="#" data-soon="Full calendar">Full calendar</a></div>' + calRow() +
+      '<div class="refcta"><div><b>Refer a friend</b><small>Earn 20% of your friends\' rake, forever.</small></div><a class="btn btn-blue" href="#ref">Get your link</a></div>' +
+    '</div>';
+  }
+  function mBonus(){ return vBonus().replace('class="view"', 'class="view mob mbonus"'); }
+  /* ══ Referral ══ */
+  var REF_CODE = 'VLAD12X';
+  var REF_LINK = 'https://twelve12bet.vercel.app/?ref=' + REF_CODE;
+  var REF_TIERS = [[1,'$5'],[5,'$30'],[10,'$75'],[25,'$220'],[50,'$500']];
+  function copyText(s){ try { navigator.clipboard.writeText(s); } catch(e){} toast('Copied'); haptic(); }
+  function vRef(){
+    var ghost = '<div class="rg-row"><i></i><div><u style="width:120px"></u><u style="width:70px"></u></div><u style="width:60px;margin-left:auto"></u></div>';
+    return '<div class="view">' +
+      '<div class="refhero"><div class="rh-t"><span class="rh-k">Invite friends</span><h1>They play. You earn.<br>On every hand.</h1><span class="rh-pill"><i></i>Join <b class="num">27,325</b> players already earning</span></div><div class="rh-bg"></div></div>' +
+      '<div class="refstats">' + [['Link clicks','0','All-time clicks','i-arrow'],['Referrals','0','Your first referral unlocks earnings','i-user'],['Earnings','$0','You start earning as soon as your first referral plays a hand','i-coin']].map(function(x){ return '<div class="rst"><div class="rst-h"><small>' + x[0] + '</small><svg class="i"><use href="#' + x[3] + '"/></svg></div><b class="num">' + x[1] + '</b><span>' + x[2] + '</span></div>'; }).join('') + '</div>' +
+      '<div class="refcols"><div class="refbox"><h2>Your referrals</h2><div class="refghost">' + ghost + ghost + ghost + '<div class="rg-empty"><b>No referrals yet</b><small>Invite friends and earn on every hand they play.</small><button type="button" class="btn btn-blue btn-lg" data-copy="' + REF_LINK + '">Share your referral link</button></div></div></div>' +
+        '<div class="refside"><small class="rs-l">Your referral link</small><div class="reflink2"><svg class="i"><use href="#i-arrow"/></svg><div><b>Share your referral link</b><span class="num">' + REF_LINK.replace('https://','') + '</span></div><button type="button" class="btn btn-blue" data-copy="' + REF_LINK + '">Share</button></div><small class="rs-h">Invite your first friend and start earning</small>' +
+          '<div class="refhow"><small class="rs-l">How it works</small>' + [['i-arrow','Share your link','Send it to friends any way you like'],['i-user','Players sign up & play','They create an account and start playing'],['i-coin','You earn on every hand','20% of their rake, paid daily, forever']].map(function(s){ return '<div class="rh-row"><span><svg class="i"><use href="#' + s[0] + '"/></svg></span><div><b>' + s[1] + '</b><small>' + s[2] + '</small></div></div>'; }).join('') + '</div>' +
+          '<div class="refhow"><small class="rs-l">Milestone bonuses</small><div class="reftiers">' + REF_TIERS.map(function(x, i){ return '<div class="rtier' + (i === 0 ? ' next' : '') + '"><small>' + x[0] + '</small><b class="num">' + x[1] + '</b></div>'; }).join('') + '</div></div>' +
+        '</div></div>' +
+    '</div>';
+  }
+  function mRef(){ return vRef().replace('class="view"', 'class="view mob mref"'); }
+
   /* ══ Club ══ */
   var CLUBS = [
     {id:'KV-7731', nm:'Kyiv Sharks', col:'#0098FE', mem:1284, on:212, tbl:14, un:'East Union', stakes:'0.5/1 – 5/10', lang:'UA', feat:true},
@@ -1627,6 +1798,8 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
       '<div class="sk-row" style="justify-content:space-between"><div class="sk ln" style="width:320px;height:18px"></div><div class="sk-row"><div class="sk pill" style="width:104px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:40px;height:40px"></div><div class="sk pill" style="width:72px;height:40px"></div></div></div>' + skMT(3); },
     spin: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div><div class="sk" style="padding:18px;display:grid;gap:16px;background:var(--panel)"><div class="sk ln" style="width:140px;height:20px;background:var(--panel-2)"></div><div class="sk pill" style="width:220px;height:42px;background:var(--panel-2)"></div>' + skSpin(6).replace(/class="sk"/g,'class="sk" style="background:var(--panel-2)"').replace('style="background:var(--panel-2)" style="','style="background:var(--panel-2);') + '</div>'; },
     tours: function(){ return '<div class="sk" style="height:42px;border-radius:var(--rs)"></div>' + skBanners() + skH(190) + skTC(4) + skTC(4); },
+    bonus: function(){ return '<div class="sk" style="height:250px;border-radius:18px"></div>' + skH(120) + '<div class="sk-grid3"><div class="sk" style="height:230px"></div><div class="sk" style="height:230px"></div><div class="sk" style="height:230px"></div></div>'; },
+    ref: function(){ return '<div class="sk" style="height:260px;border-radius:18px"></div><div class="sk-grid4"><div class="sk" style="height:96px"></div><div class="sk" style="height:96px"></div><div class="sk" style="height:96px"></div><div class="sk" style="height:96px"></div></div>' + skH(120) + '<div class="sk-grid3"><div class="sk" style="height:140px"></div><div class="sk" style="height:140px"></div><div class="sk" style="height:140px"></div></div>'; },
     club: function(){ return '<div class="sk" style="height:220px;border-radius:18px"></div>' + skH(110) + '<div class="sk" style="height:120px"></div>' + skH(140) + '<div class="sk-grid3"><div class="sk" style="height:250px"></div><div class="sk" style="height:250px"></div><div class="sk" style="height:250px"></div></div>'; },
     vip: function(){ return skH(130) + '<div class="vipgrid"><div class="sk" style="height:240px"></div><div class="sk" style="height:240px"></div></div>' + skH(110) + '<div class="sk-grid3"><div class="sk" style="height:190px"></div><div class="sk" style="height:190px"></div><div class="sk" style="height:190px"></div></div>'; },
     career: function(){ var g=''; for (var i=0;i<7;i++) g += '<div class="sk" style="height:' + (i===0?'212':'100') + 'px;border-radius:14px' + (i===0?';grid-row:span 2':'') + '"></div>'; return '<div class="cgrid">' + g + '</div>' + skH(120) + '<div class="sk" style="height:54px;border-radius:12px"></div>'; },
@@ -1704,6 +1877,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
 
   /* ── Events ──────────────────────── */
   document.addEventListener('submit', function(e){
+    if (e.target.matches('[data-promo]')) { e.preventDefault(); var pv = e.target.querySelector('input').value.trim(); toast(pv ? 'Promo code ' + pv.toUpperCase() + ' is not valid' : 'Enter a promo code'); return; }
     if (e.target.matches('[data-join]')) { e.preventDefault(); var v = e.target.querySelector('input').value.trim().toUpperCase(); toast(v ? 'Club ' + v + ' — joining is coming soon' : 'Enter a club ID'); }
   });
   document.addEventListener('click', function(e){
@@ -1725,6 +1899,8 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
     if ((t = e.target.closest('[data-bb]'))) { e.preventDefault(); bstate.bb = t.dataset.bb; haptic(); route(); return; }
     if ((t = e.target.closest('[data-bday]'))) { bstate.day = (bstate.day + 1) % 7; haptic(); route(); return; }
     if ((t = e.target.closest('[data-crange]'))) { cstate.range = +t.dataset.crange; haptic(); route(); return; }
+    if ((t = e.target.closest('[data-cal]'))) { var k = ymd(new Date()); if (!BON_CLAIMED[k]) { BON_CLAIMED[k] = 1; try { localStorage.setItem('12bet-bclaim', JSON.stringify(BON_CLAIMED)); } catch(x){} toast('+$0.50 added to your balance'); haptic(); route(); } return; }
+    if ((t = e.target.closest('[data-copy]'))) { copyText(t.dataset.copy); return; }
     if ((t = e.target.closest('[data-ctab]'))) { clstate.tab = t.dataset.ctab; haptic(); route(); return; }
     if ((t = e.target.closest('[data-per]'))) { bstate.per = t.dataset.per; haptic(); route(); return; }
     if ((t = e.target.closest('[data-hmode]'))) { state.hmode = t.dataset.hmode; try { localStorage.setItem('12bet-hmode', state.hmode); } catch(_){} haptic(); var y = scrollY; route(); window.scrollTo(0, y); return; }
