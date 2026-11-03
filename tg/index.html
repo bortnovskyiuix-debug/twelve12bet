@@ -566,37 +566,28 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 .ch-h .ch-room{min-width:0}
 .card-msg .d .tag{display:inline-flex;margin-top:6px}
 
-/* ── Mode tiles (hover reveals the king) ── */
-.modes{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
-.mode{position:relative;aspect-ratio:1/1.08;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 10px 16px;font-weight:700;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:var(--text);background:var(--panel);box-shadow:inset 0 0 0 1px var(--line);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
-.mode::before{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--c1),var(--c2));opacity:0;transition:opacity .35s var(--ease)}
-.mode::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 50% 100%,rgba(255,255,255,.14),transparent 60%);opacity:0;transition:opacity .35s var(--ease)}
-.mode .ml{position:relative;z-index:3;text-align:center;line-height:1.15;transition:color .3s var(--ease)}
-.mode .ma{position:absolute;z-index:2;left:50%;top:14%;width:58%;aspect-ratio:1;translate:-50% 0;transition:transform .45s var(--spring),opacity .3s var(--ease)}
-.mode .ma svg{width:100%;height:100%;filter:drop-shadow(0 8px 12px rgba(0,0,0,.45))}
-.mode .mk{position:absolute;z-index:1;left:-6%;right:-6%;bottom:-6%;top:auto;height:112%;opacity:0;transform:translateY(22%) scale(.96);transition:transform .5s var(--ease),opacity .4s var(--ease);pointer-events:none}
-.mode .mk img{width:100%;height:100%;object-fit:contain;object-position:50% 100%;filter:drop-shadow(0 10px 16px rgba(0,0,0,.5))}
-.mode:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12),0 16px 30px rgba(0,0,0,.45)}
-.mode:hover::before,.mode:hover::after{opacity:1}
-.mode:hover .mk{opacity:1;transform:translateY(0) scale(1)}
-.mode:hover .ma{transform:translate(22%,-8%) rotate(10deg) scale(.82)}
-.mode:hover .ml{color:#fff}
-.mode:active{transform:translateY(0) scale(.985)}
-.m-blue{--c1:#2F55E8;--c2:#1A2E8A}
-.m-green{--c1:#22B06E;--c2:#0F5C3E}
-.m-violet{--c1:#7A49F0;--c2:#3A1E8A}
-.m-purple{--c1:#B034C4;--c2:#4F1468}
-.m-teal{--c1:#2394C4;--c2:#0E4A6C}
-.m-orange{--c1:#F0652A;--c2:#7A2A0E}
+/* ── Mode tiles ── */
+.modes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.mode{position:relative;height:76px;border-radius:14px;overflow:hidden;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 3px 0 var(--c3);transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s var(--ease)}
+.mode::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 120% at 85% 50%,rgba(255,255,255,.14),transparent 60%)}
+.mode:hover{transform:translateY(-2px);filter:brightness(1.08)}
+.mode:active{transform:translateY(1px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 1px 0 var(--c3)}
+.mode .ml{position:relative;z-index:1;max-width:58%;line-height:1.15}
+.mode .ma{position:absolute;right:8px;top:4px;width:66px;height:66px;transition:transform .3s var(--spring)}
+.mode .ma svg{width:100%;height:100%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.mode:hover .ma{transform:translateY(-3px) rotate(-4deg) scale(1.06)}
+.m-blue{--c1:#2A47C8;--c2:#141F63;--c3:#0C1440}
+.m-green{--c1:#1E9A62;--c2:#0E4A33;--c3:#0A3324}
+.m-violet{--c1:#6A3BD6;--c2:#2A1660;--c3:#1C0F44}
+.m-purple{--c1:#9A2BA8;--c2:#3E0F52;--c3:#2A0A38}
+.m-teal{--c1:#1E7FA8;--c2:#0B3650;--c3:#082637}
+.m-orange{--c1:#D8541E;--c2:#5A1E0A;--c3:#3E1407}
 @media (max-width:1280px){.modes{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:860px){
   .modes{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -12px 10px;padding:0 12px}
   .modes::-webkit-scrollbar{display:none}
-  .mode{flex:none;width:124px;aspect-ratio:1/1.08;padding-bottom:12px;font-size:12.5px;border-radius:14px}
-  .mode::before,.mode::after{opacity:1}
-  .mode .ml{color:#fff}
-  .mode .mk{display:none}
-  .mode .ma{top:12%;width:56%}
+  .mode{flex:none;width:148px;height:62px;padding:0 12px;font-size:12.5px;border-radius:12px}
+  .mode .ma{width:52px;height:52px;right:6px;top:5px}
 }
 
 @media (max-width:860px){
@@ -606,8 +597,10 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .mytour{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 14px;border-radius:12px;background:var(--panel);font-weight:600;font-size:14.5px;color:var(--text)}
   .mytour svg{width:18px;height:18px;color:var(--mute)}
   .modes.big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;overflow:visible}
-  .modes.big .mode{width:auto;aspect-ratio:1/1;font-size:15px;border-radius:16px;padding-bottom:14px}
-  .modes.big .mode .ma{width:50%}
+  .modes.big .mode{width:auto;height:auto;aspect-ratio:1.6/1;align-items:flex-start;padding:14px 14px;font-size:15px;border-radius:16px}
+  .modes.big .mode .ml{max-width:60%;line-height:1.2}
+  .modes.big .mode .ma{width:54%;height:auto;aspect-ratio:1;right:6%;top:auto;bottom:6%}
+  .modes.big .mode::before{background:radial-gradient(ellipse 70% 90% at 70% 70%,rgba(255,255,255,.16),transparent 60%),repeating-linear-gradient(60deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px)}
   .skel .sk-grid3>:nth-child(n+3){display:block}
 }
 
@@ -1160,7 +1153,7 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   function modeTiles(){
     return '<div class="modes">' + MODES.map(function(m){
       var attrs = m.k ? 'href="#' + m.k + '"' : 'href="#" data-soon="' + m.soon + '"';
-      return '<a class="mode ' + m.c + '" ' + attrs + '><span class="mk"><img src="brand/12bet/king.webp" alt="" loading="lazy"/></span><span class="ma">' + MODE_ART[m.art] + '</span><span class="ml">' + m.l + '</span></a>';
+      return '<a class="mode ' + m.c + '" ' + attrs + '><span class="ml">' + m.l + '</span><span class="ma">' + MODE_ART[m.art] + '</span></a>';
     }).join('') + '</div>';
   }
 
