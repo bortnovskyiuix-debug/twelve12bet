@@ -567,27 +567,22 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
 .card-msg .d .tag{display:inline-flex;margin-top:6px}
 
 /* ── Mode tiles ── */
-.modes{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
-.mode{position:relative;height:76px;border-radius:14px;overflow:hidden;display:flex;align-items:center;padding:0 14px;font-weight:700;font-size:14px;letter-spacing:.02em;text-transform:uppercase;color:#fff;background:linear-gradient(135deg,var(--c1),var(--c2));box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 3px 0 var(--c3);transition:transform .2s var(--ease),box-shadow .2s var(--ease),filter .2s var(--ease)}
-.mode::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 120% at 85% 50%,rgba(255,255,255,.14),transparent 60%)}
-.mode:hover{transform:translateY(-2px);filter:brightness(1.08)}
-.mode:active{transform:translateY(1px);box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 1px 0 var(--c3)}
-.mode .ml{position:relative;z-index:1;max-width:58%;line-height:1.15}
-.mode .ma{position:absolute;right:8px;top:4px;width:66px;height:66px;transition:transform .3s var(--spring)}
-.mode .ma svg{width:100%;height:100%;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
-.mode:hover .ma{transform:translateY(-3px) rotate(-4deg) scale(1.06)}
-.m-blue{--c1:#2A47C8;--c2:#141F63;--c3:#0C1440}
-.m-green{--c1:#1E9A62;--c2:#0E4A33;--c3:#0A3324}
-.m-violet{--c1:#6A3BD6;--c2:#2A1660;--c3:#1C0F44}
-.m-purple{--c1:#9A2BA8;--c2:#3E0F52;--c3:#2A0A38}
-.m-teal{--c1:#1E7FA8;--c2:#0B3650;--c3:#082637}
-.m-orange{--c1:#D8541E;--c2:#5A1E0A;--c3:#3E1407}
+.modes{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.mode{position:relative;aspect-ratio:.88;border-radius:18px;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding:0 10px 18px;background:rgba(10,18,31,.5);box-shadow:inset 0 0 0 1.5px var(--line-2);color:#fff;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .35s var(--ease);-webkit-tap-highlight-color:transparent}
+.mode .mi{position:absolute;left:50%;top:40%;width:52%;height:auto;max-height:46%;object-fit:contain;transform:translate(-50%,-50%);transition:transform .45s var(--spring),opacity .3s var(--ease);filter:drop-shadow(0 10px 16px rgba(0,0,0,.45))}
+.mode .mh{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.08);transition:opacity .35s var(--ease),transform .6s var(--ease)}
+.mode .ml{position:relative;z-index:1;font-weight:800;font-style:italic;font-size:17px;letter-spacing:.01em;text-transform:uppercase;line-height:1;text-align:center;transition:opacity .25s var(--ease),transform .35s var(--ease)}
+.mode:hover,.mode:focus-visible{transform:translateY(-6px);box-shadow:0 0 0 1.5px rgba(0,152,254,.7),0 22px 40px -14px rgba(0,152,254,.55);background:#0B5FD1}
+.mode:hover .mh,.mode:focus-visible .mh{opacity:1;transform:scale(1)}
+.mode:hover .mi,.mode:focus-visible .mi{opacity:0;transform:translate(-50%,-62%) scale(.85)}
+.mode:hover .ml,.mode:focus-visible .ml{opacity:0;transform:translateY(6px)}
+.mode:active{transform:translateY(-3px) scale(.98)}
 @media (max-width:1280px){.modes{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:860px){
-  .modes{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:0 -12px 10px;padding:0 12px}
+  .modes{display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;margin:0 -12px 10px;padding:0 12px}
   .modes::-webkit-scrollbar{display:none}
-  .mode{flex:none;width:148px;height:62px;padding:0 12px;font-size:12.5px;border-radius:12px}
-  .mode .ma{width:52px;height:52px;right:6px;top:5px}
+  .mode{flex:none;width:118px;border-radius:14px;padding-bottom:12px}
+  .mode .ml{font-size:13px}
 }
 
 @media (max-width:860px){
@@ -596,11 +591,9 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .mhome .dots{margin:4px 0 2px}
   .mytour{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 14px;border-radius:12px;background:var(--panel);font-weight:600;font-size:14.5px;color:var(--text)}
   .mytour svg{width:18px;height:18px;color:var(--mute)}
-  .modes.big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;overflow:visible}
-  .modes.big .mode{width:auto;height:auto;aspect-ratio:1.6/1;align-items:flex-start;padding:14px 14px;font-size:15px;border-radius:16px}
-  .modes.big .mode .ml{max-width:60%;line-height:1.2}
-  .modes.big .mode .ma{width:54%;height:auto;aspect-ratio:1;right:6%;top:auto;bottom:6%}
-  .modes.big .mode::before{background:radial-gradient(ellipse 70% 90% at 70% 70%,rgba(255,255,255,.16),transparent 60%),repeating-linear-gradient(60deg,rgba(255,255,255,.035) 0 2px,transparent 2px 14px)}
+  .modes.big{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0;padding:0;overflow:visible}
+  .modes.big .mode{width:auto;border-radius:16px}
+  .modes.big .mode .ml{font-size:14px}
   .skel .sk-grid3>:nth-child(n+3){display:block}
 }
 
@@ -1483,25 +1476,17 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
 
   /* ── Mode tiles ── */
   var MODES = [
-    {k:'tours',  l:'MTT',        c:'m-blue',   art:'cup'},
-    {k:'holdem', l:'NLHE',       c:'m-green',  art:'cards'},
-    {k:'spin',   l:'Spin & Go',  c:'m-violet', art:'flash'},
-    {k:'',       l:'Flash',      c:'m-purple', art:'rush',  soon:'Flash poker'},
-    {k:'',       l:'PLO',        c:'m-teal',   art:'plo',   soon:'Pot-limit Omaha'},
-    {k:'',       l:'Short Deck', c:'m-orange', art:'six',   soon:'Short Deck'}
+    {k:'tours',  l:'MTT',        a:'mtt'},
+    {k:'holdem', l:'NLHE',       a:'nlhe'},
+    {k:'spin',   l:'Spin & Go',  a:'spin'},
+    {k:'',       l:'Flash',      a:'flash', soon:'Flash poker'},
+    {k:'',       l:'PLO',        a:'plo',   soon:'Pot-limit Omaha'},
+    {k:'',       l:'Short Deck', a:'short', soon:'Short Deck'}
   ];
-  var MODE_ART = {
-    cup:   '<svg viewBox="0 0 64 64"><defs><linearGradient id="mg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF1CF"/><stop offset=".6" stop-color="#E9C987"/><stop offset="1" stop-color="#A9813F"/></linearGradient></defs><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><path d="M20 8h24v14a12 12 0 0 1-24 0z" fill="url(#mg)"/><path d="M20 12h-7v3a7 7 0 0 0 7 7M44 12h7v3a7 7 0 0 1-7 7" fill="none" stroke="url(#mg)" stroke-width="3"/><rect x="29" y="33" width="6" height="8" fill="url(#mg)"/><rect x="22" y="41" width="20" height="5" rx="1.5" fill="url(#mg)"/><rect x="19" y="46" width="26" height="6" rx="2" fill="#2A2414"/></svg>',
-    cards: '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><g transform="translate(18 10) rotate(-12)"><rect width="24" height="34" rx="3" fill="#fff"/><text x="4" y="12" font-family="Montserrat,Arial" font-weight="700" font-size="10" fill="#0C1F30">Q</text><text x="11" y="29" font-family="Arial" font-size="13" fill="#0C1F30">♠</text></g><g transform="translate(32 8) rotate(8)"><rect width="24" height="34" rx="3" fill="#fff"/><text x="4" y="12" font-family="Montserrat,Arial" font-weight="700" font-size="10" fill="#0C1F30">A</text><text x="11" y="29" font-family="Arial" font-size="13" fill="#0C1F30">♠</text></g></svg>',
-    flash: '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><path d="M36 6 16 36h14l-4 22 22-32H34z" fill="#CDB4FF"/><path d="M36 6 24 26h10l-6 18 16-24H32z" fill="#fff" opacity=".55"/></svg>',
-    rush:  '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><path d="M30 8 12 34h14l-6 22 22-30H30z" fill="#F3C7FF"/><path d="M44 14 36 26h8l-4 12 12-16h-8z" fill="#fff" opacity=".7"/></svg>',
-    plo:   '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><g transform="translate(8 14) rotate(-16)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#0C1F30">K</text></g><g transform="translate(20 10) rotate(-6)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#D7263D">A</text></g><g transform="translate(32 9) rotate(6)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#0C1F30">Q</text></g><g transform="translate(44 12) rotate(16)"><rect width="20" height="28" rx="2.5" fill="#fff"/><text x="4" y="12" font-family="Arial" font-size="11" fill="#D7263D">K</text></g></svg>',
-    six:   '<svg viewBox="0 0 64 64"><ellipse cx="32" cy="54" rx="22" ry="6" fill="rgba(0,0,0,.35)"/><text x="32" y="46" text-anchor="middle" font-family="Montserrat,Arial" font-weight="800" font-size="44" fill="#FFD8A8">6</text><text x="32" y="12" text-anchor="middle" font-family="Montserrat,Arial" font-weight="700" font-size="7" letter-spacing="1.5" fill="#FFD8A8">HOLD\'EM</text></svg>'
-  };
   function modeTiles(){
     return '<div class="modes">' + MODES.map(function(m){
       var attrs = m.k ? 'href="#' + m.k + '"' : 'href="#" data-soon="' + m.soon + '"';
-      return '<a class="mode ' + m.c + '" ' + attrs + '><span class="ml">' + m.l + '</span><span class="ma">' + MODE_ART[m.art] + '</span></a>';
+      return '<a class="mode" ' + attrs + '><img class="mh" src="brand/12bet/modes/' + m.a + '-hover.webp" alt="" loading="lazy"><img class="mi" src="brand/12bet/modes/' + m.a + '-icon.png" alt=""><span class="ml">' + m.l + '</span></a>';
     }).join('') + '</div>';
   }
 
