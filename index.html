@@ -276,7 +276,7 @@ html,body{overflow-x:clip}
 .mt:hover .seat.empty .av{border-color:rgba(0,152,254,.6);color:var(--blue);background:rgba(0,152,254,.08)}
 
 /* reveal on scroll / view change */
-.rv{opacity:0;transform:translateY(10px)}
+.rv{opacity:0;transform:translateY(8px)}
 .rv.in{opacity:1;transform:none;transition:opacity .5s var(--ease),transform .5s var(--ease);transition-delay:var(--d,0ms)}
 .tcard.rv.in,.mt.rv.in,.scard.rv.in,.slide.rv.in{transition:opacity .5s var(--ease) var(--d,0ms),transform .5s var(--ease) var(--d,0ms),background-color .3s var(--ease),box-shadow .3s var(--ease)}
 
@@ -378,6 +378,12 @@ html,body{overflow-x:clip}
 
 /* ══════════ Mobile lobby (BC Poker pattern) ══════════ */
 .m-only{display:none}
+.btn[disabled]{opacity:.4;cursor:not-allowed;box-shadow:none;pointer-events:none}
+.mbal{display:flex;align-items:center;gap:6px;height:40px;padding:0 10px 0 6px;border-radius:999px;background:var(--panel);font-weight:700;font-size:14px;cursor:pointer}
+.mbal .coin{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#4A3610;display:grid;place-items:center;font-size:11px;font-style:normal;font-weight:700}
+.mbal svg{width:14px;height:14px;color:var(--mute)}
+.mbal .demo{font-style:normal;font-size:10px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--gold);background:rgba(233,201,135,.12);padding:2px 6px;border-radius:6px}
+@media (max-width:860px){.mbal{height:36px}}
 @media (max-width:860px){
   .m-only{display:block}
   .d-only{display:none!important}
@@ -472,9 +478,7 @@ html,body{overflow-x:clip}
   /* header */
   .hdr{gap:8px}
   .hdr .play,.hdr .reg{display:none}
-  .mbal{display:flex;align-items:center;gap:6px;height:36px;padding:0 10px 0 6px;border-radius:999px;background:var(--panel);font-weight:700;font-size:14px;margin-left:auto}
-  .mbal .coin{width:22px;height:22px;border-radius:50%;background:var(--gold);color:#4A3610;display:grid;place-items:center;font-size:11px;font-style:normal;font-weight:700}
-  .mbal svg{width:14px;height:14px;color:var(--mute)}
+  .mbal{margin-left:auto}
   .mava{width:36px;height:36px;border-radius:50%;overflow:hidden;background:#1B3550;flex:none}
   .mava img{width:100%;height:100%;display:block}
   /* filter bar */
@@ -607,6 +611,17 @@ body.chat-open .chat{opacity:1;pointer-events:auto}
   .mhome .dots{margin:4px 0 2px}
   .mytour{display:flex;align-items:center;justify-content:space-between;height:52px;padding:0 14px;border-radius:12px;background:var(--panel);font-weight:600;font-size:14.5px;color:var(--text)}
   .mytour svg{width:18px;height:18px;color:var(--mute)}
+  .msec{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+  .msec h2{display:flex;align-items:center;gap:8px;margin:0;font-size:17px;font-weight:600}
+  .msec h2 .hi{width:20px;height:20px;color:var(--blue)}
+  .msec a{display:flex;align-items:center;gap:2px;height:40px;padding:0 4px 0 12px;font-size:13.5px;font-weight:600;color:var(--text-2)}
+  .msec a svg{width:16px;height:16px}
+  .mscroll{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 12px;scrollbar-width:none;margin:0 -12px;padding:0 12px}
+  .mscroll::-webkit-scrollbar{display:none}
+  .mscroll>*{flex:none;width:80%;scroll-snap-align:start}
+  .mscroll .scard{aspect-ratio:1.7/1!important;height:auto!important}
+  .mscroll .scard .win{top:44%}
+  .mscroll .scard .win b{font-size:24px}
   .modes.big{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0;padding:0;overflow:visible}
   .modes.big .mode{width:auto;height:76px;border-radius:14px}
   .modes.big .mode .ml{font-size:13.5px}
@@ -993,7 +1008,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   .ev{display:none}
   .car-track{grid-auto-columns:100%}
   .car-arrow{display:none}
-  .tgrid{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:0 -12px;padding:0 12px}
+  .tgrid{display:grid;grid-auto-flow:column;grid-template-columns:none;grid-auto-columns:78%;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 12px;scrollbar-width:none;margin:0 -12px;padding:0 12px}
   .tgrid::-webkit-scrollbar{display:none}
   .tgrid .tcard{scroll-snap-align:center}
   .tgrid .tcard:nth-child(n+4){display:flex}
@@ -1094,10 +1109,10 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   <a class="logo" href="#home" aria-label="12xBet Poker"><img src="brand/12bet/logo.svg" alt="12xBet"/></a></div>
   <form class="srch" id="srchf" role="search" autocomplete="off"><svg class="i"><use href="#i-search"/></svg><input id="q" type="text" placeholder="Search" aria-label="Search"/><button type="button" class="clr" id="qclr" aria-label="Clear"><svg class="i"><use href="#i-x"/></svg></button></form>
   <div class="sp"></div>
+  <span class="mbal" data-soon="Wallet" title="Demo balance — play money"><i class="coin">$</i><b class="num">800</b><em class="demo">Demo</em><svg class="i"><use href="#i-chevd"/></svg></span>
   <a class="btn btn-dark reg" href="#" data-soon="Registration">Register</a>
   <a class="btn btn-blue play" href="play.html" data-join>Play demo</a>
   <button class="sq d-only chatbtn" id="chatbtn" type="button" aria-label="Chat"><svg class="i"><use href="#i-chat-o"/></svg><span class="badge" id="chatbadge">0</span></button>
-  <span class="mbal m-only" data-soon="Wallet"><i class="coin">$</i><b class="num">800</b><svg class="i"><use href="#i-chevd"/></svg></span>
   <a class="mava m-only" href="#" data-soon="Profile" aria-label="Profile"><img src="ava/hero.svg?v=2" alt=""/></a>
 </header>
 <div class="drawer-bg" id="drawerbg"></div>
@@ -1393,13 +1408,13 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
   var io = ('IntersectionObserver' in window) ? new IntersectionObserver(function(es){
     es.forEach(function(e){ if (e.isIntersecting){ var el = e.target; el.classList.add('in'); io.unobserve(el);
       setTimeout(function(){ el.classList.remove('rv','in'); el.style.removeProperty('--d'); }, 560 + (parseInt(el.style.getPropertyValue('--d')) || 0)); } });
-  }, {rootMargin:'0px 0px -6% 0px', threshold:.08}) : null;
+  }, {rootMargin:'0px 0px 20% 0px', threshold:0}) : null;
   function reveal(root){
     var groups = root.querySelectorAll('.sec-h, .stake-h, .notice, .jstrip, .frow, .car, .tgrid, .tables, .sgrid, .tlist, .sbox');
     groups.forEach(function(g){
       var kids = g.matches('.tgrid, .tables, .sgrid, .tlist') ? g.children : [g];
       Array.prototype.forEach.call(kids, function(el, i){
-        el.classList.add('rv'); el.style.setProperty('--d', Math.min(i, 6) * 60 + 'ms');
+        el.classList.add('rv'); el.style.setProperty('--d', Math.min(i, 4) * 40 + 'ms');
         if (io) io.observe(el); else el.classList.add('in');
       });
     });
@@ -1484,8 +1499,19 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
     var n = Object.keys(reg).filter(function(k){ return reg[k]; }).length;
     return '<div class="view mob mhome">' +
       '<div class="car"><div class="car-track">' + BANNERS.map(slide).join('') + '</div></div><div class="dots" id="dots"></div>' +
-      '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' +
-      modeTiles().replace('class="modes"', 'class="modes big"') + trustRow() + '</div>';
+      (n ? '<a class="mytour" href="#tours"><span>My Tourneys (<b class="num">' + n + '</b>)</span><svg class="i"><use href="#i-r"/></svg></a>' : '') +
+      modeTiles().replace('class="modes"', 'class="modes big"') +
+      mSec('Hot tables', 'cards-s', '#holdem') +
+      '<div class="mlist">' + TABLES.low.concat(TABLES.micro).filter(function(t){ var f = t.seats.filter(Boolean).length; return f > 0 && f < 6; }).slice(0,3).map(mTableRow).join('') + '</div>' +
+      mSec('Starting soon', 'cup-s', '#tours') +
+      '<div class="mlist">' + TOURS.map(function(tr,i){ return [tr,i]; }).sort(function(a,b){ return a[0].in - b[0].in; }).slice(0,3).map(function(x){ return mTourRow(x[0], x[1]); }).join('') + '</div>' +
+      mSec('Spin &amp; Go', 'spin-s', '#spin') +
+      '<div class="mscroll">' + SPINS.slice(0,3).map(spinCard).join('') + '</div>' +
+      mSec('Daily rankings', 'board-s', '#board') + boardTable(boardRows(), 3) +
+      trustRow() + '</div>';
+  }
+  function mSec(t, ic, href){
+    return '<div class="msec"><h2><svg class="hi"><use href="#i-' + ic + '"/></svg>' + t + '</h2><a href="' + href + '">All<svg class="i"><use href="#i-r"/></svg></a></div>';
   }
   var MVIEWS = { home:mHome, holdem:mHoldem, tours:mTours, spin:mSpin, board:mBoard, career:mCareer, vip:mVip, club:mClub, ref:mRef, bonus:mBonus };
 
@@ -1674,7 +1700,7 @@ a.ctile:hover{background:var(--panel-2);transform:translateY(-2px)}
         '<div class="bside"><div class="bst g"><small>Total bonuses</small><b class="num">$' + total.toFixed(2) + '</b><a class="ibtn" href="#career"><svg class="i"><use href="#i-r"/></svg></a><span class="bst-art">' + vipGem('#2FCB7A', '#0F6B3A', 86) + '</span></div>' +
           '<div class="bst b"><small>Rake statistics</small><b class="num">$0.00</b><a class="ibtn" href="#career"><svg class="i"><use href="#i-r"/></svg></a><span class="bst-art"><svg class="i"><use href="#i-chart-s"/></svg></span></div>' +
           '<form class="promo" data-promo><svg class="i"><use href="#i-gift"/></svg><input type="text" placeholder="Promo code" autocomplete="off"><button type="submit" class="btn btn-dark">Apply</button></form></div></div>' +
-      '<div class="bonwrap"><div class="sec-h"><h2>Poker bonuses</h2><div class="sp"></div><button type="button" class="btn btn-blue" data-soon="Claim all">Claim all</button></div>' +
+      '<div class="bonwrap"><div class="sec-h"><h2>Poker bonuses</h2><div class="sp"></div><button type="button" class="btn btn-blue" disabled title="Nothing to claim yet — play to earn cashback & rakeback">Claim all</button></div>' +
         '<div class="bons">' + BONUSES.map(bonusCard).join('') + '</div></div>' +
       '<div class="sec-h"><h2><svg class="hi"><use href="#i-clock"/></svg>Calendar</h2><div class="sp"></div><a class="btn btn-dark" href="#" data-soon="Full calendar">Full calendar</a></div>' + calRow() +
       '<div class="refcta"><div><b>Refer a friend</b><small>Earn 20% of your friends\' rake, forever.</small></div><a class="btn btn-blue" href="#ref">Get your link</a></div>' +
