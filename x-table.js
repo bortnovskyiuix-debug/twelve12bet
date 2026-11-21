@@ -116,6 +116,12 @@
 
   /* ── Skin: Neon ── */
   var SKIN_KEY = 'x-skin';
+  /* ?skin=neon / ?skin=classic in the link picks the skin (and remembers it), e.g. for a separate bot button */
+  (function () {
+    var m = /[?&#]skin=(neon|classic|off)\b/.exec(location.search + location.hash);
+    if (m) try { localStorage.setItem(SKIN_KEY, m[1] === 'neon' ? 'neon' : 'off'); } catch (e) {}
+    try { if (localStorage.getItem(SKIN_KEY) === 'neon') document.documentElement.setAttribute('data-x-skin', 'neon'); } catch (e) {}
+  })();
   function skinGet() { try { var v = localStorage.getItem(SKIN_KEY); return v == null ? 'off' : v; } catch (e) { return 'off'; } }  /* classic felt is the default; Neon is opt-in */
   function skinSet(v) { try { localStorage.setItem(SKIN_KEY, v); } catch (e) {} skinApply(); }
   function skinApply() {
