@@ -415,3 +415,9 @@ html[data-brand] .opt-tile.on { background: rgba(28, 155, 255, .22) !important; 
 html[data-brand][data-x-skin="neon"] .opt-row:has(.x-skin-tile) .opt-tile:not(.x-skin-tile) { background: none !important; }
 html[data-brand] .x-hand.strong { background: rgba(60, 46, 14, .92); color: #F4DDA6; }
 html[data-brand] .x-hand { box-shadow: none; }
+
+/* Felt mark: logo only, no "Texas Hold'em / Poker" ribbon clutter */
+html[data-brand] .felt-mark .felt-mode, html[data-brand] .felt-mark .felt-ribbon { display: none !important; }
+html[data-brand] .felt-mark { display: grid; place-items: center; opacity: .2 !important; }
+html[data-brand] .felt-mark .felt-brand { width: 190px; height: auto; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark .felt-brand { width: 130px; } }
