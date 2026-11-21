@@ -342,3 +342,6 @@ html[data-brand] .chat-quick button[data-emo] { background-size: 20px 20px; }
   html[data-brand] .seat .emopop .emo-row:first-child button[data-emo] { background-size: 21px 21px; }
   html[data-brand] .seat .emopop .item[data-emo] { background-size: 24px 24px; background-position: 3px center; }
 }
+
+/* Felt: no brand logo, keep only the game banner */
+html[data-brand] .felt-mark .felt-brand { display: none !important; }
