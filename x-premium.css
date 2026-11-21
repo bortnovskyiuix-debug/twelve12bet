@@ -1043,3 +1043,6 @@ html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .25; }
   html[data-brand] .felt-mark { left: auto; right: 11%; translate: 0 0; top: 50%; transform: translateY(-50%); }
   html[data-brand] .felt-mark .felt-brand { width: 160px; }
 }
+/* Board slots: always visible (pre-deal too), no fade-in dance */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table:is(:has(> .deck), :not(:has(> .deck))):not([data-x-dealt]) .board .board-slot,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board.pre-deal .board-slot { opacity: 1 !important; transition: none !important; }
