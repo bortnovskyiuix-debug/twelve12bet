@@ -228,3 +228,100 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x{
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x:hover{background:rgba(255,255,255,.06)}
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x .mx-ico{width:34px;height:34px;padding:7px;border-radius:9px;background:rgba(0,152,254,.14);color:#4FB8FF;flex:none}
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.x-leave .mx-ico,html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.x-leave-all .mx-ico{background:rgba(240,71,91,.14);color:#FF8A97}
+
+/* ── Table UX layer (x-table.js) ─────────────────── */
+/* Big screens: scale the whole stage instead of leaving empty room */
+@media (min-width: 1081px) {
+  html[data-brand] .stage { zoom: var(--x-tz, 1); }
+  /* Bet slider sits over the presets row, Fold / Call stay reachable */
+  html[data-brand] .dock .raise-panel { bottom: 66px; }
+}
+/* Open chat must not cover the right-hand seats */
+@media (min-width: 1081px) and (max-width: 1899px) {
+  html[data-brand] .app:not(.chat-hidden) .main { padding-right: 296px; }
+}
+/* Hotkey caps on the main actions (mouse + keyboard only) */
+@media (hover: hover) and (pointer: fine) {
+  html[data-brand] .dock.my-turn .ma-fold::after,
+  html[data-brand] .dock.my-turn .ma-call::after,
+  html[data-brand] .dock.my-turn .ma-raise::after {
+    position: absolute; top: 7px; right: 8px;
+    min-width: 18px; height: 18px; padding: 0 5px;
+    display: grid; place-items: center;
+    border-radius: 5px; border: 1px solid rgba(255, 255, 255, .22);
+    background: rgba(0, 0, 0, .22);
+    font-size: 10px; font-weight: 700; line-height: 1; letter-spacing: 0;
+    color: rgba(255, 255, 255, .72); pointer-events: none;
+  }
+  html[data-brand] .dock.my-turn .ma-fold::after { content: "F"; }
+  html[data-brand] .dock.my-turn .ma-call::after { content: "C"; }
+  html[data-brand] .dock.my-turn .ma-raise::after { content: "R"; }
+}
+/* Fold while Check is free: ask once */
+html[data-brand] .ma-fold[data-x-confirm] > span { font-size: 0; }
+html[data-brand] .ma-fold[data-x-confirm] > span::before {
+  content: attr(data-x-label); font-size: 13px; line-height: 1.2; white-space: pre-line;
+}
+html[data-brand] .ma-fold[data-x-confirm] {
+  background: rgba(255, 96, 112, .2); border-color: #FF6070; color: #fff;
+}
+/* Hand strength under hero cards */
+html[data-brand] .x-hand {
+  position: absolute; left: 30px; top: calc(100% + 3px); z-index: 6;
+  display: flex; align-items: center; gap: 6px;
+  padding: 4px 10px; border-radius: 99px; white-space: nowrap;
+  background: rgba(6, 16, 30, .88); border: 1px solid rgba(170, 205, 255, .22);
+  color: #F3F7FC; font-size: 12px; font-weight: 700; line-height: 1.2;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .4); pointer-events: none;
+}
+html[data-brand] .x-hand[hidden] { display: none; }
+@media (max-width: 700px) {
+  html[data-brand] .x-hand { left: 34px; width: max-content; max-width: 128px; white-space: normal; border-radius: 12px; font-size: 11px; flex-wrap: wrap; gap: 0 5px; }
+}
+html[data-brand] .x-hand i { font-style: normal; font-weight: 600; color: #E9C987; }
+html[data-brand] .x-hand.strong { border-color: rgba(233, 201, 135, .6); }
+/* Phone held sideways: the table needs height */
+@media (orientation: landscape) and (max-height: 480px) and (pointer: coarse) {
+  html[data-brand] body:has(.table)::after {
+    content: "↻  " attr(data-x-rotate);
+    position: fixed; inset: 0; z-index: 9999;
+    display: grid; place-items: center; text-align: center; padding: 24px;
+    background: #03080F; color: #F3F7FC; font-size: 16px; font-weight: 600;
+  }
+}
+
+/* ── Skin: Neon (photo table, x-table.js toggles html[data-x-skin]) ── */
+html[data-brand][data-x-skin="neon"] {
+  background: radial-gradient(ellipse 90% 70% at 50% 45%, #0A0A3A 0%, #05041C 60%, #030212 100%) fixed !important;
+  overflow-x: clip;
+}
+html[data-brand][data-x-skin="neon"] body { overflow-x: clip; }
+html[data-brand][data-x-skin="neon"] .table,
+html[data-brand][data-x-skin="neon"] [data-felt] .table {
+  background: none !important; box-shadow: none !important; isolation: isolate;
+}
+html[data-brand][data-x-skin="neon"] .table::before,
+html[data-brand][data-x-skin="neon"] .table::after { display: none !important; }
+html[data-brand] .x-skin-bg { display: none; }
+html[data-brand][data-x-skin="neon"] .x-skin-bg {
+  display: block; position: absolute; z-index: -1; pointer-events: none;
+  /* image oval mapped onto the table box */
+  left: -8.25%; top: -29.8%; width: 116.84%; height: 154%;
+  background: url(/brand/skins/neon-desk.webp) center / 100% 100% no-repeat;
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent);
+  -webkit-mask-composite: source-in; mask-composite: intersect;
+}
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html[data-brand][data-x-skin="neon"] .x-skin-bg {
+    left: -10.97%; top: -24.23%; width: 121.37%; height: 149.6%;
+    background-image: url(/brand/skins/neon-mob.webp);
+  }
+}
+html[data-brand][data-x-skin="neon"] .felt-mark { opacity: .16; }
+html[data-brand][data-x-skin="neon"] .board-slot { background: rgba(2, 8, 40, .3); border-color: rgba(150, 190, 255, .16); }
+/* Settings tile */
+html[data-brand] .felt-swatch.x-neon { background: radial-gradient(ellipse at 50% 40%, #2C63E0, #1A3FA8 70%); box-shadow: 0 0 0 2px #3E8BFF, 0 0 10px rgba(62, 139, 255, .7); }
+html[data-brand][data-x-skin="neon"] .opt-row:has(.x-skin-tile) .opt-tile:not(.x-skin-tile) { border-color: transparent; background: none; box-shadow: none; }
+html[data-brand][data-x-skin="neon"] .opt-row:has(.x-skin-tile) .opt-tile:not(.x-skin-tile)::after { display: none; }
+html[data-brand][data-x-skin="neon"] .topbar { position: relative; z-index: 5; }
