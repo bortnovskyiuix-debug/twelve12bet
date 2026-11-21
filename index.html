@@ -6,8 +6,9 @@
 <meta name="theme-color" content="#000F1A">
 <title>12xBet Poker</title>
 <!-- Lobby is off: the entry point opens the table. The lobby lives in lobby.html. -->
-<meta http-equiv="refresh" content="0; url=play.html">
-<script>location.replace('play.html' + location.search);</script>
+<!-- Keep the #tgWebAppData hash: without it Telegram launch params are lost and full screen is never requested. -->
+<script>location.replace('play.html' + location.search + location.hash);</script>
+<noscript><meta http-equiv="refresh" content="0; url=play.html"></noscript>
 <style>html{background:#03080F}</style>
 </head>
 <body></body>
