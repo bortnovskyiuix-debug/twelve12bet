@@ -1044,3 +1044,10 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ava {
   box-shadow: 0 10px 22px rgba(0, 6, 20, .55), 0 3px 6px rgba(0, 6, 20, .35) !important;
 }
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .st { box-shadow: 0 6px 14px rgba(0, 6, 20, .45); }
+
+/* Neutral card backs: pattern only, no brand mark */
+html[data-brand] { --mark: ""; }
+html[data-brand] .card.back, html[data-brand] .mc.back, html[data-brand] .table > .deck i { --back-icon: none; background-image: none; }
+html[data-brand] .card.back { background: repeating-linear-gradient(45deg, #2F8BFF 0 5px, #1F6FE0 5px 10px) !important; }
+html[data-brand] .card.back::after, html[data-brand] .card.back::before,
+html[data-brand] .mc.back::after, html[data-brand] .table > .deck i::after { content: none !important; display: none !important; }
