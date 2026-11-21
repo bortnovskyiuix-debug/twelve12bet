@@ -1058,3 +1058,12 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .st 
 .x-dock-ghost > .x-gh { position: absolute !important; margin: 0 !important; box-sizing: border-box;
   animation: x-sink .26s cubic-bezier(.4, 0, .6, 1) both !important; animation-delay: var(--gd, 0ms) !important; }
 @media (prefers-reduced-motion: reduce) { .x-dock-ghost { display: none !important; } }
+
+/* ── Card back: 1X mark (brand/1xbet/back-1x.svg) on every back: hole cards, peek card, deck, seat minis ── */
+html[data-brand] { --back-icon: url("/brand/1xbet/back-1x.svg") !important; }
+html[data-brand] :is(.card.back, .card.peek-back, .deck i) { background-size: 50% auto, auto !important; }
+
+/* ── No "drag up to peek": hero's cards are always face up ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card > .card.peek-back,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek-hint { display: none !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek { cursor: default !important; touch-action: auto !important; }
