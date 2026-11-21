@@ -35,6 +35,49 @@ WELCOME = """{logo} <b>Welcome to {brand}</b>
 {play} Tap <b>Play now</b> and take your seat."""
 BUTTON_TEXT = "Play now"
 
+# /post: the ready-to-forward announcement, sent with real Telegram formatting (bold, quotes, text links) and
+# custom emoji from the NewsEmoji pack. Copy the message inside Telegram and the formatting comes along.
+POST_PACK = "NewsEmoji"
+POST = """{fire} <b>Покер, который открывается в один тап</b>
+
+Три концепт-демо покерного стола — каждый в своём стиле.
+<blockquote>Живая игра с ботами, без регистрации и загрузок.</blockquote>
+
+{bolt} <b>1xBet</b> · классика
+{web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a>
+
+{bolt} <b>PokerDom</b> · lounge
+{web} <a href="https://twelve12bet.vercel.app/pokerdom/">Открыть в браузере</a>
+{chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a>
+
+{bolt} <b>1win</b> · неон
+{web} <a href="https://twelve12bet.vercel.app/1win/">Открыть в браузере</a>
+{chat} <a href="https://t.me/onewin_poker_demo_bot">Открыть в Telegram</a>
+
+<blockquote expandable>{spark} <b>Что внутри</b>
+{ok} NL Hold’em 6-max, раздача за 3 секунды
+{ok} Полный экран в Telegram
+{ok} Работает с телефона и компьютера
+{ok} Свой стол, карты, фишки и прелоадер под каждый бренд</blockquote>"""
+POST_EMOJI = {"fire": "🔥", "bolt": "⚡", "web": "🌐", "chat": "💬", "spark": "✨", "ok": "✔️"}
+
+
+def send_post(chat_id):
+    ids = {}
+    try:
+        for st in api("getStickerSet", {"name": POST_PACK})["stickers"]:
+            ids.setdefault((st.get("emoji") or "").replace("\ufe0f", ""), st["custom_emoji_id"])
+    except Exception as e:
+        print("post pack:", safe(e))
+    rich = {k: (f'<tg-emoji emoji-id="{ids[v.replace(chr(0xfe0f), "")]}">{v}</tg-emoji>' if v.replace(chr(0xfe0f), "") in ids else v)
+            for k, v in POST_EMOJI.items()}
+    p = {"chat_id": chat_id, "parse_mode": "HTML", "link_preview_options": {"is_disabled": True}}
+    try:
+        api("sendMessage", dict(p, text=POST.format(**rich)))
+    except RuntimeError:
+        api("sendMessage", dict(p, text=POST.format(**POST_EMOJI)))   # no Premium on the owner's account: plain emoji
+
+
 
 def api(method, params=None):
     req = urllib.request.Request(f"https://api.telegram.org/bot{TOKEN}/{method}",
@@ -174,6 +217,8 @@ class handler(BaseHTTPRequestHandler):
             upd = json.loads(self.rfile.read(n) or b"{}")
             msg = upd.get("message") or {}
             text = (msg.get("text") or "").split(" ")[0].split("@")[0]
+            if text == "/post":
+                send_post(msg["chat"]["id"])
             if text == "/start":
                 send_welcome(msg["chat"]["id"], self.headers.get("Host"), (msg.get("from") or {}).get("id"))
         except Exception as e:
