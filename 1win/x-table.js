@@ -177,6 +177,18 @@
     d.setAttribute('data-x-fit', '1');
   }
 
+  /* ── Chip artwork: retain the game's denominations, amounts and stack layout ── */
+  function chipsDom() {
+    if (!hydrated) return;
+    $$('.chip-col').forEach(function (col) {
+      var label = $('.chip-face text:last-of-type', col);
+      if (!label) return;
+      var value = label.textContent.trim();
+      if (['1', '5', '25', '100', '500'].indexOf(value) < 0) return;
+      if (col.getAttribute('data-x-chip') !== value) col.setAttribute('data-x-chip', value);
+    });
+  }
+
   /* ── Winner banner: avatar + name + amount chip ── */
   function banner() {
     var el = $('.table > .banner'); if (!el || !hydrated) return;
@@ -237,7 +249,7 @@
     d.style.setProperty('min-height', '0px', 'important'); var h = Math.round(d.getBoundingClientRect().height); d.style.removeProperty('min-height');
     if (h > 60 && h < innerHeight * .5 && h !== dockH) { dockH = h; document.documentElement.style.setProperty('--x-dock-h', h + 'px'); }
   }
-  function tick() { raf = 0; skinDom(); dockFit(); fsDom(); ribbonDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); dockFit(); fsDom(); ribbonDom(); deck(); chipsDom(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {
