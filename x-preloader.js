@@ -55,19 +55,22 @@
   function ready() { return !!d.querySelector('.table .seat') || !!d.querySelector('.lobby, main'); }
   function finish() {
     if (done) return; done = true; clearInterval(tick); bar(1);
-    setTimeout(function () { el.classList.add('out'); setTimeout(function () { el.classList.add('gone'); el.remove(); }, 700); }, Math.max(0, MIN - (Date.now() - t0)) + 200);
+    setTimeout(function () { el.classList.add('out'); setTimeout(function () { el.classList.add('gone'); el.remove(); }, 700); }, Math.max(0, MIN - (Date.now() - t0)) + 150);
   }
-  /* the fill animation must play through once: finish only when the video ends (or can't play at all) */
-  var vid = el.querySelector('.x-pre-vid'), vidDone = false, vidDead = false;
+  /* loading = the logo fill: the video runs until the logo is fully lit (LIT s, after the shine), holds there
+     while the app is still booting, and the overlay fades out the moment the app is ready. The dim-out tail never plays. */
+  var vid = el.querySelector('.x-pre-vid'), LIT = 3.6, vidLit = false, vidDead = false;
   if (vid) {
-    vid.addEventListener('ended', function () { vidDone = true; });
     vid.addEventListener('error', function () { vidDead = true; });
-    vid.addEventListener('timeupdate', function () { var dd = vid.duration; if (dd && vid.currentTime >= dd - .05) vidDone = true; bar(Math.max(p, dd ? vid.currentTime / dd * .95 : 0)); });
-    /* the app re-renders the page on boot, which can yank the overlay (and pause the video): keep nudging play */
-    var kick = function () { if (vidDone || vidDead || !vid.paused) return; var pr = vid.play && vid.play(); if (pr && pr.catch) pr.catch(function () {}); };
-    kick(); var kicker = setInterval(function () { if (vidDone || vidDead || done) return clearInterval(kicker); kick(); }, 250);
-    MAX = 10000;
+    vid.addEventListener('ended', function () { vidLit = true; });
+    vid.addEventListener('timeupdate', function () {
+      var t = vid.currentTime; bar(Math.min(.95, t / LIT));
+      if (t >= LIT) { vidLit = true; if (!vid.paused) vid.pause(); }
+    });
+    var kick = function () { if (vidLit || vidDead || !vid.paused) return; var pr = vid.play && vid.play(); if (pr && pr.catch) pr.catch(function () {}); };
+    kick(); var kicker = setInterval(function () { if (vidLit || vidDead || done) return clearInterval(kicker); kick(); }, 250);
+    MIN = 0; MAX = 10000;
   }
-  var vidOk = function () { return !vid || vidDone || vidDead; };
+  var vidOk = function () { return !vid || vidLit || vidDead; };
   var poll = setInterval(function () { if ((ready() && d.readyState === 'complete' && vidOk()) || Date.now() - t0 > MAX) { clearInterval(poll); finish(); } }, 100);
 })();
