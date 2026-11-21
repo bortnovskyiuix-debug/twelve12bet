@@ -531,7 +531,7 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-cl
 /* ── Turn timer: ring around the avatar (Figma timer variant 01) ── */
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring-wrap { inset: -11px; }
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring {
-  background: conic-gradient(var(--x-rc, #8BBD35) calc(var(--t) * 1turn), rgba(255, 255, 255, .26) 0) !important;
+  background: conic-gradient(var(--x-rc, #8BBD35) calc(var(--x-t, var(--t)) * 1turn), rgba(255, 255, 255, .26) 0) !important;
   -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5.5px)) !important;
   mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5.5px)) !important;
   filter: none !important;

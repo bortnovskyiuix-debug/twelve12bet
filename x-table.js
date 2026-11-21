@@ -158,16 +158,8 @@
   }
 
   /* ── Timer urgency colour ── */
-  function timer() {
-    $$('.seat[data-x-t]').forEach(function (s) { if (!s.classList.contains('turn')) s.removeAttribute('data-x-t'); });
-    if (!hydrated) return;
-    $$('.seat.turn .ring-wrap').forEach(function (rw) {
-      var t = parseFloat(getComputedStyle(rw).getPropertyValue('--t')), seat = rw.closest('.seat'); if (!seat || isNaN(t)) return;
-      var v = t <= 0.2 ? 'low' : t <= 0.47 ? 'mid' : '';
-      if (v) { if (seat.getAttribute('data-x-t') !== v) seat.setAttribute('data-x-t', v); } else if (seat.hasAttribute('data-x-t')) seat.removeAttribute('data-x-t');
-    });
-  }
-  setInterval(function () { if (document.querySelector('.seat.turn')) timer(); }, 250);
+  function timer() {}
+
 
   /* ── Deck sits exactly on the middle board slot, same size ── */
   function deck() {
@@ -236,6 +228,24 @@
     document.addEventListener('fullscreenchange', paint); document.addEventListener('webkitfullscreenchange', paint);
     document.body.appendChild(b); paint();
   }
+
+  /* ── Turn clock: own progress value (the build's ring ran out at half time) ── */
+  var turnKey = null, turnStart = 0, turnDur = 15000, turnT = 1, turnEl = 0;
+  function clockFrame() {
+    var seat = document.querySelector('.seat.turn'), rw = seat && seat.querySelector('.ring-wrap');
+    if (rw) {
+      var cs = getComputedStyle(rw), dur = parseFloat(cs.getPropertyValue('--dur')) || 15000, el = parseFloat(cs.getPropertyValue('--elapsed')) || 0;
+      var key = seat.className.replace(/\s*\bturn\b\s*/g, ' ').trim();
+      if (key !== turnKey || el > turnEl + 500) { turnKey = key; turnDur = dur; turnStart = performance.now() + el; }
+      turnEl = el;
+      turnT = Math.max(0, Math.min(1, 1 - (performance.now() - turnStart) / turnDur));
+      rw.style.setProperty('--x-t', turnT.toFixed(4));
+      var lv = turnT * turnDur <= 3000 ? 'low' : turnT * turnDur <= 7000 ? 'mid' : '';
+      if (lv) { if (seat.getAttribute('data-x-t') !== lv) seat.setAttribute('data-x-t', lv); } else if (seat.hasAttribute('data-x-t')) seat.removeAttribute('data-x-t');
+    } else turnKey = null;
+    requestAnimationFrame(clockFrame);
+  }
+  requestAnimationFrame(clockFrame);
 
   var raf = 0;
   function tick() { raf = 0; skinDom(); fsDom(); ribbonDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
