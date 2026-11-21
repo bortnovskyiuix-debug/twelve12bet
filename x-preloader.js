@@ -2,11 +2,11 @@
    rising sparks, corner captions, logo fades in from dim to lit. Site logo only. */
 (function () {
   if (window.__xPre) return; window.__xPre = 1;
-  /* Telegram bot on desktop (Telegram Desktop / macOS / Web): no preloader, the table just opens. */
+  /* Preloader only in the Telegram bot on phones. Web (browser) and Telegram on desktop: no preloader, the table just opens. */
   try {
     var inTg = /tgWebApp(Data|Version|Platform)=/.test(location.hash + location.search) || !!window.TelegramWebviewProxy ||
       !!(window.Telegram && window.Telegram.WebApp && window.Telegram.WebApp.initData) || !!sessionStorage.getItem('__telegram__initParams');
-    if (inTg && window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+    if (!inTg || (window.matchMedia && matchMedia('(hover: hover) and (pointer: fine)').matches)) return;
   } catch (e) {}
   var d = document, root = d.documentElement;
   var css = '' +
