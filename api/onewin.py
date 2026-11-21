@@ -42,13 +42,14 @@ POST = """{fire} <b>Покер, который открывается в оди�
 
 Три концепт-демо покерного стола — каждый в своём стиле.
 
-<blockquote>{b1x} <b>1xBet</b> · классика
+<blockquote>{b1x} <b>1xBet</b>
 {web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a>
 {chat} <a href="https://t.me/twelvecraft_demo_bot">Открыть в Telegram</a></blockquote>
-<blockquote>{bpd} <b>PokerDom</b> · lounge
+<blockquote>{bpd} <b>PokerDom</b>
 {web} <a href="https://twelve12bet.vercel.app/pokerdom/">Открыть в браузере</a>
-{chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a></blockquote>
-<blockquote>{b1w} <b>1win</b> · неон
+{chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a>
+{eyes} <a href="https://twelve12bet.vercel.app/tgbot/public/pokerdom-video.mp4">Видео платформы</a></blockquote>
+<blockquote>{b1w} <b>1win</b>
 {web} <a href="https://twelve12bet.vercel.app/1win/">Открыть в браузере</a>
 {chat} <a href="https://t.me/onewin_poker_demo_bot">Открыть в Telegram</a></blockquote>
 
@@ -58,7 +59,7 @@ POST = """{fire} <b>Покер, который открывается в оди�
 {ok} Работает с телефона и компьютера
 {ok} Свой стол, карты, фишки и прелоадер под каждый бренд</blockquote>
 <i>живая игра с ботами · без регистрации и загрузок</i>"""
-POST_EMOJI = {"fire": "🔥", "web": "🌐", "chat": "💬", "spark": "✨", "ok": "✔️"}
+POST_EMOJI = {"fire": "🔥", "web": "🌐", "chat": "💬", "spark": "✨", "ok": "✔️", "eyes": "👀"}
 # one custom emoji per brand (tgbot/public/emoji/brands/*.png, 100x100), kept in a small pack of its own
 BRAND_EMOJI = [("b1x", "1xbet", "🔵"), ("bpd", "pokerdom", "🟢"), ("b1w", "1win", "🟣")]
 
@@ -103,6 +104,11 @@ def send_post(chat_id, host, user_id=None):
         api("sendMessage", dict(p, text=POST.format(**rich)))
     except RuntimeError:
         api("sendMessage", dict(p, text=POST.format(**plain)))   # no Premium on the owner's account: plain emoji
+    try:   # the PokerDom platform walkthrough as an extra, right under the post
+        api("sendVideo", {"chat_id": chat_id, "video": f"https://{host}/tgbot/public/pokerdom-video.mp4", "caption": "<b>PokerDom</b> — видео платформы",
+                          "parse_mode": "HTML", "supports_streaming": True, "width": 1280, "height": 690})
+    except Exception as e:
+        print("post video:", safe(e))
 
 
 
