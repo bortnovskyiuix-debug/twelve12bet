@@ -1,6 +1,7 @@
 /* Table UX layer on top of the build: stage scaling, hand strength,
    fold guard, Esc for the bet slider, "your turn" in the tab title. */
 (function () {
+  document.documentElement.setAttribute('data-x-seat', 'gg');
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var uk = function () { var d = $('.dock'); return !!d && /[Ѐ-ӿ]/.test(d.textContent); };
@@ -18,6 +19,9 @@
 
   /* ── Stage scaling ── */
   function fit() {
+    if (document.documentElement.getAttribute('data-x-seat') === 'gg') {
+      document.documentElement.style.setProperty('--x-tz', '1'); return;
+    }
     var m = $('.main'), z = 1;
     if (m && innerWidth >= 1081) {
       var cs = getComputedStyle(m);
