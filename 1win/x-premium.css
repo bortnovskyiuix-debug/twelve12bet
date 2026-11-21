@@ -1113,23 +1113,23 @@ html[data-brand][data-x-skin="neon"][data-brand] {
   }
 }
 
-/* ── Cards: face per the Figma row (node 45:40) — light face, rank on top, one big suit, four-colour deck.
-   Sizes ride on the app's own per-context font sizes (em), so the card box itself is never resized or contained. ── */
+/* ── Cards: face per the Figma cards (node 36:29 row / 36:48) — white face with a cool tint at the bottom, rank in the
+   top-left corner with a small suit under it, one big suit bottom-right, classic two-colour deck. The app's own card
+   layout already has those three slots, so only the paint and the suit shapes change. ── */
 html[data-brand][data-x-skin="neon"] .card:not(.back) {
-  display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important;
-  background: linear-gradient(180deg, #FFFFFF 0%, #E9EDF4 100%) !important;
+  background: linear-gradient(180deg, rgba(191, 209, 235, 0) 0%, rgba(191, 209, 235, .35) 100%), #FFFFFF !important;
+  border-radius: 6% / 4.4% !important;
 }
-html[data-brand][data-x-skin="neon"] .card:not(.back) > .cr { position: static !important; inset: auto !important; margin: 0 !important; flex: 0 0 auto !important;
-  transform: scale(1.16) !important; transform-origin: 50% 60%; line-height: .9 !important; font-weight: 800 !important; letter-spacing: -.04em; color: inherit !important; }
-html[data-brand][data-x-skin="neon"] .card:not(.back) > .cs-s { display: none !important; }
-html[data-brand][data-x-skin="neon"] .card:not(.back) > .cs { position: static !important; inset: auto !important; transform: none !important; flex: 0 0 auto !important; display: block !important;
-  width: 1em !important; height: 1em !important; margin: .2em 0 0 !important; line-height: 1 !important; overflow: hidden;
-  color: inherit !important; -webkit-text-fill-color: transparent; background: currentColor;
-  -webkit-mask: var(--suit) center / contain no-repeat; mask: var(--suit) center / contain no-repeat; }
-html[data-brand][data-x-skin="neon"] .card.suit-0:not(.back) { color: #0E1422 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgNkM1MCA2IDEyIDM4IDEyIDYwQzEyIDczIDIyIDgyIDMzIDgyQzM5IDgyIDQ0IDgwIDQ3IDc2QzQ2IDg0IDQyIDkwIDM2IDk0SDY0QzU4IDkwIDU0IDg0IDUzIDc2QzU2IDgwIDYxIDgyIDY3IDgyQzc4IDgyIDg4IDczIDg4IDYwQzg4IDM4IDUwIDYgNTAgNloiLz48L3N2Zz4="); }
-html[data-brand][data-x-skin="neon"] .card.suit-1:not(.back) { color: #E63946 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgOTFDMTkgNjggNiA1MiA2IDM0QzYgMjAgMTcgOSAzMCA5QzM4IDkgNDUgMTMgNTAgMjBDNTUgMTMgNjIgOSA3MCA5QzgzIDkgOTQgMjAgOTQgMzRDOTQgNTIgODEgNjggNTAgOTFaIi8+PC9zdmc+"); }
-html[data-brand][data-x-skin="neon"] .card.suit-2:not(.back) { color: #1E88E5 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgOUw4NiA1MEw1MCA5MUwxNCA1MFoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+"); }
-html[data-brand][data-x-skin="neon"] .card.suit-3:not(.back) { color: #1FA65A !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjI4IiByPSIyMSIvPjxjaXJjbGUgY3g9IjI3IiBjeT0iNTciIHI9IjIxIi8+PGNpcmNsZSBjeD0iNzMiIGN5PSI1NyIgcj0iMjEiLz48cGF0aCBkPSJNNDMgNTJoMTRjMCAxNyA0IDMwIDExIDQySDMyYzctMTIgMTEtMjUgMTEtNDJ6Ii8+PC9zdmc+"); }
+html[data-brand][data-x-skin="neon"] .card:not(.back) > .cr { font-weight: 700 !important; color: inherit !important; }
+html[data-brand][data-x-skin="neon"] .card:not(.back) > .cs-s, html[data-brand][data-x-skin="neon"] .card:not(.back) > .cs {
+  width: 1em !important; height: 1em !important; line-height: 1 !important; overflow: hidden; color: inherit !important;
+  -webkit-text-fill-color: transparent; background: currentColor;
+  -webkit-mask: var(--suit) center / contain no-repeat; mask: var(--suit) center / contain no-repeat;
+}
+html[data-brand][data-x-skin="neon"] .card.suit-0:not(.back) { color: #0E1726 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgNkM1MCA2IDEyIDM4IDEyIDYwQzEyIDczIDIyIDgyIDMzIDgyQzM5IDgyIDQ0IDgwIDQ3IDc2QzQ2IDg0IDQyIDkwIDM2IDk0SDY0QzU4IDkwIDU0IDg0IDUzIDc2QzU2IDgwIDYxIDgyIDY3IDgyQzc4IDgyIDg4IDczIDg4IDYwQzg4IDM4IDUwIDYgNTAgNloiLz48L3N2Zz4="); }
+html[data-brand][data-x-skin="neon"] .card.suit-1:not(.back) { color: #E23B45 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgOTFDMTkgNjggNiA1MiA2IDM0QzYgMjAgMTcgOSAzMCA5QzM4IDkgNDUgMTMgNTAgMjBDNTUgMTMgNjIgOSA3MCA5QzgzIDkgOTQgMjAgOTQgMzRDOTQgNTIgODEgNjggNTAgOTFaIi8+PC9zdmc+"); }
+html[data-brand][data-x-skin="neon"] .card.suit-2:not(.back) { color: #E23B45 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgOUw4NiA1MEw1MCA5MUwxNCA1MFoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+"); }
+html[data-brand][data-x-skin="neon"] .card.suit-3:not(.back) { color: #0E1726 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjI4IiByPSIyMSIvPjxjaXJjbGUgY3g9IjI3IiBjeT0iNTciIHI9IjIxIi8+PGNpcmNsZSBjeD0iNzMiIGN5PSI1NyIgcj0iMjEiLz48cGF0aCBkPSJNNDMgNTJoMTRjMCAxNyA0IDMwIDExIDQySDMyYzctMTIgMTEtMjUgMTEtNDJ6Ii8+PC9zdmc+"); }
 
 /* ── Chips as on the 1xBet table: clean faces (no mark, no number), a little smaller ── */
 html[data-brand] .chip-face > g, html[data-brand] .chip-face > text { display: none !important; }
