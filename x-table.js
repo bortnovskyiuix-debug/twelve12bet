@@ -114,7 +114,7 @@
 
   /* ── Skin: Neon ── */
   var SKIN_KEY = 'x-skin';
-  function skinGet() { try { var v = localStorage.getItem(SKIN_KEY); return v == null ? 'neon' : v; } catch (e) { return 'neon'; } }
+  function skinGet() { try { var v = localStorage.getItem(SKIN_KEY); return v == null ? 'off' : v; } catch (e) { return 'off'; } }  /* classic felt is the default; Neon is opt-in */
   function skinSet(v) { try { localStorage.setItem(SKIN_KEY, v); } catch (e) {} skinApply(); }
   function skinApply() {
     var v = skinGet(), h = document.documentElement;
