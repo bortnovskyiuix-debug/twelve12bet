@@ -155,14 +155,22 @@
     if (document.title !== want) document.title = want;
   }
 
+  /* ── Timer urgency colour ── */
+  function timer() {
+    $$('.seat[data-x-t]').forEach(function (s) { if (!s.classList.contains('turn')) s.removeAttribute('data-x-t'); });
+    var c = $('.seat.turn .clock'); if (!c || !hydrated) return;
+    var n = parseInt(c.textContent, 10), seat = c.closest('.seat'), v = n <= 3 ? 'low' : n <= 7 ? 'mid' : '';
+    if (v) { if (seat.getAttribute('data-x-t') !== v) seat.setAttribute('data-x-t', v); } else seat.removeAttribute('data-x-t');
+  }
+
   var raf = 0;
-  function tick() { raf = 0; skinDom(); hand(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {
     fit(); queue();
     var hy = setInterval(function () { if (isHydrated()) { clearInterval(hy); queue(); } }, 60);
-    new MutationObserver(function () { queue(); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'] });
+    new MutationObserver(function () { queue(); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['class'], characterData: true });
     new ResizeObserver(fit).observe(document.documentElement);
     var m = $('.main'); if (m) new ResizeObserver(fit).observe(m);
     document.addEventListener('visibilitychange', title);

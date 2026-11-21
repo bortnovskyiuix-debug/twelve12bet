@@ -419,5 +419,40 @@ html[data-brand] .x-hand { box-shadow: none; }
 /* Felt mark: logo only, no "Texas Hold'em / Poker" ribbon clutter */
 html[data-brand] .felt-mark .felt-mode, html[data-brand] .felt-mark .felt-ribbon { display: none !important; }
 html[data-brand] .felt-mark { display: grid; place-items: center; opacity: .2 !important; }
-html[data-brand] .felt-mark .felt-brand { width: 190px; height: auto; }
+html[data-brand] .felt-mark .felt-brand { width: 140px; height: auto; }
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark .felt-brand { width: 130px; } }
+
+/* ── Cards (Figma: "Cards & table details") ───────── */
+html[data-brand] .card:not(.back) {
+  background: linear-gradient(180deg, #FFFFFF 45%, #E3EAF4 100%);
+  border-radius: calc(var(--cw) * .13); color: #0E1726;
+  box-shadow: 0 4px 10px rgba(0, 5, 25, .35);
+}
+html[data-brand] .card.red:not(.back) { color: #E23B45; }
+html[data-brand] [data-face="four"] .card.suit-2:not(.back) { color: #1C7FE0; }
+html[data-brand] [data-face="four"] .card.suit-3:not(.back) { color: #1E9E55; }
+/* "Large" face = solid colour card with a big white index */
+html[data-brand] [data-face="large"] .card:not(.back) {
+  --x-sc: #232F42; color: #fff !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, .18), rgba(0, 0, 0, .12)), var(--x-sc);
+}
+html[data-brand] [data-face="large"] .card.suit-1:not(.back) { --x-sc: #D9363F; }
+html[data-brand] [data-face="large"] .card.suit-2:not(.back) { --x-sc: #1C7FE0; }
+html[data-brand] [data-face="large"] .card.suit-3:not(.back) { --x-sc: #1E9E55; }
+html[data-brand] [data-face="large"] .card:not(.back) .cr { font-weight: 800; }
+/* Winning cards: gold glow, no ring */
+html[data-brand] .card.hl-win, html[data-brand] .bcard.hl-win .bfront .card,
+html[data-brand] .table.hero-won .card.hl-win, html[data-brand] .table.hero-won .bcard.hl-win .bfront .card {
+  box-shadow: 0 0 16px 1px rgba(253, 215, 154, .85), 0 6px 14px rgba(0, 0, 0, .4) !important;
+}
+/* Backs: Stripes (default) / Diamond / Neon — no logo */
+html[data-brand] .card.back { border: 0 !important; border-radius: calc(var(--cw) * .13);
+  background: repeating-linear-gradient(55deg, rgba(255, 255, 255, .13) 0 4px, transparent 4px 12px), linear-gradient(180deg, #2A8BFF, #0B4FC4) !important; }
+html[data-brand] .card.back::after { content: none !important; }
+html[data-brand] [data-back="carbon"] .card.back {
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Cpath d='M20 4 36 20 20 36 4 20Z' fill='%2314A0FF'/%3E%3Cpath d='M20 14 26 20 20 26 14 20Z' fill='%230A1322'/%3E%3C/svg%3E") center / 52% auto no-repeat, linear-gradient(180deg, #16233A, #0A1322) !important; }
+html[data-brand] [data-back="royal"] .card.back {
+  background: radial-gradient(circle at 50% 50%, transparent 0 21%, #5E8BFF 23% 28%, transparent 30%), radial-gradient(circle at 50% 50%, rgba(94, 139, 255, .5), transparent 46%), linear-gradient(180deg, #1B1E6E, #0A0A32) !important; }
+/* Timer colour: hurry / last seconds */
+html[data-brand] .seat[data-x-t="mid"] .ring { --rc: #F2B63C !important; }
+html[data-brand] .seat[data-x-t="low"] .ring { --rc: #E5484D !important; }
