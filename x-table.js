@@ -167,8 +167,25 @@
   }
   setInterval(function () { if (document.querySelector('.seat.turn')) timer(); }, 250);
 
+  /* ── Deck sits exactly on the middle board slot, same size ── */
+  function deck() {
+    var d = $('.table > .deck'), tb = $('.table');
+    if (tb && !d && tb.hasAttribute('data-x-dealt')) tb.removeAttribute('data-x-dealt');
+    if (!d || !tb || d.getAttribute('data-x-fit')) return;
+    tb.removeAttribute('data-x-dealt');
+    d.addEventListener('animationend', function (e) { if (e.animationName === 'x-deck-out') tb.setAttribute('data-x-dealt', '1'); });
+    var slots = $$('.board .board-slot, .board .bcard'); if (slots.length < 3) return;
+    var mid = slots[Math.floor(slots.length / 2)], r = mid.getBoundingClientRect(), t = tb.getBoundingClientRect();
+    if (!r.width || !t.width) return;
+    var z = t.width / tb.offsetWidth || 1;
+    d.style.left = ((r.left + r.width / 2 - t.left) / z).toFixed(1) + 'px';
+    d.style.top = ((r.top + r.height / 2 - t.top) / z).toFixed(1) + 'px';
+    d.style.width = (r.width / z).toFixed(1) + 'px';
+    d.setAttribute('data-x-fit', '1');
+  }
+
   var raf = 0;
-  function tick() { raf = 0; skinDom(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); deck(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {

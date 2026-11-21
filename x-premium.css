@@ -575,3 +575,21 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole 
   html[data-brand] .seat .plate .st { transition: background-color .35s ease, color .35s ease; }
   html[data-brand] .seat .ava, html[data-brand] .seat .plate { transition: opacity .4s ease, filter .4s ease; }
 }
+
+/* ── Pre-deal: deck first (slot-sized, on the middle slot), then the slots fade in ── */
+@keyframes x-deck-in { from { opacity: 0; scale: .9; } to { opacity: 1; scale: 1; } }
+@keyframes x-deck-out { to { opacity: 0; } }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table > .deck {
+  width: var(--cw, 52px); top: 53%;
+  animation: x-deck-in .5s cubic-bezier(.16, 1, .3, 1) both, x-deck-out .55s ease var(--deck-out, 1.6s) forwards !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table > .deck:not([data-x-fit]) { visibility: hidden; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table > .deck i { border-radius: calc(var(--cw, 52px) * .13); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board .board-slot { transition: opacity .7s ease !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board .board-slot:nth-child(3) { transition-delay: 0ms !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board .board-slot:nth-child(2),
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board .board-slot:nth-child(4) { transition-delay: 110ms !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board .board-slot:nth-child(1),
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board .board-slot:nth-child(5) { transition-delay: 220ms !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table:has(> .deck):not([data-x-dealt]) .board .board-slot { opacity: 0 !important; transition-duration: .15s !important; transition-delay: 0ms !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table[data-x-dealt] .board .board-slot { opacity: 1 !important; }
