@@ -14,8 +14,8 @@
     '.x-pre{position:fixed;inset:0;z-index:2147483000;background:#070d14;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}' +
     '.x-pre.out{opacity:0;visibility:hidden}' +
     '.x-pre-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}' +
-    /* desktop: the artwork 40% smaller — a centred 60%-wide column, its sides fading into the background */
-    '@media (min-width:701px) and (min-aspect-ratio:4/5){.x-pre-art{left:20%;right:auto;width:60%;' +
+    /* desktop: the artwork at 36% of full size — a centred column, its sides fading into the background */
+    '@media (min-width:701px) and (min-aspect-ratio:4/5){.x-pre-art{left:32%;right:auto;width:36%;' +
       '-webkit-mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(90deg,transparent,#000 14%,#000 86%,transparent)}}';
   var st = d.createElement('style'); st.textContent = css; (d.head || root).appendChild(st);
   var el = d.createElement('div'); el.className = 'x-pre'; el.setAttribute('role', 'status'); el.setAttribute('aria-label', 'Loading 1win POKER');
