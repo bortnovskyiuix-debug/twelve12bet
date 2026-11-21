@@ -1083,13 +1083,14 @@ html[data-brand] .stage > .dock { min-height: var(--x-dock-h, 144px) !important;
 @media (max-aspect-ratio: 4/5), (max-width: 700px) {
   html[data-brand][data-x-skin="neon"][data-brand] .table {
     /* wider than the artwork's 1 : 1.6 on request: 1 : 1.36, the image stretches sideways by ~17% */
-    width: min(82cqw, calc(100cqh / 1.2)) !important;
-    height: min(100cqh, calc(min(82cqw, 100cqh / 1.2) * 1.2)) !important;
+    /* sized like the 1xBet phone table: as wide as the side seats allow, and as tall as the screen gives (the artwork stretches with the box) */
+    width: min(84cqw, calc(100cqh / 1.46)) !important;
+    height: calc(min(84cqw, 100cqh / 1.46) * 1.46) !important;
     aspect-ratio: auto !important;
   }
   html[data-brand][data-x-skin="neon"] .x-skin-bg {
     left: -7.33%; top: -16.51%; width: 115.04%; height: 127.83%;
-    background-image: url(brand/skins/table-mob.webp?v=1);
+    background-image: url(brand/skins/table-mob.webp?v=2);
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent), linear-gradient(180deg, transparent, #000 9%, #000 94%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent), linear-gradient(180deg, transparent, #000 9%, #000 94%, transparent);
   }
@@ -1110,4 +1111,33 @@ html[data-brand][data-x-skin="neon"][data-brand] {
     -webkit-mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent), linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
     mask-image: linear-gradient(90deg, transparent, #000 4%, #000 96%, transparent), linear-gradient(180deg, transparent, #000 10%, #000 90%, transparent);
   }
+}
+
+/* ── Cards: face per the Figma row (node 45:40) — light face, rank on top, one big suit, four-colour deck ── */
+html[data-brand][data-x-skin="neon"] .card:not(.back) {
+  container-type: inline-size; display: flex !important; flex-direction: column !important; align-items: center !important; justify-content: center !important; gap: 8cqw !important;
+  padding: 0 !important; overflow: hidden; border-radius: 15% / 10.85% !important;
+  background: linear-gradient(180deg, #FFFFFF 0%, #E9EDF4 100%) !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, .9) inset, 0 3px 8px rgba(3, 8, 24, .45) !important;
+}
+html[data-brand][data-x-skin="neon"] .card:not(.back)::before, html[data-brand][data-x-skin="neon"] .card:not(.back)::after { display: none !important; }
+html[data-brand][data-x-skin="neon"] .card:not(.back) > .cr { position: static !important; inset: auto !important; transform: none !important; margin: 0 !important;
+  font-family: var(--font-display, Montserrat), Montserrat, sans-serif !important; font-weight: 800 !important; flex: 0 0 auto !important; font-size: 45cqw !important; line-height: .86 !important; letter-spacing: -.04em; color: inherit !important; }
+html[data-brand][data-x-skin="neon"] .card:not(.back) > .cs-s { display: none !important; }
+html[data-brand][data-x-skin="neon"] .card:not(.back) > .cs { position: static !important; inset: auto !important; transform: none !important; margin: 0 !important; display: block !important;
+  flex: 0 0 auto !important; width: 47cqw !important; height: 47cqw !important; min-height: 47cqw; font-size: 0 !important; color: inherit !important; background: currentColor;
+  -webkit-mask: var(--suit) center / contain no-repeat; mask: var(--suit) center / contain no-repeat; }
+html[data-brand][data-x-skin="neon"] .card.suit-0:not(.back) { color: #0E1422 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgNkM1MCA2IDEyIDM4IDEyIDYwQzEyIDczIDIyIDgyIDMzIDgyQzM5IDgyIDQ0IDgwIDQ3IDc2QzQ2IDg0IDQyIDkwIDM2IDk0SDY0QzU4IDkwIDU0IDg0IDUzIDc2QzU2IDgwIDYxIDgyIDY3IDgyQzc4IDgyIDg4IDczIDg4IDYwQzg4IDM4IDUwIDYgNTAgNloiLz48L3N2Zz4="); }
+html[data-brand][data-x-skin="neon"] .card.suit-1:not(.back) { color: #E63946 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgOTFDMTkgNjggNiA1MiA2IDM0QzYgMjAgMTcgOSAzMCA5QzM4IDkgNDUgMTMgNTAgMjBDNTUgMTMgNjIgOSA3MCA5QzgzIDkgOTQgMjAgOTQgMzRDOTQgNTIgODEgNjggNTAgOTFaIi8+PC9zdmc+"); }
+html[data-brand][data-x-skin="neon"] .card.suit-2:not(.back) { color: #1E88E5 !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgOUw4NiA1MEw1MCA5MUwxNCA1MFoiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSI5IiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+"); }
+html[data-brand][data-x-skin="neon"] .card.suit-3:not(.back) { color: #1FA65A !important; --suit: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjI4IiByPSIyMSIvPjxjaXJjbGUgY3g9IjI3IiBjeT0iNTciIHI9IjIxIi8+PGNpcmNsZSBjeD0iNzMiIGN5PSI1NyIgcj0iMjEiLz48cGF0aCBkPSJNNDMgNTJoMTRjMCAxNyA0IDMwIDExIDQySDMyYzctMTIgMTEtMjUgMTEtNDJ6Ii8+PC9zdmc+"); }
+
+/* ── Chips as on the 1xBet table: clean faces (no mark, no number), a little smaller ── */
+html[data-brand] .chip-face > g, html[data-brand] .chip-face > text { display: none !important; }
+html[data-brand][data-x-skin="neon"] .chips { scale: .86; }
+
+/* widest phone table: pull the side seats a touch inward so their balances stay on screen */
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html[data-brand][data-x-skin="neon"] .seat.s1, html[data-brand][data-x-skin="neon"] .seat.s2 { translate: 12px 0; }
+  html[data-brand][data-x-skin="neon"] .seat.s4, html[data-brand][data-x-skin="neon"] .seat.s5 { translate: -12px 0; }
 }
