@@ -340,3 +340,64 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
+
+/* ── Smooth exits for the action dock: React removes buttons instantly, so each removed control is
+   re-shown as a ghost at its last position and fades/sinks out (CSS: .x-dock-ghost, @keyframes x-sink). ── */
+(function () {
+  var SEL = '.dock .size, .dock .ma, .dock .pre, .dock .act, .dock .raise-panel';
+  var rects = new WeakMap();
+  function snap() {
+    var els = document.querySelectorAll(SEL);
+    for (var i = 0; i < els.length; i++) {
+      var r = els[i].getBoundingClientRect();
+      if (r.width && r.height) rects.set(els[i], r);
+    }
+  }
+  function ghost(dock, nodes) {
+    var host = dock.parentElement; if (!host || !nodes.length) return;
+    if (getComputedStyle(host).position === 'static') host.style.position = 'relative';
+    var hr = host.getBoundingClientRect();
+    var g = document.createElement('div');
+    g.className = dock.className + ' x-dock-ghost';
+    g.setAttribute('aria-hidden', 'true');
+    g.style.left = '0'; g.style.top = '0'; g.style.width = hr.width + 'px'; g.style.height = hr.height + 'px';
+    nodes.forEach(function (n, i) {
+      var r = rects.get(n); if (!r) return;
+      n.classList.add('x-gh');
+      n.style.left = (r.left - hr.left) + 'px'; n.style.top = (r.top - hr.top) + 'px';
+      n.style.width = r.width + 'px'; n.style.height = r.height + 'px';
+      n.style.setProperty('--gd', Math.min(i * 18, 90) + 'ms');
+      n.setAttribute('tabindex', '-1');
+      g.appendChild(n);
+    });
+    if (!g.children.length) return;
+    host.appendChild(g);
+    setTimeout(function () { g.remove(); }, 420);
+  }
+  function start() {
+    var dock = document.querySelector('.dock');
+    if (!dock) return setTimeout(start, 200);
+    snap();
+    new MutationObserver(function (muts) {
+      var gone = [];
+      muts.forEach(function (m) {
+        [].forEach.call(m.removedNodes, function (n) {
+          if (n.nodeType !== 1 || n.classList.contains('x-dock-ghost')) return;
+          if (rects.has(n)) gone.push(n);
+          else [].forEach.call(n.querySelectorAll('*'), function (c) { if (rects.has(c)) gone.push(c); });
+        });
+      });
+      var cur = document.querySelector('.dock') || dock;
+      gone = gone.filter(function (n) {
+        if (n.isConnected) return false;
+        for (var p = n.parentElement; p; p = p.parentElement) if (gone.indexOf(p) !== -1) return false;
+        return true;
+      });
+      if (gone.length && !document.hidden) ghost(cur, gone);
+      requestAnimationFrame(snap);
+    }).observe(dock, { childList: true, subtree: true });
+    addEventListener('resize', function () { requestAnimationFrame(snap); });
+    setInterval(snap, 500);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();

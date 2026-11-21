@@ -1046,3 +1046,15 @@ html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .25; }
 /* Board slots: always visible (pre-deal too), no fade-in dance */
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table:is(:has(> .deck), :not(:has(> .deck))):not([data-x-dealt]) .board .board-slot,
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .board.pre-deal .board-slot { opacity: 1 !important; transition: none !important; }
+
+/* ── Telegram: buttons never touch the window edge; stacks stay on one line ── */
+html.tg { --safe-bottom: max(env(safe-area-inset-bottom, 0px), var(--tg-bottom, 0px), 10px); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .st { white-space: nowrap; }
+
+/* ── Smooth exits: action buttons, bet sizes and pre-actions fade/sink out instead of vanishing (x-table.js ghosts) ── */
+@keyframes x-sink { from { opacity: 1; translate: 0 0; scale: 1; } to { opacity: 0; translate: 0 10px; scale: .96; } }
+.x-dock-ghost { position: absolute !important; pointer-events: none !important; z-index: 30; margin: 0 !important; padding: 0 !important;
+  background: none !important; border: 0 !important; box-shadow: none !important; min-height: 0 !important; overflow: visible !important; }
+.x-dock-ghost > .x-gh { position: absolute !important; margin: 0 !important; box-sizing: border-box;
+  animation: x-sink .26s cubic-bezier(.4, 0, .6, 1) both !important; animation-delay: var(--gd, 0ms) !important; }
+@media (prefers-reduced-motion: reduce) { .x-dock-ghost { display: none !important; } }
