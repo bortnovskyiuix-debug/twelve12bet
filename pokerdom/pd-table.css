@@ -235,3 +235,6 @@ html[data-brand=pokerdom][data-brand] .chat-fab {
   background: rgba(42, 47, 49, .9);
   border-color: var(--pd-line);
 }
+
+/* One table skin only (Lounge): no felt picker in Settings */
+.opt-sec:has(.opt-row[aria-label="Felt colour"], .opt-row[aria-label="Колір столу"]) { display: none !important; }
