@@ -391,3 +391,27 @@ html[data-brand] .dock .size.on { box-shadow: inset 0 0 0 1px rgba(28, 155, 255,
 html[data-brand] .dock .size.on small { color: #4FB8FF; }
 html[data-brand] .dock .size.size-icon.on,
 html[data-brand] .dock:has(.raise-panel) .size.size-icon { background: rgba(28, 155, 255, .14); border-color: rgba(28, 155, 255, .8); color: #7CC4FF; }
+
+/* ── Borderless pass: no outlines on UI chrome, state lives in the fill ── */
+html[data-brand] :is(.chat.side, .jackpot, .ma, .ms-card, .opt-tile, .rp-close, .rp-minus, .rp-plus, .rp-allin, .size, .tab-x, .tool-group, .tool,
+  .board-slot, .drawer, .ms-panel, .plate, .raise-panel, .tabs, .ttab, .tab-wrap, .chip-amt, .nm, .pot-label, .tag, .x-hand, .lvl, .pre, .chat-fab, .chat-form input, .chat input, .chat-quick button) {
+  border-color: transparent !important;
+}
+html[data-brand] .dock .ma-fold, html[data-brand] .dock .ma-call, html[data-brand] .dock .size, html[data-brand] .dock .pre { box-shadow: none; }
+html[data-brand] .dock .ma-raise { box-shadow: 0 10px 26px rgba(11, 111, 209, .35); border: 0; }
+html[data-brand] .dock .ma-fold { background: rgba(255, 96, 112, .14); }
+html[data-brand] .dock .ma-fold:hover { background: rgba(255, 96, 112, .22); }
+html[data-brand] .dock .ma-fold:active, html[data-brand] .dock .ma-fold[data-x-confirm] { background: rgba(255, 96, 112, .32); }
+html[data-brand] .dock .ma-call { background: rgba(22, 46, 76, .9); }
+html[data-brand] .dock .ma-call:hover { background: rgba(30, 60, 96, .95); }
+html[data-brand] .dock .size { background: rgba(12, 28, 48, .78); }
+html[data-brand] .dock .size:hover { background: rgba(20, 42, 70, .9); }
+html[data-brand] .dock .size.on { background: rgba(28, 155, 255, .26); box-shadow: 0 0 14px rgba(28, 155, 255, .18); }
+html[data-brand] .dock .size.size-icon.on, html[data-brand] .dock:has(.raise-panel) .size.size-icon { background: rgba(28, 155, 255, .26); }
+html[data-brand] .dock.my-turn .ma::after { border: 0 !important; background: rgba(0, 0, 0, .26) !important; }
+html[data-brand] .seat .tag { background: color-mix(in srgb, currentColor 20%, #06101E) !important; }
+html[data-brand] .seat.turn .plate { box-shadow: inset 0 0 0 99px rgba(20, 160, 255, .16), 0 8px 22px rgba(0, 0, 0, .4); }
+html[data-brand] .opt-tile.on { background: rgba(28, 155, 255, .22) !important; }
+html[data-brand][data-x-skin="neon"] .opt-row:has(.x-skin-tile) .opt-tile:not(.x-skin-tile) { background: none !important; }
+html[data-brand] .x-hand.strong { background: rgba(60, 46, 14, .92); color: #F4DDA6; }
+html[data-brand] .x-hand { box-shadow: none; }
