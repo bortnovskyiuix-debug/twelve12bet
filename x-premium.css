@@ -927,3 +927,54 @@ html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .6; }
 @media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .felt-mark { translate: 60px 0; } html[data-brand] .felt-mark .felt-brand { width: 230px; } }
 /* mobile: bottom of the felt, above the hero's cards */
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark { top: 70%; } html[data-brand] .felt-mark .felt-brand { width: 160px; } }
+
+/* ── Felt mark: 1XBET POKER — TEXAS HOLD'EM emblem, same tone/opacity as the previous felt logo ── */
+html[data-brand] .felt-mark .felt-brand { content: url("/brand/1xbet-poker-felt.svg"); }
+
+/* ── Hero hand in "peek" mode (drag up to peek): same Figma 09 layout, two cards only ──
+   Each .peek-card holds the face (.card) and its back (.card.peek-back). Lay out the two
+   .peek-card wrappers like the plain hand; the back is a real card back sitting on the face. */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek {
+  display: flex; align-items: flex-start; perspective: none; width: max-content;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card {
+  position: relative; width: calc(64px * var(--hk)); height: calc(88px * var(--hk)); transform-origin: 50% 50%;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card:first-child { transform: rotate(-10deg); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card:last-child {
+  transform: rotate(10deg); margin-left: calc(8px * var(--hk)); margin-top: calc(10px * var(--hk));
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card > .card {
+  position: absolute; inset: 0; margin: 0 !important; transform: none !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card > .card.peek-back {
+  background: var(--back-icon, none) center / 62% auto no-repeat, var(--back) !important;
+  border: 2px solid var(--card); box-shadow: 0 4px 10px rgba(0, 5, 26, .4) !important;
+  transform: rotateX(calc(var(--peek, 0) * -150deg)) translateZ(1px) !important; transform-origin: 50% 100%;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek.open .peek-card > .card.peek-back { opacity: 0; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek-hint { top: calc(-30px * var(--hk)); z-index: 8; }
+
+/* ── Folded hero: exactly 2 face cards behind the avatar at 35% (Figma 09 "Folded") ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .hole .card { opacity: .35 !important; filter: none !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .hole .peek-back,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .hole .peek-hint { display: none !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .ava { filter: none !important; }
+
+/* ── Portrait phones: the table takes all the height above the dock (no empty band at the bottom) ── */
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table {
+    width: min(90cqw, calc(100cqh / 1.5)) !important;
+    height: min(100cqh, calc(min(90cqw, 100cqh / 1.5) * 2.35)) !important;
+    aspect-ratio: auto !important;
+  }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table-wrap { padding-top: 40px; padding-bottom: 50px; }
+}
+
+/* ── No drag, selection or callout anywhere on the table (inputs stay editable) ── */
+html[data-brand], html[data-brand] body {
+  -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; -webkit-tap-highlight-color: transparent;
+}
+html[data-brand] input, html[data-brand] textarea { -webkit-user-select: text; user-select: text; }
+html[data-brand] img, html[data-brand] svg, html[data-brand] .card { -webkit-user-drag: none; user-drag: none; }
+html.tg, html.tg body { overscroll-behavior: none; }
