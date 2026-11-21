@@ -91,7 +91,7 @@ def send_welcome(chat_id, host, user_id=None):
     button = {"text": BUTTON_TEXT, "web_app": {"url": PLAY_URL or f"https://{host}/1win/"}}
     if "play" in ids:
         button["icon_custom_emoji_id"] = ids["play"]
-    video = WELCOME_VIDEO or f"https://{host}/tgbot/public/welcome-neon.mp4"
+    video = WELCOME_VIDEO or f"https://{host}/tgbot/public/welcome-pattern.mp4"
     p = {"chat_id": chat_id, "parse_mode": "HTML", "reply_markup": {"inline_keyboard": [[button]]}}
     method, field = ("sendAnimation", "caption") if video else ("sendMessage", "text")
     if video:
