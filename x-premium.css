@@ -529,7 +529,7 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-cl
 /* ── Turn timer: ring around the avatar (Figma timer variant 01) ── */
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring-wrap { inset: -11px; }
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring {
-  background: conic-gradient(var(--x-rc, #8BBD35) calc(var(--t) * 1turn), rgba(255, 255, 255, .26) 0) !important;
+  background: conic-gradient(var(--x-rc, #8BBD35) calc(var(--x-t, var(--t)) * 1turn), rgba(255, 255, 255, .26) 0) !important;
   -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5.5px)) !important;
   mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5.5px)) !important;
   filter: none !important;
@@ -693,3 +693,21 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-blin
 /* 5. Hand badge never covers the stack or ring */
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand { white-space: nowrap; }
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .dbtn.d0 { left: 12% !important; top: 74% !important; } }
+
+/* ── "To act" status pill (Figma "To act 05 — Ring timer") ── */
+html[data-brand] .dock .dock-status[data-x-act] { height: auto; overflow: visible; font-size: 0 !important; color: transparent; }
+html[data-brand] .dock .dock-status[data-x-act] > :not(.x-act) { display: none !important; }
+html[data-brand] .x-act {
+  display: inline-flex; align-items: center; gap: 10px; padding: 5px 14px 5px 5px; border-radius: 999px;
+  background: #0A182A; white-space: nowrap; max-width: min(320px, 90vw);
+}
+html[data-brand] .x-act-ring { position: relative; width: 26px; height: 26px; flex: none; }
+html[data-brand] .x-act-ring svg { display: block; }
+html[data-brand] .x-act-track { fill: none; stroke: rgba(255, 255, 255, .12); stroke-width: 3; }
+html[data-brand] .x-act-prog { fill: none; stroke: #14A0FF; stroke-width: 3; stroke-linecap: round; transition: stroke .3s ease; }
+html[data-brand] .x-act[data-l="mid"] .x-act-prog { stroke: #FDD79A; }
+html[data-brand] .x-act[data-l="low"] .x-act-prog { stroke: #E5484D; }
+html[data-brand] .x-act-ring i { position: absolute; inset: 0; display: grid; place-items: center; font-style: normal; font-size: 9px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; }
+html[data-brand] .x-act-name { font-size: 14px; font-weight: 600; color: #fff; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+html[data-brand] .x-act-note { font-size: 13px; font-weight: 500; color: #8FA6BA; flex: none; }
+html[data-brand] .x-act-note:empty { display: none; }

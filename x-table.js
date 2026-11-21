@@ -8,13 +8,14 @@
     en: { hi: 'High card', pair: 'Pair', bpair: 'Pair on board', pp: 'Pocket pair', two: 'Two pair', trips: 'Trips', set: 'Set',
       str: 'Straight', fl: 'Flush', fh: 'Full house', quads: 'Four of a kind', sf: 'Straight flush', rf: 'Royal flush',
       fd: 'flush draw', sd: 'straight draw', gs: 'gutshot', fold: 'Check is free\nFold anyway?', turn: 'Your turn',
-      rotate: 'Rotate your phone to play' },
+      rotate: 'Rotate your phone to play', toact: 'to act' },
     uk: { hi: 'Старша карта', pair: 'Пара', bpair: 'Пара на борді', pp: 'Кишенькова пара', two: 'Дві пари', trips: 'Трійка', set: 'Сет',
       str: 'Стріт', fl: 'Флеш', fh: 'Фул-хаус', quads: 'Каре', sf: 'Стріт-флеш', rf: 'Роял-флеш',
       fd: 'флеш-дро', sd: 'стріт-дро', gs: 'гатшот', fold: 'Чек безкоштовний\nВсе одно фолд?', turn: 'Ваш хід',
-      rotate: 'Поверніть телефон вертикально' }
+      rotate: 'Поверніть телефон вертикально', toact: 'ходить' }
   };
   var t = function (k) { return (uk() ? T.uk : T.en)[k]; };
+  var t_ = t;
 
   /* ── Stage scaling ── */
   function fit() {
@@ -156,16 +157,8 @@
   }
 
   /* ── Timer urgency colour ── */
-  function timer() {
-    $$('.seat[data-x-t]').forEach(function (s) { if (!s.classList.contains('turn')) s.removeAttribute('data-x-t'); });
-    if (!hydrated) return;
-    $$('.seat.turn .ring-wrap').forEach(function (rw) {
-      var t = parseFloat(getComputedStyle(rw).getPropertyValue('--t')), seat = rw.closest('.seat'); if (!seat || isNaN(t)) return;
-      var v = t <= 0.2 ? 'low' : t <= 0.47 ? 'mid' : '';
-      if (v) { if (seat.getAttribute('data-x-t') !== v) seat.setAttribute('data-x-t', v); } else if (seat.hasAttribute('data-x-t')) seat.removeAttribute('data-x-t');
-    });
-  }
-  setInterval(function () { if (document.querySelector('.seat.turn')) timer(); }, 250);
+  function timer() {}
+
 
   /* ── Deck sits exactly on the middle board slot, same size ── */
   function deck() {
@@ -221,8 +214,48 @@
     document.body.appendChild(b); paint();
   }
 
+  /* ── Turn clock: own progress value (the build's ring ran out at half time) ── */
+  var turnKey = null, turnStart = 0, turnDur = 15000, turnT = 1, turnEl = 0;
+  function clockFrame() {
+    var seat = document.querySelector('.seat.turn'), rw = seat && seat.querySelector('.ring-wrap');
+    if (rw) {
+      var cs = getComputedStyle(rw), dur = parseFloat(cs.getPropertyValue('--dur')) || 15000, el = parseFloat(cs.getPropertyValue('--elapsed')) || 0;
+      var key = seat.className.replace(/\s*\bturn\b\s*/g, ' ').trim();
+      if (key !== turnKey || el > turnEl + 500) { turnKey = key; turnDur = dur; turnStart = performance.now() + el; }
+      turnEl = el;
+      turnT = Math.max(0, Math.min(1, 1 - (performance.now() - turnStart) / turnDur));
+      rw.style.setProperty('--x-t', turnT.toFixed(4));
+      var lv = turnT * turnDur <= 3000 ? 'low' : turnT * turnDur <= 7000 ? 'mid' : '';
+      if (lv) { if (seat.getAttribute('data-x-t') !== lv) seat.setAttribute('data-x-t', lv); } else if (seat.hasAttribute('data-x-t')) seat.removeAttribute('data-x-t');
+    } else turnKey = null;
+    requestAnimationFrame(clockFrame);
+  }
+  requestAnimationFrame(clockFrame);
+
+  /* ── "To act" status: ring with seconds + name (Figma "To act 05") ── */
+  var ACT_R = 10.4, ACT_C = 2 * Math.PI * ACT_R;
+  function act() {
+    var st = $('.dock-status'); if (!st || !hydrated) return;
+    var seat = $('.seat.turn'), b = $('b', st), mine = !!$('.dock.my-turn') || !!$('.turn-dot', st);
+    if (!seat || !b) { if (st.hasAttribute('data-x-act')) { st.removeAttribute('data-x-act'); var o = $('.x-act', st); if (o) o.remove(); } return; }
+    var t = turnKey ? turnT : 1, secs = Math.ceil(t * turnDur / 1000);
+    var name = mine ? t_('turn') : b.textContent.trim();
+    var x = $('.x-act', st);
+    if (!x) { x = document.createElement('span'); x.className = 'x-act';
+      x.innerHTML = '<span class="x-act-ring"><svg viewBox="0 0 26 26" width="26" height="26"><circle class="x-act-track" cx="13" cy="13" r="' + ACT_R + '"/><circle class="x-act-prog" cx="13" cy="13" r="' + ACT_R + '" transform="rotate(-90 13 13)"/></svg><i></i></span><span class="x-act-name"></span><span class="x-act-note"></span>';
+      st.appendChild(x); }
+    var lvl = secs <= 3 ? 'low' : secs <= 7 ? 'mid' : '';
+    if (x.getAttribute('data-l') !== lvl) x.setAttribute('data-l', lvl);
+    var prog = $('.x-act-prog', x); prog.setAttribute('stroke-dasharray', (Math.max(0, Math.min(1, t)) * ACT_C).toFixed(2) + ' ' + ACT_C.toFixed(2));
+    var n = $('i', x); if (n.textContent !== String(secs)) n.textContent = secs;
+    var nm = $('.x-act-name', x); if (nm.textContent !== name) nm.textContent = name;
+    var note = mine ? '' : t_('toact'), ne = $('.x-act-note', x); if (ne.textContent !== note) ne.textContent = note;
+    if (!st.hasAttribute('data-x-act')) st.setAttribute('data-x-act', '');
+  }
+  setInterval(function () { if (document.querySelector('.seat.turn')) act(); }, 100);
+
   var raf = 0;
-  function tick() { raf = 0; skinDom(); fsDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); fsDom(); deck(); banner(); hand(); timer(); act(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {
