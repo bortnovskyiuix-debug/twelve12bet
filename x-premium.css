@@ -1030,3 +1030,17 @@ html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .5; }
   html[data-brand] .felt-mark { translate: 24px 0; top: 53%; }
   html[data-brand] .felt-mark .felt-brand { width: 200px; }
 }
+
+/* Winner banner replaces the pot label while it is shown */
+html[data-brand] .table:has(> .banner) .pot-label { opacity: 0; transition: opacity .2s ease; }
+html[data-brand] .table > .banner { transition: top .2s ease; }
+
+/* Settings are off for now: hide the gear button */
+html[data-brand] .toolbar.right .tool:is([aria-label="Settings"], [aria-label="Налаштування"]),
+html[data-brand] .toolbar.right .tool:last-child:has(svg):not([aria-label*="chat" i]):not([aria-label*="чат" i]) { display: none !important; }
+
+/* Soft shadow under every player profile */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ava {
+  box-shadow: 0 10px 22px rgba(0, 6, 20, .55), 0 3px 6px rgba(0, 6, 20, .35) !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .st { box-shadow: 0 6px 14px rgba(0, 6, 20, .45); }

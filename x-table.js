@@ -247,8 +247,20 @@
   }
   requestAnimationFrame(clockFrame);
 
+  /* ── Winner banner placement: takes the pot's spot above the board, never on the cards ── */
+  function bannerPlace() {
+    var el = $('.table > .banner'), tb = $('.table'), bd = $('.board'); if (!el || !tb || !bd) return;
+    var t = tb.getBoundingClientRect(), z = t.width / tb.offsetWidth || 1, b = bd.getBoundingClientRect(), h = el.offsetHeight;
+    var pot = $('.pot-label'), top;
+    if (pot && pot.getBoundingClientRect().height) { var p = pot.getBoundingClientRect(); top = (p.top + p.height / 2 - t.top) / z - h / 2; }
+    else top = (b.top - t.top) / z - h - 14;
+    top = Math.min(top, (b.top - t.top) / z - h - 10);
+    var v = Math.round(top) + 'px'; if (el.style.getPropertyValue('--banner-top') !== v) el.style.setProperty('--banner-top', v);
+  }
+  setInterval(bannerPlace, 120);
+
   var raf = 0;
-  function tick() { raf = 0; skinDom(); fsDom(); ribbonDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); fsDom(); ribbonDom(); deck(); banner(); bannerPlace(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {
