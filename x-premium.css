@@ -456,3 +456,6 @@ html[data-brand] [data-back="royal"] .card.back {
 /* Timer colour: hurry / last seconds */
 html[data-brand] .seat[data-x-t="mid"] .ring { --rc: #F2B63C !important; }
 html[data-brand] .seat[data-x-t="low"] .ring { --rc: #E5484D !important; }
+
+/* Lobby is off for now: no "Back to lobby" in the table menu */
+html[data-brand] .menu-row.x-lobby { display: none !important; }
