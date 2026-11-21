@@ -32,6 +32,9 @@
     var mobile = /ios|android/.test(w.platform || '');
     var fs = function () { if (mobile && !w.isFullscreen) call(w, 'requestFullscreen', '8.0'); };
     fs();
+    /* Telegram can refuse while the sheet animates: retry a few times until it sticks */
+    var tries = 0, again = setInterval(function () { if (w.isFullscreen || ++tries > 8) return clearInterval(again); fs(); }, 400);
+    try { w.onEvent('fullscreenFailed', function () { setTimeout(fs, 500); }); } catch (e) {}
     call(w, 'lockOrientation', '8.0');
     vars(w);
     var upd = function () { vars(w); };

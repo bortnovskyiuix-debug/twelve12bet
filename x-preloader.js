@@ -34,8 +34,7 @@
            '-webkit-mask:linear-gradient(180deg,#000 60%,transparent 82%);mask:linear-gradient(180deg,#000 60%,transparent 82%)}}';
   st.textContent = css;
   var el = d.createElement('div'); el.className = 'x-pre vid'; el.setAttribute('aria-hidden', 'true');
-  var caps = [['t l', 'POKER ROOM', .5], ['t c', 'NLH · PLO · SPIN & GO', .62], ['t r', '2026', .74],
-              ['m l', 'V1.0', .86], ['m r', 'DEMO', .92]];
+  var caps = [];
   var html = '<video class="x-pre-vid" src="' + base + 'brand/1xbet/preloader.mp4" autoplay muted playsinline disablepictureinpicture></video>' +
              '<img class="x-pre-logo" src="' + base + 'brand/12bet/logo.svg" alt="">';
   caps.forEach(function (c) { html += '<span class="x-pre-cap ' + c[0] + '" style="animation-delay:' + c[2] + 's">' + c[1] + '</span>'; });
