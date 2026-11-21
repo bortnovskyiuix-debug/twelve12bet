@@ -43,14 +43,14 @@ POST = """{fire} <b>Покер, который открывается в оди�
 Три концепт-демо покерного стола — каждый в своём стиле.
 <blockquote>Живая игра с ботами, без регистрации и загрузок.</blockquote>
 
-{bolt} <b>1xBet</b> · классика
+{b1x} <b>1xBet</b> · классика
 {web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a>
 
-{bolt} <b>PokerDom</b> · lounge
+{bpd} <b>PokerDom</b> · lounge
 {web} <a href="https://twelve12bet.vercel.app/pokerdom/">Открыть в браузере</a>
 {chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a>
 
-{bolt} <b>1win</b> · неон
+{b1w} <b>1win</b> · неон
 {web} <a href="https://twelve12bet.vercel.app/1win/">Открыть в браузере</a>
 {chat} <a href="https://t.me/onewin_poker_demo_bot">Открыть в Telegram</a>
 
@@ -59,10 +59,35 @@ POST = """{fire} <b>Покер, который открывается в оди�
 {ok} Полный экран в Telegram
 {ok} Работает с телефона и компьютера
 {ok} Свой стол, карты, фишки и прелоадер под каждый бренд</blockquote>"""
-POST_EMOJI = {"fire": "🔥", "bolt": "⚡", "web": "🌐", "chat": "💬", "spark": "✨", "ok": "✔️"}
+POST_EMOJI = {"fire": "🔥", "web": "🌐", "chat": "💬", "spark": "✨", "ok": "✔️"}
+# one custom emoji per brand (tgbot/public/emoji/brands/*.png, 100x100), kept in a small pack of its own
+BRAND_EMOJI = [("b1x", "1xbet", "🔵"), ("bpd", "pokerdom", "🟢"), ("b1w", "1win", "🟣")]
 
 
-def send_post(chat_id):
+def brand_pack_name():
+    return f"brandmarks_by_{api('getMe')['username']}"
+
+
+def brand_ids(user_id, host):
+    name = brand_pack_name()
+    def read():
+        try:
+            return {k: st["custom_emoji_id"] for (k, _, _), st in zip(BRAND_EMOJI, api("getStickerSet", {"name": name})["stickers"])}
+        except Exception:
+            return {}
+    ids = read()
+    if not ids and user_id:
+        try:
+            api("createNewStickerSet", {"user_id": int(user_id), "name": name, "title": "Poker demo marks", "sticker_type": "custom_emoji",
+                                        "stickers": [{"sticker": f"https://{host}/tgbot/public/emoji/brands/{f}.png", "format": "static", "emoji_list": [fb]}
+                                                     for _, f, fb in BRAND_EMOJI]})
+            ids = read()
+        except Exception as e:
+            print("brand pack:", safe(e))
+    return ids
+
+
+def send_post(chat_id, host, user_id=None):
     ids = {}
     try:
         for st in api("getStickerSet", {"name": POST_PACK})["stickers"]:
@@ -71,11 +96,14 @@ def send_post(chat_id):
         print("post pack:", safe(e))
     rich = {k: (f'<tg-emoji emoji-id="{ids[v.replace(chr(0xfe0f), "")]}">{v}</tg-emoji>' if v.replace(chr(0xfe0f), "") in ids else v)
             for k, v in POST_EMOJI.items()}
+    bids = brand_ids(user_id, host)
+    plain = dict(POST_EMOJI, **{k: fb for k, _, fb in BRAND_EMOJI})
+    rich.update({k: (f'<tg-emoji emoji-id="{bids[k]}">{fb}</tg-emoji>' if k in bids else fb) for k, _, fb in BRAND_EMOJI})
     p = {"chat_id": chat_id, "parse_mode": "HTML", "link_preview_options": {"is_disabled": True}}
     try:
         api("sendMessage", dict(p, text=POST.format(**rich)))
     except RuntimeError:
-        api("sendMessage", dict(p, text=POST.format(**POST_EMOJI)))   # no Premium on the owner's account: plain emoji
+        api("sendMessage", dict(p, text=POST.format(**plain)))   # no Premium on the owner's account: plain emoji
 
 
 
@@ -218,7 +246,7 @@ class handler(BaseHTTPRequestHandler):
             msg = upd.get("message") or {}
             text = (msg.get("text") or "").split(" ")[0].split("@")[0]
             if text == "/post":
-                send_post(msg["chat"]["id"])
+                send_post(msg["chat"]["id"], self.headers.get("Host"), (msg.get("from") or {}).get("id"))
             if text == "/start":
                 send_welcome(msg["chat"]["id"], self.headers.get("Host"), (msg.get("from") or {}).get("id"))
         except Exception as e:
