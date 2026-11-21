@@ -991,3 +991,15 @@ html[data-brand] .x-ta-arc { stroke: #14A0FF; transition: stroke-dashoffset .1s 
 html[data-brand] .x-ta-s { position: absolute; inset: 0; display: grid; place-items: center; font-size: 9px; font-weight: 700; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
 html[data-brand] .x-ta-name { font-size: 14px; font-weight: 600; color: #fff; }
 html[data-brand] .x-ta-label { font-size: 13px; font-weight: 500; color: #8FA6BC; }
+
+/* ── Mobile: table fills the screen — wider oval, less dead space under it, dock hugs its content ── */
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .app { padding-inline: 8px; gap: 2px; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table-wrap { padding: 36px 4px 44px; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table {
+    width: min(91cqw, calc(100cqh / 1.35)) !important;
+    height: min(100cqh, calc(min(91cqw, 100cqh / 1.35) * 2.2)) !important;
+  }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .stage { gap: 4px; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .dock { min-height: 0; padding-top: 2px; }
+}
