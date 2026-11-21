@@ -35,8 +35,8 @@
   st.textContent = css;
   var el = d.createElement('div'); el.className = 'x-pre vid'; el.setAttribute('aria-hidden', 'true');
   var caps = [['t l', 'POKER ROOM', .5], ['t c', 'NLH · PLO · SPIN & GO', .62], ['t r', '2026', .74],
-              ['m l', 'V1.0', .86], ['m r', 'DEMO', .92], ['b l', 'PLAY MONEY', 1.0], ['b c', 'WEB + MOBILE', 1.08], ['b r', 'TELEGRAM', 1.16]];
-  var html = '<video class="x-pre-vid" src="' + base + 'brand/1xbet/preloader.mp4" autoplay muted loop playsinline disablepictureinpicture></video>' +
+              ['m l', 'V1.0', .86], ['m r', 'DEMO', .92]];
+  var html = '<video class="x-pre-vid" src="' + base + 'brand/1xbet/preloader.mp4" autoplay muted playsinline disablepictureinpicture></video>' +
              '<img class="x-pre-logo" src="' + base + 'brand/12bet/logo.svg" alt="">';
   caps.forEach(function (c) { html += '<span class="x-pre-cap ' + c[0] + '" style="animation-delay:' + c[2] + 's">' + c[1] + '</span>'; });
   for (var i = 0; i < 26; i++) {
@@ -57,5 +57,17 @@
     if (done) return; done = true; clearInterval(tick); bar(1);
     setTimeout(function () { el.classList.add('out'); setTimeout(function () { el.classList.add('gone'); el.remove(); }, 700); }, Math.max(0, MIN - (Date.now() - t0)) + 200);
   }
-  var poll = setInterval(function () { if ((ready() && d.readyState === 'complete') || Date.now() - t0 > MAX) { clearInterval(poll); finish(); } }, 100);
+  /* the fill animation must play through once: finish only when the video ends (or can't play at all) */
+  var vid = el.querySelector('.x-pre-vid'), vidDone = false, vidDead = false;
+  if (vid) {
+    vid.addEventListener('ended', function () { vidDone = true; });
+    vid.addEventListener('error', function () { vidDead = true; });
+    vid.addEventListener('timeupdate', function () { var dd = vid.duration; if (dd && vid.currentTime >= dd - .05) vidDone = true; bar(Math.max(p, dd ? vid.currentTime / dd * .95 : 0)); });
+    /* the app re-renders the page on boot, which can yank the overlay (and pause the video): keep nudging play */
+    var kick = function () { if (vidDone || vidDead || !vid.paused) return; var pr = vid.play && vid.play(); if (pr && pr.catch) pr.catch(function () {}); };
+    kick(); var kicker = setInterval(function () { if (vidDone || vidDead || done) return clearInterval(kicker); kick(); }, 250);
+    MAX = 10000;
+  }
+  var vidOk = function () { return !vid || vidDone || vidDead; };
+  var poll = setInterval(function () { if ((ready() && d.readyState === 'complete' && vidOk()) || Date.now() - t0 > MAX) { clearInterval(poll); finish(); } }, 100);
 })();
