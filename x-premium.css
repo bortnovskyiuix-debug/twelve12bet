@@ -636,3 +636,18 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.bot .hole {
 }
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.bot .hole .card + .card { margin-left: calc(var(--cw) * -.3); }
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.bot .tag { z-index: 6; }
+
+/* ── Hero hand: cards peek from behind the avatar (Figma hero variant 09) ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole {
+  left: 50% !important; right: auto !important; top: auto !important; bottom: 42% !important;
+  translate: -50% 0 !important; z-index: 0; display: flex; width: max-content;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .ava { z-index: 2; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card + .card { margin-left: 8px; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card:first-child { transform: rotate(-10deg); transform-origin: 60% 100%; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card:nth-child(2) { transform: rotate(10deg); transform-origin: 40% 100%; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand { left: calc(100% - 14px); top: 62%; z-index: 7; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card + .card { margin-left: 4px; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand { left: calc(100% - 10px); max-width: 96px; }
+}
