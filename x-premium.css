@@ -343,5 +343,10 @@ html[data-brand] .chat-quick button[data-emo] { background-size: 20px 20px; }
   html[data-brand] .seat .emopop .item[data-emo] { background-size: 24px 24px; background-position: 3px center; }
 }
 
-/* Felt: no brand logo, keep only the game banner */
-html[data-brand] .felt-mark .felt-brand { display: none !important; }
+/* Felt mark: single "1XBET POKER · TEXAS HOLD'EM" artwork (logo + ribbon in one SVG), printed-on-felt */
+html[data-brand] .felt-mark { gap: 0; }
+html[data-brand] .felt-mark .felt-brand { display: block !important; content: url("/brand/1xbet-poker-felt-v2.svg"); width: 190px; opacity: .18; }
+html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .25; }
+html[data-brand] .felt-mark :is(.felt-mode, .felt-ribbon, .felt-banner, .x-ribbon) { display: none !important; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark { top: 66%; } html[data-brand] .felt-mark .felt-brand { width: 150px; } }
+@media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .felt-mark .felt-brand { width: 160px; } }
