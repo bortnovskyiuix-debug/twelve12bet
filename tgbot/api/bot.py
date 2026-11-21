@@ -12,7 +12,10 @@ from urllib.parse import urlparse, parse_qs
 TOKEN = os.environ.get("BOT_TOKEN", "").strip()
 OWNER_ID = os.environ.get("OWNER_ID", "").strip()
 OWNER_ID = OWNER_ID if OWNER_ID.isdigit() else ""   # optional: without it the pack is made on the first /start
-PLAY_URL = os.environ.get("PLAY_URL", "https://twelve12bet.vercel.app/")
+PLAY_URL = os.environ.get("PLAY_URL", "https://twelve12bet.vercel.app/?skin=classic")
+BRAND = os.environ.get("BRAND", "1xBet Poker").strip()          # shown in the welcome text and pack title
+BRAND_LOGO = os.environ.get("BRAND_LOGO", "1x").strip().lower()  # "1x" = 1X mark emoji + 1xBet banner; anything else = neutral
+WELCOME_VIDEO = os.environ.get("WELCOME_VIDEO", "").strip()     # optional banner url; default: /welcome.mp4 for 1x
 LAST_ERROR = None
 SECRET = hashlib.sha256(TOKEN.encode()).hexdigest()[:32]
 
@@ -20,7 +23,7 @@ EMOJI = [("logo", "🔵"), ("spade", "♠️"), ("heart", "♥️"), ("chip", "�
          ("cards", "🃏"), ("trophy", "🏆"), ("bolt", "⚡"), ("play", "▶️")]
 FALLBACK = dict(EMOJI)
 
-WELCOME = """{logo} <b>Welcome to 1xBet Poker</b>
+WELCOME = """{logo} <b>Welcome to {brand}</b>
 
 {spade} Real tables, real action. Right inside Telegram.
 
@@ -54,17 +57,21 @@ def set_name():
     return f"x1poker_by_{api('getMe')['username']}"
 
 
+def pack_emoji():
+    return EMOJI if BRAND_LOGO == "1x" else [e for e in EMOJI if e[0] != "logo"]
+
+
 def create_pack(user_id, host):
     stickers = [{"sticker": f"https://{host}/emoji/{n}.png", "format": "static",
-                 "emoji_list": [fb.replace("\ufe0f", "")]} for n, fb in EMOJI]
-    api("createNewStickerSet", {"user_id": int(user_id), "name": set_name(), "title": "1xBet Poker",
+                 "emoji_list": [fb.replace("\ufe0f", "")]} for n, fb in pack_emoji()]
+    api("createNewStickerSet", {"user_id": int(user_id), "name": set_name(), "title": BRAND[:64],
                                 "sticker_type": "custom_emoji", "stickers": stickers})
 
 
 def emoji_ids():
     try:
         pack = api("getStickerSet", {"name": set_name()})
-        return {n: s["custom_emoji_id"] for (n, _), s in zip(EMOJI, pack["stickers"])}
+        return {n: s["custom_emoji_id"] for (n, _), s in zip(pack_emoji(), pack["stickers"])}
     except Exception:
         return {}
 
@@ -78,19 +85,28 @@ def send_welcome(chat_id, host, user_id=None):
         except Exception as e:
             print("pack:", safe(e))
     tags = {n: (f'<tg-emoji emoji-id="{ids[n]}">{fb}</tg-emoji>' if n in ids else fb) for n, fb in EMOJI}
+    if BRAND_LOGO != "1x":
+        tags["logo"] = tags["heart"]
+    tags["brand"] = BRAND.replace("&", "&amp;").replace("<", "&lt;")
     button = {"text": BUTTON_TEXT, "web_app": {"url": PLAY_URL}}
     if "play" in ids:
         button["icon_custom_emoji_id"] = ids["play"]
-    p = {"chat_id": chat_id, "animation": f"https://{host}/welcome.mp4",
-         "caption": WELCOME.format(**tags), "parse_mode": "HTML",
-         "reply_markup": {"inline_keyboard": [[button]]}}
+    video = WELCOME_VIDEO or (f"https://{host}/welcome.mp4" if BRAND_LOGO == "1x" else "")
+    p = {"chat_id": chat_id, "parse_mode": "HTML", "reply_markup": {"inline_keyboard": [[button]]}}
+    method, field = ("sendAnimation", "caption") if video else ("sendMessage", "text")
+    if video:
+        p["animation"] = video
+    p[field] = WELCOME.format(**tags)
     try:
-        api("sendAnimation", p)
+        api(method, p)
     except RuntimeError:
         # Custom emoji need Telegram Premium on the bot owner's account: fall back to plain emoji.
         button.pop("icon_custom_emoji_id", None)
-        p["caption"] = WELCOME.format(**FALLBACK)
-        api("sendAnimation", p)
+        plain = dict(FALLBACK, brand=tags["brand"])
+        if BRAND_LOGO != "1x":
+            plain["logo"] = plain["heart"]
+        p[field] = WELCOME.format(**plain)
+        api(method, p)
 
 
 def setup(host):
