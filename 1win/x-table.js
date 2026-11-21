@@ -229,7 +229,15 @@
   }
 
   var raf = 0;
-  function tick() { raf = 0; skinDom(); fsDom(); ribbonDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  /* remember how tall the dock is with the action buttons, per layout, and reserve that height always */
+  var dockH = 0, dockW = 0;
+  function dockFit() {
+    if (dockW !== innerWidth) { dockW = innerWidth; dockH = 0; document.documentElement.style.removeProperty('--x-dock-h'); }
+    var d = $('.stage > .dock.my-turn'); if (!d || $('.dock .raise-panel, .dock .rp-close')) return;
+    d.style.setProperty('min-height', '0px', 'important'); var h = Math.round(d.getBoundingClientRect().height); d.style.removeProperty('min-height');
+    if (h > 60 && h < innerHeight * .5 && h !== dockH) { dockH = h; document.documentElement.style.setProperty('--x-dock-h', h + 'px'); }
+  }
+  function tick() { raf = 0; skinDom(); dockFit(); fsDom(); ribbonDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {

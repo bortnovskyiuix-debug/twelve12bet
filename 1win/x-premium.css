@@ -307,7 +307,7 @@ html[data-brand][data-x-skin="neon"] .x-skin-bg {
   display: block; position: absolute; z-index: -1; pointer-events: none;
   /* image oval mapped onto the table box */
   left: -8.25%; top: -29.8%; width: 116.84%; height: 154%;
-  background: url(brand/skins/neon-desk.webp) center / 100% 100% no-repeat;
+  background: url(brand/skins/neon-desk.webp?v=2) center / 100% 100% no-repeat;
   -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent);
   mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent), linear-gradient(180deg, transparent, #000 8%, #000 90%, transparent);
   -webkit-mask-composite: source-in; mask-composite: intersect;
@@ -315,7 +315,7 @@ html[data-brand][data-x-skin="neon"] .x-skin-bg {
 @media (max-aspect-ratio: 4/5), (max-width: 700px) {
   html[data-brand][data-x-skin="neon"] .x-skin-bg {
     left: -10.97%; top: -24.23%; width: 121.37%; height: 149.6%;
-    background-image: url(brand/skins/neon-mob.webp);
+    background-image: url(brand/skins/neon-mob.webp?v=2);
   }
 }
 html[data-brand][data-x-skin="neon"] .felt-mark { opacity: .16; }
@@ -1072,3 +1072,8 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole 
 /* Neon folder: no operator marks on the felt or the card backs (neutral spade), ribbon stays */
 html[data-brand] .felt-mark .felt-brand { display: none !important; }
 html[data-brand] { --back-icon: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48cGF0aCBkPSJNNTAgNkM1MCA2IDEyIDM4IDEyIDYwQzEyIDczIDIyIDgyIDMzIDgyQzM5IDgyIDQ0IDgwIDQ3IDc2QzQ2IDg0IDQyIDkwIDM2IDk0SDY0QzU4IDkwIDU0IDg0IDUzIDc2QzU2IDgwIDYxIDgyIDY3IDgyQzc4IDgyIDg4IDczIDg4IDYwQzg4IDM4IDUwIDYgNTAgNloiIGZpbGw9IiNmZmYiLz48L3N2Zz4=") !important; }
+
+/* The table keeps one size: the dock always reserves the height it has with the action buttons,
+   so the felt does not stretch when the buttons are hidden (value measured by x-table.js). */
+html[data-brand] .stage > .dock { min-height: var(--x-dock-h, 144px) !important; }
+@media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .stage > .dock { min-height: var(--x-dock-h, 152px) !important; } }
