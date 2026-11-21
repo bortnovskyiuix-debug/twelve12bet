@@ -228,3 +228,6 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x{
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x:hover{background:rgba(255,255,255,.06)}
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.menu-x .mx-ico{width:34px;height:34px;padding:7px;border-radius:9px;background:rgba(0,152,254,.14);color:#4FB8FF;flex:none}
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.x-leave .mx-ico,html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .menu-row.x-leave-all .mx-ico{background:rgba(240,71,91,.14);color:#FF8A97}
+
+/* Lobby is off: no "Back to lobby" in the table menu */
+html[data-brand] .menu-row.x-lobby { display: none !important; }
