@@ -1,7 +1,7 @@
 """1xBet Poker Telegram bot on Vercel (serverless, stdlib only).
 
 POST /api/bot                    Telegram webhook: answers /start with the welcome message.
-GET  /api/bot?setup=<OWNER_ID>   One-time setup: custom emoji pack, webhook, menu button.
+GET  /api/bot?setup=1            One-time setup (safe to repeat): custom emoji pack, webhook, menu button.
 
 Vercel env: BOT_TOKEN, OWNER_ID, optional PLAY_URL.
 """
@@ -114,8 +114,8 @@ class handler(BaseHTTPRequestHandler):
         if not TOKEN or not OWNER_ID:
             return self._reply(500, "Set BOT_TOKEN and OWNER_ID in Vercel → Settings → Environment Variables, then redeploy.")
         q = parse_qs(urlparse(self.path).query)
-        if q.get("setup", [""])[0] != OWNER_ID:
-            return self._reply(403, "Open /api/bot?setup=<your OWNER_ID> to run setup.")
+        if "setup" not in q:
+            return self._reply(200, "1xBet Poker bot is running. Open /api/bot?setup=1 to (re)run setup.")
         try:
             self._reply(200, setup(self.headers.get("Host")))
         except Exception as e:
