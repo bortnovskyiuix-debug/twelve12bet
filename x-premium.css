@@ -350,3 +350,8 @@ html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .25; }
 html[data-brand] .felt-mark :is(.felt-mode, .felt-ribbon, .felt-banner, .x-ribbon) { display: none !important; }
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark { top: 66%; } html[data-brand] .felt-mark .felt-brand { width: 150px; } }
 @media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .felt-mark .felt-brand { width: 160px; } }
+
+/* Card backs: 1X mark (brand/1xbet/back-1x.svg) instead of the 12X wordmark */
+html[data-brand] { --back-icon: url("/brand/1xbet/back-1x.svg") !important; }
+/* Chips: clean faces, no 12X mark and no denomination */
+html[data-brand] .chip-face > g, html[data-brand] .chip-face > text { display: none !important; }
