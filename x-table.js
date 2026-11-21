@@ -78,7 +78,7 @@
     var hole = $('.seat.hero .hole'); if (!hole) return;
     var badge = $('.x-hand', hole);
     var hc = $$('.card', hole).map(read), bc = $$('.board .card').map(read).filter(Boolean);
-    var folded = !!$('.seat.hero.folded');
+    var folded = !!$('.seat.hero.folded') || !!$('.hl-win, .hl-lose');   /* at showdown the table shows its own hand label */
     var res = (!folded && hc.length === 2 && hc[0] && hc[1]) ? evaluate(hc, bc) : null;
     if (!res) { if (badge) badge.hidden = true; return; }
     if (!badge) { badge = document.createElement('span'); badge.className = 'x-hand'; hole.appendChild(badge); }

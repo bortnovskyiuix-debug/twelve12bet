@@ -554,3 +554,11 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-blin
   font-size: 9px !important; font-weight: 700; line-height: 16px; color: #C3CEDC !important; background: #1A2A42 !important;
 }
 @media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .felt-mark { translate: 36px 0; } }
+
+/* ── Straight deal: no fan tilt on hole cards, no lift on winning board cards ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .hole .card:first-child,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .hole .card:last-child { transform: none; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card + .card { margin-left: 4px; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.bot .hole .card + .card { margin-left: calc(var(--cw) * -.35); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .bcard,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .bcard.hl-win { top: 0 !important; }
