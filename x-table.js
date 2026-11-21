@@ -184,8 +184,28 @@
     d.setAttribute('data-x-fit', '1');
   }
 
+  /* ── Winner banner: avatar + name + amount chip ── */
+  function banner() {
+    var el = $('.table > .banner'); if (!el || !hydrated) return;
+    var txt = ''; for (var i = 0; i < el.childNodes.length; i++) if (el.childNodes[i].nodeType === 3) txt += el.childNodes[i].textContent;
+    txt = txt.trim(); if (el.getAttribute('data-x-src') === txt) return;
+    el.setAttribute('data-x-src', txt);
+    var oldEl = $('.x-win', el); if (oldEl) oldEl.remove();
+    var m = txt.match(/^(.+?)\s+(wins?|won|виграє|виграєте|виграв|виграли|забирає)\s+(.+)$/i);
+    if (!m) { el.removeAttribute('data-x-win'); return; }
+    var name = m[1], rest = m[3].replace(/^\+/, ''), src = '';
+    var am = rest.match(/^(\S+)[,\s]*(.*)$/), amt = am ? am[1].replace(/,$/, '') : rest, note = am ? am[2] : '';
+    $$('.seat').forEach(function (st) { var nm = $('.nm', st); if (nm && nm.textContent.trim() === name) { var im = $('.ava-img', st); if (im) src = im.currentSrc || im.src; } });
+    var w = document.createElement('span'); w.className = 'x-win';
+    if (src) { var im2 = document.createElement('img'); im2.className = 'x-win-ava'; im2.alt = ''; im2.src = src; w.appendChild(im2); }
+    var n = document.createElement('span'); n.className = 'x-win-name'; n.textContent = name; w.appendChild(n);
+    if (note) { var nt = document.createElement('span'); nt.className = 'x-win-note'; nt.textContent = note; w.appendChild(nt); }
+    var a = document.createElement('span'); a.className = 'x-win-amt'; a.textContent = '+' + amt; w.appendChild(a);
+    el.appendChild(w); el.setAttribute('data-x-win', src ? 'ava' : 'text');
+  }
+
   var raf = 0;
-  function tick() { raf = 0; skinDom(); deck(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {
