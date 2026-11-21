@@ -99,14 +99,14 @@ def setup(host):
         api("getStickerSet", {"name": name})
         log.append(f"Emoji pack already exists: t.me/addemoji/{name}")
     except RuntimeError:
-        stickers = [{"sticker": f"https://{host}/emoji/{n}.png", "format": "static",
-                     "emoji_list": [fb.replace("️", "")]} for n, fb in EMOJI]
-        try:
-            api("createNewStickerSet", {"user_id": int(OWNER_ID), "name": name, "title": "1xBet Poker",
-                                        "sticker_type": "custom_emoji", "stickers": stickers})
-            log.append(f"Emoji pack created: t.me/addemoji/{name}")
-        except RuntimeError as e:
-            log.append(f"Emoji pack NOT created ({e}). Open your bot in Telegram, press Start, then run setup again.")
+        if not OWNER_ID:
+            log.append("Emoji pack will be created on your first /start.")
+        else:
+            try:
+                create_pack(OWNER_ID, host)
+                log.append(f"Emoji pack created: t.me/addemoji/{name}")
+            except RuntimeError as e:
+                log.append(f"Emoji pack will be created on your first /start ({safe(e)}).")
     api("setWebhook", {"url": f"https://{host}/api/bot", "secret_token": SECRET,
                        "allowed_updates": ["message"], "drop_pending_updates": True})
     log.append("Webhook set")
