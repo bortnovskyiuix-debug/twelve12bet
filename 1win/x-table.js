@@ -115,21 +115,10 @@
 
 
   /* ── Skin: Neon ── */
-  var SKIN_KEY = 'x-skin-neon-folder';
-  /* ?skin=neon / ?skin=classic in the link picks the skin (and remembers it), e.g. for a separate bot button */
-  (function () {
-    var m = /[?&#]skin=(neon|classic|off)\b/.exec(location.search + location.hash);
-    if (m) try { localStorage.setItem(SKIN_KEY, m[1] === 'neon' ? 'neon' : 'off'); } catch (e) {}
-    try { if (localStorage.getItem(SKIN_KEY) !== 'off') document.documentElement.setAttribute('data-x-skin', 'neon'); } catch (e) {}
-  })();
-  function skinGet() { try { var v = localStorage.getItem(SKIN_KEY); return v == null ? 'neon' : v; } catch (e) { return 'off'; } }  /* classic felt is the default; Neon is opt-in */
-  function skinSet(v) { try { localStorage.setItem(SKIN_KEY, v); } catch (e) {} skinApply(); }
-  function skinApply() {
-    var v = skinGet(), h = document.documentElement;
-    if (v === 'neon') h.setAttribute('data-x-skin', 'neon'); else h.removeAttribute('data-x-skin');
-    var tile = $('.x-skin-tile');
-    if (tile) { tile.classList.toggle('on', v === 'neon'); tile.setAttribute('aria-checked', v === 'neon'); }
-  }
+  /* This folder has one skin only: Neon is always on, there is no switcher. */
+  try { document.documentElement.setAttribute('data-x-skin', 'neon'); } catch (e) {}
+  function skinGet() { return 'neon'; }
+  function skinApply() { document.documentElement.setAttribute('data-x-skin', 'neon'); }
   var hydrated = false;
   function isHydrated() {
     if (hydrated) return true;
@@ -142,16 +131,12 @@
     if ((skinGet() === 'neon') !== document.documentElement.hasAttribute('data-x-skin')) skinApply();
     var tb = $('.table');
     if (tb && !$('.x-skin-bg', tb)) { var bg = document.createElement('div'); bg.className = 'x-skin-bg'; tb.insertBefore(bg, tb.firstChild); }
-    var sw = $('.opt-row .felt-swatch:not(.x-neon)'), row = sw && sw.closest('.opt-row');
-    if (row && !$('.x-skin-tile', row)) {
-      var b = document.createElement('button'); b.type = 'button'; b.className = 'opt-tile x-skin-tile'; b.setAttribute('role', 'radio');
-      b.innerHTML = '<span class="felt-swatch x-neon"></span>Neon';
-      row.appendChild(b);
-      row.addEventListener('click', function (e) {
-        var tile = e.target.closest('.opt-tile'); if (!tile) return;
-        skinSet(tile.classList.contains('x-skin-tile') ? 'neon' : 'off');
-      });
-      skinApply();
+    /* no felt/skin choice in settings: hide that row together with its caption */
+    var sw = $('.opt-row .felt-swatch'), row = sw && sw.closest('.opt-row');
+    if (row && !row.hasAttribute('data-x-hide')) {
+      row.setAttribute('data-x-hide', ''); row.style.display = 'none';
+      var cap = row.previousElementSibling;
+      if (cap && !cap.querySelector('.opt-tile, button, input')) cap.style.display = 'none';
     }
   }
 
