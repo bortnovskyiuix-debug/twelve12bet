@@ -29,13 +29,13 @@
   var base = (function () { var cs = d.currentScript && d.currentScript.src; return cs ? cs.replace(/[^\/]*$/, '') : '/'; })();
   css += '.x-pre-vid{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1;background:#000}' +
          '.x-pre.vid::before,.x-pre.vid .x-pre-logo,.x-pre.vid .x-pre-spark{display:none}' +
-         '@media (max-aspect-ratio:4/5){.x-pre.vid{background:linear-gradient(180deg,#000 0,#000 calc(50% + 20vw),#045182 calc(50% + 58vw),#02304f 100%)}' +
-           '.x-pre-vid{inset:auto;left:-22vw;width:144vw;top:calc(50% - 46vw);height:90vw;object-fit:fill;' +
+         '@media (max-aspect-ratio:4/5){.x-pre.vid{background:linear-gradient(180deg,#000 0,#000 calc(50% + 22vw),#045182 calc(50% + 52vw),#02304f 100%)}' +
+           '.x-pre-vid{inset:auto;left:-5vw;width:110vw;top:calc(50% - 40.4vw);height:80.7vw;object-fit:fill;' +
            '-webkit-mask:linear-gradient(180deg,#000 60%,transparent 82%);mask:linear-gradient(180deg,#000 60%,transparent 82%)}}';
   st.textContent = css;
   var el = d.createElement('div'); el.className = 'x-pre vid'; el.setAttribute('aria-hidden', 'true');
   var caps = [];
-  var html = '<video class="x-pre-vid" src="' + base + 'brand/1xbet/preloader.mp4" autoplay muted playsinline disablepictureinpicture></video>' +
+  var html = '<video class="x-pre-vid" src="' + base + 'brand/1xbet/preloader.mp4?v=2" autoplay muted playsinline disablepictureinpicture></video>' +
              '<img class="x-pre-logo" src="' + base + 'brand/12bet/logo.svg" alt="">';
   caps.forEach(function (c) { html += '<span class="x-pre-cap ' + c[0] + '" style="animation-delay:' + c[2] + 's">' + c[1] + '</span>'; });
   for (var i = 0; i < 26; i++) {
