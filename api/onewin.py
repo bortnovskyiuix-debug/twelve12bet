@@ -41,24 +41,22 @@ POST_PACK = "NewsEmoji"
 POST = """{fire} <b>Покер, который открывается в один тап</b>
 
 Три концепт-демо покерного стола — каждый в своём стиле.
-<blockquote>Живая игра с ботами, без регистрации и загрузок.</blockquote>
 
-{b1x} <b>1xBet</b> · классика
-{web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a>
-
-{bpd} <b>PokerDom</b> · lounge
+<blockquote>{b1x} <b>1xBet</b> · классика
+{web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a></blockquote>
+<blockquote>{bpd} <b>PokerDom</b> · lounge
 {web} <a href="https://twelve12bet.vercel.app/pokerdom/">Открыть в браузере</a>
-{chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a>
-
-{b1w} <b>1win</b> · неон
+{chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a></blockquote>
+<blockquote>{b1w} <b>1win</b> · неон
 {web} <a href="https://twelve12bet.vercel.app/1win/">Открыть в браузере</a>
-{chat} <a href="https://t.me/onewin_poker_demo_bot">Открыть в Telegram</a>
+{chat} <a href="https://t.me/onewin_poker_demo_bot">Открыть в Telegram</a></blockquote>
 
 <blockquote expandable>{spark} <b>Что внутри</b>
 {ok} NL Hold’em 6-max, раздача за 3 секунды
 {ok} Полный экран в Telegram
 {ok} Работает с телефона и компьютера
-{ok} Свой стол, карты, фишки и прелоадер под каждый бренд</blockquote>"""
+{ok} Свой стол, карты, фишки и прелоадер под каждый бренд</blockquote>
+<i>живая игра с ботами · без регистрации и загрузок</i>"""
 POST_EMOJI = {"fire": "🔥", "web": "🌐", "chat": "💬", "spark": "✨", "ok": "✔️"}
 # one custom emoji per brand (tgbot/public/emoji/brands/*.png, 100x100), kept in a small pack of its own
 BRAND_EMOJI = [("b1x", "1xbet", "🔵"), ("bpd", "pokerdom", "🟢"), ("b1w", "1win", "🟣")]
