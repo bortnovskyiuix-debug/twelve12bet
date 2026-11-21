@@ -420,6 +420,8 @@ html[data-brand] .x-hand { box-shadow: none; }
 html[data-brand] .felt-mark .felt-mode, html[data-brand] .felt-mark .felt-ribbon { display: none !important; }
 html[data-brand] .felt-mark { display: grid; place-items: center; opacity: .2 !important; }
 html[data-brand] .felt-mark .felt-brand { width: 140px; height: auto; }
+/* 12xBet: new logo — felt watermark uses the mono (outline) version so the POKER block stays readable under the white filter */
+html[data-brand="12bet"] .felt-mark .felt-brand { content: url("brand/12bet/logo-mono.svg"); width: 150px; }
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark .felt-brand { width: 130px; } }
 
 /* ── Cards: classic faces and backs from the build are the default again ── */
