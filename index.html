@@ -6,7 +6,8 @@
 <meta name="theme-color" content="#000F1A">
 <title>1xBet Poker</title>
 <!-- Lobby is off: the entry point opens the table. The lobby lives in lobby.html. -->
-<script>location.replace('play.html' + location.search + location.hash);</script>
+<!-- ?skin=neon opens the separate Neon copy in /1win/ (older bot buttons still use that link). -->
+<script>location.replace((/[?&]skin=neon\b/.test(location.search) ? '1win/' : 'play.html' + location.search) + location.hash);</script>
 <style>html{background:#03080F}</style>
 </head>
 <body></body>

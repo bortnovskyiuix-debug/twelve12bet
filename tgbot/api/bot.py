@@ -15,7 +15,7 @@ OWNER_ID = OWNER_ID if OWNER_ID.isdigit() else ""   # optional: without it the p
 PLAY_URL = os.environ.get("PLAY_URL", "https://twelve12bet.vercel.app/?skin=classic")
 BRAND = os.environ.get("BRAND", "1xBet Poker").strip()          # shown in the welcome text and pack title
 BRAND_LOGO = os.environ.get("BRAND_LOGO", "1x").strip().lower()  # "1x" = 1X mark emoji + 1xBet banner; anything else = neutral
-WELCOME_VIDEO = os.environ.get("WELCOME_VIDEO", "").strip()     # optional banner url; default: /welcome.mp4 for 1x
+WELCOME_VIDEO = os.environ.get("WELCOME_VIDEO", "").strip()     # optional banner url; default: /welcome.mp4 for 1x, /welcome-neon.mp4 otherwise
 LAST_ERROR = None
 SECRET = hashlib.sha256(TOKEN.encode()).hexdigest()[:32]
 
@@ -91,7 +91,8 @@ def send_welcome(chat_id, host, user_id=None):
     button = {"text": BUTTON_TEXT, "web_app": {"url": PLAY_URL}}
     if "play" in ids:
         button["icon_custom_emoji_id"] = ids["play"]
-    video = WELCOME_VIDEO or (f"https://{host}/welcome.mp4" if BRAND_LOGO == "1x" else "")
+    # 1x: the 1xBet banner; any other brand: the neutral Neon table banner (no operator logo)
+    video = WELCOME_VIDEO or f"https://{host}/{'welcome.mp4' if BRAND_LOGO == '1x' else 'welcome-neon.mp4'}"
     p = {"chat_id": chat_id, "parse_mode": "HTML", "reply_markup": {"inline_keyboard": [[button]]}}
     method, field = ("sendAnimation", "caption") if video else ("sendMessage", "text")
     if video:
