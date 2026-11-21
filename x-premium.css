@@ -1038,3 +1038,8 @@ html[data-brand] .felt-mark .x-ribbon { display: none !important; }
 @media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .felt-mark .felt-brand { width: 240px; } }
 html[data-brand] .felt-mark .felt-brand { opacity: .18; }
 html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .25; }
+/* Desktop felt mark: smaller, pinned to the right side of the felt (clear of the board), not centred */
+@media (min-width: 701px) and (min-aspect-ratio: 4/5) {
+  html[data-brand] .felt-mark { left: auto; right: 11%; translate: 0 0; top: 50%; transform: translateY(-50%); }
+  html[data-brand] .felt-mark .felt-brand { width: 160px; }
+}
