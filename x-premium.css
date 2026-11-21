@@ -615,19 +615,20 @@ html[data-brand] .x-win-amt { padding: 6px 12px; border-radius: 999px; backgroun
 }
 html[data-brand] .x-win-note { font-size: 12px; font-weight: 500; color: rgba(255, 255, 255, .7); }
 
-/* ── Cards: pastel tint by suit (Figma cards variant 08) ── */
+/* ── Cards: classic two-colour (Figma "Cards 01", gallery Light & soft) ── */
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .card:not(.back),
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .mc {
-  --x-tint: #E4E8EF; --x-ink: #0E1726;
-  background: linear-gradient(180deg, rgba(255, 255, 255, .78), rgba(255, 255, 255, 0) 70%), var(--x-tint) !important;
-  color: var(--x-ink) !important;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(191, 209, 235, .35)), #FFFFFF !important;
+  color: #0E1726 !important; box-shadow: inset 0 0 0 1px #0C304C, 0 4px 10px rgba(0, 5, 26, .35);
 }
-html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] :is(.card:not(.back), .mc).suit-1 { --x-tint: #FCE1E3; --x-ink: #E23B45; }
-html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] :is(.card:not(.back), .mc).suit-2 { --x-tint: #DCEBFB; --x-ink: #1C7FE0; }
-html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] :is(.card:not(.back), .mc).suit-3 { --x-tint: #DDF3E5; --x-ink: #1E9E55; }
-html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .card:not(.back) { border-radius: calc(var(--cw) * .13); }
-html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .card:not(.back) .cr { font-weight: 800; }
-html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .mc { filter: none; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] :is(.card:not(.back), .mc):is(.red, .suit-1, .suit-2) { color: #E23B45 !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .card:not(.back) { border-radius: calc(var(--cw) * .176); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .card:not(.back) .cr { font-weight: 700; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .mc { filter: none; box-shadow: inset 0 0 0 1px #0C304C, 0 1px 3px rgba(0, 0, 0, .45); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .card.hl-win, html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .bcard.hl-win .bfront .card,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table.hero-won .card.hl-win, html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table.hero-won .bcard.hl-win .bfront .card {
+  box-shadow: inset 0 0 0 1px #0C304C, 0 0 16px 1px rgba(253, 215, 154, .85), 0 6px 14px rgba(0, 0, 0, .4) !important;
+}
 
 /* ── Opponents' hole cards sit on top of the avatar ── */
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.bot .hole {
@@ -651,3 +652,15 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole 
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card + .card { margin-left: 4px; }
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand { left: calc(100% - 10px); max-width: 96px; }
 }
+
+/* ── Full screen button and mode ── */
+html[data-brand] .x-fs {
+  position: fixed; z-index: 40; top: 8px; left: 62px; width: 46px; height: 46px; padding: 0; border: 0; border-radius: 14px;
+  display: grid; place-items: center; cursor: pointer; color: #C3CEDC; background: rgba(10, 24, 42, .62);
+  transition: background-color .15s ease, color .15s ease, transform .08s ease;
+}
+html[data-brand] .x-fs:hover { background: rgba(20, 42, 70, .9); color: #fff; }
+html[data-brand] .x-fs:active { transform: scale(.95); }
+html[data-brand] .x-fs:focus-visible { outline: 2px solid var(--x-dock-focus); outline-offset: 2px; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .x-fs { display: none; } }
+html[data-brand][data-x-fs] .app { max-width: none; }

@@ -22,7 +22,7 @@
     if (m && innerWidth >= 1081) {
       var cs = getComputedStyle(m);
       var w = m.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      z = Math.max(1, Math.min(w / 1100, m.clientHeight / 764, 1.6));
+      z = Math.max(1, Math.min(w / 1100, m.clientHeight / 764, document.documentElement.hasAttribute('data-x-fs') ? 2.4 : 1.6));
     }
     document.documentElement.style.setProperty('--x-tz', z.toFixed(3));
   }
@@ -204,8 +204,25 @@
     el.appendChild(w); el.setAttribute('data-x-win', src ? 'ava' : 'text');
   }
 
+  /* ── Full screen toggle ── */
+  function fsDom() {
+    var root = document.documentElement, can = document.fullscreenEnabled || document.webkitFullscreenEnabled;
+    if (!can || !$('.table') || $('.x-fs')) return;
+    var b = document.createElement('button'); b.type = 'button'; b.className = 'x-fs';
+    var ICON = { on: '<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V3h4M13 3h4v4M17 13v4h-4M7 17H3v-4"/></svg>',
+                 off: '<svg viewBox="0 0 20 20" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3v4H3M17 7h-4V3M13 17v-4h4M3 13h4v4"/></svg>' };
+    var isFs = function () { return !!(document.fullscreenElement || document.webkitFullscreenElement); };
+    var paint = function () { var f = isFs(); b.innerHTML = f ? ICON.off : ICON.on; b.setAttribute('aria-label', f ? 'Exit full screen' : 'Full screen'); b.title = b.getAttribute('aria-label'); root.toggleAttribute('data-x-fs', f); setTimeout(fit, 60); setTimeout(fit, 400); };
+    b.addEventListener('click', function () {
+      if (isFs()) (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+      else { var r = (root.requestFullscreen || root.webkitRequestFullscreen).call(root); if (r && r.catch) r.catch(function () {}); }
+    });
+    document.addEventListener('fullscreenchange', paint); document.addEventListener('webkitfullscreenchange', paint);
+    document.body.appendChild(b); paint();
+  }
+
   var raf = 0;
-  function tick() { raf = 0; skinDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); fsDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {
