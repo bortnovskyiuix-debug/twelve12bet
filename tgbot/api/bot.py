@@ -12,7 +12,8 @@ from urllib.parse import urlparse, parse_qs
 TOKEN = os.environ.get("BOT_TOKEN", "").strip()
 OWNER_ID = os.environ.get("OWNER_ID", "").strip()
 OWNER_ID = OWNER_ID if OWNER_ID.isdigit() else ""   # optional: without it the pack is made on the first /start
-PLAY_URL = os.environ.get("PLAY_URL", "https://bortnovskyiuix-debug.github.io/twelve12bet/1xbet/tg/")
+PLAY_URL = os.environ.get("PLAY_URL", "https://twelve12bet.vercel.app/")
+LAST_ERROR = None
 SECRET = hashlib.sha256(TOKEN.encode()).hexdigest()[:32]
 
 EMOJI = [("logo", "🔵"), ("spade", "♠️"), ("heart", "♥️"), ("chip", "🪙"),
@@ -132,6 +133,16 @@ class handler(BaseHTTPRequestHandler):
         if not TOKEN:
             return self._reply(500, "Set BOT_TOKEN in Vercel → Settings → Environment Variables, then redeploy.")
         q = parse_qs(urlparse(self.path).query)
+        if "info" in q:
+            out = {}
+            for m in ("getMe", "getWebhookInfo", "getChatMenuButton"):
+                try:
+                    out[m] = api(m)
+                except Exception as e:
+                    out[m] = safe(e)
+            out["emoji_ids"] = emoji_ids()
+            out["last_error"] = LAST_ERROR
+            return self._reply(200, safe(json.dumps(out, ensure_ascii=False, indent=2)))
         if "setup" not in q:
             return self._reply(200, "1xBet Poker bot is running. Open /api/bot?setup=1 to (re)run setup.")
         try:
@@ -150,5 +161,7 @@ class handler(BaseHTTPRequestHandler):
             if text == "/start":
                 send_welcome(msg["chat"]["id"], self.headers.get("Host"), (msg.get("from") or {}).get("id"))
         except Exception as e:
+            global LAST_ERROR
+            LAST_ERROR = safe(e)
             print("update error:", safe(e))
         self._reply(200, "ok")
