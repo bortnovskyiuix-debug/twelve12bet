@@ -206,6 +206,20 @@
     el.appendChild(w); el.setAttribute('data-x-win', src ? 'ava' : 'text');
   }
 
+  /* ── Felt mark: "TEXAS HOLD'EM" ribbon under the logo ── */
+  function ribbonDom() {
+    var m = $('.felt-mark'); if (!m || $('.x-ribbon', m)) return;
+    var mode = $('.felt-mode', m), txt = (mode ? mode.textContent : '') || 'Texas Hold’em';
+    var el = document.createElement('span'); el.className = 'x-ribbon';
+    el.innerHTML = '<svg viewBox="0 0 320 70" aria-hidden="true">' +
+      '<defs><path id="x-rb-arc" d="M40 33 Q160 63 280 33"/></defs>' +
+      '<path d="M46 22 L10 16 L24 35 L10 54 L46 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>' +
+      '<path d="M274 22 L310 16 L296 35 L310 54 L274 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>' +
+      '<path d="M40 16 Q160 46 280 16 L280 50 Q160 80 40 50 Z" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/>' +
+      '<text font-family="Montserrat, sans-serif" font-weight="800" font-size="21" letter-spacing="1.4" fill="currentColor"><textPath href="#x-rb-arc" startOffset="50%" text-anchor="middle" dominant-baseline="middle">' + txt.toUpperCase() + '</textPath></text></svg>';
+    m.appendChild(el);
+  }
+
   /* ── Full screen toggle ── */
   function fsDom() {
     var root = document.documentElement, can = document.fullscreenEnabled || document.webkitFullscreenEnabled;
@@ -224,7 +238,7 @@
   }
 
   var raf = 0;
-  function tick() { raf = 0; skinDom(); fsDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
+  function tick() { raf = 0; skinDom(); fsDom(); ribbonDom(); deck(); banner(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
     if (document.body && !document.body.hasAttribute('data-x-rotate')) document.body.setAttribute('data-x-rotate', t('rotate')); }
   function queue() { if (!raf) raf = requestAnimationFrame(tick); }
   function start() {

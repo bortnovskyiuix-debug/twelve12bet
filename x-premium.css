@@ -1003,3 +1003,18 @@ html[data-brand] .x-ta-label { font-size: 13px; font-weight: 500; color: #8FA6BC
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .stage { gap: 4px; }
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .dock { min-height: 0; padding-top: 2px; }
 }
+/* ── Felt mark: "TEXAS HOLD'EM" ribbon sits centred under the logo, same width, same printed-on-felt tone ── */
+html[data-brand] .felt-mark { gap: 0; justify-items: center; }
+html[data-brand] .felt-mark .felt-banner { display: none !important; }
+html[data-brand] .felt-mark .x-ribbon {
+  display: block; width: 150px; margin-top: 2px; color: #fff; opacity: .38; mix-blend-mode: overlay; line-height: 0;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .18)) drop-shadow(0 -1px 0 rgba(0, 0, 0, .45));
+}
+html[data-brand] .felt-mark .x-ribbon svg { width: 100%; height: auto; display: block; }
+html[data-brand][data-x-skin="neon"] .felt-mark .x-ribbon { opacity: .5; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark .x-ribbon { width: 118px; margin-top: 0; } }
+/* Felt mark: back to the vector logo + separate ribbon (the PNG emblem above is superseded) */
+html[data-brand] .felt-mark .felt-brand { content: url("brand/12bet/logo-mono.svg"); width: 150px; opacity: .38; mix-blend-mode: overlay;
+  filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .18)) drop-shadow(0 -1px 0 rgba(0, 0, 0, .45)); }
+html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .5; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark .felt-brand { width: 118px; } }
