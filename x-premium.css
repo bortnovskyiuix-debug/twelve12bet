@@ -697,7 +697,7 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole 
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .dbtn.d0 { left: 12% !important; top: 74% !important; } }
 
 /* ── Reactions popup, variant 06 "Radial": emoji arc around the avatar, throw items in a pill below ── */
-html[data-brand] .seat:has(.emopop) { z-index: 30; }
+html[data-brand] .seat.picked, html[data-brand] .seat:has(.emopop) { z-index: 61; } /* above the .seat-scrim (60) */
 html[data-brand] .seat .emopop.two-rows {
   --rx-r: calc(var(--ava) * 1.45); --rx-s: 40px; --rx-f: 22px; --rx-bg: #0C304C; --rx-line: #123E61;
   position: absolute; inset: 0 !important; left: 0 !important; top: 0 !important; right: auto !important;
