@@ -11,6 +11,7 @@ from urllib.parse import urlparse, parse_qs
 
 TOKEN = os.environ.get("BOT_TOKEN", "").strip()
 OWNER_ID = os.environ.get("OWNER_ID", "").strip()
+OWNER_ID = OWNER_ID if OWNER_ID.isdigit() else ""   # optional: without it the pack is made on the first /start
 PLAY_URL = os.environ.get("PLAY_URL", "https://bortnovskyiuix-debug.github.io/twelve12bet/1xbet/tg/")
 SECRET = hashlib.sha256(TOKEN.encode()).hexdigest()[:32]
 
@@ -44,8 +45,19 @@ def api(method, params=None):
     return res["result"]
 
 
+def safe(e):
+    return str(e).replace(TOKEN, "***") if TOKEN else str(e)
+
+
 def set_name():
     return f"x1poker_by_{api('getMe')['username']}"
+
+
+def create_pack(user_id, host):
+    stickers = [{"sticker": f"https://{host}/emoji/{n}.png", "format": "static",
+                 "emoji_list": [fb.replace("\ufe0f", "")]} for n, fb in EMOJI]
+    api("createNewStickerSet", {"user_id": int(user_id), "name": set_name(), "title": "1xBet Poker",
+                                "sticker_type": "custom_emoji", "stickers": stickers})
 
 
 def emoji_ids():
@@ -56,8 +68,14 @@ def emoji_ids():
         return {}
 
 
-def send_welcome(chat_id, host):
+def send_welcome(chat_id, host, user_id=None):
     ids = emoji_ids()
+    if not ids and user_id:
+        try:
+            create_pack(OWNER_ID or user_id, host)
+            ids = emoji_ids()
+        except Exception as e:
+            print("pack:", safe(e))
     tags = {n: (f'<tg-emoji emoji-id="{ids[n]}">{fb}</tg-emoji>' if n in ids else fb) for n, fb in EMOJI}
     button = {"text": BUTTON_TEXT, "web_app": {"url": PLAY_URL}}
     if "play" in ids:
@@ -111,15 +129,15 @@ class handler(BaseHTTPRequestHandler):
         self.wfile.write(body)
 
     def do_GET(self):
-        if not TOKEN or not OWNER_ID:
-            return self._reply(500, "Set BOT_TOKEN and OWNER_ID in Vercel → Settings → Environment Variables, then redeploy.")
+        if not TOKEN:
+            return self._reply(500, "Set BOT_TOKEN in Vercel → Settings → Environment Variables, then redeploy.")
         q = parse_qs(urlparse(self.path).query)
         if "setup" not in q:
             return self._reply(200, "1xBet Poker bot is running. Open /api/bot?setup=1 to (re)run setup.")
         try:
             self._reply(200, setup(self.headers.get("Host")))
         except Exception as e:
-            self._reply(500, f"Setup failed: {e}")
+            self._reply(500, f"Setup failed: {safe(e)}")
 
     def do_POST(self):
         if self.headers.get("X-Telegram-Bot-Api-Secret-Token") != SECRET:
@@ -130,7 +148,7 @@ class handler(BaseHTTPRequestHandler):
             msg = upd.get("message") or {}
             text = (msg.get("text") or "").split(" ")[0].split("@")[0]
             if text == "/start":
-                send_welcome(msg["chat"]["id"], self.headers.get("Host"))
+                send_welcome(msg["chat"]["id"], self.headers.get("Host"), (msg.get("from") or {}).get("id"))
         except Exception as e:
-            print("update error:", e)
+            print("update error:", safe(e))
         self._reply(200, "ok")
