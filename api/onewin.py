@@ -65,7 +65,7 @@ BRAND_EMOJI = [("b1x", "1xbet", "🔵"), ("bpd", "pokerdom", "🟢"), ("b1w", "1
 
 
 def brand_pack_name():
-    return f"brandmarks_by_{api('getMe')['username']}"
+    return f"brandmarks2_by_{api('getMe')['username']}"   # v2: PokerDom mark replaced
 
 
 def brand_ids(user_id, host):
