@@ -43,7 +43,8 @@ POST = """{fire} <b>Покер, который открывается в оди�
 Три концепт-демо покерного стола — каждый в своём стиле.
 
 <blockquote>{b1x} <b>1xBet</b> · классика
-{web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a></blockquote>
+{web} <a href="https://twelve12bet.vercel.app/">Открыть в браузере</a>
+{chat} <a href="https://t.me/twelvecraft_demo_bot">Открыть в Telegram</a></blockquote>
 <blockquote>{bpd} <b>PokerDom</b> · lounge
 {web} <a href="https://twelve12bet.vercel.app/pokerdom/">Открыть в браузере</a>
 {chat} <a href="https://t.me/pokedomtesprod_bot">Открыть в Telegram</a></blockquote>
