@@ -996,10 +996,15 @@ html[data-brand] .x-ta-label { font-size: 13px; font-weight: 500; color: #8FA6BC
 @media (max-aspect-ratio: 4/5), (max-width: 700px) {
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .app { padding-inline: 8px; gap: 2px; }
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table-wrap { padding: 36px 4px 44px; }
+  /* Table a notch narrower (PPPoker-style): side seats straddle the rail instead of sitting inside the felt */
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table {
-    width: min(91cqw, calc(100cqh / 1.35)) !important;
-    height: min(100cqh, calc(min(91cqw, 100cqh / 1.35) * 2.2)) !important;
+    width: min(80cqw, calc(100cqh / 1.45)) !important;
+    height: min(100cqh, calc(min(80cqw, 100cqh / 1.45) * 2.3)) !important;
   }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.s1,
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.s2 { left: 1%; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.s4,
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.s5 { left: 99%; }
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .stage { gap: 4px; }
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .dock { min-height: 0; padding-top: 2px; }
 }
