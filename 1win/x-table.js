@@ -132,6 +132,7 @@
   }
   function skinDom() {
     if (!isHydrated()) return;
+    if (document.documentElement.getAttribute('data-x-seat') !== 'gg') document.documentElement.setAttribute('data-x-seat', 'gg');
     if ((skinGet() === 'neon') !== document.documentElement.hasAttribute('data-x-skin')) skinApply();
     var tb = $('.table');
     if (tb && !$('.x-skin-bg', tb)) { var bg = document.createElement('div'); bg.className = 'x-skin-bg'; tb.insertBefore(bg, tb.firstChild); }
