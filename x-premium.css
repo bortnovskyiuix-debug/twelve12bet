@@ -778,3 +778,117 @@ html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .5; }
   html[data-brand] .felt-mark { top: 58%; }
   html[data-brand] .felt-mark .felt-brand { width: 118px; }
 }
+
+/* ── Hero seat, pixel-perfect to Figma "Hero hand 09" (170×150 frame): avatar 88, cards 64×88 r8 ±10°, stack pill overlaps the avatar by 6px, hand pill right of the avatar ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero {
+  --hk: 1; --ava: calc(88px * var(--hk)) !important; --hole-cw: calc(64px * var(--hk)) !important; --seat-w: calc(170px * var(--hk)) !important;
+}
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero { --hk: .75; } }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .avatar-zone { overflow: visible; z-index: 2; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .ava {
+  background: linear-gradient(180deg, #3F8BF2 0%, #1A409A 100%) !important;
+  box-shadow: 0 4px 10px rgba(0, 5, 26, .4) !important; border: 0 !important; filter: none !important;
+  transition: box-shadow .2s ease, opacity .2s ease;
+}
+/* cards: left one 10px higher than the right one, 8px apart, frame centre 3px right of the avatar centre */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole {
+  top: calc(-34px * var(--hk)) !important; bottom: auto !important; left: 50% !important; right: auto !important;
+  translate: calc(-50% + 3px * var(--hk)) 0 !important; z-index: 0; display: flex; align-items: flex-start; width: max-content; perspective: none;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card {
+  --cw: calc(64px * var(--hk)); width: var(--cw); height: calc(88px * var(--hk)); aspect-ratio: auto; padding: 0; border-radius: calc(8px * var(--hk));
+  background: linear-gradient(180deg, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0)), #E4E8EF !important;
+  box-shadow: 0 4px 10px rgba(0, 5, 26, .4) !important; color: #0E1726; transition: opacity .25s ease, box-shadow .25s ease;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card.suit-1,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card.suit-2 { background: linear-gradient(180deg, rgba(255, 255, 255, .8), rgba(255, 255, 255, 0)), #FCE1E3 !important; color: #E23B45; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card + .card { margin-left: calc(8px * var(--hk)) !important; margin-top: calc(10px * var(--hk)); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card:first-child { transform: rotate(-10deg) !important; transform-origin: 50% 50%; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card:nth-child(2) { transform: rotate(10deg) !important; transform-origin: 50% 50%; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card .cr {
+  position: absolute; left: calc(7px * var(--hk)); top: calc(5px * var(--hk)); font-family: Montserrat, sans-serif; font-weight: 800;
+  font-size: calc(24.5px * var(--hk)); line-height: 1.05; letter-spacing: -.02em; color: currentColor;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card .cs-s { display: block; position: absolute; left: calc(8px * var(--hk)); top: calc(30px * var(--hk)); font-size: calc(13px * var(--hk)); line-height: 1; margin: 0; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .card .cs { position: absolute; left: calc(28px * var(--hk)); top: calc(49px * var(--hk)); right: auto; bottom: auto; font-size: calc(31px * var(--hk)); line-height: 1; }
+/* stack pill overlaps the avatar bottom by 6px */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .plate { margin-top: calc(-6px * var(--hk)) !important; z-index: 5; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .plate .st {
+  padding: calc(5px * var(--hk)) calc(12px * var(--hk)) !important; font-size: calc(14px * var(--hk)) !important; line-height: calc(15px * var(--hk)) !important;
+  background: #0A182A !important; color: #F3F7FC !important; transition: opacity .2s ease;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .plate .nm { margin-top: calc(4px * var(--hk)) !important; }
+/* hand pill: gold, 11px inside the avatar's right edge, 20px below its top */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .clock {
+  position: absolute; left: calc(100% - 38px * var(--hk)) !important; top: calc(54px * var(--hk)) !important; right: auto !important; bottom: auto !important;
+  translate: none !important; width: auto !important; height: auto !important; min-width: 0; overflow: visible; z-index: 7;
+  display: inline-flex; gap: 4px; align-items: center; padding: calc(5px * var(--hk)) calc(12px * var(--hk)) !important; border: 0 !important; border-radius: 999px !important;
+  font-family: Montserrat, sans-serif; font-size: calc(12px * var(--hk)) !important; font-weight: 700; line-height: calc(13px * var(--hk)) !important; white-space: nowrap;
+  box-shadow: none !important; max-width: none; animation: x-pop .18s ease both;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand { background: #3A2C0C !important; color: #F4DDA6 !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand i { color: #F4DDA6; font-weight: 600; opacity: .8; }
+/* action tag sits at the seat level: same spot, measured from the seat (hole left = centre − 65, hole top = −34) */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .clock { left: calc(50% + 33px * var(--hk)) !important; top: calc(20px * var(--hk)) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag { background: #E6ECF5 !important; color: #0A182A !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-call,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-bet { background: #3F8BF2 !important; color: #fff !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-raise { background: #E23B45 !important; color: #fff !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-allin { background: #F2B63C !important; color: #281C00 !important; text-transform: uppercase; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-fold { background: #283446 !important; color: #AAB9C8 !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-blind {
+  left: calc(50% - 44px * var(--hk)) !important; top: calc(-4px * var(--hk)) !important; padding: 0 calc(6px * var(--hk)) !important;
+  font-size: calc(9px * var(--hk)) !important; line-height: calc(16px * var(--hk)) !important; background: #1A2A42 !important; color: #C3CEDC !important;
+}
+/* the action pill replaces the hand pill while it is shown */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero:has(.tag:not(.t-blind):not(.t-win)) .hole .x-hand { display: none !important; }
+/* Your turn: 100px green ring (4px), soft glow, "14s" pill in the hand spot; the hand pill drops under the stack */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .ring-wrap { inset: calc(-6px * var(--hk)) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .ring {
+  --x-rc: #76C026;
+  -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 4px), #000 calc(100% - 3.5px)) !important;
+  mask: radial-gradient(closest-side, transparent calc(100% - 4px), #000 calc(100% - 3.5px)) !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.turn .ava { box-shadow: 0 4px 10px rgba(0, 5, 26, .4), 0 0 22px 2px rgba(118, 192, 38, .55) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.turn .clock { display: inline-flex !important; background: #76C026 !important; color: #081E0A !important; inset: auto; transform: none; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.turn .clock::after { content: "s"; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.turn .plate .st { background: #0A182A !important; color: #F3F7FC !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.turn .hole .x-hand { left: 50% !important; top: calc(100% + 40px * var(--hk)) !important; translate: -50% 0 !important; }
+/* All-in: gold ring on the avatar */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero:has(.tag.t-allin) .ava { box-shadow: 0 0 0 3px #F2B63C, 0 4px 10px rgba(0, 5, 26, .4), 0 0 22px 2px rgba(242, 184, 52, .55) !important; }
+/* Folded: cards 35%, avatar 55%, stack 70% */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .hole { opacity: 1; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .hole .card { opacity: .35; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .ava { opacity: .55; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .plate { opacity: 1; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.folded.hero .plate .st { opacity: .7; }
+/* Winner: gold ring + glow, gold edge on the cards, "+$" pill at the top-left of the frame */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.winner .ava { box-shadow: 0 0 0 3px #F2B63C, 0 4px 10px rgba(0, 5, 26, .4) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.winner .avatar-zone::before {
+  content: ""; position: absolute; inset: calc(-50px * var(--hk)); border-radius: 50%; z-index: -1; pointer-events: none;
+  background: radial-gradient(circle, rgba(242, 184, 52, .55) 0%, rgba(242, 184, 52, .18) 45%, rgba(242, 184, 52, 0) 70%);
+  animation: x-fade .4s ease both;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.winner .hole .card,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .table.hero-won .seat.hero .hole .card { box-shadow: 0 0 0 2px #F2B63C, 0 4px 10px rgba(0, 5, 26, .4) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .tag.t-win {
+  left: calc(50% - 85px * var(--hk)) !important; top: calc(-44px * var(--hk)) !important; background: #F2B63C !important; color: #281C00 !important; font-weight: 800;
+  box-shadow: 0 4px 14px rgba(242, 184, 52, .6) !important;
+}
+/* Sitting out: no cards, dimmed avatar, grey pill */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.away .hole .card,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.sitout .hole .card { display: none; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.away .ava,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.sitout .ava { opacity: .5; }
+
+/* ── Full screen: the stage grows with the viewport instead of stopping at 1100px ── */
+html[data-brand][data-x-fs] .app { max-width: none; padding-left: 16px; padding-right: 16px; }
+html[data-brand][data-x-fs] .stage { max-width: 1400px; }
+html[data-brand][data-x-fs] .table { aspect-ratio: 2.3 / 1; }
+html[data-brand][data-x-fs] .app:not(.chat-hidden) .main { padding-right: 0; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.turn .clock { gap: 0; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.away .hole .x-hand,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero.sitout .hole .x-hand { display: none !important; }

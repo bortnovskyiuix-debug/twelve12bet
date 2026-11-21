@@ -22,7 +22,9 @@
     if (m && innerWidth >= 1081) {
       var cs = getComputedStyle(m);
       var w = m.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
-      z = Math.max(1, Math.min(w / 1100, m.clientHeight / 764, document.documentElement.hasAttribute('data-x-fs') ? 2.4 : 1.6));
+      var st = $('.stage', m), fsOn = document.documentElement.hasAttribute('data-x-fs');
+      var bw = fsOn && st ? st.offsetWidth : 1100, bh = fsOn && st ? st.offsetHeight : 764;
+      z = Math.max(1, Math.min(w / bw, m.clientHeight / bh, fsOn ? 2.6 : 1.6));
     }
     document.documentElement.style.setProperty('--x-tz', z.toFixed(3));
   }
