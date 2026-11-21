@@ -355,3 +355,17 @@ html[data-brand] .felt-mark :is(.felt-mode, .felt-ribbon, .felt-banner, .x-ribbo
 html[data-brand] { --back-icon: url("/brand/1xbet/back-1x-v2.svg") !important; }
 /* Chips: clean faces, no 12X mark and no denomination */
 html[data-brand] .chip-face > g, html[data-brand] .chip-face > text { display: none !important; }
+
+/* Card backs: 10 1xBet designs (brand/1xbet/backs/*.svg), picked in Settings → Card back */
+html[data-brand] [data-back="classic"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/classic.svg") center / cover no-repeat, #0A4CC4; }
+html[data-brand] [data-back="zigzag"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/zigzag.svg") center / cover no-repeat, #0759BE; }
+html[data-brand] [data-back="stripes"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/stripes.svg") center / cover no-repeat, #147FEA; }
+html[data-brand] [data-back="royal"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/royal.svg") center / cover no-repeat, #0D63D2; }
+html[data-brand] [data-back="steps"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/steps.svg") center / cover no-repeat, #14469D; }
+html[data-brand] [data-back="carbon"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/carbon.svg") center / cover no-repeat, #0D223B; }
+html[data-brand] [data-back="diamonds"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/diamonds.svg") center / cover no-repeat, #0A2340; }
+html[data-brand] [data-back="links"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/links.svg") center / cover no-repeat, #071C35; }
+html[data-brand] [data-back="weave"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/weave.svg") center / cover no-repeat, #0C2138; }
+html[data-brand] [data-back="blocks"] { --back-icon: none !important; --back: url("/brand/1xbet/backs/blocks.svg") center / cover no-repeat, #0B223D; }
+html[data-brand] [data-back] .card.back { background: var(--back) !important; }
+html[data-brand] .opt-row:has(.mini-cards) { flex-wrap: wrap; }
