@@ -978,3 +978,16 @@ html[data-brand], html[data-brand] body {
 html[data-brand] input, html[data-brand] textarea { -webkit-user-select: text; user-select: text; }
 html[data-brand] img, html[data-brand] svg, html[data-brand] .card { -webkit-user-drag: none; user-drag: none; }
 html.tg, html.tg body { overscroll-behavior: none; }
+
+/* ── Dock "to act" status: Figma 05 "Ring timer with seconds" (node 65:77) ── */
+html[data-brand] .dock .dock-status[data-x-ta] { height: 26px; font-size: 0; color: transparent; }
+html[data-brand] .dock .dock-status[data-x-ta] > :not(.x-ta) { display: none !important; }
+html[data-brand] .x-ta { display: inline-flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; font-family: Montserrat, var(--font-body); line-height: 1; }
+html[data-brand] .x-ta-ring { position: relative; flex: none; width: 26px; height: 26px; }
+html[data-brand] .x-ta-ring svg { display: block; transform: rotate(-90deg); }
+html[data-brand] .x-ta-ring circle { fill: none; stroke-width: 3; stroke-linecap: butt; }
+html[data-brand] .x-ta-track { stroke: rgba(255, 255, 255, .12); }
+html[data-brand] .x-ta-arc { stroke: #14A0FF; transition: stroke-dashoffset .1s linear; }
+html[data-brand] .x-ta-s { position: absolute; inset: 0; display: grid; place-items: center; font-size: 9px; font-weight: 700; line-height: 1; color: #fff; font-variant-numeric: tabular-nums; }
+html[data-brand] .x-ta-name { font-size: 14px; font-weight: 600; color: #fff; }
+html[data-brand] .x-ta-label { font-size: 13px; font-weight: 500; color: #8FA6BC; }

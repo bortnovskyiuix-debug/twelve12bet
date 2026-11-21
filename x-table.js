@@ -266,3 +266,63 @@
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
 })();
+
+/* ── "To act" status, Figma 05 "Ring timer with seconds" (node 65:77):
+   26px ring (3px, track white 12%, progress #14A0FF clockwise from 12 o'clock) with the seconds left,
+   then the player name (SemiBold 14, white) and "to act" (Medium 13, #8FA6BC), 10px apart.
+   Time comes from the acting seat's .ring-wrap (--dur / --elapsed); without a timer the original text stays. */
+(function () {
+  var NS = 'http://www.w3.org/2000/svg', R = 11.5, LEN = 2 * Math.PI * R;
+  var el, arc, sec, nm, lb, ringRef = null, t0 = 0, dur = 0, timer = 0;
+  function build() {
+    el = document.createElement('span'); el.className = 'x-ta'; el.setAttribute('aria-hidden', 'true');
+    var ring = document.createElement('span'); ring.className = 'x-ta-ring';
+    var svg = document.createElementNS(NS, 'svg'); svg.setAttribute('width', '26'); svg.setAttribute('height', '26'); svg.setAttribute('viewBox', '0 0 26 26');
+    var tr = document.createElementNS(NS, 'circle'); tr.setAttribute('class', 'x-ta-track');
+    arc = document.createElementNS(NS, 'circle'); arc.setAttribute('class', 'x-ta-arc');
+    [tr, arc].forEach(function (c) { c.setAttribute('cx', '13'); c.setAttribute('cy', '13'); c.setAttribute('r', String(R)); svg.appendChild(c); });
+    arc.setAttribute('stroke-dasharray', LEN.toFixed(2) + ' ' + LEN.toFixed(2));
+    sec = document.createElement('b'); sec.className = 'x-ta-s';
+    ring.appendChild(svg); ring.appendChild(sec);
+    nm = document.createElement('span'); nm.className = 'x-ta-name';
+    lb = document.createElement('span'); lb.className = 'x-ta-label';
+    el.appendChild(ring); el.appendChild(nm); el.appendChild(lb);
+  }
+  function paint() {
+    var left = Math.max(0, dur - (performance.now() - t0)), f = dur ? left / dur : 0;
+    arc.setAttribute('stroke-dashoffset', (LEN * (1 - f)).toFixed(2));
+    var s = String(Math.ceil(left / 1000)); if (sec.textContent !== s) sec.textContent = s;
+  }
+  function stop(st) {
+    clearInterval(timer); timer = 0; ringRef = null;
+    if (st) st.removeAttribute('data-x-ta');
+    if (el && el.parentNode) el.parentNode.removeChild(el);
+  }
+  function sync() {
+    var st = document.querySelector('.dock .dock-status');
+    var b = st && st.querySelector(':scope > b:not(:has(.turn-dot))');
+    var rw = document.querySelector('.seat.bot .ring-wrap');
+    if (!st || !b || !rw) return stop(st);
+    if (!el) build();
+    if (rw !== ringRef) {
+      ringRef = rw;
+      var cs = getComputedStyle(rw);
+      dur = parseFloat(cs.getPropertyValue('--dur')) || 15000;
+      t0 = performance.now() + (parseFloat(cs.getPropertyValue('--elapsed')) || 0);
+    }
+    var uk = /[Ѐ-ӿ]/.test(st.textContent.replace(b.textContent, ''));
+    if (nm.textContent !== b.textContent) nm.textContent = b.textContent;
+    lb.textContent = uk ? 'ходить' : 'to act';
+    if (el.parentNode !== st) st.appendChild(el);
+    st.setAttribute('data-x-ta', '');
+    paint();
+    if (!timer) timer = setInterval(paint, 100);
+  }
+  function start() {
+    sync();
+    new MutationObserver(function (m) {
+      for (var i = 0; i < m.length; i++) if (!el || !el.contains(m[i].target)) { sync(); return; }
+    }).observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['class'] });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start); else start();
+})();
