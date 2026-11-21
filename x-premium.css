@@ -325,3 +325,41 @@ html[data-brand] .felt-swatch.x-neon { background: radial-gradient(ellipse at 50
 html[data-brand][data-x-skin="neon"] .opt-row:has(.x-skin-tile) .opt-tile:not(.x-skin-tile) { border-color: transparent; background: none; box-shadow: none; }
 html[data-brand][data-x-skin="neon"] .opt-row:has(.x-skin-tile) .opt-tile:not(.x-skin-tile)::after { display: none; }
 html[data-brand][data-x-skin="neon"] .topbar { position: relative; z-index: 5; }
+
+/* ── Dock sizing pass ────────────────────────────── */
+html[data-brand] .dock { gap: 10px; }
+html[data-brand] .dock .dock-status { height: 20px; font-size: 13px; }
+html[data-brand] .dock .dock-status b { font-weight: 600; }
+html[data-brand] .dock .sizes { gap: 8px; }
+html[data-brand] .dock .size {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+  height: 46px; flex: 1 1 0; min-width: 0; padding: 0 12px; border-radius: 12px; line-height: 1;
+}
+html[data-brand] .dock .size .size-l { font-size: 14px; font-weight: 600; line-height: 1; }
+html[data-brand] .dock .size small { font-size: 11.5px; font-weight: 500; line-height: 1; }
+html[data-brand] .dock .size.size-icon { min-width: 46px; width: 46px; flex: 0 0 46px; padding: 0; }
+html[data-brand] .dock .main-acts { gap: 8px; }
+html[data-brand] .dock .ma { height: 58px; border-radius: 14px; gap: 4px; font-size: 16px; font-weight: 700; line-height: 1; }
+html[data-brand] .dock .ma small { font-size: 12.5px; font-weight: 600; line-height: 1; opacity: .85; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html[data-brand] .dock .sizes { gap: 6px; }
+  html[data-brand] .dock .size { flex: 1 1 0; min-width: 0; height: 44px; padding: 0 6px; }
+  html[data-brand] .dock .size .size-l { font-size: 13.5px; }
+  html[data-brand] .dock .size small { font-size: 11px; }
+  html[data-brand] .dock .size.size-icon { flex: 0 0 44px; width: 44px; min-width: 44px; }
+  html[data-brand] .dock .ma { height: 56px; font-size: 15.5px; }
+  html[data-brand] .dock .main-acts { gap: 6px; }
+}
+/* Key caps: smaller, quieter */
+@media (hover: hover) and (pointer: fine) {
+  html[data-brand] .dock.my-turn .ma-fold::after,
+  html[data-brand] .dock.my-turn .ma-call::after,
+  html[data-brand] .dock.my-turn .ma-raise::after {
+    top: 6px; right: 6px; min-width: 16px; height: 16px; padding: 0 4px;
+    font-size: 9.5px; border-color: rgba(255, 255, 255, .16); background: rgba(0, 0, 0, .18); color: rgba(255, 255, 255, .6);
+  }
+}
+/* Dock never runs under the chat pill */
+@media (min-width: 1081px) {
+  html[data-brand] .app.chat-hidden .dock { max-width: min(680px, calc((100vw - 624px) / var(--x-tz, 1))); margin-inline: auto; }
+}
