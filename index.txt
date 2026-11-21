@@ -26,5 +26,5 @@ e:I[5278,[],"AsyncMetadataOutlet"]
 7:["$","$1","h",{"children":[null,[["$","$L10",null,{"children":"$L11"}],null],["$","$L12",null,{"children":["$","div",null,{"hidden":true,"children":["$","$13",null,{"fallback":null,"children":"$L14"}]}]}]]}]
 11:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1, viewport-fit=cover"}],["$","meta","2",{"name":"theme-color","content":"#000F1A"}]]
 d:null
-f:{"metadata":[["$","title","0",{"children":"12xBet Poker"}],["$","meta","1",{"name":"description","content":"12xBet Poker: NL Hold’em 6-max with bots, insurance, run it twice and 1x Pass."}]],"error":null,"digest":"$undefined"}
+f:{"metadata":[["$","title","0",{"children":"1xBet Poker"}],["$","meta","1",{"name":"description","content":"1xBet Poker: NL Hold’em 6-max with bots, insurance, run it twice and 1x Pass."}]],"error":null,"digest":"$undefined"}
 14:"$f:metadata"
