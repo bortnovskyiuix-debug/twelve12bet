@@ -1067,3 +1067,4 @@ html[data-brand] :is(.card.back, .card.peek-back, .deck i) { background-size: 50
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card > .card.peek-back,
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek-hint { display: none !important; }
 html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek { cursor: default !important; touch-action: auto !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .peek .peek-card > .card:not(.peek-back) { filter: none !important; }
