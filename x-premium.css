@@ -1018,3 +1018,10 @@ html[data-brand] .felt-mark .felt-brand { content: url("brand/12bet/logo-mono.sv
   filter: drop-shadow(0 1px 0 rgba(255, 255, 255, .18)) drop-shadow(0 -1px 0 rgba(0, 0, 0, .45)); }
 html[data-brand][data-x-skin="neon"] .felt-mark .felt-brand { opacity: .5; }
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .felt-mark .felt-brand { width: 118px; } }
+
+
+/* Felt mark, desktop: right of the board, vertically centred on the board line, no overlap with the right seats */
+@media (min-width: 701px) and (min-aspect-ratio: 4/5) {
+  html[data-brand] .felt-mark { translate: 24px 0; top: 53%; }
+  html[data-brand] .felt-mark .felt-brand { width: 200px; }
+}
