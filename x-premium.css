@@ -664,3 +664,32 @@ html[data-brand] .x-fs:active { transform: scale(.95); }
 html[data-brand] .x-fs:focus-visible { outline: 2px solid var(--x-dock-focus); outline-offset: 2px; }
 @media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .x-fs { display: none; } }
 html[data-brand][data-x-fs] .app { max-width: none; }
+
+/* ── Clean-up pass ─────────────────────────────── */
+/* 1. Cards appear right away: no fly-in, no delayed flip, no deck wait */
+html[data-brand] .table > .deck { display: none !important; }
+html[data-brand] .table .board .board-slot { opacity: 1 !important; transition: none !important; }
+html[data-brand] .seat .hole .card.dealt,
+html[data-brand] .seat .hole .card.dealt-up,
+html[data-brand] .seat .hole .card.turn-up { animation: x-fade .18s ease both !important; }
+html[data-brand] .seat .hole .card.dealt-up::after,
+html[data-brand] .seat .hole .card.turn-up::after { content: none !important; display: none !important; }
+html[data-brand] .board .bcard.flop, html[data-brand] .board .bcard.single { animation: x-fade .22s ease both !important; }
+html[data-brand] .board .bcard .bcard-inner { animation: none !important; transform: none !important; }
+html[data-brand] .board .bcard .bback { display: none !important; }
+html[data-brand] .board .bcard .bfront::after { content: none !important; }
+/* 2. Dealer button never sits under the hero's cards */
+html[data-brand] .dbtn { z-index: 8 !important; }
+html[data-brand] .dbtn.d0 { left: 36% !important; top: 74% !important; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .dbtn.d0 { left: 22% !important; top: 80% !important; } }
+/* 3. No text selection or tap highlight on table UI */
+html[data-brand] .table, html[data-brand] .dock, html[data-brand] .switcher, html[data-brand] .x-hand, html[data-brand] .toolbar {
+  -webkit-user-select: none; user-select: none; -webkit-tap-highlight-color: transparent;
+}
+/* 4. Blind tag moves to the top-left of the avatar, clear of the cards */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-blind {
+  top: -2px !important; bottom: auto !important; left: -4px !important; right: auto !important; z-index: 7;
+}
+/* 5. Hand badge never covers the stack or ring */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole .x-hand { white-space: nowrap; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) { html[data-brand] .dbtn.d0 { left: 12% !important; top: 74% !important; } }
