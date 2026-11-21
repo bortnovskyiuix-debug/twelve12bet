@@ -1083,8 +1083,8 @@ html[data-brand] .stage > .dock { min-height: var(--x-dock-h, 144px) !important;
 @media (max-aspect-ratio: 4/5), (max-width: 700px) {
   html[data-brand][data-x-skin="neon"][data-brand] .table {
     /* wider than the artwork's 1 : 1.6 on request: 1 : 1.36, the image stretches sideways by ~17% */
-    width: min(90cqw, calc(100cqh / 1.36)) !important;
-    height: min(100cqh, calc(min(90cqw, 100cqh / 1.36) * 1.36)) !important;
+    width: min(82cqw, calc(100cqh / 1.2)) !important;
+    height: min(100cqh, calc(min(82cqw, 100cqh / 1.2) * 1.2)) !important;
     aspect-ratio: auto !important;
   }
   html[data-brand][data-x-skin="neon"] .x-skin-bg {
