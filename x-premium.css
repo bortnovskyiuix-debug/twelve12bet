@@ -459,3 +459,98 @@ html[data-brand] .seat[data-x-t="low"] .ring { --rc: #E5484D !important; }
 
 /* Lobby is off for now: no "Back to lobby" in the table menu */
 html[data-brand] .menu-row.x-lobby { display: none !important; }
+
+/* ── Table switcher: browser tabs on a bar (Figma variant 05) ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher {
+  align-items: flex-end !important; gap: 2px !important; height: 46px; padding: 6px 8px 0;
+  border-radius: 14px; background: rgba(10, 24, 42, .92); overflow: hidden;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .jp-wrap { align-self: center; margin-bottom: 6px; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .jackpot {
+  width: 36px; height: 34px; border-radius: 10px; background: none !important; box-shadow: none !important; border: 0 !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .jackpot:hover { background: rgba(255, 255, 255, .06) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tabs {
+  align-items: flex-end !important; gap: 2px !important; height: 40px !important; padding: 0 !important; margin: 0 !important;
+  background: none !important; box-shadow: none !important; border-radius: 0 !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important; -webkit-mask: none !important; mask: none !important;
+  counter-reset: xtab;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-wrap {
+  counter-increment: xtab; align-items: center; height: 40px; padding: 0 12px 0 10px; gap: 8px;
+  border-radius: 12px 12px 0 0; transition: background-color .2s ease;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-wrap.on { background: #17304F; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-wrap:not(.on):hover { background: rgba(255, 255, 255, .05); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab {
+  width: auto !important; height: 40px !important; display: flex !important; align-items: center; gap: 9px;
+  background: none !important; box-shadow: none !important; border-radius: 0 !important; animation: none !important;
+  font-size: 13px; font-weight: 600; color: #F3F7FC; white-space: nowrap;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab::after { content: "Table " counter(xtab); }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab:not(.on) { color: #8FA6BA; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab:not(.on) .tab-fan { opacity: .55 !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab.m-turn:not(.on) { color: #9BD23F; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab.m-turn:not(.on)::after { content: "Your turn"; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab.m-turn:not(.on) .tab-fan { opacity: 1 !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-fan { flex: none; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-x {
+  position: static !important; width: 20px; height: 20px; flex: none; background: none !important; border: 0 !important;
+  color: #8FA6BA; animation: none !important; border-radius: 6px;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-x:hover { color: #fff; background: rgba(255, 255, 255, .1) !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-alert { display: none !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-clock { left: 10px; right: 10px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .add-table {
+  width: 34px !important; height: 34px !important; align-self: center; margin: 0 0 6px 2px; border-radius: 10px;
+  background: none !important; box-shadow: none !important; border: 0 !important; color: #8FA6BA;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .add-table:hover { background: rgba(255, 255, 255, .06) !important; color: #fff; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher { height: 42px; padding: 4px 4px 0; width: auto !important; max-width: calc(100vw - 150px) !important; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tabs, html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-wrap,
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab { height: 38px !important; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-wrap { padding: 0 8px; gap: 4px; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .ttab::after { content: none !important; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .jackpot, html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .add-table { width: 30px !important; height: 30px !important; }
+}
+
+/* ── Seat: mini card (Figma variant 15) — avatar, action dot, stack pill ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate {
+  background: none !important; box-shadow: none !important; border: 0 !important; padding: 0 !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+  margin-top: 6px !important; min-width: 0 !important; display: grid; justify-items: center; gap: 4px;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .lvl,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .flag-wrap { display: none !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .st {
+  order: 1; padding: 4px 12px; border-radius: 999px; background: #0A182A !important;
+  font-size: 14px !important; font-weight: 700; line-height: 1.2; color: #F3F7FC !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.turn .plate .st { background: #1D3A12 !important; color: #C9F08A !important; }
+/* Name: hidden by default, shows on hover as a small pill under the stack */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .nm {
+  order: 2; width: auto !important; max-width: 120px; margin: 0 !important; padding: 2px 8px !important; border: 0 !important; border-radius: 999px;
+  background: rgba(6, 16, 30, .9); font-size: 11px !important; font-weight: 600; color: #8FA6BA;
+  position: absolute; top: 100%; margin-top: 3px !important; opacity: 0; pointer-events: none; transition: opacity .15s ease;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .plate .nm::after { content: none !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .plate .nm { font-size: 11px !important; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat:hover .plate .nm { opacity: 1; }
+/* Action tag becomes a status dot on the avatar; blinds keep a tiny label */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag {
+  top: auto !important; bottom: -1px !important; left: auto !important; right: 1px !important; translate: none !important;
+  width: 16px; height: 16px; min-width: 0; padding: 0 !important; border: 0 !important; border-radius: 50% !important;
+  font-size: 0 !important; background: var(--tc) !important; box-shadow: 0 0 0 3px #06101E; overflow: hidden;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-call,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-check { --tc: #3E9BFF; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-raise,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-bet { --tc: #F2B63C; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-allin { --tc: #E5484D; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-fold { --tc: #4A586E; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .tag.t-blind {
+  width: auto; height: 16px; padding: 0 5px !important; border-radius: 999px !important;
+  font-size: 9px !important; font-weight: 700; line-height: 16px; color: #C3CEDC !important; background: #1A2A42 !important;
+}
+@media (min-width: 701px) and (min-aspect-ratio: 4/5) { html[data-brand] .felt-mark { translate: 36px 0; } }
