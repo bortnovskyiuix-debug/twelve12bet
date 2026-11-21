@@ -1,5 +1,5 @@
-/* Preloader: full-screen pattern that fills with light from the bottom (brand/preloader-vertical.svg, 5 s loop),
-   a still wordmark in the centre. Stays until the fill has reached the top and the table is ready, then fades out.
+/* 1win POKER preloader: the final vector artwork includes the logo and a pattern that fills from the bottom.
+   Stays until the fill has reached the top and the table is ready, then fades out.
    Skipped inside Telegram on desktop. */
 (function () {
   if (window.__xPre) return; window.__xPre = 1;
@@ -13,13 +13,10 @@
   var css =
     '.x-pre{position:fixed;inset:0;z-index:2147483000;background:#070d14;overflow:hidden;transition:opacity .5s ease,visibility .5s ease}' +
     '.x-pre.out{opacity:0;visibility:hidden}' +
-    '.x-pre-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}' +
-    '.x-pre-mark{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);padding:.42em .9em .4em;border-radius:.42em;background:#fff;color:#070d14;' +
-      'font-family:var(--font-display,Montserrat),Montserrat,system-ui,sans-serif;font-weight:800;font-size:min(9.6vw,54px);letter-spacing:.14em;text-indent:.14em;line-height:1;white-space:nowrap;' +
-      'box-shadow:0 0 0 14px #070d14,0 0 60px 40px rgba(7,13,20,.9)}';
+    '.x-pre-art{position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover}';
   var st = d.createElement('style'); st.textContent = css; (d.head || root).appendChild(st);
-  var el = d.createElement('div'); el.className = 'x-pre'; el.setAttribute('role', 'status'); el.setAttribute('aria-label', 'Loading');
-  el.innerHTML = '<img class="x-pre-art" alt="" src="' + base + 'brand/preloader-vertical.svg?v=1"><span class="x-pre-mark">POKER</span>';
+  var el = d.createElement('div'); el.className = 'x-pre'; el.setAttribute('role', 'status'); el.setAttribute('aria-label', 'Loading 1win POKER');
+  el.innerHTML = '<img class="x-pre-art" alt="" src="' + base + 'brand/preloader-vertical.svg?v=2">';
   var mount = function () { if (!el.isConnected && !el.classList.contains('gone')) (d.body || root).appendChild(el); };
   if (d.body) mount(); else d.addEventListener('DOMContentLoaded', mount);
   /* the app re-renders the page while it boots; put the overlay back if it gets wiped */

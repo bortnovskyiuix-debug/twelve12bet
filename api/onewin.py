@@ -15,7 +15,7 @@ OWNER_ID = OWNER_ID if OWNER_ID.isdigit() else ""   # optional: without it the p
 PLAY_URL = os.environ.get("ONEWIN_PLAY_URL", "").strip()   # default: /1win/ on this same site
 BRAND = os.environ.get("ONEWIN_BRAND", "Poker").strip()          # shown in the welcome text and pack title
 BRAND_LOGO = "none"  # "1x" = 1X mark emoji + 1xBet banner; anything else = neutral
-WELCOME_VIDEO = os.environ.get("ONEWIN_WELCOME_VIDEO", "").strip()     # optional banner url; default: /welcome.mp4 for 1x, /welcome-neon.mp4 otherwise
+WELCOME_VIDEO = os.environ.get("ONEWIN_WELCOME_VIDEO", "").strip()     # optional animation URL or file_id; defaults to the 1win welcome video
 LAST_ERROR = None
 SECRET = hashlib.sha256(TOKEN.encode()).hexdigest()[:32]
 
@@ -91,7 +91,7 @@ def send_welcome(chat_id, host, user_id=None):
     button = {"text": BUTTON_TEXT, "web_app": {"url": PLAY_URL or f"https://{host}/1win/"}}
     if "play" in ids:
         button["icon_custom_emoji_id"] = ids["play"]
-    video = WELCOME_VIDEO or f"https://{host}/tgbot/public/welcome-pattern.mp4"
+    video = WELCOME_VIDEO or f"https://{host}/tgbot/public/welcome-1win.mp4"
     p = {"chat_id": chat_id, "parse_mode": "HTML", "reply_markup": {"inline_keyboard": [[button]]}}
     method, field = ("sendAnimation", "caption") if video else ("sendMessage", "text")
     if video:
