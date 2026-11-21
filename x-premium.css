@@ -550,3 +550,26 @@ html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-cl
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .jackpot, html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .add-table { width: 34px !important; height: 34px !important; }
   html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .switcher .tab-clock { left: 10px; right: 10px; bottom: 3px; }
 }
+
+/* ── Turn timer: ring around the avatar (Figma timer variant 01) ── */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring-wrap { inset: -11px; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring {
+  background: conic-gradient(var(--x-rc, #8BBD35) calc(var(--t) * 1turn), rgba(255, 255, 255, .26) 0) !important;
+  -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5.5px)) !important;
+  mask: radial-gradient(closest-side, transparent calc(100% - 6px), #000 calc(100% - 5.5px)) !important;
+  filter: none !important;
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat[data-x-t="mid"] .ring { --x-rc: #F2B63C; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat[data-x-t="low"] .ring { --x-rc: #E5484D; }
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring-halo,
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring-wrap::after { display: none !important; }
+/* avatar stays visible: no countdown number over it */
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .clock { display: none !important; }
+@media (max-aspect-ratio: 4/5), (max-width: 700px) {
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring-wrap { inset: -8px; }
+  html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat .ring {
+    -webkit-mask: radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 4.5px)) !important;
+    mask: radial-gradient(closest-side, transparent calc(100% - 5px), #000 calc(100% - 4.5px)) !important;
+  }
+}
+html:is([data-brand="1xbet"],[data-brand="12bet"])[data-brand] .seat.hero .hole { translate: 10px 0; }

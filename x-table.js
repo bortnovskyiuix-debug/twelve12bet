@@ -158,10 +158,14 @@
   /* ── Timer urgency colour ── */
   function timer() {
     $$('.seat[data-x-t]').forEach(function (s) { if (!s.classList.contains('turn')) s.removeAttribute('data-x-t'); });
-    var c = $('.seat.turn .clock'); if (!c || !hydrated) return;
-    var n = parseInt(c.textContent, 10), seat = c.closest('.seat'), v = n <= 3 ? 'low' : n <= 7 ? 'mid' : '';
-    if (v) { if (seat.getAttribute('data-x-t') !== v) seat.setAttribute('data-x-t', v); } else seat.removeAttribute('data-x-t');
+    if (!hydrated) return;
+    $$('.seat.turn .ring-wrap').forEach(function (rw) {
+      var t = parseFloat(getComputedStyle(rw).getPropertyValue('--t')), seat = rw.closest('.seat'); if (!seat || isNaN(t)) return;
+      var v = t <= 0.2 ? 'low' : t <= 0.47 ? 'mid' : '';
+      if (v) { if (seat.getAttribute('data-x-t') !== v) seat.setAttribute('data-x-t', v); } else if (seat.hasAttribute('data-x-t')) seat.removeAttribute('data-x-t');
+    });
   }
+  setInterval(function () { if (document.querySelector('.seat.turn')) timer(); }, 250);
 
   var raf = 0;
   function tick() { raf = 0; skinDom(); hand(); timer(); title(); if (armed && !$('.dock.my-turn')) disarm();
